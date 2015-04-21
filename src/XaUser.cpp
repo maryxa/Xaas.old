@@ -2259,11 +2259,6 @@ void XaUser::XaUserRegistration (){
 
 				LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Registering User That Does Not Exist -> " + StrEmail);
 
-				/* constant values :
-				 * tree_parent_id=4 (Senta company root)
-				 * type=3, role=5, profile=10
-				 */
-
 				string StrTreeParentId="4";
 				int IntTreeParentId=4;
 				string StrXaUserTypeId="3";
