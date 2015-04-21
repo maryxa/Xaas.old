@@ -190,8 +190,6 @@ void XaUserProfile::XaUserProfileMod(){
 };
 
 void XaUserProfile::XaUserProfileList (){
-
-	//string Login=HTTP.GetHttpParam("XaUser-Login");
 	
 	XaLibAction::SetLayout("Standard");
     XaLibAction::AddXslPath("XaUserProfileList");
@@ -204,7 +202,6 @@ void XaUserProfile::XaUserProfileList (){
 	XaLibSql* LibSql=new XaLibSql();
 
 	string QryUser="SELECT id,name,description,active FROM XaUserProfile WHERE deleted=0 AND id > 2";
-	//QryUser+=" ORDER BY surname";
 	
 	DbResMap DbResUser=LibSql->FreeQuery(DB_READ,QryUser);
 
@@ -232,23 +229,7 @@ void XaUserProfile::XaUserProfileList (){
 	
 		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
 		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
-		
-		/*string XPB1="/root/XaUserLoginList/fieldset/";
-		string r1 =XPB1+"field[@name='XaUser-Login']/value";								
-		
-		string ArrayXPathExpr1[] = {r1};
-		vector<string> XPathExpr1(ArrayXPathExpr1, ArrayXPathExpr1+1);
-		
-		string s1 =Login;
-		
-		string ArrayXPathValue1[] = {s1};
-		vector<string> XPathValue1(ArrayXPathValue1, ArrayXPathValue1+1);
 	
-		LibDom->UpdateElementValueByXPath(XmlDomDoc, XPathExpr1, XPathValue1);
-	
-		XPathExpr1.clear();
-		XPathValue1.clear();
-			*/
 	delete(LibDom);
 
     const int MAXITEMS = 2;
@@ -275,9 +256,6 @@ void XaUserProfile::XaUserProfileXaUserActionAddFrm (){
 
 	XPathExprType="/root/fieldset[@id='XaUserProfileXaUserAction']/field[@name='XaUserProfile']/options";
 	XaLibAction::AddOptionsByDbWithCondition(LibDom,XmlDomDoc,"XaUserProfile",XPathExprType," AND id>2");
-	
-	//XPathExprType="/root/fieldset[@id='XaUserXaDomain']/field[@name='XaDomain-JobTitle']/options";
-	//XaLibAction::AddOptionsByDomain(LibDom,XmlDomDoc,"XaJobTitle",XPathExprType);
 
 	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
 	delete(LibDom);
@@ -431,9 +409,6 @@ void XaUserProfile::XaUserProfileXaUserActionAdd () {
 };
 
 void XaUserProfile::XaUserProfileGetXaUserActionAsOptions () {
-
-// da utilizzare nelle chiamate asincrone per popolare le select
-// restituisce un elenco di <option>, con value in chiaro
 
 	string XaUserProfile_ID=HTTP.GetHttpParam("XaUserProfile_ID");	//criptato
 	//string Domain=HTTP.GetHttpParam("domain");

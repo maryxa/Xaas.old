@@ -18,8 +18,6 @@ class XaLibConfig  : protected XaLibBase {
 		XaLibConfig();
 		void GetParams(string& ConfFile);
 
-		
-		
 		~XaLibConfig();
 };
 #endif

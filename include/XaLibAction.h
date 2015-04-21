@@ -34,19 +34,6 @@ class XaLibAction : protected XaLibBase {
 	private:
 
     protected:
-	/*
-		struct XaObjects {
-
-			shared_ptr<XaLibLog> LibLog;
-			shared_ptr<XaLibHttp> LibHttp;
-			shared_ptr<XaLibDb> LibDbSession;
-			shared_ptr<XaLibDb> LibDbRead;
-			shared_ptr<XaLibDb> LibDbWrite;
-			shared_ptr<XaLibSession> LibSession;
-		};
-
-		XaObjects Objects;
-	*/
 		string NowTimeMysql;
 		string TodayMysql;
 
@@ -71,10 +58,6 @@ class XaLibAction : protected XaLibBase {
 		vector<string> OptionOrderByFields;
 
 		typedef map<int, map<string,string> > ParamFromDomMap;
-
-		void SetActionEnvironment();
-
-		//void SetActionVariables();
 
 		void AddXmlPath   (string FilePath);
 		void AddXmlString (string XmlString);
@@ -102,8 +85,8 @@ class XaLibAction : protected XaLibBase {
 		string DecryptParam(string EncryptedValue);
 		string DecryptParamId(string EncryptedValue);
 
-		void SetLayout (string LayoutType);
-		void UpdateSessionWsLog (string XaSessionWsLog_ID,string LogData,string Response);
+		void SetLayout (const string &LayoutType);
+		void UpdateSessionWsLog (const string &XaSessionWsLog_ID,const string &LogData,const string &Response);
 
 		string ComposeSearchCondition(string Value,string Field,string Type);
 

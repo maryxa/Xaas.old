@@ -341,7 +341,7 @@ void XaLibController::SendResponse(){
 
 	
 	if (RESPONSE.Object!="" && RESPONSE.Event!="") {
-		
+
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Calling PostObject ->"+RESPONSE.Object+ ":: With PostEvent ->"+RESPONSE.Event);
 	
 		REQUEST.CalledObject=RESPONSE.Object;

@@ -260,8 +260,6 @@ void XaLabel::XaLabelMod (){
 
 
 	XaLibSql* LibSql=new XaLibSql();
-	
-//	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added Label -> "+NextId);
 
 	DbResMap DbRes1;
 	
@@ -345,18 +343,7 @@ void XaLabel::XaLabelList (){
 	string cond;
 	
 	XaLibSql* LibSql=new XaLibSql();
-	
-	/*vector<string> ReturnedFields1;
-	ReturnedFields1.push_back("*");
 
-	vector<string> WhereFields1;
-	WhereFields1.push_back("domain");
-	WhereFields1.push_back("active");
-
-	vector<string> WhereValues1;
-	WhereValues1.push_back("XaLanguage");
-	WhereValues1.push_back("1");*/
-	
 	if (StrLanguage!="" and StrLanguage!="NoHttpParam") {
 		cond.append(" AND id=");
 		cond.append(StrLanguage);
@@ -369,9 +356,6 @@ void XaLabel::XaLabelList (){
 	qry.append(" ORDER BY id");
 	
 	DbRes=LibSql->FreeQuery(DB_READ,qry);
-	
-	//DbRes=LibSql->Select(DB_READ,"XaDomain",ReturnedFields1,WhereFields1,WhereValues1);
-
 	
 	XmlString="<titles>";
 		
@@ -400,14 +384,6 @@ void XaLabel::XaLabelList (){
 		
 		ListLang.append(DbRes[n]["name"]);
 		ListLang.append(",");
-		
-		/*XmlString.append("<title>");
-		
-			XmlString.append("<label>");
-			XmlString.append(DbRes[n]["description"]+" (text - ph - help)");
-			XmlString.append("</label>");
-		
-		XmlString.append("</title>");*/
 		
 	}
 	
@@ -628,8 +604,6 @@ void XaLabel::XaLabelAdd (){
 	
 	int NextId=LibSql->Insert(DB_WRITE,"XaLabel",VectorFields,VectorValues);
 
-//	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added Label -> "+NextId);
-
 	string LabelId=XaLibBase::FromIntToString(NextId);
 	
 	DbResMap DbRes;
@@ -781,8 +755,6 @@ void XaLabel::XaTranslationAdd (){
 	
 	int NextId=LibSql->Insert(DB_WRITE,"XaLabel",VectorFields,VectorValues);
 
-//	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added Contract -> "+NextId);
-
 	string LabelId=XaLibBase::FromIntToString(NextId);
 	
 	DbResMap DbRes;
@@ -801,7 +773,6 @@ void XaLabel::XaTranslationAdd (){
 		string StrHelp=HTTP.GetHttpParam("help"+DbRes[n]["name"]);
 		string StrPlaceholder=HTTP.GetHttpParam("ph"+DbRes[n]["name"]);
 		
-		// gestire i parametri vuoti? oppure lasciare cosi ed inserire comunque un record nel db?
 		vector<string> VectorFields1;
 		VectorFields1.push_back("XaLabel_ID");
 		VectorFields1.push_back("XaDomain_ID");
@@ -833,10 +804,6 @@ void XaLabel::XaLabelGen (){
 	string XmlString;
 
 	XaLibSql* LibSql=new XaLibSql();
-
-	//string qry="SELECT id,code,language FROM XaLanguage ORDER BY id";
-	//DbRes=LibSql->FreeQuery(DB_READ,qry);
-
 	vector<string> ReturnedFields;
 	ReturnedFields.push_back("*");
 
@@ -869,11 +836,7 @@ void XaLabel::XaLabelGen (){
 				XmlString.append("<disp>");
 				XmlString.append(DbRes1[i]["text"]);
 				XmlString.append("</disp>");
-
-				/*XmlString.append("<desc>");
-				XmlString.append(DbRes1[i]["description"]);
-				XmlString.append("</desc>");*/
-				
+			
 				XmlString.append("<placeholder>");
 				XmlString.append(DbRes1[i]["placeholder"]);
 				XmlString.append("</placeholder>");
@@ -881,18 +844,6 @@ void XaLabel::XaLabelGen (){
 				XmlString.append("<help>");
 				XmlString.append(DbRes1[i]["help"]);
 				XmlString.append("</help>");
-				
-				/*XmlString.append("<lang>");
-				XmlString.append(DbRes[n]["description"]);
-				XmlString.append("</lang>");
-				
-				XmlString.append("<lang_id>");
-				XmlString.append(DbRes[n]["id"]);
-				XmlString.append("</lang_id>");
-				
-				XmlString.append("<lang_code>");
-				XmlString.append(DbRes[n]["name"]);
-				XmlString.append("</lang_code>");*/
 			
 			XmlString.append("</label>");
 		}

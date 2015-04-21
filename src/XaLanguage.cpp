@@ -94,11 +94,8 @@ void XaLanguage::XaLanguageMod (){
 void XaLanguage::XaLanguageList (){
 	
 	DbResMap DbRes;
-	//DbResMap DbRes1;
-	//DbResMap DbRes2;
 	
 	string XmlString;
-	//string ListLang;
 	
 	XaLibSql* LibSql=new XaLibSql();
 	
@@ -262,8 +259,6 @@ void XaLanguage::XaLanguageAdd (){
 	XaLibSql* LibSql=new XaLibSql();
 	
 	int NextId=LibSql->Insert(DB_WRITE,"XaDomain",VectorFields,VectorValues);
-
-//	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added Label -> "+NextId);
 
 	string LanguageId=XaLibBase::FromIntToString(NextId);
 	

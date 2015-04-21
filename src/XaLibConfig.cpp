@@ -88,8 +88,6 @@ void XaLibConfig::ParseParam (xmlDocPtr doc, xmlNodePtr cur) {
 
 			string stringKey=*nodeKey;
 			string stringValue=*nodeValue;
-			
-			//cout<<stringKey<<"::"<<stringValue<<endl;
 
 			SETTINGS.insert(pair<string, string>(stringKey,stringValue));
 		}
@@ -98,11 +96,6 @@ void XaLibConfig::ParseParam (xmlDocPtr doc, xmlNodePtr cur) {
 
 		delete nodeValue;
  	    delete nodeKey;
- 	    
- 	    /*
-		xmlFree(value);
- 	    xmlFree(key);
- 	    */
 	}
 	
 };

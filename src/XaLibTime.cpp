@@ -13,7 +13,6 @@ string XaLibTime::GetDateTimeIsoComplete() {
     struct tm  tstruct;
     char       buf[80];
     tstruct = *localtime(&now);
-    // for more information about date/time format
     strftime(buf, sizeof(buf), "%Y-%m-%dT%X", &tstruct);
 
 	//YYYY-MM-DDThh:mm:ssTZD
@@ -26,7 +25,6 @@ string XaLibTime::GetDateTimeMySql() {
     struct tm  tstruct;
     char       buf[80];
     tstruct = *localtime(&now);
-    // for more information about date/time format
     strftime(buf, sizeof(buf), "%Y-%m-%d %X", &tstruct);
 	//YYYY-MM-DDThh:mm:ssTZD
     return buf;
@@ -38,7 +36,6 @@ string XaLibTime::GetDateMySql() {
     struct tm  tstruct;
     char       buf[80];
     tstruct = *localtime(&now);
-    // for more information about date/time format
     strftime(buf, sizeof(buf), "%Y-%m-%d", &tstruct);
 	//YYYY-MM-DDThh:mm:ssTZD
     return buf;
@@ -82,9 +79,6 @@ int XaLibTime::GetDayOfYearFromDateTime(string StrDateTime) {
 	tstruct.tm_year=IntYear-1900;
 	tstruct.tm_mon =IntMonth-1;
 	tstruct.tm_mday=IntDay;
-//	tstruct.tm_hour=1;	// non mettere 0, altrimenti puo prendere le 23 del giorno prima
-//	tstruct.tm_min =0;
-//	tstruct.tm_sec =0;
 
 	mktime(&tstruct);
 

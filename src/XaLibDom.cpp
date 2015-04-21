@@ -274,7 +274,6 @@ void XaLibDom::UpdateElementValueByXPath(xmlDocPtr XmlDomDoc, VectorXPathExpr XP
 		}
 	
 	} else {
-		//fprintf(stderr, "Error: unable to parse file \"%s\"\n", filename);
 	}
 };
 
@@ -396,30 +395,9 @@ XaLibDom::ParamFromDomMap XaLibDom::MapParamFromDomByXPath(xmlDocPtr XmlDomDoc, 
 					if(nodes->nodeTab[0]->type == XML_ELEMENT_NODE) {
 		
 						cur = nodes->nodeTab[0];
-		
-						//xmlChar* CurNodeValue=cur->children->content;
-						/*
-						const xmlChar* CurNodeValue=cur->name;
-						string *nodeValue = new string();
-						char* CurNodeValueChar = (char*)CurNodeValue;
-						*nodeValue=CurNodeValueChar;
-						string stringValue=*nodeValue;
-						this->LocalLOG.Write(LocalMyLogFile,"ERR", __FILE__, __FUNCTION__,__LINE__,stringValue);
-						delete nodeValue;
-						*/
 
 						cur=cur->children;
 						cur=cur->next;
-
-						/*		
-						const xmlChar* CurNodeValue1=cur->name;
-						string *nodeValue1 = new string();
-						char* CurNodeValueChar1 = (char*)CurNodeValue1;
-						*nodeValue1=CurNodeValueChar1;
-						string stringValue1=*nodeValue1;
-						this->LocalLOG.Write(LocalMyLogFile,"ERR", __FILE__, __FUNCTION__,__LINE__,stringValue1);
-						delete nodeValue1;
-						*/
 
 						int checkParamsTag=xmlStrcmp(cur->name, (const xmlChar*)SearchStartTag.c_str());
 
@@ -522,62 +500,6 @@ void XaLibDom::ParseParamFromDom (xmlDocPtr doc, xmlNodePtr cur, VectorKey Vecto
 	}
 	
 };
-//
-//xmlNodeAddContent(root, str);
-/*
-void XaLibDom::AddElementValueByXPath(xmlDocPtr XmlDomDoc, VectorXPathExpr XPathExpr, VectorXPathValue XPathValue) {
-
-	if (XmlDomDoc == NULL) {
-    }
-
-	if(XPathExpr.size()==XPathValue.size()){
-
-		for(unsigned n=0; n<XPathExpr.size(); ++n) {
-
-			string xpath=XPathExpr.at(n);
-			string value=XPathValue.at(n);
-
-			__AddValue(XmlDomDoc, (const xmlChar *)xpath.c_str(),(const xmlChar *)value.c_str());
-	    }
-
-		xmlXPathFreeObject(xpathObj);
-    	xmlXPathFreeContext(xpathCtx);
-
-	} else{
-
-		cout<<"wrong number of value and expression";
-	}
-};
-
-void XaLibDom::__AddValue(xmlDocPtr XmlDomDoc, const xmlChar* xpathExpr, const xmlChar* value) {
-
-    xpathCtx = xmlXPathNewContext(XmlDomDoc);
-    
-    xpathObj = xmlXPathEvalExpression(xpathExpr, xpathCtx);
-
-    __AddXpathNodes(xpathObj->nodesetval, value);
-
-};
-
-void XaLibDom::__AddXpathNodes(xmlNodeSetPtr nodes, const xmlChar* value) {
-    int size;
-    int i;
-    
-    assert(value);
-    size = (nodes) ? nodes->nodeNr : 0;
- 
-    for(i = size - 1; i >= 0; i--) {
-	assert(nodes->nodeTab[i]);
-
-	xmlNodeAddContent(nodes->nodeTab[i], value);
-
-	if (nodes->nodeTab[i]->type != XML_NAMESPACE_DECL)
-	    nodes->nodeTab[i] = NULL;
-    }
-};
-
-
-*/
 
 void XaLibDom::AddAddressElementByXPath(xmlDocPtr XmlDomDoc, string XPathExpr, string Id, string Type,string Value){
 
@@ -681,9 +603,6 @@ void XaLibDom::AddValueElementByXPath(xmlDocPtr XmlDomDoc, string XPathExpr, str
    	cur = xpathObj->nodesetval->nodeTab[0];
 
 	OptionsNode = xmlNewChild(cur, NULL, (const xmlChar *) "value", (const xmlChar *)ValueValue.c_str());	
-
-	//xmlNewChild(OptionsNode, NULL, (xmlChar *) "label", (const xmlChar *)OptionLabel.c_str());
-	//xmlNewChild(OptionsNode, NULL, (xmlChar *) "value", (const xmlChar *)OptionValue.c_str());
 
 	xmlXPathFreeObject(xpathObj);
     xmlXPathFreeContext(xpathCtx);

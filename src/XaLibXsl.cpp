@@ -8,10 +8,6 @@ XaLibXsl::XaLibXsl(xmlDocPtr XmlDoc, xmlDocPtr XslDoc, string XslParams[], int N
 	string ParamName;
 	string ParamValue;
 
-	//int NumElements=sizeof(XslParams[]);
-	//cout<<"NumElements"<<endl;
-	//cout<<NumElements<<endl;
-
 	if(NumElements>0) {
 
 		for(int n=0; n<NumElements; n=n+2) {
@@ -39,37 +35,17 @@ XaLibXsl::XaLibXsl(xmlDocPtr XmlDoc, xmlDocPtr XslDoc, string XslParams[], int N
 	xmlSubstituteEntitiesDefault(1);
 	xmlLoadExtDtdDefaultValue = 1;
 
-	//cur = xsltParseStylesheetFile((const xmlChar *)XslFilePath.c_str());
     cur = xsltParseStylesheetDoc(XslDoc);
 	exsltRegisterAll();
-
-	//xsltTransformContextPtr ctxt;
-
-  // ctxt = xsltNewTransformContext(cur, doc);
-   //res = xsltApplyStylesheetUser(cur, doc, WithParams, NULL, stderr, ctxt);
-
-   /*
-   if ((ctxt->state == XSLT_STATE_ERROR) ||
-       (ctxt->state == XSLT_STATE_STOPPED))
-           errx(-1, "fail to do xsltApplyStylesheet()");
-
-*/
 
 	res = xsltApplyStylesheet(cur, XmlDoc, WithParams);
 	xmlFreeDoc(XmlDoc);
 
 	*WithParams = NULL;
-/*	if (xsltApplyStylesheet(cur, doc, WithParams) == NULL) {
-		
-			cout<<"xsltApplyStylesheet"<<endl;
-			cout<<XslFilePath<<endl;
-	}*/
 };
 
-//extern int xmlLoadExtDtdDefaultValue;
 XaLibXsl::XaLibXsl(string XmlFilePath, string XslFilePath){
 
-	//xsltStylesheetPtr cur = NULL;
 	xmlDocPtr doc;
 
 	int len = 9999;
@@ -80,7 +56,6 @@ XaLibXsl::XaLibXsl(string XmlFilePath, string XslFilePath){
 	xmlSubstituteEntitiesDefault(1);
 	xmlLoadExtDtdDefaultValue = 1;
 	
-	//const char *XslFileChar = XslFile.c_str();
 	cur = xsltParseStylesheetFile((const xmlChar *)XslFilePath.c_str());
 	exsltRegisterAll();
 
@@ -124,18 +99,6 @@ XaLibXsl::XaLibXsl(string XmlString, string XslFilePath, int XmlStringSize){
 
 	doc = xmlRecoverMemory(XmlChar,XmlStringSize);
 	res = xsltApplyStylesheet(cur, doc, params);
-/*
-	xsltSaveResultToString(&out,&len, res, cur);
-
-	out[len] = 0;
- 	xsltFreeStylesheet(cur);
-
-	xmlFreeDoc(res);
-	xmlFreeDoc(doc);
-
-    xsltCleanupGlobals();
-    xmlCleanupParser();
-*/
 };
 
 
@@ -151,10 +114,6 @@ XaLibXsl::XaLibXsl(xmlDocPtr doc, string XslFilePath){
 	exsltRegisterAll();
 
 	res = xsltApplyStylesheet(cur, doc, NoParams);
-//	xsltTransformContextPtr ctxt;
-//	ctxt = xsltNewTransformContext(cur, doc);
- //  	res = xsltApplyStylesheetUser(cur, doc, NoParams, NULL, stderr, ctxt);
-	//cout<<"dopo del parse"<<endl;
 	xmlFreeDoc(doc);
 
 };
@@ -162,14 +121,10 @@ XaLibXsl::XaLibXsl(xmlDocPtr doc, string XslFilePath){
 
 XaLibXsl::XaLibXsl(xmlDocPtr doc, string XslFilePath,string XslParams[],int NumElements){
 
-
 	cur = NULL;
 	*WithParams = NULL;
 	string ParamName;
 	string ParamValue;
-	
-	//int NumElements=sizeof(XslParams[]);
-	//cout<<NumElements<<endl;
 
 	if(NumElements>0) {
 
@@ -201,27 +156,10 @@ XaLibXsl::XaLibXsl(xmlDocPtr doc, string XslFilePath,string XslParams[],int NumE
 	cur = xsltParseStylesheetFile((const xmlChar *)XslFilePath.c_str());
 	exsltRegisterAll();
 
-	//xsltTransformContextPtr ctxt;
- 
-  // ctxt = xsltNewTransformContext(cur, doc);
-   //res = xsltApplyStylesheetUser(cur, doc, WithParams, NULL, stderr, ctxt);
-   
-   /*
-   if ((ctxt->state == XSLT_STATE_ERROR) ||
-       (ctxt->state == XSLT_STATE_STOPPED))
-           errx(-1, "fail to do xsltApplyStylesheet()");
-
-*/
-
 	res = xsltApplyStylesheet(cur, doc, WithParams);
 	xmlFreeDoc(doc);
 
 	*WithParams = NULL;
-/*	if (xsltApplyStylesheet(cur, doc, WithParams) == NULL) {
-		
-			cout<<"xsltApplyStylesheet"<<endl;
-			cout<<XslFilePath<<endl;
-	}*/
 };
 
 XaLibXsl::XaLibXsl(xmlDocPtr doc, string XslFilePath,VectorXslParamsName XslParamsName, VectorXslParamsValue XslParamsValue){
@@ -270,11 +208,7 @@ XaLibXsl::XaLibXsl(xmlDocPtr doc, string XslFilePath,VectorXslParamsName XslPara
 	xmlFreeDoc(doc);
 
 	*WithParams = NULL;
-/*	if (xsltApplyStylesheet(cur, doc, WithParams) == NULL) {
-		
-			cout<<"xsltApplyStylesheet"<<endl;
-			cout<<XslFilePath<<endl;
-	}*/
+
 };
 
 void XaLibXsl::AddParams(string XslParamsName, string XslParamsValue,int ParamPosition){
@@ -320,7 +254,6 @@ string XaLibXsl::GetXHtml(){
 	} else {
 
 		cout<<"errore parsing"<<endl;
-		//cout<<XslFilePath<<endl;
 	}
 
 	string strVoid="";
@@ -340,10 +273,7 @@ string XaLibXsl::GetXHtml(){
 		
 		return *XHtmlStr;
 	}
-
 };
 
 XaLibXsl::~XaLibXsl(){
-	//xsltFreeStylesheet(cur);
-	//xmlFreeDoc(res);
 };

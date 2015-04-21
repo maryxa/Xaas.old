@@ -29,12 +29,10 @@ string XaLibCrypto::GetSha1(string WordToCrypt) {
 	
 		int ia = (int)buffer_sha[i];
 		
-		//cout<<ia<<endl;
 		std::stringstream ss;
 		ss << setfill('0') << setw(2)<< hex<< ia;
 
 		string result = ss.str();
-		//cout<<result<<endl;
 
 		WordCrypted.append(result);
 	}
@@ -103,8 +101,6 @@ string XaLibCrypto::AesEncrypt(string StringToEncrypt) {
 
 	EVP_CIPHER_CTX_cleanup(&ctx);
 
-	//string EncryptedValue=XaLibBase::FromCharArrayToString(reinterpret_cast<char*>(outbuf));
-
 	string EncryptedValue;
 
 	for (int j=0;j<outlen;j++){
@@ -112,18 +108,6 @@ string XaLibCrypto::AesEncrypt(string StringToEncrypt) {
 		EncryptedValue.append(StringValue);
 	}
 
-	//stringstream EncryptedValue;
-	//EncryptedValue.write(reinterpret_cast<char*>(&outbuf),outlen);
-
-	
-	//cout<<EncryptedValue.str()<<endl;
-		//cout<<sizeof(outbuf)<<endl;
-
-	
-	//cout<<StringToEncrypt<<"::"<<this->AesDecrypt(EncryptedValue)<<endl;
-	//this->AesDecrypt(EncryptedValue);
-	//outbuf[0]=0;
-	//cout<<"ppppppppppippo  :"<<this->AesDecrypt(EncryptedValue)<<endl;
 	return EncryptedValue;
 
 };
@@ -133,7 +117,6 @@ string XaLibCrypto::AesDecrypt(string EncryptedValue) {
 	int tmplen;
 
 	int EncryptedValueSize=EncryptedValue.size();
-	//cout<<EncryptedValueSize<<endl;
 	
 	char intext[EncryptedValueSize+1];
 	
@@ -141,9 +124,7 @@ string XaLibCrypto::AesDecrypt(string EncryptedValue) {
 	
 		intext[k]=EncryptedValue[k];
 	}
-	//cout<<intext<<endl;
 	intext[EncryptedValueSize+1]='\0';
-	//char* intext=XaLibBase::FromStringToCharArray(EncryptedValue);
 	unsigned char key[] = {0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,'a','a','a','a','a','a','a','a','a','a','a','a'};
 
     unsigned char outbuf[EncryptedValue.size()];
@@ -163,24 +144,18 @@ string XaLibCrypto::AesDecrypt(string EncryptedValue) {
 
 	EVP_CIPHER_CTX_cleanup(&ctx);
 
-    //Just to be nice, we'll add a zero at the end of the decrypted string
-    //outbuf[outlen+tmplen] = 0;
 	string DecryptedValue;
 
 	for (int j=0;j<outlen;j++){
 		string StringValue=XaLibBase::FromCharToString(outbuf[j]);
 		DecryptedValue.append(StringValue);
 	}
-	//cout<<intext<<"::"<<EncryptedValue<<"::"<<DecryptedValue<<endl;
-	//string DecryptedValue=XaLibBase::FromCharArrayToString(reinterpret_cast<char*>(outbuf));
 
 	outbuf[0]=0;
 
 	return DecryptedValue;
 
 };
-
-
 
 string XaLibCrypto::AesEncryptCtr(string StringToEncrypt, string EncryptionKey, string EncryptionIV) {
 	

@@ -29,8 +29,6 @@ class XaLibChar : protected XaLibBase {
 		string B64Decode(string StringToDecode);
 		string B64Encode(string StringToEncode);
 		string B64Encode(char * CharToEncode, int size);
-		string RemoveRwNamespace(string StringToDecode);
-		string RemoveRwNamespaceHotelSearch(string StringToDecode);
 		string RemoveCarriageReturn(string StringToDecode);
 		string RemoveNewLine(string StringToDecode);
 		string RemoveNs(string StringToDecode);

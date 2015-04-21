@@ -7,9 +7,7 @@ class XaAddress : public XaLibAction {
 
     private:
 
-		//void XaAddressAddFrm();
 		void Dispatcher(string CalledEvent);
-
 
 		void XaAddressGeoAddFrm();
 		void XaAddressGeoAdd();

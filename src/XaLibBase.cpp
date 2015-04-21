@@ -106,8 +106,6 @@ char* XaLibBase::FromStringToCharArray(string StringValue){
 		CharValue[i]=StringValue[i];
 	}
 
-	//CharValue[strlen(CharValue)]='\0';
-
 	return CharValue;
 };
 
