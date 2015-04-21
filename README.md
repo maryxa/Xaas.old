@@ -36,6 +36,7 @@ Built-in operation’s library with no-coding security checks:
  - Time Functions: ready-to-use methods to manipulate dates
  - Currency Management
  - Casting: Ready to use casting method
+ - Xml Web Services: ready to go Controller and Interfaces to publish Xml Web Services
  
 
 Ease of learning, featuring:
