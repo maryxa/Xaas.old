@@ -56,7 +56,7 @@ OBJ=$(OBJDIR)XaLibBase.o $(OBJDIR)XaLibAction.o $(OBJDIR)XaLibHttp.o $(OBJDIR)Xa
 
 #MACROS
 .PHONY: all all-before all-after clean print-varialbes
-all:print-varialbes $(BIN)
+all:print-varialbes $(BIN) all-after
 
 clean:
 	${RM} $(OBJ) print-varialbes $(BIN)
