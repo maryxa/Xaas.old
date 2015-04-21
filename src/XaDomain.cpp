@@ -99,9 +99,7 @@ void XaDomain::XaDomainRowAdd () {
 		
 		VectorFields.push_back("last_updated");
 		VectorValues.push_back(XaLibAction::NowTimeMysql);
-		
-		// gestire la position?
-		//int NextId=0;
+	
 		int NextId=LibSql->Insert(DB_WRITE,"XaDomain",VectorFields,VectorValues);
 			
 		string XaDomain_ID;
@@ -186,7 +184,6 @@ void XaDomain::XaDomainRowAdd () {
 				
 					}
 				}
-				// la rigenerazione delle label viene fatta dal controller
 			}
 		}
 	
@@ -327,8 +324,6 @@ void XaDomain::XaDomainAdd () {
 	XaLibDom* LibDom=new XaLibDom();
 	xmlDocPtr XmlDomDoc=LibDom->DomFromFile(SETTINGS["XmlDir"]+"XaDomain.xml");
 
-	//string StrArrKey[] = {"name","dbname","datatype","required","dimension","domain"};
-	//vector<string> Vectorkey(StrArrKey, StrArrKey + 6);
 	string StrArrKey[] = {"name","dbname","datatype","required"};
 	vector<string> Vectorkey(StrArrKey, StrArrKey + 4);
 
@@ -339,7 +334,6 @@ void XaDomain::XaDomainAdd () {
 	for(unsigned i=0; i<ParamFromDom.size(); ++i){
 
 		string ParamValue=HTTP.GetHttpParam(ParamFromDom[i]["name"]);
-		//XaLibAction::HttpParamValidation(ParamFromDom[i]["name"],ParamValue,ParamFromDom[i]["datatype"],ParamFromDom[i]["required"],ParamFromDom[i]["dimension"],ParamFromDom[i]["domain"]);
 
 		VectorFields.push_back(ParamFromDom[i]["dbname"]);
 		VectorValues.push_back(ParamValue);
@@ -378,10 +372,6 @@ void XaDomain::XaDomainAdd () {
 	RESPONSE.Content="Inserted XaDomain -> ID: " + XaLibBase::FromIntToString(NextId);
 };
 
-
-
-
-
 void XaDomain::AddOptionsAllDomain(XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string XPathExpr){
 
 	XaLibSql* LibSql=new XaLibSql();
@@ -402,7 +392,6 @@ void XaDomain::AddOptionsAllDomain(XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string X
 
 	DbRes.clear();
 	
-	//LibLOG.Write(MyLogFile,"INF", __FILE__, __FUNCTION__,__LINE__,"Added Options By Domain-> "+ XaDomain + " - " + XPathExpr);
 };
 
 XaDomain::~XaDomain(){

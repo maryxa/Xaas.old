@@ -16,7 +16,6 @@
 #include <algorithm>
 #include <time.h>
 #include <assert.h>
-#include <pthread.h>
 #include <thread>
 #include <future>
 #include <unistd.h>

@@ -74,7 +74,7 @@ string XaLibChar::ClearMultiByteChars(string StringToClear){
 	int i4;
 	int CharCode;
 	string ClearedChar;
-	
+
 	pos=0;
 
 	while (pos< StringToClear.size()) {
@@ -85,7 +85,6 @@ string XaLibChar::ClearMultiByteChars(string StringToClear){
 			if (i1 > 192) {
 				i2 = StringToClear[pos+1];
 				if (i1 >= 240) {
-					// carattere da 4 byte
 					i3 = StringToClear[pos+2];
 					i4 = StringToClear[pos+3];
 					CharCode= (i1 & 0x07) * 0x40000 + (i2 & 0x3F) * 0x1000 + (i3 & 0x3F) * 0x40 + (i4 & 0x3F);
@@ -98,7 +97,6 @@ string XaLibChar::ClearMultiByteChars(string StringToClear){
 					pos=pos+ClearedChar.size();
 				} else {
 					if (i1 >= 224) {
-						// carattere da 3 byte
 						i3 = StringToClear[pos+2];
 						CharCode=(i1 & 0x0F) * 0x1000 + (i2 & 0x3F) * 0x40 + (i3 & 0x3F);
 						ostringstream ss;
@@ -109,7 +107,6 @@ string XaLibChar::ClearMultiByteChars(string StringToClear){
 						StringToClear.replace(pos,3,ClearedChar);
 						pos=pos+ClearedChar.size();
 					} else {
-						//carattere da 2 byte
 						CharCode=(i1 & 0x1F) * 0x40 + (i2 & 0x3F);
 						ostringstream ss;
 						ss << CharCode;
@@ -121,12 +118,10 @@ string XaLibChar::ClearMultiByteChars(string StringToClear){
 					}
 				}
 			} else {
-				// errore, il primo byte deve iniziare per 110 o 111
-				// quindi cancello questo carattere e basta
+
 				StringToClear.replace(pos,1,"");
 			}
 		} else {
-			// carattere <128, vado avanti nell'esame della stringa
 			pos++;
 		}
 	}
@@ -250,7 +245,6 @@ string XaLibChar::UrlDecode(string StringToDecode) {
 
 	CURL *curl;
 	char* url=(char*)StringToDecode.c_str();
-	//cout<<*url<<endl;
 	char* CharDecoded=curl_easy_unescape(curl,url,0,NULL);
 
 	string StringDecoded;
@@ -263,7 +257,6 @@ string XaLibChar::UrlEncode(string StringToEncode) {
 
 	CURL *curl;
 	char* url=(char*)StringToEncode.c_str();
-	//cout<<*url<<endl;
 	char* CharEncoded=curl_easy_escape(curl,url,0);
 
 	string StringEncoded;
@@ -285,7 +278,6 @@ string XaLibChar::B64Decode(string StringToDecode) {
 	size_t i = 0;
 	size_t j = 0;
 	int in_ = 0;
-	//unsigned char char_array_4[4], char_array_3[3];
 	string char_array_4, char_array_3;
 	string ret;
 
@@ -293,7 +285,6 @@ string XaLibChar::B64Decode(string StringToDecode) {
 
 		j=i++;
 		char_array_4[j] = encoded_string[in_];
-		//cout<<"char_array_4[i++]::"<<char_array_4[j]<<endl;
 		in_++;
 		
 		if (i ==4) {
@@ -305,9 +296,7 @@ string XaLibChar::B64Decode(string StringToDecode) {
 				char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
 
 			for (i = 0; (i < 3); i++) {
-		
-				//cout<<"char_array_3[i]::"<<char_array_3[i]<<endl;
-				ret+=char_array_3[i];
+					ret+=char_array_3[i];
 				}
 				i = 0;
 			}
@@ -325,11 +314,9 @@ string XaLibChar::B64Decode(string StringToDecode) {
 			char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
 
 		for (j = 0; (j < i - 1); j++){ 
-			//cout<<"j::"<<j<<"::char::"<<hex<<char_array_3[j]<<endl;		
 			ret+= char_array_3[j];
 		}
 	}
-	//cout<<"ret::"<<ret<<endl;
 	return ret;
 };
 
@@ -438,7 +425,6 @@ string XaLibChar::B64Encode(char * CharToEncode, int size) {
 
 string XaLibChar::imgBase64RemPlus(string StringToDecode) {
 
-//GESTIRE CASO PI� IMMAGINI IN UN CAMPO
 	unsigned posFrom=StringToDecode.find("base64");
 
 	if (posFrom!=-1) {
@@ -648,7 +634,6 @@ string XaLibChar::ClearChars(string StringToClear){
 			if (i1 > 192) {
 				i2 = StringToClear[pos+1];
 				if (i1 > 224) {
-					// carattere da 3 byte
 					i3 = StringToClear[pos+2];
 					CharCode=(i1 & 0x0F) * 0x1000 + (i2 & 0x3F) * 0x40 + (i3 & 0x3F);
 					ostringstream ss;
@@ -659,7 +644,6 @@ string XaLibChar::ClearChars(string StringToClear){
 					StringToClear.replace(pos,3,ClearedChar);
 					pos=pos+ClearedChar.size();
 				} else {
-					//carattere da 2 byte
 					CharCode=(i1 & 0x1F) * 0x40 + (i2 & 0x3F);
 					ostringstream ss;
 					ss << CharCode;
@@ -670,12 +654,10 @@ string XaLibChar::ClearChars(string StringToClear){
 					pos=pos+ClearedChar.size();
 				}
 			} else {
-				// errore, il primo byte deve iniziare per 110 o 111
-				// quindi cancello questo carattere e basta
+
 				StringToClear.replace(pos,1," ");
 			}
 		} else {
-			// carattere <128, vado avanti nell'esame della stringa
 			pos++;
 		}
 	}
@@ -811,103 +793,6 @@ string XaLibChar::UnclearToNormalChar(string StringToDecode) {
 return StringToDecode;
 };
 
-string XaLibChar::RemoveRwNamespace(string StringToDecode) {
-
-	string ToSearch=" xmlns=\"http://www.reservwire.com/namespace/WebServices/Xml\"";
-	unsigned posFrom=StringToDecode.find(" xmlns=\"http://www.reservwire.com/namespace/WebServices/Xml\"");
-
-	if (posFrom!=-1){
-		
-		unsigned posSize=ToSearch.size();
-		StringToDecode.erase (posFrom,posSize);
-	}
-
-	string ToSearch1=" xmlns:ns=\"http://www.reservwire.com/namespace/WebServices/Xml\"";
-	unsigned posFrom1=StringToDecode.find(" xmlns:ns=\"http://www.reservwire.com/namespace/WebServices/Xml\"");
-
-	if (posFrom1!=-1){
-		
-		unsigned posSize1=ToSearch.size();
-		StringToDecode.erase (posFrom1,posSize1);
-	}
-
-return StringToDecode;
-};
-/*
-string XaLibChar::RemoveRwNamespaceHotelSearch(string StringToDecode) {
-
-	string ToSearch="<env:Envelope xmlns:ns=\"http://www.reservwire.com/namespace/WebServices/Xml\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:env=\"http://www.w3.org/2003/05/soap-envelope\"><env:Body>";
-	unsigned posFrom=StringToDecode.find("<env:Envelope xmlns:ns=\"http://www.reservwire.com/namespace/WebServices/Xml\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:env=\"http://www.w3.org/2003/05/soap-envelope\"><env:Body>");
-
-	if (posFrom!=-1){
-		
-		unsigned posSize=ToSearch.size();
-		StringToDecode.erase (posFrom,posSize);
-	}
-
-	string ToSearch1=" xmlns:ns=\"http://www.reservwire.com/namespace/WebServices/Xml\"";
-	unsigned posFrom1=StringToDecode.find(" xmlns:ns=\"http://www.reservwire.com/namespace/WebServices/Xml\"");
-
-	if (posFrom1!=-1){
-		
-		unsigned posSize1=ToSearch.size();
-		StringToDecode.erase (posFrom1,posSize1);
-	}
-
-//return StringToDecode;
-};
-*/
-/*
-string XaLibChar::RemoveSoap(string StringToDecode) {
-
-	string ToSearch="<env:Envelope xmlenv=\"http://www.w3.org/2003/05/soap-envelope\" xmlxsi=\"http://www.w3.org/2001/XMLSchema-instance"ml"  ><env:Body>;
-	unsigned posFrom=StringToDecode.find(" xmlns=\"http://www.reservwire.com/namespace/WebServices/Xml\"");
-
-	if (posFrom!=-1){
-		
-		unsigned posSize=ToSearch.size();
-		StringToDecode.erase (posFrom,posSize);
-	}
-
-	string ToSearch1=" xmlns:ns=\"http://www.reservwire.com/namespace/WebServices/Xml\"";
-	unsigned posFrom1=StringToDecode.find(" xmlns:ns=\"http://www.reservwire.com/namespace/WebServices/Xml\"");
-
-	if (posFrom1!=-1){
-		
-		unsigned posSize1=ToSearch.size();
-		StringToDecode.erase (posFrom1,posSize1);
-	}
-
-return StringToDecode;
-};
-*/
-/*
-string XaLibChar::RemoveCarriageReturn(string StringToDecode) {
-
-	unsigned pos=StringToDecode.find("\r");
-
-	while (pos!=std::string::npos){
-		
-		StringToDecode.erase (pos,2);
-		pos=StringToDecode.find("\r",pos+1);
-	}
-
-return StringToDecode;
-};
-
-string XaLibChar::RemoveNewLine(string StringToDecode) {
-
-	unsigned pos=StringToDecode.find("\n");
-
-	while (pos!=std::string::npos){
-		
-		StringToDecode.erase (pos,2);
-		pos=StringToDecode.find("\n",pos+1);
-	}
-
-return StringToDecode;
-}; 
-*/
 string XaLibChar::RemoveNs(string StringToDecode) {
 
 	unsigned pos=StringToDecode.find("ns:");

@@ -1,0 +1,26 @@
+var struct_xa_request =
+[
+    [ "Brand", "struct_xa_request.html#abcecc488e9c6737c7c31205a1d11e548", null ],
+    [ "CalledEvent", "struct_xa_request.html#ac293fc50e799ef1051f90c54b9038891", null ],
+    [ "CalledObject", "struct_xa_request.html#af7c20c1b7dbce0744a2f1d5f96aee3b9", null ],
+    [ "ClientIpAddress", "struct_xa_request.html#a116e145295a054cf75075557a4ae2433", null ],
+    [ "Device", "struct_xa_request.html#af0c2f0bbd9f83f1e579ec19c629e897e", null ],
+    [ "FlowCheck", "struct_xa_request.html#ae96e2e494540ee7730ce3db752f39b39", null ],
+    [ "HeadersString", "struct_xa_request.html#a30c5cc0b6f11f1fac19edba821e7518a", null ],
+    [ "HeadersStringCustom", "struct_xa_request.html#a652374b56d075c42f26f2eb77ba7243f", null ],
+    [ "Language", "struct_xa_request.html#af28de8fe380982f412fe6355fff4ed05", null ],
+    [ "RedirectLocation", "struct_xa_request.html#a0dce57b0eb17d50d603186307bae616b", null ],
+    [ "ResponseType", "struct_xa_request.html#aa2a53d6f21c0d6d14aa10aed595aab26", null ],
+    [ "WsXml", "struct_xa_request.html#a43d00951d370ef8ad719cce5e6cb3ed2", null ],
+    [ "WsXmlData", "struct_xa_request.html#add4a14c2d1cf823366d4a6aea0d7769d", null ],
+    [ "WsXmlDataEncoding", "struct_xa_request.html#af12ce0ea79c97b150854c5ab6f96d895", null ],
+    [ "WsXmlDataIV", "struct_xa_request.html#a6185401a6a169642641213c28624a057", null ],
+    [ "WsXmlDataKey", "struct_xa_request.html#aeec226d3b9a211bc4b66166b4eb589b8", null ],
+    [ "WsXmlPassword", "struct_xa_request.html#af9cfc97867ab965dcb06594727029446", null ],
+    [ "WsXmlUsername", "struct_xa_request.html#a434224e107489b69f6d35c399cdb9c14", null ],
+    [ "XaSession_COOKIE", "struct_xa_request.html#a277d6e910e48ddb424054631025d9b2b", null ],
+    [ "XaSession_ID", "struct_xa_request.html#a0feeb43ea47fd41abef5524da2ce603b", null ],
+    [ "XaSession_KEY", "struct_xa_request.html#a2d309fed8fb3603e609e0b8fa05f82e0", null ],
+    [ "XaUser_ID", "struct_xa_request.html#a1f1194b7e596c2620864cd5d7a829aeb", null ],
+    [ "XaWsSession_ID", "struct_xa_request.html#a11c926074d9794162345a85f5511c8bc", null ]
+];

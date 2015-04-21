@@ -18,20 +18,7 @@
 */
 
 XaLibDb::XaLibDb(){
-
-	//Connect(DbType);
 };
-
-
-
-/*XaLibDb::XaLibDb(ParamsMap C_Request,XaLibLog* LibLog,ofstream* MyLogFile,int DbType) {
-
-	this->LibLogDb=LibLog;
-	this->MyLogFileDb=MyLogFile;
-	this->ParamsConfigurationDb=C_Request;
-
-	Connect(DbType);
-};*/
 
 void XaLibDb::Connect(int DbType) {
 
@@ -317,14 +304,7 @@ XaLibDb::DbResMap XaLibDb::RetrieveRows(MYSQL_RES *DbResult) {
 };
 
 int XaLibDb::ExSystemQry(string SqlQry) {
-/*
-	DbResMap DbRes;
 
-	MYSQL_RES *result;
-	MYSQL_ROW row;
-	MYSQL_FIELD *field;
-	vector<string> DbResultFieldName;
-*/
 	string qry=SqlQry;
 	const char *cstr = qry.c_str();
 
@@ -356,8 +336,6 @@ XaLibDb::~XaLibDb() {
 	#ifdef _WIN32
 
 	#else
-		//mysql_close(ConnWrite);
-		//mysql_close(ConnRead);
-		//mysql_close(ConnSession);
+
 	#endif
 };

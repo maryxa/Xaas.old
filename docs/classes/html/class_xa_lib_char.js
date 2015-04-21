@@ -1,0 +1,28 @@
+var class_xa_lib_char =
+[
+    [ "XaLibChar", "class_xa_lib_char.html#a0de0b96c878bb5552376276c931313c8", null ],
+    [ "~XaLibChar", "class_xa_lib_char.html#a2be996048f08259d430c6f90e5041bbd", null ],
+    [ "B64Decode", "class_xa_lib_char.html#aa912b4f23fa6bed9659a485a575b49b0", null ],
+    [ "B64Encode", "class_xa_lib_char.html#ae5c847f6b8cdfa32aeb9dc220890226c", null ],
+    [ "B64Encode", "class_xa_lib_char.html#ae9aa7ef9fa96f404384f3510833a30bb", null ],
+    [ "ClearCarriageReturn", "class_xa_lib_char.html#aae32102190d60410b799ca297f21de4f", null ],
+    [ "ClearChars", "class_xa_lib_char.html#aa47af17c39eda04dedf01bc4551ee4cc", null ],
+    [ "ClearFrimmDesc", "class_xa_lib_char.html#a51585af801496de42add152b9049d0f3", null ],
+    [ "ClearMultiByteChars", "class_xa_lib_char.html#a4036bd65f716c379a827eb7b0b2bd0ad", null ],
+    [ "ClearSqlEntities", "class_xa_lib_char.html#abca8fb5c531bdc364cd29a2a0d189fd4", null ],
+    [ "ClearXmlEntitiesBasic", "class_xa_lib_char.html#a8bf8d64a1611cc66c23fe5ab4bd8077e", null ],
+    [ "ClearXmlFrimm", "class_xa_lib_char.html#ad0a76aae6b8adffb44fbf9521fc089e6", null ],
+    [ "CountCharOccurrences", "class_xa_lib_char.html#abcbecf2389bf864ed6d7e8853991e43a", null ],
+    [ "imgBase64RemPlus", "class_xa_lib_char.html#a794d2b1ba652e33f33f0064dd457a8fe", null ],
+    [ "is_base64", "class_xa_lib_char.html#a2b22445ba803d7a200b3bfe533fa0333", null ],
+    [ "RemoveCarriageReturn", "class_xa_lib_char.html#a1e0cf76f57ff4a0e29828c0bc5024e7a", null ],
+    [ "RemoveEmptyspace", "class_xa_lib_char.html#a8f515225a4e6858e88763d406f26b769", null ],
+    [ "RemoveNewLine", "class_xa_lib_char.html#a182a038eb5bb488f7e7d397bb7c1fd20", null ],
+    [ "RemoveNs", "class_xa_lib_char.html#a9d06978557a51721d185a8895ee31b22", null ],
+    [ "RemovePlus", "class_xa_lib_char.html#a9f656f5b1c48d777f303f85b094f9554", null ],
+    [ "RemoveSpaceChar", "class_xa_lib_char.html#a9584ec673c3e834027276950fbdb22e5", null ],
+    [ "UnclearAmpersand", "class_xa_lib_char.html#a1aaf07df6a8101270534275d5f0c3f6f", null ],
+    [ "UnclearToNormalChar", "class_xa_lib_char.html#a624194b2f535c87cc956fe500d8f7664", null ],
+    [ "UrlDecode", "class_xa_lib_char.html#aca0262245d089f667673b01f3e962479", null ],
+    [ "UrlEncode", "class_xa_lib_char.html#a00f5b62f6abde739316abadf2366f629", null ]
+];

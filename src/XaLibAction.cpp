@@ -3,23 +3,6 @@
 XaLibAction::XaLibAction(){
 };
 
-/*
-void XaLibAction::SetActionEnvironment(XaSETTINGS _SETTINGS, XaRequest _Request, XaObjects _Objects) {
-
-	SETTINGS=_SETTINGS;
-	Request=_Request;
-	Objects=_Objects;
-
-	//LOG.LibLog=_LOG;
-	//LOG.MyLogFile=_Objects.MyLogFile;
-
-	XaLibTime* LibTime=new XaLibTime();
-	XaLibAction::NowTimeMysql=LibTime->GetDateTimeMySql();
-	XaLibAction::TodayMysql=LibTime->GetDateMySql();
-	delete LibTime;
-
-};
-*/
 void XaLibAction::AddXmlPath(string FilePath){
 
 	string TmpString=SETTINGS["XmlDir"]+FilePath+".xml";
@@ -89,7 +72,6 @@ void XaLibAction::AddOptionsByDb(XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string Tab
 
 	DbResMap DbRes;
 
-	//ADD OPTIONS VALUE
 	unique_ptr<XaLibSql> LibSql (new XaLibSql());
 
 	DbRes=LibSql->Select(DB_READ,TableName,OptionReturnedFields,OptionWhereFields,OptionWhereValues,OptionOrderByFields);
@@ -122,13 +104,8 @@ void XaLibAction::AddOptionsByDb(XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string Tab
 	OptionWhereValues.push_back("1");
 	OptionWhereValues.push_back("0");
 
-	//OptionOrderByFields.push_back("id");
-
 	DbResMap DbRes;
-
-	//ADD OPTIONS VALUE
 	XaLibSql* LibSql=new XaLibSql();
-
 	DbRes=LibSql->Select(DB_READ,TableName,OptionReturnedFields,OptionWhereFields,OptionWhereValues,OptionOrderByFields);
 
 	delete(LibSql);
@@ -191,18 +168,13 @@ void XaLibAction::AddOptionsByDomain(XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string
 	OptionWhereValues.push_back("1");
 	OptionWhereValues.push_back("0");
 	OptionWhereValues.push_back(XaDomain);
-	
-	//OptionOrderByFields.push_back("position");
-	//OptionOrderByFields.push_back("name");
+
 	OptionOrderByFields.push_back("description");
 
 	DbResMap DbRes;
 
-	//ADD OPTIONS VALUE
 	XaLibSql* LibSql=new XaLibSql();
-
 	DbRes=LibSql->Select(DB_READ,"XaDomain",OptionReturnedFields,OptionWhereFields,OptionWhereValues,OptionOrderByFields);
-
 	delete(LibSql);
 
 	for(unsigned n=0; n<DbRes.size(); ++n) {
@@ -274,11 +246,8 @@ void XaLibAction::AddOptionsByDomainWithDescription(XaLibDom* LibDom,xmlDocPtr X
 
 	DbResMap DbRes;
 
-	//ADD OPTIONS VALUE
 	XaLibSql* LibSql=new XaLibSql();
-
 	DbRes=LibSql->Select(DB_READ,"XaDomain",OptionReturnedFields,OptionWhereFields,OptionWhereValues,OptionOrderByFields);
-
 	delete(LibSql);
 
 	for(unsigned n=0; n<DbRes.size(); ++n) {
@@ -328,9 +297,6 @@ void XaLibAction::AddOptionsByVectors(XaLibDom* LibDom,xmlDocPtr XmlDomDoc,strin
 };
 
 void XaLibAction::AddValuesByDb(XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string TableName,string XPathExpr){
-
-	//OptionReturnedFields.push_back("id");
-	//OptionReturnedFields.push_back("name");
 	
 	OptionWhereFields.push_back("active");
 	OptionWhereFields.push_back("deleted");
@@ -571,9 +537,7 @@ string XaLibAction::DecryptParamId(string EncryptedValue) {
 	return DecryptedValueString;
 };
 
-void XaLibAction::SetLayout(string LayoutType){
-	
-	//accodare xml del file di stile
+void XaLibAction::SetLayout(const string &LayoutType){
 
 	if (LayoutType=="Standard" || LayoutType=="NoHttpParam") {
 
@@ -631,7 +595,7 @@ void XaLibAction::SetLayout(string LayoutType){
 
 };
 
-void XaLibAction::UpdateSessionWsLog (string XaSessionWsLog_ID,string Query,string Response) {
+void XaLibAction::UpdateSessionWsLog (const string &XaSessionWsLog_ID,const string &Query,const string &Response) {
 		
 	vector<string> VectorFields{"log_data","response","response_time"};
 	vector<string> VectorValues{Query,Response,XaLibTime::GetDateTimeMySql()};

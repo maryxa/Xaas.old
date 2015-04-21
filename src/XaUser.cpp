@@ -79,7 +79,6 @@ void XaUser::Dispatcher (string CalledEvent) {
         this->XaUserCheckIfExist();
     } else {
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"REQUESTed Event Does Not Exists -> "+CalledEvent);
-		//XaLibAction::PostAction="do=XaInfoPage&ErrorMessage=CalledObjectDoesNotExist";
 	}
 
 }
@@ -212,7 +211,6 @@ int XaUser::Authenticate (string StrEmail,string StrPassword) {
 		if (n==0){
 
 			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"User Does Not Exist Or The Password Is Wrong -> " + StrEmail);
-			//XaLibAction::PostAction="obj=XaUser&evt=XaUserLoginFrm";
 			return 0;
 
 		} else if (n==1){
@@ -223,7 +221,6 @@ int XaUser::Authenticate (string StrEmail,string StrPassword) {
 		} else {
 
 			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"User Is Not Unique");
-			//XaLibAction::PostAction="obj=XaInfoPage&evt=";
 			return 0;
 		}
 		
@@ -331,12 +328,6 @@ void XaUser::XaUserLoginAdd(){
 	string Password=HTTP.GetHttpParam("XaUser-Password");
 	string Login=HTTP.GetHttpParam("XaUser-Login");
 
-	/*if (Login=="true") {
-		Login="1";
-	} else {
-		Login="0";
-	}*/
-	
 	XaLibCrypto* LibCrypto=new XaLibCrypto();
 	string ShaPassword=LibCrypto->GetSha1(Password);
 	delete (LibCrypto);
@@ -468,9 +459,6 @@ void XaUser::XaUserLoginModFrm() {
 			XPathValue.clear();
 
 		}
-	
-	//string pippo=LibDom->StringFromDom(XmlDomDoc);
-	//LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Mimmo: " + pippo);
 
 	delete(LibDom);
 
@@ -588,9 +576,7 @@ void XaUser::XaUserLoginMod(){
 };
 
 void XaUser::XaUserLoginView (){
-    
-    //XaLibAction::AddXmlPath("XaUserDepartmentViewStruct");
-    
+        
 	XaLibAction::SetLayout("Included");
 	XaLibAction::AddXslPath("XaUserLoginViewIncluded");
 
@@ -601,7 +587,6 @@ void XaUser::XaUserLoginView (){
 	
 	XaLibSql* LibSql=new XaLibSql();
 
-	// Check if the user is active, if is active the data is editable
 	string Editable="no";
 	
 	vector<string> ReturnedFields, WhereFields, WhereValues;
@@ -663,7 +648,6 @@ void XaUser::XaUserLoginView (){
 	delete(LibSql);
 	
 		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-		//LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,LibDom->StringFromDom(XmlDomDoc));
 		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
 	delete(LibDom);
 
@@ -1281,89 +1265,6 @@ void XaUser::XaUserCompanyView (){
 
 };
 
-/*
-XaUser::DbResMap XaUser::FindUserEmployeesInInterval(string StrFromYear,string StrToYear,string StrFromMonth,string StrToMonth,CondFields CondFields,CondValues CondValues,OrderByFields OrderByFields,string Cond,string Type){
-
-	string FromDate=StrFromYear+"-"+StrFromMonth+"-01";
-		
-	XaLibTime* LibTime=new XaLibTime();
-	string ToDate=LibTime->LastDateOfMonth(StrToYear,StrToMonth);
-	
-	XaLibChar* LibChar=new XaLibChar();
-	
-	string Condition="";
-	if (CondFields.size()==CondValues.size() && CondFields.size()>0 ){
-
-		Condition.append(" AND ");
-
-		for(unsigned n=0; n<CondFields.size(); ++n) {
-
-     		Condition.append(CondFields.at(n));
-     		Condition.append("=\"");
-     		string ToAppend=LibChar->ClearSqlEntities(CondValues.at(n));
-     		Condition.append(ToAppend);
-     		Condition.append("\"");
-
-	     	if(n==CondFields.size()-1){
-
-	     	} else{
-
-	     		Condition.append(" AND ");
-	     	}
-	    }
-
-	} else {
-		//NUMERO VALORI E CAMPI DIVERSO
-	}
-	
-	string Order="";
-	if (OrderByFields.size()>0 ){
-
-		Order.append(" ORDER BY ");
-
-		for(unsigned n=0; n<OrderByFields.size(); ++n) {
-
-     		Order.append(OrderByFields.at(n));
-
-	     	if(n==OrderByFields.size()-1){
-
-	     	} else{
-
-	     		Order.append(",");
-	     	}
-	    }
-
-	}
-	
-	string CondType;
-	if (Type=="forecast"){
-		CondType="";
-	} else if (Type=="actual"){
-		CondType=" AND vacant=0";
-	}
-	
-	
-	string Qry="SELECT u.id AS user_id,u.name,u.surname,u.tree_parent_ID,s.* FROM XaUser u,XaUserSalary s WHERE u.XaUserType_ID=3 AND u.deleted=0 AND s.deleted=0 AND s.XaTable='XaUser' AND u.id=s.XaField_ID AND s.active=1 AND (s.end_date IS NULL OR '"+FromDate+"' <= s.end_date) AND '"+ToDate+"' >= s.start_date";
-	Qry.append(Condition);
-	Qry.append(Cond);
-	Qry.append(CondType);
-	Qry.append(Order);
-	
-	
-	XaLibSql* LibSql=new XaLibSql();
-
-	DbResMap DbRes=LibSql->FreeQuery(DB_READ,Qry);
-
-	delete(LibSql);
-	delete LibChar;
-	return DbRes;
-};
-*/
-
-
-
-
-
 XaUser::DbResMap XaUser::GetXaUserList(string XaUserType,string Field,string Value,string ResField,string OrderBy,string Condition,string Filter){
 	
 	string Cond="";
@@ -1941,11 +1842,6 @@ if (RowId!="NoHttpParam") {
 
 		XaUser_ID=XaLibAction::DecryptParamId(RowId);
 
-//  employment_path parte dalla tree_path del dipartimento
-//  gli utenti al top della gerarchia hanno
-//  employment_parent_ID=tree_parent_ID
-//  employment_path=tree_path
-//  employment_level=1
 		string QryPathRoot="SELECT tree_path FROM XaUser WHERE deleted=0 AND active=1 AND id="+XaUser_ID;
 		DbResMap DbResPathRoot=LibSql->FreeQuery(DB_READ,QryPathRoot);
 		string EmploymentPathRoot=DbResPathRoot[0]["tree_path"];
@@ -2086,12 +1982,8 @@ void XaUser::GetMyChildren(string TableName,string XPathExpr,int TreeStart) {
 	XaLibSql* LibSql=new XaLibSql();
 	//GETTING THE LEVEL
 	DbRes=LibSql->SelectOne(DB_READ,"XaUser",TreeStart,1,0);
-	
-	//string Qry="SELECT * FROM XaUser WHERE tree_path LIKE '%|"+DbRes[0]["tree_parent_ID"]+"|%' AND active=1 AND deleted=0 AND leaf=0 ORDER BY surname";
 
 	int ParentLevel=XaLibBase::FromStringToInt(DbRes[0]["tree_level"])-1;
-
-//	string Qry="SELECT * FROM XaUser WHERE tree_level>="+XaLibBase::FromIntToString(ParentLevel)+" AND XaUserRole_ID=1 AND tree_path like '%|1|4|%' AND active=1 AND deleted=0 AND leaf=0 ORDER BY tree_level";
 
 	string Qry="SELECT * FROM XaUser WHERE tree_level>="+XaLibBase::FromIntToString(ParentLevel)+" AND XaUserRole_ID=1  AND id>2 AND active=1 AND deleted=0 AND leaf=0 ORDER BY tree_path";
 	DbRes1=LibSql->FreeQuery(DB_READ,Qry);
@@ -2112,7 +2004,6 @@ void XaUser::GetMyChildren(string TableName,string XPathExpr,int TreeStart) {
 
 	}
 
-	//DbFields.erase (DbFields.begin(),DbFields.end());
 	DbRes.clear();
 
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added Options -> "+ TableName);
@@ -2120,11 +2011,6 @@ void XaUser::GetMyChildren(string TableName,string XPathExpr,int TreeStart) {
 
 
 void XaUser::GetTreeChildren(string TableName,int TreeStart, int TreeLevels, int WithStart) {
-
-// cerca nella tabella TableName tutti i children di TreeStart scendendo di TreeLevels generazioni (escluso capostipite)
-// se WithStart=1 i risultati contengono anche il capostipite (quindi TreeLevels+1 generazioni), se no solo i discendenti
-
-// funziona solo con XaUser perche i nomi dei campi sono cablati nel metodo
 
 	DbResMap DbRes;
 	DbResMap DbRes1;
@@ -2154,8 +2040,6 @@ void XaUser::GetTreeChildren(string TableName,int TreeStart, int TreeLevels, int
 };
 
 void XaUser::GetAllLeaves(string TableName) {
-
-// funziona solo con XaUser perche i nomi delle colonne sono in chiaro
 
 	DbResMap DbRes;
 
@@ -2273,8 +2157,6 @@ void XaUser::UpdateTreeData(int ParentId,int NextId){
 
 
 void XaUser::SetOldId(int NextId){
-// mette old_id=id
-// usato in XaUserEmployeeAdd per dare un old_id anche al primo record in modo da poter raggrupare record attivi e non
 
 	string StrNextId=XaLibBase::FromIntToString(NextId);
 
@@ -2473,11 +2355,6 @@ void XaUser::XaUserRegistration (){
 
 void XaUser::GetUsersAsOptions () {
 
-// da utilizzare nelle chiamate asincrone per popolare le select
-// restituisce un elenco di <option>, con value criptato, ricavate da XaUser in base a tree_parent_ID e XaUserType_ID
-// tree_parent_ID=0 oppure NoHttpParam : tutti
-// XaUserType_ID=0 oppure NoHttpParam : tutti
-
 	string tree_parent_ID=HTTP.GetHttpParam("tree_parent_ID");	//criptato
 	string XaUserType_ID=HTTP.GetHttpParam("XaUserType_ID");
 
@@ -2507,16 +2384,12 @@ void XaUser::GetUsersAsOptions () {
 
 	delete(LibSql);
 
-	// in alternativa si puo costruire un doc xml e parsarlo, e in questo caso si potrebbe mettere un nodo root
     RESPONSE.Content=OptionsList;
 
 };
 
 
 XaUser::DbResMap XaUser::GetUsersByMonth(string StrUserCondition,string StrTreeParentID,string StrCurrentMonth, string StrCurrentYear, string StrDeliberationId, string ReportType) {
-
-		//vector<int> UserOldIdList;
-//		UserIdsListMap UserIdsList;
 
 		string MonthStart=StrCurrentYear+"-"+StrCurrentMonth+"-01";
 
@@ -2557,19 +2430,9 @@ XaUser::DbResMap XaUser::GetUsersByMonth(string StrUserCondition,string StrTreeP
 		Qry1+=" ORDER BY u1.surname,u1.name";
 
 		DbResMap DbResUserIds=LibSql->FreeQuery(DB_READ,Qry1);
-		
-		//for (int l=0; l<DbResUserIds.size();l++) {
-			//UserOldIdList.push_back(XaLibBase::FromStringToInt(DbResUserIds[l]["old_id"]));
-			//UserIdsList[l][XaLibBase::FromStringToInt(DbResUserIds[l]["old_id"])][XaLibBase::FromStringToInt(DbResUserIds[l]["id"])];
-			//UserIdsList[l][DbResUserIds[l]["old_id"]];
-			
-		//	UserIdsList[l]["old_id"][3];
-		//	UserIdsList[l]["id"][4];
-		//}
 
 		delete(LibSql);
 
-//		return UserIdsList;
 		return DbResUserIds;
 }
 
@@ -2589,9 +2452,6 @@ void XaUser::XaUserXaDomainAddFrm (){
 
 	XPathExprType="/root/fieldset[@id='XaUserXaDomain']/field[@name='XaUser-Section']/options";
 	this->AddOptionsAllSection(LibDom,XmlDomDoc,XPathExprType);
-	
-	//XPathExprType="/root/fieldset[@id='XaUserXaDomain']/field[@name='XaDomain-JobTitle']/options";
-	//XaLibAction::AddOptionsByDomain(LibDom,XmlDomDoc,"XaJobTitle",XPathExprType);
 
 	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
 	delete(LibDom);
@@ -2764,20 +2624,15 @@ void XaUser::AddOptionsAllSection(XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string XP
 
 	DbRes.clear();
 	
-	//LibLOG.Write(MyLogFile,"INF", __FILE__, __FUNCTION__,__LINE__,"Added Options By Domain-> "+ XaDomain + " - " + XPathExpr);
 };
 
 void XaUser::XaUserGetXaDomainAsOptions () {
-
-// da utilizzare nelle chiamate asincrone per popolare le select
-// restituisce un elenco di <option>, con value in chiaro
 
 	string XaUser_ID=HTTP.GetHttpParam("XaUser_ID");	//criptato
 	string Domain=HTTP.GetHttpParam("domain");
 	string XaUserXaDomainIn=HTTP.GetHttpParam("XaUserXaDomain-In");
 	
 	string OptionsList;
-	//OptionsList+="<option value=0\"\">---</option>";
 
 	XaLibSql* LibSql=new XaLibSql();
 
@@ -2806,7 +2661,6 @@ void XaUser::XaUserGetXaDomainAsOptions () {
 
 	delete(LibSql);
 
-	// in alternativa si puo costruire un doc xml e parsarlo, e in questo caso si potrebbe mettere un nodo root
     RESPONSE.Content=OptionsList;
 
 };
@@ -2908,15 +2762,5 @@ void XaUser::XaUserGetAllCompanyDepartmentSection() {
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added Options -> XaUser");
 };
 
-/*
-XaRESPONSE XaUser::GetRESPONSE(){
-
-	if (REQUEST.CalledEvent!=""){
-		this->Dispatcher(REQUEST.CalledEvent);
-	}
-
-	return RESPONSE;
-};
-*/
 XaUser::~XaUser(){
 };

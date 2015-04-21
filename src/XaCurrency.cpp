@@ -2,9 +2,7 @@
 #include <XaLibAction.h>
 
 XaCurrency::XaCurrency(){
-    //XaLibAction::SetActionVariables();
 };
-
 
 void XaCurrency::Dispatcher(string CalledEvent) {
 
@@ -34,8 +32,6 @@ void XaCurrency::XaCurrencyRateAddFrm (){
 	
 	XaLibSql* LibSql=new XaLibSql();
 
-    //string QryDomain="SELECT id,name,description FROM XaDomain WHERE domain='XaCurrency' AND active=1 AND deleted=0 AND name !='EUR' ORDER BY position, name";
-    // vengono prese prima le preferite che hanno position=10 e poi le rimanenti ordinate per description
     string QryDomain="SELECT id,name,description FROM (SELECT id,name,description FROM XaDomain WHERE domain='XaCurrency' AND active=1 AND deleted=0 AND name !='EUR' AND position!=99000 ORDER BY description) AS a UNION SELECT id,name,description FROM (SELECT id,name,description FROM XaDomain WHERE domain='XaCurrency' AND active=1 AND deleted=0 AND name !='EUR' AND position!=10 ORDER BY description) AS b";
 	
 	DbResMap DbResDomain=LibSql->FreeQuery(DB_READ,QryDomain);
@@ -45,7 +41,6 @@ void XaCurrency::XaCurrencyRateAddFrm (){
 			xmlDocPtr XmlDomDocDataTemp=xmlCopyDoc(XmlDomDocData,1);
 			
 			string XPB="//XaCurrencyRate/data/currency/";
-			// miglioria: comporre il placeholder dalle label in relazione alla lingua in sessione
 			string ArrayXPathExpr[] = {XPB+"id",XPB+"name",XPB+"description",XPB+"disp",XPB+"placeholder"};
 			vector<string> XPathExpr(ArrayXPathExpr, ArrayXPathExpr+5);
 
@@ -57,18 +52,12 @@ void XaCurrency::XaCurrencyRateAddFrm (){
 			XPathExpr.clear();
 			XPathValue.clear();
 
-			//RIMUOVERE INTESTAZIONE XML
 			XaLibAction::AddXmlString(LibDom->StringFromDom(XmlDomDocDataTemp));
 		}
 
 	delete(LibSql);
 
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-
-	/*string XPathExprType;
-
-	XPathExprType="/root/fieldset[@id='XaCurrencyRate']/field[@name='XaCurrency-XaDomainCurrency_ID']/options";
-	XaLibAction::AddOptionsByDomainWithDescription(LibDom,XmlDomDoc,"XaCurrency",XPathExprType);*/
 	
 	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
 	delete(LibDom);
@@ -113,7 +102,6 @@ void XaCurrency::XaCurrencyRateAdd () {
 
 			if (Rate=="NoHttpParam") {Rate="1.00000000";}
 			
-			// controllo se ce gia lo stesso currency rate, prima di inserire il nuovo
 			vector<string> ReturnedFields1, WhereFields1, WhereValues1;
 							
 			ReturnedFields1.push_back("id");
@@ -157,7 +145,6 @@ void XaCurrency::XaCurrencyRateAdd () {
 			VectorValues.push_back(XaLibAction::NowTimeMysql);
 	
 			int NextId=LibSql->Insert(DB_WRITE,"XaCurrencyRate",VectorFields,VectorValues);
-			//int NextId=0;
 	
 			if(NextId==0) {
 	
@@ -236,7 +223,6 @@ void XaCurrency::XaCurrencyRateList(){
 	}
 	
 	string Qry="SELECT name,description,c.id,with_effect_from,XaDomainCurrency_ID,rate FROM XaCurrencyRate c, XaDomain d WHERE c.deleted=0 AND XaDomainCurrency_ID=d.id AND XaDomainCurrency_ID!='44' "+filter+" ORDER BY with_effect_from DESC,id DESC,description";
-	//string Qry="SELECT id,with_effect_from,XaDomainCurrency_ID,rate FROM XaCurrencyRate WHERE deleted=0 AND XaDomainCurrency_ID!='44' "+filter+" ORDER BY with_effect_from DESC,XaDomainCurrency_ID";
 	
 	DbResMap DbRes=LibSql->FreeQuery(DB_READ,Qry);
 

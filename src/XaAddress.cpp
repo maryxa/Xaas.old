@@ -1,15 +1,6 @@
 #include <XaAddress.h>
 #include <XaLibAction.h>
 
-/*
-XaAddress::XaAddress(int C_XaUser_ID,string C_SESSION_ID, ParamsMap C_Request,XaLibHttp* LibHttp,string HeadersString,XaLibLog* LibLog,ofstream* MyLogFile,XaLibDb* LibDbSession,XaLibDb* LibDbRead,XaLibDb* LibDbWrite){
-
-	XaLibAction::SetActionEnvironment(C_XaUser_ID,C_SESSION_ID,C_Request,LibHttp,HeadersString,LibLog,MyLogFile,LibDbSession,LibDbRead,LibDbWrite,WsXml);
-    XaLibAction::SetActionVariables();
-
-};
-*/
-
 XaAddress::XaAddress() {
 };
 
@@ -81,32 +72,7 @@ void XaAddress::Dispatcher(string CalledEvent) {
 	}
 
 };
-/*
-void XaAddress::XaAddressAddFrm(){
-    XaLibAction::SetLayout("Standard");
 
-	string XmlPage="XaAddressAddFrm";
-    XaLibAction::AddXmlPath(XmlPage);
-
-    string XslPage="XaAddressAddFrm";
-    XaLibAction::AddXslPath(XslPage);
-
-    XaLibDom* LibDom=new XaLibDom();
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
-
-	delete(LibDom);
-
-	string XaUser_ID=HTTP.GetHttpParam("XaUser_ID");
-	
-    const int MAXITEMS = 2;
-    string XslParams[MAXITEMS] = {"XaUser_ID",XaUser_ID};
-    XaLibXsl *LibXsl=new XaLibXsl(XmlDomDoc,XslDomDoc,XslParams,MAXITEMS);
-    RESPONSE.Content=LibXsl->GetXHtml();
-	delete(LibXsl);
-
-};
-*/
 void XaAddress::XaAddressGeoAddFrm(){
 
 	string XaDomainType=HTTP.GetHttpParam("XaDomainType");
@@ -147,10 +113,7 @@ void XaAddress::XaAddressGeoAdd(){
 	string XaTable=HTTP.GetHttpParam("XaTable");
 	string XaUser_ID=XaLibAction::DecryptParamId(HTTP.GetHttpParam("XaUser_ID"));
 	string XaDomainType_ID=HTTP.GetHttpParam("XaDomainType_ID");
-
-// in modifica si passa anche XaAddress_ID cioe la riga corrente che dovra essere disattivata
 	string XaAddress_ID=HTTP.GetHttpParam("XaAddress_ID");
-
 	string country=HTTP.GetHttpParam("country");
 	string region=HTTP.GetHttpParam("administrative_area_level_1"); //state
 	string city=HTTP.GetHttpParam("locality");
@@ -193,7 +156,6 @@ void XaAddress::XaAddressGeoAdd(){
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Inserted Address ID -> "+ XaLibBase::FromIntToString(NextId));
 
-		// disattivazione valore precedente
 		if (XaAddress_ID!="NoHttpParam") {
 
 			string DecryptedXaAddress_ID=XaLibAction::DecryptParamId(XaAddress_ID);
@@ -235,8 +197,6 @@ void XaAddress::XaAddressGeoAdd(){
 void XaAddress::XaAddressGeoModFrm(){
 
 	string XaDomainType=HTTP.GetHttpParam("XaDomainType");
-
-// serve anche XaAddress_ID perche deve disattivare solo l indirizzo che si sta modificando e non gli altri
 	string XaAddress_ID=HTTP.GetHttpParam("XaAddress_ID");
 	
     XaLibAction::SetLayout("Standard");
@@ -297,7 +257,6 @@ void XaAddress::XaAddressGeoModFrm(){
 
 };
 
-
 void XaAddress::XaAddressGeoList(){
 
 	string EncryptedXaUser_ID=HTTP.GetHttpParam("XaUser_ID");
@@ -314,7 +273,6 @@ void XaAddress::XaAddressGeoList(){
 
 	XaLibSql* LibSql=new XaLibSql();
 
-	// Check if the user is active, if is active the data is editable
 	string Editable="no";
 	
 	vector<string> ReturnedFields, WhereFields, WhereValues;
@@ -335,7 +293,6 @@ void XaAddress::XaAddressGeoList(){
 	if (DbResEmployee.size()==1) {
 		Editable="yes";
 	}
-	//
 	
 	string QryGeo="SELECT * FROM XaAddressGeo WHERE XaTable=\"XaUser\" AND XaField_ID="+ DecryptedXaUser_ID +" AND deleted=0 AND active=1";
 	DbResMap DbResGeo=LibSql->FreeQuery(DB_READ,QryGeo);
@@ -379,7 +336,6 @@ void XaAddress::XaAddressGeoList(){
     XaLibXsl *LibXsl=new XaLibXsl(XmlDomDoc,XslDomDoc,XslParams,MAXITEMS);
     RESPONSE.Content=LibXsl->GetXHtml();
 	delete(LibXsl);
-
 };
 
 
@@ -430,7 +386,6 @@ void XaAddress::XaAddressPhoneAdd(){
 	string XaDomainType_ID=HTTP.GetHttpParam("XaDomainType_ID");
 	string XaDomainCode_ID=HTTP.GetHttpParam("XaDomainCode_ID");
 
-// in modifica si passa anche XaAddress_ID cioe la riga corrente che dovra essere disattivata
 	string XaAddress_ID=HTTP.GetHttpParam("XaAddress_ID");
 
 	string number=HTTP.GetHttpParam("XaUserPhone-Number");
@@ -464,7 +419,6 @@ void XaAddress::XaAddressPhoneAdd(){
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Inserted XaAddressPhone ID -> "+ XaLibBase::FromIntToString(NextId));
 
-		// disattivazione valore precedente
 		if (XaAddress_ID!="NoHttpParam") {
 
 			string DecryptedXaAddress_ID=XaLibAction::DecryptParamId(XaAddress_ID);	
@@ -510,7 +464,6 @@ void XaAddress::XaAddressPhoneModFrm(){
 	string XaUser_ID=HTTP.GetHttpParam("XaUser_ID");
 	string XaTable=HTTP.GetHttpParam("XaTable");
 
-// serve anche XaAddress_ID perche deve disattivare solo il telefono che si sta modificando e non gli altri
 	string XaAddress_ID=HTTP.GetHttpParam("XaAddress_ID");
 
 	XaLibAction::SetLayout("Standard");
@@ -571,7 +524,6 @@ void XaAddress::XaAddressPhoneModFrm(){
 	}
 };
 
-
 void XaAddress::XaAddressPhoneList(){
 
 	string EncryptedXaUser_ID=HTTP.GetHttpParam("XaUser_ID");
@@ -588,7 +540,6 @@ void XaAddress::XaAddressPhoneList(){
 
 	XaLibSql* LibSql=new XaLibSql();
 
-	// Check if the user is active, if is active the data is editable
 	string Editable="no";
 	
 	vector<string> ReturnedFields, WhereFields, WhereValues;
@@ -640,7 +591,6 @@ void XaAddress::XaAddressPhoneList(){
 		XPathExpr.clear();
 		XPathValue.clear();
 
-		//RIMUOVERE INTESTAZIONE XML
 		XaLibAction::AddXmlString(LibDom->StringFromDom(XmlDomDocDataTemp));
 	}
 
@@ -703,7 +653,6 @@ void XaAddress::XaAddressMailAdd(){
 	string XaUser_ID=XaLibAction::DecryptParamId(HTTP.GetHttpParam("XaUser_ID"));
 	string XaDomainType_ID=HTTP.GetHttpParam("XaDomainType_ID");
 
-// in modifica si passa anche XaAddress_ID cioe la riga corrente che dovra essere disattivata
 	string XaAddress_ID=HTTP.GetHttpParam("XaAddress_ID");
 
 	string email=HTTP.GetHttpParam("XaUserEmail-Email");
@@ -737,7 +686,6 @@ void XaAddress::XaAddressMailAdd(){
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Inserted XaAddressMail ID -> "+ XaLibBase::FromIntToString(NextId));
 
-		// disattivazione valore precedente
 		if (XaAddress_ID!="NoHttpParam") {
 
 			string DecryptedXaAddress_ID=XaLibAction::DecryptParamId(XaAddress_ID);	
@@ -783,7 +731,6 @@ void XaAddress::XaAddressMailModFrm(){
 	string XaUser_ID=HTTP.GetHttpParam("XaUser_ID");
 	string XaTable=HTTP.GetHttpParam("XaTable");
 
-// serve anche XaAddress_ID perche deve disattivare solo l indirizzo che si sta modificando e non gli altri
 	string XaAddress_ID=HTTP.GetHttpParam("XaAddress_ID");
 
 	XaLibAction::SetLayout("Standard");
@@ -857,7 +804,6 @@ void XaAddress::XaAddressMailList(){
 
 	XaLibSql* LibSql=new XaLibSql();
 
-	// Check if the user is active, if is active the data is editable
 	string Editable="no";
 	
 	vector<string> ReturnedFields, WhereFields, WhereValues;

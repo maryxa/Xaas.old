@@ -126,69 +126,7 @@ void XaLibHttp::GetHttpHeaders(){
 		this->HTTP_X_FORWARDED_FOR = getenv("HTTP_X_FORWARDED_FOR");
 	}
 };
-/*
-string XaLibHttp::__getHeaders(string HttpHeaderName){
 
-	string HttpHeader="NoHttpHeader";
-
-	if(HttpHeaderName=="HTTP_COOKIE"){
-		HttpHeader=this->HTTP_COOKIE;
-	}
-	if(HttpHeaderName=="HTTP_COMSPEC"){
-		HttpHeader=this->HTTP_COMSPEC;
-	} else if (HttpHeaderName=="HTTP_DOCUMENT_ROOT"){
-		HttpHeader=this->HTTP_DOCUMENT_ROOT;
-	} else if (HttpHeaderName=="HTTP_GATEWAY_INTERFACE"){
-		HttpHeader= this->HTTP_GATEWAY_INTERFACE;
-	} else if (HttpHeaderName=="HTTP_ACCEPT"){
-		HttpHeader= this->HTTP_ACCEPT;
-	} else if (HttpHeaderName=="HTTP_ACCEPT_ENCODING"){
-		HttpHeader= this->HTTP_ACCEPT_ENCODING;
-	} else if (HttpHeaderName=="HTTP_ACCEPT_LANGUAGE"){
-		HttpHeader= this->HTTP_ACCEPT_LANGUAGE;
-	} else if (HttpHeaderName=="HTTP_CONNECTION"){
-		HttpHeader= this->HTTP_CONNECTION;
-	} else if (HttpHeaderName=="HTTP_HOST"){
-		HttpHeader= this->HTTP_HOST;
-	} else if (HttpHeaderName=="HTTP_USER_AGENT"){
-		HttpHeader= this->HTTP_USER_AGENT;
-	} else if (HttpHeaderName=="HTTP_PATH"){
-		HttpHeader= this->HTTP_PATH;
-	} else if (HttpHeaderName=="HTTP_QUERY_STRING"){
-		HttpHeader= this->HTTP_QUERY_STRING;
-	} else if (HttpHeaderName=="HTTP_CONTENT_LENGTH"){
-		return this->HTTP_CONTENT_LENGTH;
-	} else if (HttpHeaderName=="HTTP_REMOTE_ADDR"){
-		HttpHeader= this->HTTP_REMOTE_ADDR;
-	} else if (HttpHeaderName=="HTTP_REMOTE_PORT"){
-		HttpHeader= this->HTTP_REMOTE_PORT;
-	} else if (HttpHeaderName=="HTTP_REQUEST_METHOD"){
-		return this->HTTP_REQUEST_METHOD;
-	} else if (HttpHeaderName=="HTTP_REQUEST_URI"){
-		HttpHeader= this->HTTP_REQUEST_URI;
-	} else if (HttpHeaderName=="HTTP_SCRIPT_FILENAME"){
-		HttpHeader= this->HTTP_SCRIPT_FILENAME;
-	} else if (HttpHeaderName=="HTTP_SCRIPT_NAME"){
-		HttpHeader= this->HTTP_SCRIPT_NAME;
-	} else if (HttpHeaderName=="HTTP_SERVER_ADDR"){
-		HttpHeader= this->HTTP_SERVER_ADDR;
-	} else if (HttpHeaderName=="HTTP_SERVER_ADMIN"){
-		HttpHeader= this->HTTP_SERVER_ADMIN;
-	} else if (HttpHeaderName=="HTTP_SERVER_NAME"){
-		HttpHeader= this->HTTP_SERVER_NAME;
-	} else if (HttpHeaderName=="HTTP_SERVER_PORT"){
-		HttpHeader= this->HTTP_SERVER_PORT;
-	} else if (HttpHeaderName=="HTTP_SERVER_PROTOCOL"){
-		HttpHeader= this->HTTP_SERVER_PROTOCOL;
-	} else if (HttpHeaderName=="HTTP_SERVER_SIGNATURE"){
-		HttpHeader= this->HTTP_SERVER_SIGNATURE;
-	} else if (HttpHeaderName=="HTTP_SERVER_SOFTWARE"){
-		HttpHeader= this->HTTP_SERVER_SOFTWARE;
-	}
-
-	return HttpHeader;
-};
-*/
 string XaLibHttp::GetHttpHeadersString(){
 
 	this->GetHttpHeaders();
@@ -248,7 +186,6 @@ string XaLibHttp::GetHttpHeadersString(){
 string XaLibHttp::GetHttpParam(string HttpParamName){
 
 	string HttpParamValue;
-	//string HttpQueryString=REQUEST.HeadersString;
 
 	//CALCOLO LA LUNGHEZZA DELLA QUERY STRING
 	unsigned HttpQueryStringSize=REQUEST.HeadersString.size();
@@ -287,8 +224,6 @@ string XaLibHttp::GetHttpParam(string HttpParamName){
 					HttpParamValue = REQUEST.HeadersString.substr(HttpParamNamePositionEnd,NextAnd-HttpParamNamePositionEnd);
 				}
 
-				//unsigned a=HttpParamValue.size();
-
 				string HttpParamValueDecoded;
 				
 					if (HttpParamValue.size()==0){
@@ -316,7 +251,6 @@ vector<string> XaLibHttp::GetHttpParamArray(string HttpParamName){
 	vector<string> HttpParamValueArray;
 
 	string HttpParamValue;
-	//string HttpQueryString=REQUEST.HeadersString;
 
 	//CALCOLO LA LUNGHEZZA DELLA QUERY STRING
 	unsigned HttpQueryStringSize=REQUEST.HeadersString.size();

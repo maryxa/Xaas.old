@@ -12,7 +12,6 @@ class XaCurrency : public XaLibAction {
 		void XaCurrencyRateAddFrm();
 		void XaCurrencyRateAdd();
 		void XaCurrencyRateList();
-
 		
 	protected:
 
@@ -20,7 +19,7 @@ class XaCurrency : public XaLibAction {
 
 		XaCurrency();
 		~XaCurrency();
-		
+
 		double CalculateCurrencyRate(string FromCurrency,string ToCurrency,string Date);
 		double CalculateMonthlyCurrencyRate(string FromCurrency,string ToCurrency,string Year,string Month);
 };
