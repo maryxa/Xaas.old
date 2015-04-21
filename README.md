@@ -1,5 +1,5 @@
 # XaLib
-c++ web application framework
+c++ application framework
 
 Designed to get easier developing of web apps using the most advanced patterns:
 
