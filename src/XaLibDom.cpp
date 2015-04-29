@@ -222,7 +222,6 @@ string XaLibDom::GetNumRowByXPath(xmlDocPtr XmlDomDoc,string XPathExpr) {
 
 	xmlXPathContextPtr xpathCtx; 
     xmlXPathObjectPtr xpathObj;
-	xmlNodePtr cur;
 	string stringValue="";
  
     xpathCtx = xmlXPathNewContext(XmlDomDoc);
@@ -240,7 +239,6 @@ int XaLibDom::GetNumRowByXPathInt(xmlDocPtr XmlDomDoc,string XPathExpr) {
 
 	xmlXPathContextPtr xpathCtx; 
     xmlXPathObjectPtr xpathObj;
-	xmlNodePtr cur;
 	string stringValue="";
  
     xpathCtx = xmlXPathNewContext(XmlDomDoc);
@@ -319,7 +317,6 @@ XaLibDom::ParamFromDomMap XaLibDom::MapParamFromDom(xmlDocPtr XmlDomDoc, VectorK
 
 	xmlNodePtr cur=NULL;
 	xmlNodePtr cur_node = NULL;
-	xmlNodePtr cur_node_node = NULL;
 
 	if (doc == NULL ) {
 		
@@ -368,7 +365,6 @@ XaLibDom::ParamFromDomMap XaLibDom::MapParamFromDomByXPath(xmlDocPtr XmlDomDoc, 
 
 	xmlNodePtr cur=NULL;
 	xmlNodePtr cur_node = NULL;
-	xmlNodePtr cur_node_node = NULL;
 
 	if (doc == NULL ) {
 

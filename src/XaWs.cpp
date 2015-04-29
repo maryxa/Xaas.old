@@ -4,7 +4,7 @@
 XaWs::XaWs(){
 };
 
-void XaWs::Dispatcher (string CalledEvent) {
+void XaWs::Dispatcher (const string &CalledEvent) {
 	
 	if (CalledEvent=="List"){
 

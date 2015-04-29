@@ -9,7 +9,7 @@ class XaDomain : public XaLibAction {
 
     private:
 
-		void Dispatcher(string CalledEvent);
+		void Dispatcher(const string &CalledEvent);
 
 		void XaDomainRowAddFrm();
 		void XaDomainRowAdd();

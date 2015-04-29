@@ -4,7 +4,7 @@
 XaCurrency::XaCurrency(){
 };
 
-void XaCurrency::Dispatcher(string CalledEvent) {
+void XaCurrency::Dispatcher(const string &CalledEvent) {
 
 	if (CalledEvent=="XaCurrencyRateAddFrm"){
         this->XaCurrencyRateAddFrm();

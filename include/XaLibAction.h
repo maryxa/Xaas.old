@@ -90,7 +90,7 @@ class XaLibAction : protected XaLibBase {
 
 		string ComposeSearchCondition(string Value,string Field,string Type);
 
-		virtual void Dispatcher (string CalledEvent);
+		virtual void Dispatcher (const string &CalledEvent);
 
 		void ResetRequest();
 

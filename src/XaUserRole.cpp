@@ -5,7 +5,7 @@
 XaUserRole::XaUserRole(){
 };
 
-void XaUserRole::Dispatcher (string CalledEvent) {
+void XaUserRole::Dispatcher (const string &CalledEvent) {
 	
 	if (CalledEvent=="XaUserRoleAddFrm"){
 

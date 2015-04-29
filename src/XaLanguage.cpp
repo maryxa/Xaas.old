@@ -5,7 +5,7 @@ XaLanguage::XaLanguage(){
 
 };
 
-void XaLanguage::Dispatcher(string CalledEvent) {
+void XaLanguage::Dispatcher(const string &CalledEvent) {
 
 	if (CalledEvent=="XaLanguageAddFrm"){
         this->XaLanguageAddFrm();

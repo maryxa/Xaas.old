@@ -5,7 +5,7 @@
 XaDomain::XaDomain(){
 };
 
-void XaDomain::Dispatcher(string CalledEvent) {
+void XaDomain::Dispatcher(const string &CalledEvent) {
 
 	if (CalledEvent=="XaDomainList"){
         this->XaDomainList();

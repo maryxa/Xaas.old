@@ -7,7 +7,7 @@ using namespace std;
 XaUser::XaUser(){
 };
 
-void XaUser::Dispatcher (string CalledEvent) {
+void XaUser::Dispatcher (const string &CalledEvent) {
 
 	if (CalledEvent=="XaUserLoginFrm"){
         this->XaUserLoginFrm();
