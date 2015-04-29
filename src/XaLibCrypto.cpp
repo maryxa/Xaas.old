@@ -168,48 +168,51 @@ string XaLibCrypto::AesEncryptCtr(string StringToEncrypt, string EncryptionKey, 
 	return "";
 
 #else
+    #ifdef _WIN32
+    	return "";
+    #else
+        char* intext=XaLibBase::FromStringToCharArray(StringToEncrypt);
 
-	char* intext=XaLibBase::FromStringToCharArray(StringToEncrypt);
+        unsigned char outbuf[strlen(intext)];
 
-	unsigned char outbuf[strlen(intext)];
+        int outlen;
+        int tmplen;
 
-	int outlen;
-	int tmplen;
+        unsigned char key[32];
+        for (int i=0; i<32; i++) {
+            key[i]=XaLibBase::FromHexStringToUnsignedInt(EncryptionKey.substr(2*i,2));
+        }
+        unsigned char iv[16];
+        for (int i=0; i<16; i++) {
+            iv[i]=XaLibBase::FromHexStringToUnsignedInt(EncryptionIV.substr(2*i,2));
+        }
 
-	unsigned char key[32];
-	for (int i=0; i<32; i++) {
-		key[i]=XaLibBase::FromHexStringToUnsignedInt(EncryptionKey.substr(2*i,2));
-	}
-	unsigned char iv[16];
-	for (int i=0; i<16; i++) {
-		iv[i]=XaLibBase::FromHexStringToUnsignedInt(EncryptionIV.substr(2*i,2));
-	}
+        EVP_CIPHER_CTX ctx;
+        EVP_CIPHER_CTX_init(&ctx);
+        EVP_EncryptInit_ex(&ctx, EVP_aes_256_ctr(), NULL, key, iv);
 
-	EVP_CIPHER_CTX ctx;
-	EVP_CIPHER_CTX_init(&ctx);
-	EVP_EncryptInit_ex(&ctx, EVP_aes_256_ctr(), NULL, key, iv);
+        if(!EVP_EncryptUpdate(&ctx, outbuf, &outlen, (unsigned char*)intext, strlen(intext))) {
+            return 0;
+        }
 
-	if(!EVP_EncryptUpdate(&ctx, outbuf, &outlen, (unsigned char*)intext, strlen(intext))) {
-		return 0;
-	}
+        if(!EVP_EncryptFinal_ex(&ctx, outbuf + outlen, &tmplen)) {
+            return 0;
+        }
 
-	if(!EVP_EncryptFinal_ex(&ctx, outbuf + outlen, &tmplen)) {
-		return 0;
-	}
+        outlen += tmplen;
 
-	outlen += tmplen;
+        EVP_CIPHER_CTX_cleanup(&ctx);
 
-	EVP_CIPHER_CTX_cleanup(&ctx);
+        string EncryptedValue;
 
-	string EncryptedValue;
+        for (int j=0;j<outlen;j++){
+            string StringValue=XaLibBase::FromCharToString(outbuf[j]);
+            EncryptedValue.append(StringValue);
+        }
 
-	for (int j=0;j<outlen;j++){
-		string StringValue=XaLibBase::FromCharToString(outbuf[j]);
-		EncryptedValue.append(StringValue);
-	}
+        return EncryptedValue;
 
-	return EncryptedValue;
-
+    #endif
 #endif
 };
 
@@ -224,57 +227,54 @@ string XaLibCrypto::AesDecryptCtr(string EncryptedValue, string EncryptionKey, s
 	return "";
 
 #else
+    #ifdef _WIN32
+    	return "";
+    #else
+        int outlen;
+        int tmplen;
 
-	int outlen;
-	int tmplen;
+        int EncryptedValueSize=EncryptedValue.size();
 
-	int EncryptedValueSize=EncryptedValue.size();
+        char intext[EncryptedValueSize+1];
 
-	char intext[EncryptedValueSize+1];
-	
-	for(int k=0;k<EncryptedValueSize;k++){
-		intext[k]=EncryptedValue[k];
-	}
-	intext[EncryptedValueSize+1]='\0';
+        for(int k=0;k<EncryptedValueSize;k++){
+            intext[k]=EncryptedValue[k];
+        }
+        intext[EncryptedValueSize+1]='\0';
 
-	unsigned char key[32];
-	for (int i=0; i<32; i++) {
-		key[i]=XaLibBase::FromHexStringToUnsignedInt(EncryptionKey.substr(2*i,2));
-	}
-	unsigned char iv[16];
-	for (int i=0; i<16; i++) {
-		iv[i]=XaLibBase::FromHexStringToUnsignedInt(EncryptionIV.substr(2*i,2));
-	}
+        unsigned char key[32];
+        for (int i=0; i<32; i++) {
+            key[i]=XaLibBase::FromHexStringToUnsignedInt(EncryptionKey.substr(2*i,2));
+        }
+        unsigned char iv[16];
+        for (int i=0; i<16; i++) {
+            iv[i]=XaLibBase::FromHexStringToUnsignedInt(EncryptionIV.substr(2*i,2));
+        }
 
-    unsigned char outbuf[EncryptedValue.size()];
+        unsigned char outbuf[EncryptedValue.size()];
 
-    EVP_CIPHER_CTX ctx;
-    EVP_CIPHER_CTX_init(&ctx);
+        EVP_CIPHER_CTX ctx;
+        EVP_CIPHER_CTX_init(&ctx);
 
-    EVP_DecryptInit_ex(&ctx,EVP_aes_256_ctr(),NULL,key,iv);
-	EVP_DecryptUpdate(&ctx,outbuf, &outlen,(unsigned char*)intext,EncryptedValueSize+1);
+        EVP_DecryptInit_ex(&ctx,EVP_aes_256_ctr(),NULL,key,iv);
+        EVP_DecryptUpdate(&ctx,outbuf, &outlen,(unsigned char*)intext,EncryptedValueSize+1);
 
-    EVP_DecryptFinal_ex(&ctx,outbuf +outlen, &tmplen);
-	outlen += tmplen;
+        EVP_DecryptFinal_ex(&ctx,outbuf +outlen, &tmplen);
+        outlen += tmplen;
 
-	EVP_CIPHER_CTX_cleanup(&ctx);
+        EVP_CIPHER_CTX_cleanup(&ctx);
+        string DecryptedValue;
 
-    //Just to be nice, we'll add a zero at the end of the decrypted string
-    //outbuf[outlen+tmplen] = 0;
-	string DecryptedValue;
+        for (int j=0;j<outlen;j++){
+            string StringValue=XaLibBase::FromCharToString(outbuf[j]);
+            DecryptedValue.append(StringValue);
+        }
 
-	for (int j=0;j<outlen;j++){
-		string StringValue=XaLibBase::FromCharToString(outbuf[j]);
-		DecryptedValue.append(StringValue);
-	}
+        outbuf[0]=0;
 
-	outbuf[0]=0;
-
-//	Log.LibLOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"decrypted string : "+DecryptedValue );
-	
-	return DecryptedValue;
+        return DecryptedValue;
+    #endif        
 #endif
-
 };
 
 XaLibCrypto::~XaLibCrypto() {
