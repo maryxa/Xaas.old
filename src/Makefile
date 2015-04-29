@@ -1,7 +1,7 @@
 ##  Makefile
 ##  Project: XAllegro
-##  Author XAllegro
-##  info@xallegro.com
+##  Author XAllegro - Alessandro Mariotti
+##  alex@xallegro.com
 
 UNAME_S := $(shell uname -s)
 
