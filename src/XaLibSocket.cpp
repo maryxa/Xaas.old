@@ -13,7 +13,7 @@
 #ifdef _WIN32
 
 	#pragma comment(lib, "Ws2_32.lib")
-	#define _WIN32_WINNT 0x501
+	//#define _WIN32_WINNT 0x501
 
 	#include <winsock2.h>
 	#include <windows.h>
