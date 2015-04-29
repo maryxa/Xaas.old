@@ -23,6 +23,12 @@
 #include <random>
 #include <iomanip>
 
+
+#ifdef _WIN32
+	#include <winsock2.h>
+    #include <windows.h>
+#endif
+
 #include <libxml/tree.h>
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
@@ -87,6 +93,15 @@ struct XaResponse {
 };
 
 typedef map<string, string> XaSettings;
+
+#ifdef _WIN32
+    template < typename T > std::string to_string( const T& n ) {
+        std::ostringstream stm ;
+        stm << n ;
+        return stm.str() ;
+    }
+#else
+#endif
 
 class XaLibBase {
 
