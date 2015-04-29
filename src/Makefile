@@ -27,7 +27,7 @@ ifeq ($(filter MINGW32_NT-%.%,$(UNAME_S)),)
 		-I$(XALLEGRO_DIR)\libs\curl\include
 
     LDFLAGS  =
-    CPPFLAGS = $(CPPINCS) -std=c++0x -O3 -D__NO_INLINE__
+    CPPFLAGS = $(CPPINCS) -std=c++0x -O3 -D__NO_INLINE__ -Wall
 
     BIN      = $(XALIB_DIR)\bin\XaLib.a
 
