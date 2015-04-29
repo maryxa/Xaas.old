@@ -2,11 +2,6 @@
 #define XALIBDB_H
 
 #include <XaLibBase.h>
-
-#ifdef _WIN32
-	#include <winsock2.h>
-#endif
-
 #include <XaLibLog.h>
 #include <mysql.h>
 
