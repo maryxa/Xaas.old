@@ -21,11 +21,6 @@ void XaLanguage::Dispatcher(string CalledEvent) {
 };
 
 void XaLanguage::XaLanguageMod (){
-	
-	XaLibLog* LocalLibLog;
-	ofstream* LocalMyLogFile;
-	typedef map<string, string> ParamsConfigurationMap;
-	ParamsConfigurationMap LocalParamsConfiguration;
 
 	XaLibSql* LibSql=new XaLibSql();
 	
@@ -79,10 +74,9 @@ void XaLanguage::XaLanguageMod (){
 			WhereValues.push_back(LabelId);
 			WhereValues.push_back(DbRes1[n]["id"]);
 	
-			int RowUpdate = LibSql->Update(DB_WRITE,"XaLabelTranslation",VectorFields,VectorValues,WhereFields,WhereValues);
-		
+			LibSql->Update(DB_WRITE,"XaLabelTranslation",VectorFields,VectorValues,WhereFields,WhereValues);
+
 		}
-	
 	}
 	
 	delete(LibSql);
@@ -227,8 +221,6 @@ void XaLanguage::XaLanguageAddFrm (){
 
 void XaLanguage::XaLanguageAdd (){
 	
-	XaLibLog* LocalLibLog;
-	ofstream* LocalMyLogFile;
 	typedef map<string, string> ParamsConfigurationMap;
 	ParamsConfigurationMap LocalParamsConfiguration;
 

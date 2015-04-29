@@ -276,7 +276,7 @@ XaLibDb::DbResMap XaLibDb::RetrieveRows(MYSQL_RES *DbResult) {
 			DbResultFieldName.push_back(field->name);
 		}
 
-		int numrows = mysql_num_rows(result);
+		//int numrows = mysql_num_rows(result);
 		int numfields = mysql_num_fields(result);
 
 		XaLibChar* LibChar=new XaLibChar();

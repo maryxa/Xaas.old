@@ -279,8 +279,6 @@ void XaLibAction::AddOptionsByVectors(XaLibDom* LibDom,xmlDocPtr XmlDomDoc,strin
 
 	if(FieldsSize==ValuesSize && FieldsSize>0) {
 
-		int j=0;
-
 		for(int n=0; n<FieldsSize; n++) {
 
 			string Label=XmlFields.at(n).c_str();

@@ -9,7 +9,6 @@ void XaLibConfig::GetParams(string& ConfFile){
 	xmlDocPtr doc=NULL;
 	xmlNodePtr cur=NULL;
 	xmlNodePtr cur_node = NULL;
-	xmlNodePtr cur_node_node = NULL;
 
 	string strDocFile;
 	strDocFile.append(ConfFile);

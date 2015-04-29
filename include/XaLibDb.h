@@ -16,24 +16,12 @@ extern XaSettings SETTINGS;
 class XaLibDb : private XaLibBase {
 
 	private:
-		//DbResMap DbRes;
-		//XaLibBase::ParamsMap ParamsConfigurationDb;
-		/*
-		XaLibLog* LibLogDb;
-		ofstream* MyLogFileDb;
-		*/
 
 		MYSQL* ConnWrite;
         MYSQL* ConnRead;
         MYSQL* ConnSession;
 
 		int ActiveConnection;
-
-		XaLibDb* LibDbSession;
-		XaLibDb* LibDbRead;
-		XaLibDb* LibDbWrite;
-
-		
 
 	protected:
 

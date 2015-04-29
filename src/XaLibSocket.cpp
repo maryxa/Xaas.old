@@ -168,8 +168,10 @@ void XaLibSocket::SocketShutdown(int SocketNumber){
     }
 };
 
-void XaLibSocket::SocketClose(int SocketNumber){
-	int iResult;
+void XaLibSocket::SocketClose(int SocketNumber) {
+
+	int iResult=0;
+
 	#ifdef _WIN32
 		iResult = closesocket(SocketNumber);
 	#endif

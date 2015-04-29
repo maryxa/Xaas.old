@@ -363,7 +363,7 @@ XaLibDom::ParamFromDomMap XaLibDom::MapParamFromDomByXPath(xmlDocPtr XmlDomDoc, 
 
 	xmlDocPtr doc=XmlDomDoc;
 
-	xmlXPathContextPtr xpathCtx; 
+	xmlXPathContextPtr xpathCtx=nullptr; 
     xmlXPathObjectPtr xpathObj;
 
 	xmlNodePtr cur=NULL;
@@ -457,8 +457,6 @@ XaLibDom::ParamFromDomMap XaLibDom::MapParamFromDomByXPath(xmlDocPtr XmlDomDoc, 
 void XaLibDom::ParseParamFromDom (xmlDocPtr doc, xmlNodePtr cur, VectorKey VectorKey, int counter) {
 
 	xmlChar *key;
-	xmlChar *value;
-	char* valueChar;
 	char* keyChar;
 
 	cur = cur->xmlChildrenNode;
