@@ -243,7 +243,7 @@ return StringToClear;
 
 string XaLibChar::UrlDecode(string StringToDecode) {
 
-	CURL *curl;
+	CURL *curl= nullptr;
 	char* url=(char*)StringToDecode.c_str();
 	char* CharDecoded=curl_easy_unescape(curl,url,0,NULL);
 
@@ -255,7 +255,7 @@ return StringDecoded;
 
 string XaLibChar::UrlEncode(string StringToEncode) {
 
-	CURL *curl;
+	CURL *curl= nullptr;
 	char* url=(char*)StringToEncode.c_str();
 	char* CharEncoded=curl_easy_escape(curl,url,0);
 
@@ -889,7 +889,7 @@ string XaLibChar::UnclearAmpersand(string StringToUnclear) {
 string XaLibChar::ClearFrimmDesc(string StringToClear){
 	unsigned pos;
 	int i0;
-        int i1;
+	int i1;
 	int CharCode;
 	string ClearedChar;
 
@@ -897,63 +897,79 @@ string XaLibChar::ClearFrimmDesc(string StringToClear){
 
 	while (pos< StringToClear.size()) {
             
-                i1 = StringToClear[pos];
-                
-                if (i1<0) {i1 = i1+256;};
-          
-                if (i1==10 || i1==13 || i1==9) {
-                    StringToClear.replace(pos,1,"");
-                    pos=pos;		
-		} else if (i1==160 || i1==32){
-                    if (pos>0) {
-                        i0 = StringToClear[pos-1];
-                        if (i0<0) {i0 = i0+256;};
-                        if (i0==32 || i0==160) {
-                            StringToClear.replace(pos,1,"");
-                            pos=pos;		
-                        } else {pos++;};
-                    }  else {pos++;};
+		i1 = StringToClear[pos];
+
+		if (i1<0) {i1 = i1+256;};
+
+			if (i1==10 || i1==13 || i1==9) {
+
+				StringToClear.replace(pos,1,"");
+				//pos=pos;
+
+			} else if (i1==160 || i1==32){
+
+				if (pos>0) {
+
+					i0 = StringToClear[pos-1];
+					if (i0<0) {i0 = i0+256;};
+
+						if (i0==32 || i0==160) {
+							StringToClear.replace(pos,1,"");
+							//pos=pos;		
+
+						} else {
+							pos++;
+						};
+
+					} else {
+
+						pos++;
+					};
+
                 } else {
                     pos++;
                 }
-        }
+	}
 
-       	pos=0;
+	pos=0;
+
 	while (pos< StringToClear.size()) {
-                i1 = StringToClear[pos];
+
+		i1 = StringToClear[pos];
+
+		if (i1<0) {
+			i1 = i1+256;
+		};
                 
-                if (i1<0) {i1 = i1+256;};
-                
-                if (i1>127){
-                    CharCode = i1;
-                    ostringstream ss;
-                    ss << CharCode;
-                    ClearedChar="&#";
-                    ClearedChar.append(ss.str());
-                    ClearedChar.append(";");
-                    StringToClear.replace(pos,1,ClearedChar);
-                    pos=pos+ClearedChar.size();
-                }
-                else {
-                    pos++;
+		if (i1>127) {
+
+			CharCode = i1;
+			ostringstream ss;
+			ss << CharCode;
+			ClearedChar="&#";
+			ClearedChar.append(ss.str());
+			ClearedChar.append(";");
+			StringToClear.replace(pos,1,ClearedChar);
+			pos=pos+ClearedChar.size();
+
+		} else {
+			pos++;
 		}
 	}
         
-        pos=0;
+	pos=0;
 	pos=StringToClear.find("&#160;");
 	
 	if (pos !=-1) {
 	
 		while (pos!=-1){
-			
+	
 			StringToClear.replace(pos,6," ");
 			pos=StringToClear.find("&#160;",pos+1);
 		}
-
 	}
 
 	return StringToClear;
-
 };   
         
 XaLibChar::~XaLibChar() {

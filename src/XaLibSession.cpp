@@ -109,8 +109,6 @@ int XaLibSession::SessionStart() {
 
 int XaLibSession::SessionValidate(const string& SessionId){
 
-	int SessionValidateStatus=0;
-
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Session Validation -> Validation For SessionId -> "+SessionId);
 
 	DbResMap DbRes;

@@ -252,12 +252,6 @@ void XaLabel::XaLabelFromFileAddFrm (){
 };
 
 void XaLabel::XaLabelMod (){
-	
-	XaLibLog* LocalLibLog;
-	ofstream* LocalMyLogFile;
-	typedef map<string, string> ParamsConfigurationMap;
-	ParamsConfigurationMap LocalParamsConfiguration;
-
 
 	XaLibSql* LibSql=new XaLibSql();
 
@@ -315,10 +309,10 @@ void XaLabel::XaLabelMod (){
 			WhereValues.push_back(LabelId);
 			WhereValues.push_back(DbRes1[n]["id"]);
 	
-			int RowUpdate = LibSql->Update(DB_WRITE,"XaLabelTranslation",VectorFields,VectorValues,WhereFields,WhereValues);
-		
+			LibSql->Update(DB_WRITE,"XaLabelTranslation",VectorFields,VectorValues,WhereFields,WhereValues);
+
 		}
-	
+
 	}
 	
 	delete(LibSql);
@@ -579,11 +573,6 @@ void XaLabel::XaLabelAddFrm (){
 };
 
 void XaLabel::XaLabelAdd (){
-	
-	XaLibLog* LocalLibLog;
-	ofstream* LocalMyLogFile;
-	typedef map<string, string> ParamsConfigurationMap;
-	ParamsConfigurationMap LocalParamsConfiguration;
 
 	string StrName=HTTP.GetHttpParam("XaLabel-Name");
 	string StrDescription=HTTP.GetHttpParam("XaLabel-Description");
@@ -733,12 +722,6 @@ void XaLabel::XaTranslationAddFrm (){
 };
 
 void XaLabel::XaTranslationAdd (){
-
-	XaLibLog* LocalLibLog;
-	ofstream* LocalMyLogFile;
-	typedef map<string, string> ParamsConfigurationMap;
-	ParamsConfigurationMap LocalParamsConfiguration;
-
 	
 	string StrName=HTTP.GetHttpParam("XaLabel-Name");
 	string StrDescription=HTTP.GetHttpParam("XaLabel-Description");
