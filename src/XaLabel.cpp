@@ -6,7 +6,7 @@ XaLabel::XaLabel(){
     //XaLibAction::SetActionVariables();
 };
 
-void XaLabel::Dispatcher(string CalledEvent) {
+void XaLabel::Dispatcher(const string &CalledEvent) {
 
 	if (CalledEvent=="XaTranslationAddFrm"){
         this->XaTranslationAddFrm();

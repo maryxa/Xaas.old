@@ -48,8 +48,6 @@ XaLibXsl::XaLibXsl(string XmlFilePath, string XslFilePath){
 
 	xmlDocPtr doc;
 
-	int len = 9999;
-
 	const char *NoParams[1];
 	NoParams[0] = 0;
 
@@ -74,10 +72,7 @@ XaLibXsl::XaLibXsl(string XmlString, string XslFilePath, int XmlStringSize){
 	const char *XmlChar = (char*)XmlString.c_str();
 	xmlDocPtr doc;
 
-	int len = 9999;
-
 	const char *params[16 + 1];
-	int nbparams = 0;
 
 	string strParam="";
 		strParam.append("NoParamName");

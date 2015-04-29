@@ -658,7 +658,7 @@ void XaLibAction::GetResponse(){
 	}
 };
 
-void XaLibAction::Dispatcher (string CalledEvent){};
+void XaLibAction::Dispatcher (const string &CalledEvent){};
 
 XaLibAction::~XaLibAction(){
 };

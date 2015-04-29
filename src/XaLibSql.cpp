@@ -632,7 +632,15 @@ void XaLibSql::LockTable(XaLibDb& LibDb,string TableName){
 	string SqlQry="LOCK TABLES "+ TableName + " WRITE";
 	int i=LibDb.ExSystemQry(SqlQry);
 	
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Locked Database Table -> " + TableName);
+	if (i==1) {
+	
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Locked Database Table -> " + TableName);
+	
+	} else {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Locking Database Table -> " + TableName);
+
+	}
 };
 
 void XaLibSql::UnlockTable(XaLibDb& LibDb){
@@ -640,7 +648,15 @@ void XaLibSql::UnlockTable(XaLibDb& LibDb){
     string SqlQry="UNLOCK TABLES";
 	int i=LibDb.ExSystemQry(SqlQry);
 
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"UnLocked Database Tables");
+	if (i==1) {
+	
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"UnLocked Database Tables");
+	
+	} else {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error UnLocking Database Tables");
+
+	}
 };
 
 void XaLibSql::TransactionStart(XaLibDb& LibDb){
@@ -648,7 +664,15 @@ void XaLibSql::TransactionStart(XaLibDb& LibDb){
 	string SqlQry="START TRANSACTION";
 	int i=LibDb.ExSystemQry(SqlQry);
 
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Start Transaction");
+	
+	if (i==1) {
+	
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Start Transaction");
+	
+	} else {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Starting Transaction");
+	}
 };
 
 void XaLibSql::TransactionCommit(XaLibDb& LibDb){
@@ -656,15 +680,31 @@ void XaLibSql::TransactionCommit(XaLibDb& LibDb){
 	string SqlQry="COMMIT";
 	int i=LibDb.ExSystemQry(SqlQry);
 
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Commit Transaction");
+	
+	if (i==1) {
+	
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Commit Transaction");
+
+	} else {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Committing Transaction");
+	}
 };
 
 void XaLibSql::TransactionRollback(XaLibDb& LibDb){
 
 	string SqlQry="ROLLBACK";
 	int i=LibDb.ExSystemQry(SqlQry);
+	
+	if (i==1) {
+	
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Rollback Transaction");
 
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Rollback Transaction");
+	} else {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Rollback Transaction");
+	}
+
 };
 
 XaLibSql::~XaLibSql(){

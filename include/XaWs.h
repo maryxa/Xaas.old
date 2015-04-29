@@ -11,7 +11,7 @@ class XaWs : public XaLibAction {
 
     private:
 
-		void Dispatcher(string CalledEvent);
+		void Dispatcher(const string &CalledEvent);
 
 		void List();
 

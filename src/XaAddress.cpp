@@ -4,7 +4,7 @@
 XaAddress::XaAddress() {
 };
 
-void XaAddress::Dispatcher(string CalledEvent) {
+void XaAddress::Dispatcher(const string &CalledEvent) {
 	
 	if (CalledEvent=="XaAddressGeoAddFrm"){
 

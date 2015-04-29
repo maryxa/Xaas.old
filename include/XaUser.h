@@ -15,7 +15,7 @@ class XaUser : public XaLibAction {
 		typedef map<int, map<string,string> > TotalUserDataMap;
 		typedef map<int, map<string,string> > TotalSalaryDataMap;
 
-		void Dispatcher(string CalledEvent);
+		void Dispatcher(const string &CalledEvent);
 
 		void XaUserLoginFrm();
 		void XaUserLogin();

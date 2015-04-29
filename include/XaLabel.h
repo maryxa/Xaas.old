@@ -7,7 +7,7 @@ class XaLabel : public XaLibAction {
 
     private:
 
-		void Dispatcher(string CalledEvent);
+		void Dispatcher(const string &CalledEvent);
 
 				
 		void XaTranslationAddFrm();
