@@ -1,23 +1,47 @@
 ##  Makefile
 ##  Project: XAllegro
-##  Author XAllegro ltd
+##  Author XAllegro
 ##  info@xallegro.com
-
-ifeq ($(OS),Windows_NT)
-    CCFLAGS += -D WIN32
-    ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
-        CCFLAGS += -D AMD64
-    endif
-    ifeq ($(PROCESSOR_ARCHITECTURE),x86)
-	CCFLAGS += -D IA32
-    endif
-else
 
 UNAME_S := $(shell uname -s)
 
-ifeq ($(UNAME_S),Linux)
+## WINDOWS MINGW32_NT
+## TESTED: MINGW32_NT-6.2
+ifeq ($(filter MINGW32_NT-%.%,$(UNAME_S)),)
+   
+    XALLEGRO_DIR = C:\XAllegro
+    MINGW_DIR = C:\MinGW\mingw32
+    MYSQL_DIR = C:\MySQL\MySQL\ Server\ 5.5
+
+    XALIB_DIR = $(XALLEGRO_DIR)\XaLib
+
+    CPP      = g++
+    OBJDIR   = $(XALIB_DIR)\objects\\
+    RM       = rm -f -r 
+    CUR_DIR  = $(cmd %cd%)
+   
+    LIBS     = -static -L$(MYSQL_DIR)\include\lib 
+    CPPINCS  = -I$(XALIB_DIR)\include -I$(MINGW_DIR)\include \
+		-I$(MYSQL_DIR)\include -I$(XALLEGRO_DIR)\libs\libxml2\include \
+		-I$(XALLEGRO_DIR)\libs\libxslt\include -I$(XALLEGRO_DIR)\libs\openssl\include \
+		-I$(XALLEGRO_DIR)\libs\curl\include
+
+    LDFLAGS  =
+    CPPFLAGS = $(CPPINCS) -std=c++0x -O3 -D__NO_INLINE__
+
+    BIN      = $(XALIB_DIR)\bin\XaLib.a
+
+.KEEP_STATE:
+.KEEP_STATE_FILE:.make.state.GNU-amd64-Windows
 
 endif
+
+## LINUX
+ifeq ($(UNAME_S),Linux)
+endif
+
+## MAC
+## TESTED: 10.10.3
 ifeq ($(UNAME_S),Darwin)
 
     CPP      = g++
@@ -29,7 +53,7 @@ ifeq ($(UNAME_S),Darwin)
     LIBS     = -lxml2 -lxslt -lexslt -lssl -lcrypto -L/usr/local/mysql/lib -lmysqlclient -lcurl 
     CPPINCS  = -I../include -I/usr/include -I/usr/include/libxml2 -I/usr/local/mysql/include -I$(CUR_DIR)/../../XaLib/include
     LDFLAGS  = -dynamiclib -install_name
-    CPPFLAGS = $(CPPINCS) -fPIC -std=c++0x -O3
+    CPPFLAGS = $(CPPINCS) -fPIC -std=c++0x -O3 -Wall
 
 endif
 
@@ -43,7 +67,6 @@ endif
     ifneq ($(filter arm%,$(UNAME_P)),)
 
     endif
-endif
 
 #XALLEGRO OBJ
 OBJ=$(OBJDIR)XaLibBase.o $(OBJDIR)XaLibAction.o $(OBJDIR)XaLibHttp.o $(OBJDIR)XaLibSession.o \
@@ -68,9 +91,23 @@ all-after:
 print-varialbes:
 	@echo "I am compiling on : " $(UNAME_P) $(UNAME_S) $(OS)
 
+
 #LINK
-$(BIN): $(OBJ)
+ifeq ($(findstring MINGW32_NT,$(UNAME_S)),MINGW32_NT)
+    $(BIN): $(OBJ)
+	ar r $(BIN) $(OBJ)
+	ranlib $(BIN) $(LDFLAGS)
+endif
+
+ifeq ($(UNAME_S),Linux)
+    $(BIN): $(OBJ)
 	$(CPP) $(OBJ) -v -o $(BIN) $(LIBS) $(LDFLAGS) $(BIN)
+endif
+
+ifeq ($(UNAME_S),Darwin)
+    $(BIN): $(OBJ)
+	$(CPP) $(OBJ) -v -o $(BIN) $(LIBS) $(LDFLAGS) $(BIN)
+endif
 
 #COMPILE
 $(OBJDIR)XaLibController.o: XaLibController.cpp 
