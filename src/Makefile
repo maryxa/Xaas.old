@@ -113,7 +113,7 @@ endif
 
 ifeq ($(UNAME_S),Linux)
     $(BIN): $(OBJ)
-	$(CPP) $(OBJ) -v -o $(BIN) $(LIBS) $(LDFLAGS) $(BIN)
+	$(CPP) $(OBJ) -v -o $(BIN) $(LIBS) $(LDFLAGS)
 endif
 
 ifeq ($(UNAME_S),Darwin)
