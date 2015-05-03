@@ -47,7 +47,7 @@ ifeq ($(UNAME_S),Linux)
 
     LIBS     = -lxml2 -lxslt -lexslt -lssl -lcrypto -lmysqlclient -lcurl 
     CPPINCS  = -I../include -I/usr/include -I/usr/include/libxml2 -I/usr/include/mysql -I$(CUR_DIR)/../../XaLib/include
-    LDFLAGS  = -dynamiclib -install_name
+    LDFLAGS  = -shared
     CPPFLAGS = $(CPPINCS) -fPIC -std=c++0x -O3 -Wall
 
 endif
