@@ -38,6 +38,18 @@ endif
 
 ## LINUX
 ifeq ($(UNAME_S),Linux)
+
+    CPP      = g++
+    OBJDIR   = ../objects/
+    RM       = rm -f
+    CUR_DIR  = $(shell pwd)
+    BIN      = $(CUR_DIR)/../../XaLib/bin/XaLib.so
+
+    LIBS     = -lxml2 -lxslt -lexslt -lssl -lcrypto -L/usr/local/mysql/lib -lmysqlclient -lcurl 
+    CPPINCS  = -I../include -I/usr/include -I/usr/include/libxml2 -I/usr/local/mysql/include -I$(CUR_DIR)/../../XaLib/include
+    LDFLAGS  = -dynamiclib -install_name
+    CPPFLAGS = $(CPPINCS) -fPIC -std=c++0x -O3 -Wall
+
 endif
 
 ## MAC
