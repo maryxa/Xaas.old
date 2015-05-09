@@ -63,9 +63,18 @@ void XaLibController::StartHttp(){
 
 void XaLibController::StartDb(){
 
-	DB_SESSION.Connect(3);
-	DB_WRITE.Connect(1);
-	DB_READ.Connect(2);
+	if (SETTINGS["DatabaseEnable"]=="yes") {
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Databases Enabled");
+
+		DB_SESSION.Connect(3);
+		DB_WRITE.Connect(1);
+		DB_READ.Connect(2);
+
+	} else {
+	
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Databases Disabled");
+	}
 };
 
 void XaLibController::GetClientInfo(){
