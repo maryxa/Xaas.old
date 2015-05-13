@@ -157,8 +157,8 @@ int XaLibMail::SendHeaderCommon(XaLibSocket* LibSocket, int SocketNumber,string 
 			if (response=="334"){
 
 				XaLibChar* LibChar=new XaLibChar();
-					string AccountUsernameB64 = LibChar->B64Encode(reinterpret_cast<const unsigned char*>(AccountUsername.c_str()), AccountUsername.length());
-					string AccountPasswordB64 = LibChar->B64Encode(reinterpret_cast<const unsigned char*>(AccountPassword.c_str()), AccountPassword.length());
+					string AccountUsernameB64 = LibChar->B64Encode(AccountUsername);
+					string AccountPasswordB64 = LibChar->B64Encode(AccountPassword);
 				delete LibChar;
 
 				string ProtocolAccountUsernameB64=AccountUsernameB64;
@@ -286,6 +286,9 @@ int XaLibMail::SendHeaderCommon(XaLibSocket* LibSocket, int SocketNumber,string 
 			return 0;
 		}
 
+	} else {
+
+		return 0;
 	}
 
 };
