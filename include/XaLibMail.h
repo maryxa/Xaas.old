@@ -1,15 +1,14 @@
 #ifndef XALIBMAIL_H
 #define XALIBMAIL_H
 
-#include <string>
-#include <map>
-#include <vector>
-
+#include <XaLibBase.h>
+#include <XaLibLog.h>
 #include <XaLibSocket.h>
+#include <XaLibDom.h>
 
-using namespace std;
+extern XaLibLog LOG;
 
-class XaLibMail {
+class XaLibMail : public XaLibBase {
 
 	private:
 		int SendHeaderCommon(XaLibSocket* LibSocket,int SocketNumber,string LocalDomain,string AccountUsername,string AccountPassword,string MailFromAddress,string MailToAddress,string MailFromText,string MailToText,string MailSubject,int MailConfirmation);

@@ -1,24 +1,5 @@
 #include <XaLibMail.h>
 
-#include <cstdlib>
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <cstring>
-#include <sstream>
-#include <new>
-#include <map>
-#include <stdio.h>
-
-#include <libxml/tree.h>
-
-#include <XaLibChar.h>
-#include <XaLibSocket.h>
-#include <XaLibDom.h>
-
-
-using namespace std;
-
 XaLibMail::XaLibMail(){
 
 };
