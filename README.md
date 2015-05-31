@@ -39,8 +39,8 @@ Built-in operation’s library with no-coding security checks:
  - Xml Web Services: ready to go Controller and Interfaces to publish Xml Web Services
  
 Raspberry PI:
-- GPIOs : ready-to-use methods to control GPIO.
-- UART : ready-to-use methods for UART.
+- GPIOs : ready-to-use methods to control GPIO
+- UART : ready-to-use methods for UART
 
 Ease of learning, featuring:
 
