@@ -13,6 +13,7 @@ class XaLibRbGpIo : protected XaLibBase {
 		XaLibRbGpIo();
 		~XaLibRbGpIo();
 
+		int GpIoConfigure(const int& GpIoNumber,const string& GpIoDirection);
 		string GpIoGetValue(const int& GpIoNumber);
 		int GpIoSet(const int& GpIoNumber,const string& GpIoDirection,const int& GpIoValue);
 

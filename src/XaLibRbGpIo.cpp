@@ -43,6 +43,30 @@ int XaLibRbGpIo::GpIoSet(const int& GpIoNumber,const string& GpIoDirection ,cons
 	return ReturnValue;
 }
 
+int XaLibRbGpIo::GpIoConfigure(const int& GpIoNumber,const string& GpIoDirection) {
+
+	int ReturnValue=-1;
+
+	int Export=GpIoExport(GpIoNumber);
+	int Direction=GpIoSetDirection(GpIoNumber,GpIoDirection);
+
+	
+	if (Export==-1 || Direction==-1) {
+	
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Configuring GpIo -> Number: " +FromIntToString(GpIoNumber)+ " :: "+ "Direction: " +GpIoDirection);
+
+		ReturnValue=-1;
+
+	} else {
+		
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Configuring GpIo -> Number: " +FromIntToString(GpIoNumber)+ " :: "+ "Direction: " +GpIoDirection);
+
+		ReturnValue=1;
+	}
+
+	return ReturnValue;
+}
+
 int XaLibRbGpIo::GpIoExport(const int& GpIoNumber) {
 
 	char buf[11]; 
