@@ -18,6 +18,7 @@ var searchData=
   ['xalibhttp',['XaLibHttp',['../class_xa_lib_http.html',1,'']]],
   ['xaliblog',['XaLibLog',['../class_xa_lib_log.html',1,'']]],
   ['xalibmail',['XaLibMail',['../class_xa_lib_mail.html',1,'']]],
+  ['xalibrbgpio',['XaLibRbGpIo',['../class_xa_lib_rb_gp_io.html',1,'']]],
   ['xalibrbuart',['XaLibRbUart',['../class_xa_lib_rb_uart.html',1,'']]],
   ['xalibsession',['XaLibSession',['../class_xa_lib_session.html',1,'']]],
   ['xalibsocket',['XaLibSocket',['../class_xa_lib_socket.html',1,'']]],

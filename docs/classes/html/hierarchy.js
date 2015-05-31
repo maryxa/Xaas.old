@@ -20,6 +20,8 @@ var hierarchy =
       [ "XaLibDom", "class_xa_lib_dom.html", null ],
       [ "XaLibGui", "class_xa_lib_gui.html", null ],
       [ "XaLibHttp", "class_xa_lib_http.html", null ],
+      [ "XaLibMail", "class_xa_lib_mail.html", null ],
+      [ "XaLibRbGpIo", "class_xa_lib_rb_gp_io.html", null ],
       [ "XaLibRbUart", "class_xa_lib_rb_uart.html", null ],
       [ "XaLibSession", "class_xa_lib_session.html", null ],
       [ "XaLibSql", "class_xa_lib_sql.html", null ],
@@ -28,7 +30,6 @@ var hierarchy =
     ] ],
     [ "XaLibCurl", "class_xa_lib_curl.html", null ],
     [ "XaLibLog", "class_xa_lib_log.html", null ],
-    [ "XaLibMail", "class_xa_lib_mail.html", null ],
     [ "XaLibSocket", "class_xa_lib_socket.html", null ],
     [ "XaRequest", "struct_xa_request.html", null ],
     [ "XaResponse", "struct_xa_response.html", null ]

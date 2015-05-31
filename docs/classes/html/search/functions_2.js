@@ -9,6 +9,7 @@ var searchData=
   ['clearchars',['ClearChars',['../class_xa_lib_char.html#aa47af17c39eda04dedf01bc4551ee4cc',1,'XaLibChar']]],
   ['clearfrimmdesc',['ClearFrimmDesc',['../class_xa_lib_char.html#a51585af801496de42add152b9049d0f3',1,'XaLibChar']]],
   ['clearmultibytechars',['ClearMultiByteChars',['../class_xa_lib_char.html#a4036bd65f716c379a827eb7b0b2bd0ad',1,'XaLibChar']]],
+  ['clearreturn',['ClearReturn',['../class_xa_lib_char.html#a19eff90bd337f82096775a22d7118fb9',1,'XaLibChar']]],
   ['clearsqlentities',['ClearSqlEntities',['../class_xa_lib_char.html#abca8fb5c531bdc364cd29a2a0d189fd4',1,'XaLibChar']]],
   ['clearxmlentitiesbasic',['ClearXmlEntitiesBasic',['../class_xa_lib_char.html#a8bf8d64a1611cc66c23fe5ab4bd8077e',1,'XaLibChar']]],
   ['clearxmlfrimm',['ClearXmlFrimm',['../class_xa_lib_char.html#ad0a76aae6b8adffb44fbf9521fc089e6',1,'XaLibChar']]],

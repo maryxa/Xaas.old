@@ -3,7 +3,7 @@ var searchData=
   ['headers',['Headers',['../struct_xa_response.html#a6d077c55eb5948b5eac895146b32c81d',1,'XaResponse']]],
   ['headersstring',['HeadersString',['../struct_xa_request.html#a30c5cc0b6f11f1fac19edba821e7518a',1,'XaRequest']]],
   ['headersstringcustom',['HeadersStringCustom',['../struct_xa_request.html#a652374b56d075c42f26f2eb77ba7243f',1,'XaRequest']]],
-  ['http',['HTTP',['../_xa_lib_controller_8cpp.html#a4aabf1d9f9af7fbfa103a12d8cf6ab2d',1,'HTTP():&#160;XaLibController.cpp'],['../_xa_lib_action_8h.html#a4aabf1d9f9af7fbfa103a12d8cf6ab2d',1,'HTTP():&#160;XaLibController.cpp']]],
+  ['http',['HTTP',['../_xa_lib_action_8h.html#a4aabf1d9f9af7fbfa103a12d8cf6ab2d',1,'HTTP():&#160;XaLibController.cpp'],['../_xa_lib_controller_8cpp.html#a4aabf1d9f9af7fbfa103a12d8cf6ab2d',1,'HTTP():&#160;XaLibController.cpp']]],
   ['http_5faccept',['HTTP_ACCEPT',['../class_xa_lib_http.html#ac90500e12d8c47307041a18ee22e6631',1,'XaLibHttp']]],
   ['http_5faccept_5fencoding',['HTTP_ACCEPT_ENCODING',['../class_xa_lib_http.html#abfe35bd05d9a7dfa9e57c52c5106b7e6',1,'XaLibHttp']]],
   ['http_5faccept_5flanguage',['HTTP_ACCEPT_LANGUAGE',['../class_xa_lib_http.html#a9abcd934ae0e3e06c9f932bff71ab204',1,'XaLibHttp']]],

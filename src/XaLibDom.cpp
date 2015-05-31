@@ -65,7 +65,7 @@ xmlDocPtr XaLibDom::DomFromStringAndFile(VectorXmlFilePath XmlFilePaths,VectorXm
 
                 while(getline(MyFile,TmpString) ) {
 
-                    string TmpStringCleared=LibChar->ClearCarriageReturn(TmpString);
+                    string TmpStringCleared=LibChar->ClearReturn(TmpString);
                     XmlStringTotal.append(TmpStringCleared);
                 }
 

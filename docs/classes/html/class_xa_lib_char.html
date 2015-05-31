@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>XAllegro Web Application Framework: XaLibChar Class Reference</title>
+<title>XaLib: XaLibChar Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,11 +30,12 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="XAllegroLogoCircle_50px.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="XAllegroLogoTextDoxy.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">XAllegro Web Application Framework
-   &#160;<span id="projectnumber">Beta 3</span>
+   <div id="projectname">XaLib
+   &#160;<span id="projectnumber">Beta</span>
    </div>
+   <div id="projectbrief">XAllegro C++ Application Framework</div>
   </td>
  </tr>
  </tbody>
@@ -48,6 +49,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -108,6 +110,7 @@ $(document).ready(function(){initNavTree('class_xa_lib_char.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pri-static-methods">Static Private Member Functions</a> &#124;
 <a href="class_xa_lib_char-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -154,8 +157,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae5c847f6b8cdfa32aeb9dc220890226c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9aa7ef9fa96f404384f3510833a30bb"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_char.html#ae9aa7ef9fa96f404384f3510833a30bb">B64Encode</a> (char *CharToEncode, int size)</td></tr>
 <tr class="separator:ae9aa7ef9fa96f404384f3510833a30bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e0cf76f57ff4a0e29828c0bc5024e7a"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_char.html#a1e0cf76f57ff4a0e29828c0bc5024e7a">RemoveCarriageReturn</a> (string StringToDecode)</td></tr>
-<tr class="separator:a1e0cf76f57ff4a0e29828c0bc5024e7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a182a038eb5bb488f7e7d397bb7c1fd20"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_char.html#a182a038eb5bb488f7e7d397bb7c1fd20">RemoveNewLine</a> (string StringToDecode)</td></tr>
 <tr class="separator:a182a038eb5bb488f7e7d397bb7c1fd20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d06978557a51721d185a8895ee31b22"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_char.html#a9d06978557a51721d185a8895ee31b22">RemoveNs</a> (string StringToDecode)</td></tr>
@@ -176,6 +177,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abcbecf2389bf864ed6d7e8853991e43a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1aaf07df6a8101270534275d5f0c3f6f"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_char.html#a1aaf07df6a8101270534275d5f0c3f6f">UnclearAmpersand</a> (string StringToUnClear)</td></tr>
 <tr class="separator:a1aaf07df6a8101270534275d5f0c3f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a19eff90bd337f82096775a22d7118fb9"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_char.html#a19eff90bd337f82096775a22d7118fb9">ClearReturn</a> (string StringToDecode)</td></tr>
+<tr class="separator:a19eff90bd337f82096775a22d7118fb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
@@ -221,7 +227,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="_xa_lib_char_8h_source.html#l00008">8</a> of file <a class="el" href="_xa_lib_char_8h_source.html">XaLibChar.h</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8h_source.html#l00006">6</a> of file <a class="el" href="_xa_lib_char_8h_source.html">XaLibChar.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a0de0b96c878bb5552376276c931313c8"></a>
 <div class="memitem">
@@ -236,7 +242,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00008">8</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00006">6</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -253,7 +259,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00959">959</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00973">973</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -272,7 +278,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00272">272</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00270">270</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -290,7 +296,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00323">323</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00321">321</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -318,7 +324,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00376">376</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00374">374</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -336,8 +342,6 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00824">824</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="aa47af17c39eda04dedf01bc4551ee4cc"></a>
@@ -354,7 +358,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00619">619</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00617">617</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -372,7 +376,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00889">889</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00887">887</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -390,7 +394,33 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00069">69</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00067">67</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a19eff90bd337f82096775a22d7118fb9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string XaLibChar::ClearReturn </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>StringToDecode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00822">822</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -408,7 +438,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00225">225</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00223">223</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -426,7 +456,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00012">12</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00010">10</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -444,7 +474,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00132">132</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00130">130</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -472,7 +502,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00851">851</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00849">849</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -490,7 +520,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00426">426</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00424">424</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -516,23 +546,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00268">268</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1e0cf76f57ff4a0e29828c0bc5024e7a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">string XaLibChar::RemoveCarriageReturn </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>StringToDecode</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00266">266</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -550,7 +564,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00588">588</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00586">586</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -584,7 +598,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00796">796</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00794">794</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -602,7 +616,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00465">465</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00463">463</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -620,7 +634,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00477">477</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00475">475</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -638,7 +652,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00870">870</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00868">868</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -656,7 +670,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00668">668</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00666">666</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -674,7 +688,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00244">244</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00242">242</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
@@ -692,13 +706,13 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00256">256</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_char_8cpp_source.html#l00254">254</a> of file <a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/XAllegro/XaLib/include/<a class="el" href="_xa_lib_char_8h_source.html">XaLibChar.h</a></li>
-<li>/XAllegro/XaLib/src/<a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a></li>
+<li>include/<a class="el" href="_xa_lib_char_8h_source.html">XaLibChar.h</a></li>
+<li>src/<a class="el" href="_xa_lib_char_8cpp_source.html">XaLibChar.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -706,7 +720,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_xa_lib_char.html">XaLibChar</a></li>
-    <li class="footer">Generated on Tue Apr 21 2015 13:47:58 for XAllegro Web Application Framework by
+    <li class="footer">Generated on Sun May 31 2015 12:16:15 for XaLib by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

@@ -2,7 +2,7 @@ var class_xa_label =
 [
     [ "XaLabel", "class_xa_label.html#a45ece4f19cdb12ff3faa94cdf4ac8e02", null ],
     [ "~XaLabel", "class_xa_label.html#aeaf1c73c99ce19caac674c32caf47fec", null ],
-    [ "Dispatcher", "class_xa_label.html#aa5fd6f3febb4040faf096e5fc073bf4a", null ],
+    [ "Dispatcher", "class_xa_label.html#a34b69cf377d525b3d07cb6b3e6ed3854", null ],
     [ "XaLabelAdd", "class_xa_label.html#a8c0ec02a63403e25802674761d59b7dd", null ],
     [ "XaLabelAddFrm", "class_xa_label.html#a41e10c412b1132be435ebc50b98b38d9", null ],
     [ "XaLabelFromFileAdd", "class_xa_label.html#a139d2f7f885185249be5e9385d74694c", null ],

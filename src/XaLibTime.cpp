@@ -1,8 +1,6 @@
 #include <XaLibTime.h>
 #include <XaLibBase.h>
 
-using namespace std;
-
 XaLibTime::XaLibTime() {
 
 };

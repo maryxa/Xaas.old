@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['removecarriagereturn',['RemoveCarriageReturn',['../class_xa_lib_char.html#a1e0cf76f57ff4a0e29828c0bc5024e7a',1,'XaLibChar']]],
   ['removecookie',['RemoveCookie',['../class_xa_lib_session.html#abd78ed3d4ee13a431d75f461145c96bf',1,'XaLibSession']]],
   ['removeemptyspace',['RemoveEmptyspace',['../class_xa_lib_char.html#a8f515225a4e6858e88763d406f26b769',1,'XaLibChar']]],
   ['removenewline',['RemoveNewLine',['../class_xa_lib_char.html#a182a038eb5bb488f7e7d397bb7c1fd20',1,'XaLibChar']]],

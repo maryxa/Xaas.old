@@ -3,7 +3,7 @@ var class_xa_domain =
     [ "XaDomain", "class_xa_domain.html#ac43c55bf420bb4216f0a4e492bc708f5", null ],
     [ "~XaDomain", "class_xa_domain.html#ad0b81c298ccb63c5714b5f98aac8156c", null ],
     [ "AddOptionsAllDomain", "class_xa_domain.html#a15576927b9b891100a1e31094a9b71ed", null ],
-    [ "Dispatcher", "class_xa_domain.html#ade4f95207300ee7c51040690fed89b3a", null ],
+    [ "Dispatcher", "class_xa_domain.html#a9a12bc49acd2f6306d7c88fc95efaa78", null ],
     [ "XaDomainAdd", "class_xa_domain.html#a470952c1030666acc05987da8ad395f7", null ],
     [ "XaDomainAddFrm", "class_xa_domain.html#a03a19dd0b0660761f133a8f3aa0d30bd", null ],
     [ "XaDomainList", "class_xa_domain.html#a356838839841368b29c7cc6818deaad6", null ],

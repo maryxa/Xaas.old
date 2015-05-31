@@ -22,7 +22,7 @@ var class_xa_lib_action =
     [ "ComposeSearchCondition", "class_xa_lib_action.html#ad7eddf7aa189ca7754f29dd1d05c540e", null ],
     [ "DecryptParam", "class_xa_lib_action.html#aedfdc6035a52fd8708eaa2f55b3c44ec", null ],
     [ "DecryptParamId", "class_xa_lib_action.html#a940f296d4060670b4b8be70b4774d642", null ],
-    [ "Dispatcher", "class_xa_lib_action.html#a59082c166775d8c1f925de51473d9fdc", null ],
+    [ "Dispatcher", "class_xa_lib_action.html#ab2d1fff1fe7b0a0577ef8517c5cc59ff", null ],
     [ "EncryptParam", "class_xa_lib_action.html#aedfbca9f2c0fbe98ebf313ff3f765b76", null ],
     [ "EncryptParam", "class_xa_lib_action.html#aa69fdf55d425bb615be941b03b4c49d1", null ],
     [ "ErrorExit", "class_xa_lib_action.html#acb0a176065ab7edd96186c2307f90d59", null ],

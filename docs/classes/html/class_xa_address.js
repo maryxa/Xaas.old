@@ -3,7 +3,7 @@ var class_xa_address =
     [ "XaAddress", "class_xa_address.html#a3555e12ee63ba05ade2132310e2a9054", null ],
     [ "~XaAddress", "class_xa_address.html#a6324dd2761f863716f0d56071fdca957", null ],
     [ "AddXaAddressPhoneOptionsByDb", "class_xa_address.html#a55636a5cb55a7b040ee6439eea5eb6ad", null ],
-    [ "Dispatcher", "class_xa_address.html#a9c0c9f4a48a69fd2096f6d3f73cd027f", null ],
+    [ "Dispatcher", "class_xa_address.html#a290da15febcdf934ea7eb18102f9ed47", null ],
     [ "XaAddressGeoAdd", "class_xa_address.html#a55ceb7a9e98161620fd9ad5690906986", null ],
     [ "XaAddressGeoAddFrm", "class_xa_address.html#a6a73573f607b3f8b9cedbedffb512086", null ],
     [ "XaAddressGeoDel", "class_xa_address.html#aa616a9ed926610e2e4998f2ec93863b0", null ],

@@ -37,9 +37,8 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "XaLibLog.h", "_xa_lib_log_8h.html", [
       [ "XaLibLog", "class_xa_lib_log.html", "class_xa_lib_log" ]
     ] ],
-    [ "XaLibMail.h", "_xa_lib_mail_8h.html", [
-      [ "XaLibMail", "class_xa_lib_mail.html", "class_xa_lib_mail" ]
-    ] ],
+    [ "XaLibMail.h", "_xa_lib_mail_8h.html", "_xa_lib_mail_8h" ],
+    [ "XaLibRbGpIo.h", "_xa_lib_rb_gp_io_8h.html", "_xa_lib_rb_gp_io_8h" ],
     [ "XaLibRbUart.h", "_xa_lib_rb_uart_8h.html", "_xa_lib_rb_uart_8h" ],
     [ "XaLibSession.h", "_xa_lib_session_8h.html", "_xa_lib_session_8h" ],
     [ "XaLibSocket.h", "_xa_lib_socket_8h.html", [

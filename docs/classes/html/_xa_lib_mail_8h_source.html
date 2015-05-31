@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>XAllegro Web Application Framework: /XAllegro/XaLib/include/XaLibMail.h Source File</title>
+<title>XaLib: include/XaLibMail.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,11 +30,12 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="XAllegroLogoCircle_50px.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="XAllegroLogoTextDoxy.png"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">XAllegro Web Application Framework
-   &#160;<span id="projectnumber">Beta 3</span>
+   <div id="projectname">XaLib
+   &#160;<span id="projectnumber">Beta</span>
    </div>
+   <div id="projectbrief">XAllegro C++ Application Framework</div>
   </td>
  </tr>
  </tbody>
@@ -48,6 +49,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -111,60 +113,48 @@ $(document).ready(function(){initNavTree('_xa_lib_mail_8h_source.html','');});
 <a href="_xa_lib_mail_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef XALIBMAIL_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define XALIBMAIL_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_xa_lib_socket_8h.html">XaLibSocket.h</a>&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">    XaLibMail* LibMail=new XaLibMail();</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">    //LibMail-&gt;SendMailText(&quot;fastwebnet.it&quot;,&quot;smt.fastwebnet.it&quot;,587,&quot;alessandro.mariotti@fastwebnet.it&quot;,&quot;Mar1c1ca&quot;,&quot;alessandro.mariotti@fastwebnet.it&quot;,&quot;alex@xallegro.com&quot;,&quot;Alessandro Fastweb&quot;,&quot;Alessandro XAllegro&quot;,&quot;oggetto della mail&quot;,&quot;testo di prova per invio mail&quot;,1);</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">    int check=LibMail-&gt;SendMailText(&quot;85.18.95.132&quot;,587,&quot;fastwebnet.it&quot;,&quot;alessandro.mariotti@fastwebnet.it&quot;,&quot;Mar1c1ca&quot;,&quot;alessandro.mariotti@fastwebnet.it&quot;,&quot;alex@xallegro.com&quot;,&quot;Alessandro&quot;,&quot;Alessandro XAllegro&quot;,&quot;oggetto della mail&quot;,&quot;testo di prova per invio mail\r\n con a capo e i carattere ������?=!&quot;,1);</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">    </span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">    if (check==1){</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">        cout&lt;&lt;&quot;mail sent&quot;&lt;&lt;endl;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">    } else {</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">        cout&lt;&lt;&quot;mail error&quot;&lt;&lt;endl;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">    }</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">    delete LibMail;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_xa_lib_mail.html">   30</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_xa_lib_mail.html">XaLibMail</a> {</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="comment">//string XHtmlPage;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="comment">//typedef vector&lt;string&gt; VectorFields;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="comment">//typedef vector&lt;string&gt; VectorValues;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordtype">int</span> SendHeaderCommon(<a class="code" href="class_xa_lib_socket.html">XaLibSocket</a>* LibSocket,<span class="keywordtype">int</span> SocketNumber,<span class="keywordtype">string</span> LocalDomain,<span class="keywordtype">string</span> AccountUsername,<span class="keywordtype">string</span> AccountPassword,<span class="keywordtype">string</span> MailFromAddress,<span class="keywordtype">string</span> MailToAddress,<span class="keywordtype">string</span> MailFromText,<span class="keywordtype">string</span> MailToText,<span class="keywordtype">string</span> MailSubject,<span class="keywordtype">int</span> MailConfirmation);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="class_xa_lib_mail.html">XaLibMail</a>();</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        ~<a class="code" href="class_xa_lib_mail.html">XaLibMail</a>();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">int</span> SendSysMail(<span class="keywordtype">string</span> MailConfXmlFilePath,<span class="keywordtype">string</span> MailAccount,<span class="keywordtype">string</span> MailToAddress,<span class="keywordtype">string</span> MailToText,<span class="keywordtype">int</span> MailConfirmation);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">int</span> SendMailText(<span class="keywordtype">string</span> SmtpServer,<span class="keywordtype">int</span> SmtpServerPort,<span class="keywordtype">string</span> LocalDomain,<span class="keywordtype">string</span> AccountUsername,<span class="keywordtype">string</span> AccountPassword,<span class="keywordtype">string</span> MailFromAddress,<span class="keywordtype">string</span> MailToAddress,<span class="keywordtype">string</span> MailFromText,<span class="keywordtype">string</span> MailToText,<span class="keywordtype">string</span> MailSubject,<span class="keywordtype">string</span> MailMessage,<span class="keywordtype">int</span> MailConfirmation);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;};</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div></div>
-<div class="ttc" id="class_xa_lib_mail_html"><div class="ttname"><a href="class_xa_lib_mail.html">XaLibMail</a></div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_mail_8h_source.html#l00030">XaLibMail.h:30</a></div></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_xa_lib_base_8h.html">XaLibBase.h</a>&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_xa_lib_log_8h.html">XaLibLog.h</a>&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_xa_lib_socket_8h.html">XaLibSocket.h</a>&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_xa_lib_dom_8h.html">XaLibDom.h</a>&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_xa_lib_log.html">XaLibLog</a> <a class="code" href="_xa_lib_mail_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903">LOG</a>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_xa_lib_mail.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_xa_lib_mail.html">XaLibMail</a> : <span class="keyword">public</span> <a class="code" href="class_xa_lib_base.html">XaLibBase</a> {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_xa_lib_mail.html#a9c8d9308dc81bb2413794eb6af1992a3">SendHeaderCommon</a>(<a class="code" href="class_xa_lib_socket.html">XaLibSocket</a>* LibSocket,<span class="keywordtype">int</span> SocketNumber,<span class="keywordtype">string</span> LocalDomain,<span class="keywordtype">string</span> AccountUsername,<span class="keywordtype">string</span> AccountPassword,<span class="keywordtype">string</span> MailFromAddress,<span class="keywordtype">string</span> MailToAddress,<span class="keywordtype">string</span> MailFromText,<span class="keywordtype">string</span> MailToText,<span class="keywordtype">string</span> MailSubject,<span class="keywordtype">int</span> MailConfirmation);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="class_xa_lib_mail.html#a17248b10c72f8f5c43e7131afb6c110e">XaLibMail</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="class_xa_lib_mail.html#a6f06639061cd78282aea6028256c4d25">~XaLibMail</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_xa_lib_mail.html#aca73e27cc8d7f3c1e62997c561a83791">SendSysMail</a>(<span class="keywordtype">string</span> MailConfXmlFilePath,<span class="keywordtype">string</span> MailAccount,<span class="keywordtype">string</span> MailToAddress,<span class="keywordtype">string</span> MailToText,<span class="keywordtype">int</span> MailConfirmation);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_xa_lib_mail.html#aeb186f25038d76de6bb6c775328e3d04">SendMailText</a>(<span class="keywordtype">string</span> SmtpServer,<span class="keywordtype">int</span> SmtpServerPort,<span class="keywordtype">string</span> LocalDomain,<span class="keywordtype">string</span> AccountUsername,<span class="keywordtype">string</span> AccountPassword,<span class="keywordtype">string</span> MailFromAddress,<span class="keywordtype">string</span> MailToAddress,<span class="keywordtype">string</span> MailFromText,<span class="keywordtype">string</span> MailToText,<span class="keywordtype">string</span> MailSubject,<span class="keywordtype">string</span> MailMessage,<span class="keywordtype">int</span> MailConfirmation);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="class_xa_lib_mail_html_a9c8d9308dc81bb2413794eb6af1992a3"><div class="ttname"><a href="class_xa_lib_mail.html#a9c8d9308dc81bb2413794eb6af1992a3">XaLibMail::SendHeaderCommon</a></div><div class="ttdeci">int SendHeaderCommon(XaLibSocket *LibSocket, int SocketNumber, string LocalDomain, string AccountUsername, string AccountPassword, string MailFromAddress, string MailToAddress, string MailFromText, string MailToText, string MailSubject, int MailConfirmation)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_mail_8cpp_source.html#l00107">XaLibMail.cpp:107</a></div></div>
+<div class="ttc" id="class_xa_lib_mail_html_aca73e27cc8d7f3c1e62997c561a83791"><div class="ttname"><a href="class_xa_lib_mail.html#aca73e27cc8d7f3c1e62997c561a83791">XaLibMail::SendSysMail</a></div><div class="ttdeci">int SendSysMail(string MailConfXmlFilePath, string MailAccount, string MailToAddress, string MailToText, int MailConfirmation)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_mail_8cpp_source.html#l00007">XaLibMail.cpp:7</a></div></div>
+<div class="ttc" id="_xa_lib_base_8h_html"><div class="ttname"><a href="_xa_lib_base_8h.html">XaLibBase.h</a></div></div>
+<div class="ttc" id="_xa_lib_mail_8h_html_a4f7e146c4c04b3b3574c3d19fcdc0903"><div class="ttname"><a href="_xa_lib_mail_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903">LOG</a></div><div class="ttdeci">XaLibLog LOG</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_8cpp_source.html#l00021">XaLibController.cpp:21</a></div></div>
+<div class="ttc" id="class_xa_lib_mail_html_a6f06639061cd78282aea6028256c4d25"><div class="ttname"><a href="class_xa_lib_mail.html#a6f06639061cd78282aea6028256c4d25">XaLibMail::~XaLibMail</a></div><div class="ttdeci">~XaLibMail()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_mail_8cpp_source.html#l00277">XaLibMail.cpp:277</a></div></div>
+<div class="ttc" id="class_xa_lib_mail_html"><div class="ttname"><a href="class_xa_lib_mail.html">XaLibMail</a></div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_mail_8h_source.html#l00011">XaLibMail.h:11</a></div></div>
 <div class="ttc" id="_xa_lib_socket_8h_html"><div class="ttname"><a href="_xa_lib_socket_8h.html">XaLibSocket.h</a></div></div>
+<div class="ttc" id="class_xa_lib_mail_html_a17248b10c72f8f5c43e7131afb6c110e"><div class="ttname"><a href="class_xa_lib_mail.html#a17248b10c72f8f5c43e7131afb6c110e">XaLibMail::XaLibMail</a></div><div class="ttdeci">XaLibMail()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_mail_8cpp_source.html#l00003">XaLibMail.cpp:3</a></div></div>
+<div class="ttc" id="class_xa_lib_log_html"><div class="ttname"><a href="class_xa_lib_log.html">XaLibLog</a></div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_log_8h_source.html#l00011">XaLibLog.h:11</a></div></div>
+<div class="ttc" id="class_xa_lib_base_html"><div class="ttname"><a href="class_xa_lib_base.html">XaLibBase</a></div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_base_8h_source.html#l00106">XaLibBase.h:106</a></div></div>
 <div class="ttc" id="class_xa_lib_socket_html"><div class="ttname"><a href="class_xa_lib_socket.html">XaLibSocket</a></div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_socket_8h_source.html#l00019">XaLibSocket.h:19</a></div></div>
+<div class="ttc" id="_xa_lib_log_8h_html"><div class="ttname"><a href="_xa_lib_log_8h.html">XaLibLog.h</a></div></div>
+<div class="ttc" id="_xa_lib_dom_8h_html"><div class="ttname"><a href="_xa_lib_dom_8h.html">XaLibDom.h</a></div></div>
+<div class="ttc" id="class_xa_lib_mail_html_aeb186f25038d76de6bb6c775328e3d04"><div class="ttname"><a href="class_xa_lib_mail.html#aeb186f25038d76de6bb6c775328e3d04">XaLibMail::SendMailText</a></div><div class="ttdeci">int SendMailText(string SmtpServer, int SmtpServerPort, string LocalDomain, string AccountUsername, string AccountPassword, string MailFromAddress, string MailToAddress, string MailFromText, string MailToText, string MailSubject, string MailMessage, int MailConfirmation)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_mail_8cpp_source.html#l00039">XaLibMail.cpp:39</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="_xa_lib_mail_8h.html">XaLibMail.h</a></li>
-    <li class="footer">Generated on Tue Apr 21 2015 13:47:58 for XAllegro Web Application Framework by
+    <li class="footer">Generated on Sun May 31 2015 12:16:15 for XaLib by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

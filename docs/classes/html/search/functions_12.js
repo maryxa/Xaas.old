@@ -18,6 +18,7 @@ var searchData=
   ['_7exalibhttp',['~XaLibHttp',['../class_xa_lib_http.html#afdf406aafddeae7c8f280fe6f8fc2330',1,'XaLibHttp']]],
   ['_7exaliblog',['~XaLibLog',['../class_xa_lib_log.html#a2eb33dd448c30b76a516634e4cf32128',1,'XaLibLog']]],
   ['_7exalibmail',['~XaLibMail',['../class_xa_lib_mail.html#a6f06639061cd78282aea6028256c4d25',1,'XaLibMail']]],
+  ['_7exalibrbgpio',['~XaLibRbGpIo',['../class_xa_lib_rb_gp_io.html#ad8f656dca6e0bd29c91d6b58976c8fe0',1,'XaLibRbGpIo']]],
   ['_7exalibrbuart',['~XaLibRbUart',['../class_xa_lib_rb_uart.html#a7592cd749e1b024ce4cc7a8bc5f1edeb',1,'XaLibRbUart']]],
   ['_7exalibsession',['~XaLibSession',['../class_xa_lib_session.html#a33da702c8c4c70b97f6e9629a488e782',1,'XaLibSession']]],
   ['_7exalibsocket',['~XaLibSocket',['../class_xa_lib_socket.html#ac34a1f21ca2ba879a769e55b6eede247',1,'XaLibSocket']]],

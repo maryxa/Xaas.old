@@ -13,7 +13,7 @@ var class_xa_user =
     [ "CalculateTreeLevel", "class_xa_user.html#a5c8f437bff11763e126875ad59327c28", null ],
     [ "CalculateTreePath", "class_xa_user.html#a62c3d503950cba05206c0a10bf628271", null ],
     [ "ComposeXaUserBreadcrumb", "class_xa_user.html#ad87a9ce4d63173c04c4fd2873212cdb2", null ],
-    [ "Dispatcher", "class_xa_user.html#a10ea9a255652c39c134faf1c5a036344", null ],
+    [ "Dispatcher", "class_xa_user.html#a32132a16dd2e7e1ff5c5563d1f818024", null ],
     [ "GetAllLeaves", "class_xa_user.html#a15f955fcdffebd9e81d365469fefc635", null ],
     [ "GetMyChildren", "class_xa_user.html#aaecdbf9e3ba5f3c36ec5f357db551fa1", null ],
     [ "GetTreeChildren", "class_xa_user.html#aa000bc8381459149fcdae7f932291a13", null ],

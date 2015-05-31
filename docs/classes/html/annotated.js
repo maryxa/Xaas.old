@@ -18,6 +18,7 @@ var annotated =
     [ "XaLibHttp", "class_xa_lib_http.html", "class_xa_lib_http" ],
     [ "XaLibLog", "class_xa_lib_log.html", "class_xa_lib_log" ],
     [ "XaLibMail", "class_xa_lib_mail.html", "class_xa_lib_mail" ],
+    [ "XaLibRbGpIo", "class_xa_lib_rb_gp_io.html", "class_xa_lib_rb_gp_io" ],
     [ "XaLibRbUart", "class_xa_lib_rb_uart.html", "class_xa_lib_rb_uart" ],
     [ "XaLibSession", "class_xa_lib_session.html", "class_xa_lib_session" ],
     [ "XaLibSocket", "class_xa_lib_socket.html", "class_xa_lib_socket" ],

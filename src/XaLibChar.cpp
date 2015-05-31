@@ -3,8 +3,6 @@
 
 #include <curl/curl.h>
 
-using namespace std;
-
 XaLibChar::XaLibChar() {
 
 };
@@ -820,8 +818,8 @@ string XaLibChar::RemoveNs(string StringToDecode) {
 
 return StringToDecode;
 };
-
-string XaLibChar::ClearCarriageReturn(string StringToClear) {
+	
+string XaLibChar::ClearReturn(string StringToClear) {
 
 	int pos;
 
