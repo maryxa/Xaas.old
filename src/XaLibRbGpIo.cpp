@@ -9,11 +9,6 @@
 	#include <termios.h>
 #endif
 
-/*
-std::string cmd = "sudo chmod a+x file";
-int r = system(cmd.c_str());
-*/
-
 XaLibRbGpIo::XaLibRbGpIo() {
 
 };
@@ -22,87 +17,30 @@ XaLibRbGpIo::XaLibRbGpIo() {
 
 #else
 
-XaLibRbGpIo::XaLibRbGpIo(const int GpIoNumber[],const int GpIoDirection[],const int GpIoValue[]){
+int XaLibRbGpIo::GpIoSet(const int& GpIoNumber,const string& GpIoDirection ,const int& GpIoValue){
 
-		this->GpIoExport(GpIoNumber[0]);
-		this->GpIoExport(GpIoNumber[1]);
-		this->GpIoExport(GpIoNumber[2]);
+	int ReturnValue=-1;
 
-		this->GpIoSetDirection(GpIoNumber[0],GpIoDirection[0]);
-		this->GpIoSetDirection(GpIoNumber[1],GpIoDirection[1]);
-		this->GpIoSetDirection(GpIoNumber[2],GpIoDirection[2]);
+	int Export=GpIoExport(GpIoNumber);
+	int Direction=GpIoSetDirection(GpIoNumber,GpIoDirection);
+	int Value=GpIoSetValue(GpIoNumber,GpIoValue);
+	int Unexport=GpIoUnexport(GpIoNumber);
 
-		this->GpIoSetValue(GpIoNumber[0],GpIoValue[0]);
-		this->GpIoSetValue(GpIoNumber[1],GpIoValue[1]);
-		this->GpIoSetValue(GpIoNumber[2],GpIoValue[2]);
+	
+	if (Export==-1 || Direction==-1 || Value==-1 ||Unexport==-1) {
+	
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Setting Value From GpIo -> Number: " +FromIntToString(GpIoNumber)+ " :: "+ "Value: " +FromIntToString(GpIoValue));
 
-		usleep(500000);
+		ReturnValue=-1;
 
-		this->GpIoSetValue(GpIoNumber[0],0);
-		this->GpIoSetValue(GpIoNumber[1],0);
-		this->GpIoSetValue(GpIoNumber[2],0);
+	} else {
+		
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Set Value From GpIo -> Number: " +FromIntToString(GpIoNumber)+ " :: "+ "Value: " +FromIntToString(GpIoValue));
 
-		usleep(500000);
+		ReturnValue=1;
+	}
 
-		this->GpIoUnexport(GpIoNumber[0]);
-		this->GpIoUnexport(GpIoNumber[1]);
-		this->GpIoUnexport(GpIoNumber[2]);
-}
-
-XaLibRbGpIo::XaLibRbGpIo(const int& GpIoNumber,const string& GpIoDirection,const int& GpIoValue){
-/*
-		this->GpIoExport(GpIoNumber[0]);
-		this->GpIoExport(GpIoNumber[1]);
-		this->GpIoExport(GpIoNumber[2]);
-
-		this->GpIoSetDirection(GpIoNumber[0],GpIoDirection[0]);
-		this->GpIoSetDirection(GpIoNumber[1],GpIoDirection[1]);
-		this->GpIoSetDirection(GpIoNumber[2],GpIoDirection[2]);
-
-		this->GpIoSetValue(GpIoNumber[0],GpIoValue[0]);
-		this->GpIoSetValue(GpIoNumber[1],GpIoValue[1]);
-		this->GpIoSetValue(GpIoNumber[2],GpIoValue[2]);
-
-		usleep(500000);
-
-		this->GpIoSetValue(GpIoNumber[0],"0");
-		this->GpIoSetValue(GpIoNumber[1],"0");
-		this->GpIoSetValue(GpIoNumber[2],"0");
-
-		usleep(500000);
-
-		this->GpIoUnexport(GpIoNumber[0]);
-		this->GpIoUnexport(GpIoNumber[1]);
-		this->GpIoUnexport(GpIoNumber[2]);
- */
-}
-
-XaLibRbGpIo::GpIoSet(const int& GpIoNumber,const string& GpIoDirection,const int& GpIoValue){
-/*
-		this->GpIoExport(GpIoNumber[0]);
-		this->GpIoExport(GpIoNumber[1]);
-		this->GpIoExport(GpIoNumber[2]);
-
-		this->GpIoSetDirection(GpIoNumber[0],GpIoDirection[0]);
-		this->GpIoSetDirection(GpIoNumber[1],GpIoDirection[1]);
-		this->GpIoSetDirection(GpIoNumber[2],GpIoDirection[2]);
-
-		this->GpIoSetValue(GpIoNumber[0],GpIoValue[0]);
-		this->GpIoSetValue(GpIoNumber[1],GpIoValue[1]);
-		this->GpIoSetValue(GpIoNumber[2],GpIoValue[2]);
-
-		usleep(500000);
-
-		this->GpIoSetValue(GpIoNumber[0],"0");
-		this->GpIoSetValue(GpIoNumber[1],"0");
-		this->GpIoSetValue(GpIoNumber[2],"0");
-
-		usleep(500000);
-
-		this->GpIoUnexport(GpIoNumber[0]);
-		this->GpIoUnexport(GpIoNumber[1]);
-		this->GpIoUnexport(GpIoNumber[2]);
- */
+	return ReturnValue;
 }
 
 int XaLibRbGpIo::GpIoExport(const int& GpIoNumber) {
@@ -118,35 +56,53 @@ int XaLibRbGpIo::GpIoExport(const int& GpIoNumber) {
 	close(fd);
     return 1;
 }
- 
+
 int XaLibRbGpIo::GpIoUnexport(const int& GpIoNumber) {
 
+	int ReturnValue=-1;
     string UnexportFile = "/sys/class/gpio/unexport";
     ofstream UnexportStream(UnexportFile.c_str());
-    //if (UnexportStream < 0){
-      //  cout << " OPERATION FAILED: Unable to unexport GPIO"<< GpIoNumber <<" ."<< endl;
-        //return 0;
-    //}
- 
-    UnexportStream << GpIoNumber;
+	
+	if (UnexportStream.is_open()) {
+
+		UnexportStream << GpIoNumber;
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Unexporting GpIo -> Number: " +FromIntToString(GpIoNumber));
+
+		ReturnValue=1;
+	
+	} else {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Unexporting GpIo -> Number: " +FromIntToString(GpIoNumber));
+
+		ReturnValue=-1;
+	}
+    
     UnexportStream.close();
 
-    return 1;
+    return ReturnValue;
 }
  
-int XaLibRbGpIo::GpIoSetDirection(const int& GpIoNumber,const int& GpIoDirection) {
+int XaLibRbGpIo::GpIoSetDirection(const int& GpIoNumber,const string& GpIoDirection) {
  
+	int ReturnValue=-1;
+
     string DirectionFile ="/sys/class/gpio/gpio" + FromIntToString(GpIoNumber) + "/direction";
     ofstream DirectionStream(DirectionFile.c_str());
 
-		//if (DirectionStream < 0){
-          //  cout << " OPERATION FAILED: Unable to set direction of GPIO"<< GpIoNumber <<" ."<< endl;
-            //return 0;
-        //}
- 
-        DirectionStream << GpIoDirection;
-        DirectionStream.close();
-        return 1;
+	if (DirectionStream.is_open()) {
+	
+		DirectionStream << GpIoDirection;
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Set Direction From GpIo -> Number: " +FromIntToString(GpIoNumber)+ " :: "+ "Direction: " +GpIoDirection);
+		ReturnValue=1;
+		 
+	} else {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Setting Direction From GpIo -> Number: " +FromIntToString(GpIoNumber)+ " :: "+ "Direction: " +GpIoDirection);
+		ReturnValue=-1;
+	}
+
+	DirectionStream.close();
+	return ReturnValue;;
 }
  
 int XaLibRbGpIo::GpIoSetValue(const int& GpIoNumber,const int& GpIoValue) {
@@ -165,7 +121,7 @@ int XaLibRbGpIo::GpIoSetValue(const int& GpIoNumber,const int& GpIoValue) {
 		
 	} else {
 		
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Error Setting Value From GpIo -> Number: " +FromIntToString(GpIoNumber)+ " :: "+ "Value: " +FromIntToString(GpIoValue));
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Setting Value From GpIo -> Number: " +FromIntToString(GpIoNumber)+ " :: "+ "Value: " +FromIntToString(GpIoValue));
 		ReturnValue=-1;
 
 	}
@@ -175,18 +131,18 @@ int XaLibRbGpIo::GpIoSetValue(const int& GpIoNumber,const int& GpIoValue) {
 }
  
 string XaLibRbGpIo::GpIoGetValue(const int& GpIoNumber){
- 
+
 	string GpIoValue;
 	string GpIoValueFile = "/sys/class/gpio/gpio" + FromIntToString(GpIoNumber) + "/value";
 	ifstream GpIoValueStream(GpIoValueFile.c_str());
 
 	if (GpIoValueStream.is_open()){
-		
+
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Get Value From GpIo -> Number: " +FromIntToString(GpIoNumber)+ " :: "+ "Value: " +GpIoValue);
 		GpIoValueStream >> GpIoValue;
 
 	} else {
-	
+
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Getting Value From GpIo -> Number: " +FromIntToString(GpIoNumber));
 		GpIoValue="-1";
 	}
