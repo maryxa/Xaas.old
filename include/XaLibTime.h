@@ -3,8 +3,6 @@
 
 #include <XaLibBase.h>
 
-using namespace std;
-
 class XaLibTime : protected XaLibBase {
 
 	private:

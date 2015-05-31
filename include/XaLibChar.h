@@ -3,8 +3,6 @@
 
 #include <XaLibBase.h>
 
-using namespace std;
-
 class XaLibChar : protected XaLibBase {
 
 	private:
@@ -17,7 +15,7 @@ class XaLibChar : protected XaLibBase {
 
 		XaLibChar();
 		~XaLibChar();
-
+		
 		string ClearMultiByteChars(string StringToClear);
 		string ClearXmlEntitiesBasic(string StringToClear);
 		string ClearXmlFrimm(string StringToClear);
@@ -29,7 +27,8 @@ class XaLibChar : protected XaLibBase {
 		string B64Decode(string StringToDecode);
 		string B64Encode(string StringToEncode);
 		string B64Encode(char * CharToEncode, int size);
-		string RemoveCarriageReturn(string StringToDecode);
+
+		static string ClearReturn(string StringToDecode);
 		string RemoveNewLine(string StringToDecode);
 		string RemoveNs(string StringToDecode);
 		string RemoveEmptyspace(string StringToDecode);
