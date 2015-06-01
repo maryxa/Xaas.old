@@ -87,11 +87,11 @@ OBJ=$(OBJDIR)XaLibBase.o $(OBJDIR)XaLibAction.o $(OBJDIR)XaLibHttp.o $(OBJDIR)Xa
     $(OBJDIR)XaLibTime.o $(OBJDIR)XaWs.o $(OBJDIR)XaLibGui.o $(OBJDIR)XaLibController.o \
     $(OBJDIR)XaUser.o $(OBJDIR)XaUserProfile.o $(OBJDIR)XaAddress.o $(OBJDIR)XaLabel.o $(OBJDIR)XaLanguage.o \
     $(OBJDIR)XaUserRole.o $(OBJDIR)XaCurrency.o $(OBJDIR)XaDomain.o  \
-    $(OBJDIR)XaLibMail.o $(OBJDIR)XaLibRbUart.o
+    $(OBJDIR)XaLibMail.o $(OBJDIR)XaLibRbUart.o $(OBJDIR)XaLibRbGpIo.o
 
 #MACROS
 .PHONY: all all-before all-after clean print-varialbes
-all:print-varialbes $(BIN) all-after
+all:print-varialbes $(BIN) #all-after
 
 clean:
 	${RM} $(OBJ) print-varialbes $(BIN)
@@ -144,7 +144,7 @@ $(OBJDIR)XaLibCrypto.o: XaLibCrypto.cpp
 	$(CPP) -c XaLibCrypto.cpp -o $(OBJDIR)XaLibCrypto.o $(CPPFLAGS) -w
 $(OBJDIR)XaLibDom.o: XaLibDom.cpp 
 	$(CPP) -c XaLibDom.cpp -o $(OBJDIR)XaLibDom.o $(CPPFLAGS)
-$(OBJDIR)XaLibChar.o: XaLibChar.cpp 
+$(OBJDIR)XaLibChar.o: XaLibChar.cpp
 	$(CPP) -c XaLibChar.cpp -o $(OBJDIR)XaLibChar.o $(CPPFLAGS)
 $(OBJDIR)XaLibCurl.o: XaLibCurl.cpp 
 	$(CPP) -c XaLibCurl.cpp -o $(OBJDIR)XaLibCurl.o $(CPPFLAGS)
@@ -178,3 +178,5 @@ $(OBJDIR)XaLibMail.o: XaLibMail.cpp
 	$(CPP) -c XaLibMail.cpp -o $(OBJDIR)XaLibMail.o $(CPPFLAGS)
 $(OBJDIR)XaLibRbUart.o: XaLibRbUart.cpp 
 	$(CPP) -c XaLibRbUart.cpp -o $(OBJDIR)XaLibRbUart.o $(CPPFLAGS)
+$(OBJDIR)XaLibRbGpIo.o: XaLibRbGpIo.cpp 
+	$(CPP) -c XaLibRbGpIo.cpp -o $(OBJDIR)XaLibRbGpIo.o $(CPPFLAGS)
