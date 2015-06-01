@@ -14,8 +14,8 @@ class XaLibRbGpIo : protected XaLibBase {
 		~XaLibRbGpIo();
 
 		int GpIoConfigure(const int& GpIoNumber,const string& GpIoDirection);
-		string GpIoGetValue(const int& GpIoNumber);
 		int GpIoSet(const int& GpIoNumber,const string& GpIoDirection,const int& GpIoValue);
+		string GpIoGet(const int& GpIoNumber);
 
 	protected:
 
@@ -25,6 +25,8 @@ class XaLibRbGpIo : protected XaLibBase {
     	int GpIoUnexport(const int& GpIoNumber);
     	int GpIoSetDirection(const int& GpIoNumber,const string& GpIoDirection);
     	int GpIoSetValue(const int& GpIoNumber,const int& GpIoValue);
+		string GpIoGetValue(const int& GpIoNumber);
+
 };
  
 #endif

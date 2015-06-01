@@ -24,10 +24,8 @@ int XaLibRbGpIo::GpIoSet(const int& GpIoNumber,const string& GpIoDirection ,cons
 	int Export=GpIoExport(GpIoNumber);
 	int Direction=GpIoSetDirection(GpIoNumber,GpIoDirection);
 	int Value=GpIoSetValue(GpIoNumber,GpIoValue);
-	int Unexport=GpIoUnexport(GpIoNumber);
 
-	
-	if (Export==-1 || Direction==-1 || Value==-1 ||Unexport==-1) {
+	if (Export==-1 || Direction==-1 || Value==-1) {
 	
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Setting Value From GpIo -> Number: " +FromIntToString(GpIoNumber)+ " :: "+ "Value: " +FromIntToString(GpIoValue));
 
@@ -40,6 +38,26 @@ int XaLibRbGpIo::GpIoSet(const int& GpIoNumber,const string& GpIoDirection ,cons
 		ReturnValue=1;
 	}
 
+	return ReturnValue;
+}
+
+string XaLibRbGpIo::GpIoGet(const int& GpIoNumber) {
+	
+	string ReturnValue="-1";
+
+	int Export=GpIoExport(GpIoNumber);
+	
+	if (Export==1) {
+
+		ReturnValue=GpIoGetValue(GpIoNumber);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Get Value From GpIo -> Number: " +FromIntToString(GpIoNumber)+ " :: "+ "Value: " +ReturnValue);
+		
+	} else {
+	
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Error Getting Value From GpIo -> Number: " +FromIntToString(GpIoNumber));
+
+	}
+	
 	return ReturnValue;
 }
 
