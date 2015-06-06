@@ -1,7 +1,7 @@
 var NAVTREE =
 [
   [ "XaLib", "index.html", [
-    [ "XaLib", "md__r_e_a_d_m_e.html", null ],
+    [ "XaLib", "md___x_allegro__xa_lib__r_e_a_d_m_e.html", null ],
     [ "Classes", null, [
       [ "Class List", "annotated.html", "annotated" ],
       [ "Class Index", "classes.html", null ],
@@ -29,7 +29,7 @@ var NAVTREEINDEX =
 [
 "_xa_address_8cpp.html",
 "class_xa_lib_action.html#a9d8ca7aab4f793b4fb6e145ca970d6d9",
-"class_xa_lib_sql.html"
+"class_xa_lib_socket.html#ae0e937ea03a881afc70a4c32708a7531"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

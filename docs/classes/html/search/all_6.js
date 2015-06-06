@@ -39,9 +39,12 @@ var searchData=
   ['getxauserlist',['GetXaUserList',['../class_xa_user.html#ac012bf2c5ece82908b92d9f9da857e90',1,'XaUser']]],
   ['getxhtml',['GetXHtml',['../class_xa_lib_xsl.html#aa23389ae6178c60fee9db4ebbd4d0fd9',1,'XaLibXsl']]],
   ['getyearfromdatetime',['GetYearFromDateTime',['../class_xa_lib_time.html#af407827e4b94951906883d85432bbbbc',1,'XaLibTime']]],
+  ['gpioconfigure',['GpIoConfigure',['../class_xa_lib_rb_gp_io.html#a4051b4f65d6e21a29e6a3463f0d6e45e',1,'XaLibRbGpIo']]],
   ['gpioexport',['GpIoExport',['../class_xa_lib_rb_gp_io.html#a891aab66171ae0ffd210d23d33164130',1,'XaLibRbGpIo']]],
+  ['gpioget',['GpIoGet',['../class_xa_lib_rb_gp_io.html#aaa57c5525540afb03caaec504db175aa',1,'XaLibRbGpIo']]],
   ['gpiogetvalue',['GpIoGetValue',['../class_xa_lib_rb_gp_io.html#a0ed9fc040587c711474a58a8013b4fee',1,'XaLibRbGpIo']]],
-  ['gpiosetdirection',['GpIoSetDirection',['../class_xa_lib_rb_gp_io.html#a28244d1c37e3ef6ed63fdfdb0753375c',1,'XaLibRbGpIo']]],
+  ['gpioset',['GpIoSet',['../class_xa_lib_rb_gp_io.html#a156cfeacfa358f8dc5b0761ce8471454',1,'XaLibRbGpIo']]],
+  ['gpiosetdirection',['GpIoSetDirection',['../class_xa_lib_rb_gp_io.html#a435e288eff6daeaf5a0e449d5103cece',1,'XaLibRbGpIo']]],
   ['gpiosetvalue',['GpIoSetValue',['../class_xa_lib_rb_gp_io.html#aedceeed00e066cab39fa0d0901aaeae9',1,'XaLibRbGpIo']]],
   ['gpiounexport',['GpIoUnexport',['../class_xa_lib_rb_gp_io.html#a44d28e308df626010354595ef56e028b',1,'XaLibRbGpIo']]],
   ['groupbyfields',['GroupByFields',['../class_xa_lib_sql.html#a9ab41f6daca2b4020c0aa691e53362d7',1,'XaLibSql']]]

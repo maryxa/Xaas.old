@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"class_xa_lib_socket.html#ae0e937ea03a881afc70a4c32708a7531":[1,0,21,5],
 "class_xa_lib_sql.html":[1,0,22],
 "class_xa_lib_sql.html#a004e771eb8b713a2fac7c5ef9756312e":[1,0,22,25],
 "class_xa_lib_sql.html#a03ba77e2bebe7a607f0461d28df5be33":[1,0,22,11],
@@ -203,7 +204,7 @@ var NAVTREEINDEX2 =
 "globals_vars.html":[2,1,1],
 "hierarchy.html":[1,2],
 "index.html":[],
-"md__r_e_a_d_m_e.html":[0],
+"md___x_allegro__xa_lib__r_e_a_d_m_e.html":[0],
 "pages.html":[],
 "struct_xa_request.html":[1,0,25],
 "struct_xa_request.html#a0dce57b0eb17d50d603186307bae616b":[1,0,25,9],
