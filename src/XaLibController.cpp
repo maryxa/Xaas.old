@@ -16,6 +16,7 @@
 #include <XaLibCurl.h>
 #include <XaUser.h>
 #include <XaUserProfile.h>
+#include <XaWs.h>
 
 //SUPERGLOBALS VARIABLES
 XaLibLog LOG;
@@ -127,13 +128,13 @@ void XaLibController::GetWs(){
 
 		unique_ptr<XaLibChar> LibChar(new XaLibChar());
 		string WsXmlDataDecoded=LibChar->B64Decode(WsXmlData);
-		
+
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Ws B64 Decoded String -> "+ WsXmlDataDecoded);
 		WsXmlData=WsXmlDataDecoded;
 
 	} else {
+
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Ws Unencoded String -> "+ WsXmlData);
-		// WsXmlData=WsXmlData
 	}
 
 	if (REQUEST.WsXmlDataKey!="NoHttpParam" && REQUEST.WsXmlDataKey!="" && REQUEST.WsXmlDataIV!="NoHttpParam" && REQUEST.WsXmlDataIV!="") {
@@ -201,85 +202,97 @@ void XaLibController::DispatchWs() {
 
 			REQUEST.WsXmlUsername=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsXmlData/login/password");
 			REQUEST.WsXmlPassword=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsXmlData/login/username");
+			
+			REQUEST.WsCallerName=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsXmlData/caller/name");
+			REQUEST.WsCallerKey=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsXmlData/caller/key");
 
-			string WsXmlLanguage=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsXmlData/language");
+			XaWs Ws;
+			if (Ws.CheckCaller(REQUEST.WsCallerName,REQUEST.WsCallerKey)==1) {
 
-			if (WsXmlLanguage!="" && WsXmlLanguage!="NoHttpParam" && WsXmlLanguage!="ERROR-ELEMENT-NOT-DEFINED") {
-				REQUEST.Language=WsXmlLanguage;
-			}
-	
-			REQUEST.CalledObject=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsXmlData/operation/object");
-			REQUEST.CalledEvent=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsXmlData/operation/event");
+				string WsXmlLanguage=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsXmlData/language");
 
-			unique_ptr<XaUser> User(new XaUser());
-
-			REQUEST.XaUser_ID=User->Authenticate(REQUEST.WsXmlUsername,REQUEST.WsXmlPassword);
-
-			if(REQUEST.XaUser_ID!=0) {
-
-				LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"WS User Authenticated With Username ->" + REQUEST.WsXmlUsername);	
-
-				WsHttpHeaders.append("&obj="+REQUEST.CalledObject+"&evt="+REQUEST.CalledEvent);
-
-				//CALCOLO IL NUMERO DEI PARAMETRI
-				int ParamsNum=LibDom->GetNumRowByXPathInt(XmlDomDoc,"/WsXmlData/params/param");
-
-				if (ParamsNum==0){
-
-					LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"WS Number of Parameters is 0");
-					RESPONSE.Content="<WsXmlData><error>There are not parameters in the request</error></WsXmlData>";
-					SendResponse();
-
-				} else {
-
-					LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"WS Number of Parameters ->" + XaLibBase::FromIntToString(ParamsNum));
-
-					for (int i=0;i<ParamsNum;i++) {
-
-						string ParamName =LibDom->GetElementValueByXPath(XmlDomDoc,"/WsXmlData/params/param["+ XaLibBase::FromIntToString(i+1) + "]/name");
-						string ParamValue=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsXmlData/params/param["+ XaLibBase::FromIntToString(i+1) + "]/value");
-
-						LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"WS Read Parameter ->" +ParamName +" :: With Value -> "+ParamValue);
-						WsHttpHeaders.append("&"+ParamName+"="+ParamValue);
-					}
-
-					vector<string> VectorFields{"XaUser_ID","caller","object","event","request","request_time"};
-					vector<string> VectorValues{XaLibBase::FromIntToString(REQUEST.XaUser_ID),"caller",REQUEST.CalledObject,REQUEST.CalledEvent,REQUEST.WsXmlData,XaLibTime::GetDateTimeMySql()};
-
-					unique_ptr<XaLibSql> LibSql(new XaLibSql());
-					REQUEST.XaWsSession_ID=LibSql->Insert(DB_SESSION,"XaSessionWsLog",VectorFields,VectorValues);
-
-					VectorFields.clear();
-					VectorValues.clear();
+				if (WsXmlLanguage!="" && WsXmlLanguage!="NoHttpParam" && WsXmlLanguage!="ERROR-ELEMENT-NOT-DEFINED") {
+					REQUEST.Language=WsXmlLanguage;
 				}
+	
+				REQUEST.CalledObject=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsXmlData/operation/object");
+				REQUEST.CalledEvent=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsXmlData/operation/event");
 
-				LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"WS Composed HTTP String -> " + WsHttpHeaders);
+				unique_ptr<XaUser> User(new XaUser());
+				REQUEST.XaUser_ID=User->Authenticate(REQUEST.WsXmlUsername,REQUEST.WsXmlPassword);
 
-				REQUEST.HeadersString=WsHttpHeaders+"&XaSessionWsLog_ID="+XaLibBase::FromIntToString(REQUEST.XaWsSession_ID);
+				if(REQUEST.XaUser_ID!=0) {
 
-				if (REQUEST.CalledObject!="NoHttpParam" && REQUEST.CalledObject!="" && REQUEST.CalledEvent!="NoHttpParam" && REQUEST.CalledEvent!="") {
+					LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"WS User Authenticated With Username ->" + REQUEST.WsXmlUsername);	
 
-					if (XaLibController::ProfileCalledObject(REQUEST.CalledObject,REQUEST.CalledEvent)==1){
+					WsHttpHeaders.append("&obj="+REQUEST.CalledObject+"&evt="+REQUEST.CalledEvent);
 
-						this->ExecuteCalledObject();
+					//CALCOLO IL NUMERO DEI PARAMETRI
+					int ParamsNum=LibDom->GetNumRowByXPathInt(XmlDomDoc,"/WsXmlData/params/param");
+
+					if (ParamsNum==0){
+
+						LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"WS Number of Parameters is 0");
+						RESPONSE.Content="<WsXmlData><error>There are not parameters in the request</error></WsXmlData>";
+						SendResponse();
 
 					} else {
 
-						LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"WS Not Profiled Object-Event -> "+REQUEST.CalledObject+"::"+REQUEST.CalledEvent);
-						RESPONSE.Content="<WsXmlData><error>User Not Authorized To Execute Action Or Action Does Not Exist: "+REQUEST.CalledObject+"::"+ REQUEST.CalledEvent +"</error></WsXmlData>";
+						LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"WS Number of Parameters ->" + XaLibBase::FromIntToString(ParamsNum));
+
+						for (int i=0;i<ParamsNum;i++) {
+
+							string ParamName =LibDom->GetElementValueByXPath(XmlDomDoc,"/WsXmlData/params/param["+ XaLibBase::FromIntToString(i+1) + "]/name");
+							string ParamValue=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsXmlData/params/param["+ XaLibBase::FromIntToString(i+1) + "]/value");
+
+							LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"WS Read Parameter ->" +ParamName +" :: With Value -> "+ParamValue);
+							WsHttpHeaders.append("&"+ParamName+"="+ParamValue);
+						}
+
+						vector<string> VectorFields{"XaUser_ID","caller","object","event","request","request_time"};
+						vector<string> VectorValues{XaLibBase::FromIntToString(REQUEST.XaUser_ID),REQUEST.WsCallerName,REQUEST.CalledObject,REQUEST.CalledEvent,REQUEST.WsXmlData,XaLibTime::GetDateTimeMySql()};
+
+						unique_ptr<XaLibSql> LibSql(new XaLibSql());
+						REQUEST.XaWsSession_ID=LibSql->Insert(DB_SESSION,"XaSessionWsLog",VectorFields,VectorValues);
+
+						VectorFields.clear();
+						VectorValues.clear();
+					}
+
+					LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"WS Composed HTTP String -> " + WsHttpHeaders);
+
+					REQUEST.HeadersString=WsHttpHeaders+"&XaSessionWsLog_ID="+XaLibBase::FromIntToString(REQUEST.XaWsSession_ID);
+
+					if (REQUEST.CalledObject!="NoHttpParam" && REQUEST.CalledObject!="" && REQUEST.CalledEvent!="NoHttpParam" && REQUEST.CalledEvent!="") {
+
+						if (XaLibController::ProfileCalledObject(REQUEST.CalledObject,REQUEST.CalledEvent)==1){
+
+							this->ExecuteCalledObject();
+
+						} else {
+
+							LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"WS Not Profiled Object-Event -> "+REQUEST.CalledObject+"::"+REQUEST.CalledEvent);
+							RESPONSE.Content="<WsXmlData><error>User Not Authorized To Execute Action Or Action Does Not Exist: "+REQUEST.CalledObject+"::"+ REQUEST.CalledEvent +"</error></WsXmlData>";
+							SendResponse();
+						}
+
+					} else {
+
+						RESPONSE.Content="<WsXmlData><error>Missing Object or Event</error></WsXmlData>";
 						SendResponse();
 					}
 
 				} else {
 
-					RESPONSE.Content="<WsXmlData><error>Missing Object or Event</error></WsXmlData>";
+					LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"WS User Rejected With Username And Password-> "+ REQUEST.WsXmlUsername+ " :: "+REQUEST.WsXmlPassword);
+					RESPONSE.Content="<WsXmlData><error>Username Or Password Error</error></WsXmlData>"	;
 					SendResponse();
 				}
-
+				
 			} else {
 
-				LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"WS User Rejected With Username And Password-> "+ REQUEST.WsXmlUsername+ " :: "+REQUEST.WsXmlPassword);
-				RESPONSE.Content="<WsXmlData><error>Username Or Password Error</error></WsXmlData>"	;
+				LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"WS User Caller Rejected With WsCallerName And WsCallerKey-> "+ REQUEST.WsCallerName+ " :: "+REQUEST.WsCallerKey);
+				RESPONSE.Content="<WsXmlData><error>Caller Name or Caller Key Error</error></WsXmlData>"	;
 				SendResponse();
 			}
 
@@ -296,6 +309,8 @@ void XaLibController::DispatchWs() {
 			RESPONSE.Content="<WsXmlData><error>WS Are Disabled On This Server</error></WsXmlData>";
 			SendResponse();
 	}
+		
+	
 };
 
 void XaLibController::Dispatch() {

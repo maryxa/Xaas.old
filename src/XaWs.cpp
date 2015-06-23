@@ -86,5 +86,50 @@ void XaWs::List (){
 
 };
 
+int XaWs::CheckCaller(const string &CallerName,const string &CallerKey) {
+
+	int ReturnValue=0;
+
+	if (CallerName!="" && CallerKey!="") {
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"WS -> Caller Name:"+CallerName +":: Caller Key:"+CallerKey);
+
+		XaLibSql LibSql;
+		DbResMap DbRes=LibSql.FreeQuery(DB_SESSION,"SELECT id,name,key,active,deleted FROM XaWsCaller WHERE name=\""+CallerName +"\" AND caller_key=\""+CallerKey+"\"");
+
+		if (DbRes.size()==1) {
+
+			if(FromStringToInt(DbRes[0]["active"])==1) {
+
+				if(FromStringToInt(DbRes[0]["deleted"])==0) {
+
+					ReturnValue=1;
+					LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"WS Caller Is Authorized -> Caller Name:"+CallerName +":: Caller Key:"+CallerKey);
+
+				} else {
+
+					LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"WS Caller Is Deleted -> Caller Name:"+CallerName +":: Caller Key:"+CallerKey);
+				} 
+
+			} else {
+
+				LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"WS Caller Is Not Active -> Caller Name:"+CallerName +":: Caller Key:"+CallerKey);
+
+			}
+
+		} else {
+
+			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"WS Caller Does Not Exist Or Is Not Unique -> Caller Name:"+CallerName +":: Caller Key:"+CallerKey);
+		}
+		
+		
+	} else {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"WS Caller Name Or Caller Key are Missing");
+	}
+
+	return ReturnValue;
+};
+
 XaWs::~XaWs(){
 };

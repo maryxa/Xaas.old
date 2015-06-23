@@ -59,6 +59,8 @@ struct XaRequest {
 
 	string WsXmlUsername="";
 	string WsXmlPassword="";
+	string WsCallerName="";
+	string WsCallerKey="";
 
 	string ResponseType="";
 	string RedirectLocation="";

@@ -18,7 +18,8 @@ class XaWs : public XaLibAction {
 	protected:
 
 	public:
-
+		
+		int CheckCaller(const string &CallerName,const string &CallerKey);
 		XaWs();
 		~XaWs();
 };
