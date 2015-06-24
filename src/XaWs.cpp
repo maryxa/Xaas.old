@@ -95,7 +95,7 @@ int XaWs::CheckCaller(const string &CallerName,const string &CallerKey) {
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"WS -> Caller Name:"+CallerName +":: Caller Key:"+CallerKey);
 
 		XaLibSql LibSql;
-		DbResMap DbRes=LibSql.FreeQuery(DB_SESSION,"SELECT id,name,key,active,deleted FROM XaWsCaller WHERE name=\""+CallerName +"\" AND caller_key=\""+CallerKey+"\"");
+		DbResMap DbRes=LibSql.FreeQuery(DB_SESSION,"SELECT id,name,caller_key,active,deleted FROM XaWsCaller WHERE name=\""+CallerName +"\" AND caller_key=\""+CallerKey+"\"");
 
 		if (DbRes.size()==1) {
 
