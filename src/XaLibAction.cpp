@@ -7,8 +7,9 @@ void XaLibAction::AddXmlPath(string FilePath){
 
 	string TmpString=SETTINGS["XmlDir"]+FilePath+".xml";
 
-	if (FILE *file = fopen(TmpString.c_str(), "r")) {
-		fclose(file);
+	unique_ptr<FILE, int(*)(FILE*)> fp(fopen(TmpString.c_str(), "r"), fclose);
+
+	if (fp) {
 
 		XmlFilePaths.push_back(TmpString);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XmlFilePath -> "+TmpString);
@@ -21,6 +22,7 @@ void XaLibAction::AddXmlPath(string FilePath){
 
 void XaLibAction::AddXmlString(string XmlString){
 
+	//ToDo= Check if is valid Xml String
 	XmlStrings.push_back(XmlString);
 
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XmlString -> "+XmlString);
@@ -33,22 +35,21 @@ void XaLibAction::AddXslPath(string FilePath){
 	string XslLayoutPath=SETTINGS["XslDir"]+SETTINGS["GuiStyle"]+"/"+FilePath+".xsl";
 	string XslDefaultPath=SETTINGS["XslDir"]+FilePath+".xsl";
 	
-	if (FILE *file = fopen(XslLayoutPath.c_str(), "r")) {
-		fclose(file);
+	unique_ptr<FILE, int(*)(FILE*)> f1(fopen(XslLayoutPath.c_str(), "r"), fclose);
+	unique_ptr<FILE, int(*)(FILE*)> f2(fopen(XslDefaultPath.c_str(), "r"), fclose);
+
+	if (f1) {
 		XslFilePaths.push_back(XslLayoutPath);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFilePath -> "+XslLayoutPath);
 
-	} else if (FILE *file = fopen(XslDefaultPath.c_str(), "r")) {
-		fclose(file);
+	} else if (f2) {
 		XslFilePaths.push_back(XslDefaultPath);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFilePath Default-> "+XslDefaultPath);
 
 	} else {
 	
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Xsl File Does Not Exist-> "+XslDefaultPath);
-
 	}
-
 };
 
 void XaLibAction::AddXslString(string XslString){
