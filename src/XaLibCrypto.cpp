@@ -1,7 +1,5 @@
 #include <XaLibCrypto.h>
-
 #include <XaLibBase.h>
-#include <iomanip>
 
 XaLibCrypto::XaLibCrypto() {
 };
