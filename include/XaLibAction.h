@@ -29,7 +29,7 @@ extern XaRequest REQUEST;
 extern XaResponse RESPONSE;
 extern XaSettings SETTINGS;
 
-class XaLibAction : public XaLibBase {
+class XaLibAction : protected XaLibBase {
 
 	private:
 
