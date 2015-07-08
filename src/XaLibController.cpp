@@ -113,6 +113,11 @@ void XaLibController::GetCall(){
 	REQUEST.CalledEvent=HTTP.GetHttpParam("evt");
 };
 
+void XaLibController::GetLayout(){
+
+	REQUEST.CalledLayout=HTTP.GetHttpParam("lay");
+};
+
 void XaLibController::GetWs(){
 
 	REQUEST.WsXml=HTTP.GetHttpParam("WsXml");
