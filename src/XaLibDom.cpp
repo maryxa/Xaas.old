@@ -28,7 +28,7 @@ xmlDocPtr XaLibDom::DomFromString(string XmlString) {
 	return XmlDomDoc;
 };
 
-xmlDocPtr XaLibDom::DomFromStringAndFile(VectorXmlFilePath XmlFilePaths,VectorXmlString XmlStrings,int AddRootTag) {
+xmlDocPtr XaLibDom::DomFromStringAndFile(const VectorXmlFilePath& XmlFilePaths,const VectorXmlString& XmlStrings,const int& AddRootTag) {
 
 	xmlDocPtr XmlDomDoc;
     string XmlStringTotal="";
