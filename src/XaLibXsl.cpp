@@ -1,6 +1,51 @@
 #include <XaLibXsl.h>
 #include <XaLibBase.h>
 
+XaLibXsl::XaLibXsl(const xmlDocPtr& XmlDoc, const xmlDocPtr& XslDoc,const XslParams& XslParams){
+
+	int NumElements=XslParams.size();
+	cur = NULL;
+	*WithParams = NULL;
+	string ParamName;
+	string ParamValue;
+
+	if(NumElements>0) {
+
+		for(int n=0; n<NumElements; n=n+2) {
+
+			ParamName=XslParams[n];
+			ParamValue=XslParams[n+1];
+			this->AddParams(ParamName,ParamValue,n);
+	    }
+
+		WithParams[NumElements] = NULL;
+
+	} else {
+
+		string strWithParamName="";
+		strWithParamName.append("'NoParamName'");
+
+		string strWithParamValue="";
+		strWithParamValue.append("'NoParamValue'");
+		
+		WithParams[0] = (char*)strWithParamName.c_str();
+		WithParams[1] = (char*)strWithParamValue.c_str();
+		WithParams[2] = NULL;
+	}
+
+	xmlSubstituteEntitiesDefault(1);
+	xmlLoadExtDtdDefaultValue = 1;
+
+    cur = xsltParseStylesheetDoc(XslDoc);
+	exsltRegisterAll();
+
+	res = xsltApplyStylesheet(cur, XmlDoc, WithParams);
+	xmlFreeDoc(XmlDoc);
+
+	*WithParams = NULL;
+};
+
+//DEPRECATED
 XaLibXsl::XaLibXsl(xmlDocPtr XmlDoc, xmlDocPtr XslDoc, string XslParams[], int NumElements){
 
 	cur = NULL;

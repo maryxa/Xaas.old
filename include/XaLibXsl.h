@@ -8,6 +8,8 @@ class XaLibXsl : private XaLibBase {
 		xmlDocPtr res;
 		xsltStylesheetPtr cur;
 
+		typedef vector<string> XslParams;
+
 		typedef vector<string> VectorXslParamsName;
 		typedef vector<string> VectorXslParamsValue;
 		const char* WithParams[32 + 1];
@@ -15,7 +17,11 @@ class XaLibXsl : private XaLibBase {
 		void AddParams(string XslParamsName, string XslParamsValue,int ParamPosition);
 		
 	public:
+		XaLibXsl(const xmlDocPtr& XmlDoc, const xmlDocPtr& XslDoc,const XslParams& XslParams);
+
+		//[[deprecated("Replaced by XaLibXsl(const xmlDocPtr& XmlDoc, const xmlDocPtr& XslDoc,const XslParams& XslParams), which use vector instead array")]]
         XaLibXsl(xmlDocPtr XmlDoc, xmlDocPtr XslDoc,string XslParams[],int NumElements);
+
 		XaLibXsl(string XmlFilePath, string XslFilePath);
 		XaLibXsl(string XmlString, string XslFilePath, int XmlStringSize);
 		XaLibXsl(xmlDocPtr doc, string XslFilePath);
