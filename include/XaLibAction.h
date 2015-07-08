@@ -15,6 +15,7 @@
 #include <XaLibMail.h>
 #include <XaLibTime.h>
 #include <XaLibCurl.h>
+#include <XaLibGui.h>
 
 
 //SUPERGLOBALS VARIABLES
