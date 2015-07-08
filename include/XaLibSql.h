@@ -11,12 +11,6 @@ extern XaSettings SETTINGS;
 class XaLibSql : protected XaLibBase {
 
 	private:
-		//shared_ptr<XaLibLog> LibLog;
-		//XaLibLog* LocalLibLog;
-		//ofstream* LocalMyLogFile;
-
-		typedef map<string, string> ParamsConfigurationMap;
-		ParamsConfigurationMap LocalParamsConfiguration;
 
 		typedef vector<string> VectorFields;
 		typedef vector<string> VectorValues;
@@ -27,12 +21,8 @@ class XaLibSql : protected XaLibBase {
 		typedef vector<string> WhereValues;
 
 		typedef vector<string> OrderByFields;
-
 		typedef vector<string> GroupByFields;
 
-		//typedef vector<string> VectorRowIds;
-
-		
 	protected:
 
 	public:
@@ -53,7 +43,8 @@ class XaLibSql : protected XaLibBase {
 		DbResMap SelectOne(XaLibDb& LibDb,string TableName, int RowId);
 		DbResMap SelectOne(XaLibDb& LibDb,string TableName, int RowId,int Active, int Deleted);
 
-		DbResMap Select(XaLibDb& LibDb,string TableName,ReturnedFields ReturnedFields,WhereFields WhereFields, WhereValues WhereValues);
+		static DbResMap Select(XaLibDb& LibDb,const string& TableName,const ReturnedFields& ReturnedFields);
+		static DbResMap Select(XaLibDb& LibDb,const string& TableName,const ReturnedFields& ReturnedFields,const WhereFields& WhereFields, const WhereValues& WhereValues);
 		DbResMap Select(XaLibDb& LibDb,string TableName,ReturnedFields ReturnedFields,WhereFields WhereFields, WhereValues WhereValues, OrderByFields OrderByFields);
 		DbResMap Select(XaLibDb& LibDb,string TableName,ReturnedFields ReturnedFields,WhereFields WhereFields, WhereValues WhereValues, OrderByFields OrderByFields, GroupByFields GroupByFields);
 

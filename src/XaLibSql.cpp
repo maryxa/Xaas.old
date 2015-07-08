@@ -372,7 +372,43 @@ XaLibSql::DbResMap XaLibSql::SelectOne(XaLibDb& LibDb,string TableName, int RowI
 	return DbRes;
 };
 
-XaLibSql::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,ReturnedFields ReturnedFields,WhereFields WhereFields, WhereValues WhereValues) {
+XaLibSql::DbResMap XaLibSql::Select(XaLibDb& LibDb,const string& TableName,const ReturnedFields& ReturnedFields) {
+
+	DbResMap DbRes;
+	
+	string SqlQry="SELECT ";
+
+	unique_ptr<XaLibChar> LibChar (new XaLibChar());
+
+		if(ReturnedFields.at(0)=="*"){
+			
+			SqlQry.append("*");
+			
+		} else {
+			
+			for(unsigned m=0; m<ReturnedFields.size(); ++m) {
+			
+				SqlQry.append(ReturnedFields.at(m));
+
+				if(m==ReturnedFields.size()-1){
+
+	     	} else {
+
+				SqlQry.append(",");
+	     	}
+	    }
+	}
+
+	SqlQry.append(" FROM ");
+	SqlQry.append(TableName);
+
+	DbRes=LibDb.ExSelect(SqlQry);
+
+	return DbRes;
+
+}
+
+XaLibSql::DbResMap XaLibSql::Select(XaLibDb& LibDb,const string& TableName,const ReturnedFields& ReturnedFields,const WhereFields& WhereFields, const WhereValues& WhereValues) {
 
 	DbResMap DbRes;
 	
@@ -431,8 +467,7 @@ XaLibSql::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,ReturnedFiel
 
 	delete LibChar;
 	return DbRes;
-
-}
+};
 
 XaLibSql::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,ReturnedFields ReturnedFields,WhereFields WhereFields, WhereValues WhereValues, OrderByFields OrderByFields) {
 	
