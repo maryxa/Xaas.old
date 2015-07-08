@@ -538,13 +538,30 @@ string XaLibAction::DecryptParamId(string EncryptedValue) {
 
 void XaLibAction::SetLayout(const string &LayoutType){
 
-	if (LayoutType=="Standard" || LayoutType=="NoHttpParam") {
+	if (LayoutType=="Standalone" ) {
 
 		AddXslPath("XaGuiHead");
 		AddXslPath("XaGuiHeader");
 		AddXslPath("XaGuiFooter");
 		AddXslPath("XaGuiNav");
 		AddXslPath("templates");
+
+		//AddXslPath("manifest");
+		AddXmlPath("XaLabel-"+REQUEST.Language);
+		AddXmlPath("XaGuiNav");
+	
+	} else if (LayoutType=="Included") {
+
+		AddXslPath("templates");
+
+	} else if (LayoutType=="Standard" || LayoutType=="NoHttpParam") {
+
+		AddXslPath("XaGuiHead");
+		AddXslPath("XaGuiHeader");
+		AddXslPath("XaGuiFooter");
+		AddXslPath("XaGuiNav");
+		AddXslPath("templates");
+
 		//AddXslPath("manifest");
 		AddXmlPath("XaLabel-"+REQUEST.Language);
 		AddXmlPath("XaGuiNav");
