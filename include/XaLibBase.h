@@ -75,6 +75,8 @@ struct XaRequest {
 	//string CalledAction="";
 	string CalledObject="";
 	string CalledEvent="";
+	string CalledLayout="";
+
 	string HeadersString="";
 	string HeadersStringCustom="";
 	string Language="";
