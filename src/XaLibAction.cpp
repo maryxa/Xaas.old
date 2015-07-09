@@ -3,7 +3,7 @@
 XaLibAction::XaLibAction(){
 };
 
-void XaLibAction::AddXmlPath(string FilePath){
+void XaLibAction::AddXmlFile(string FilePath){
 
 	string TmpString=SETTINGS["XmlDir"]+FilePath+".xml";
 
@@ -28,7 +28,7 @@ void XaLibAction::AddXmlString(string XmlString){
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XmlString -> "+XmlString);
 };
 
-void XaLibAction::AddXslPath(string FilePath){
+void XaLibAction::AddXslFile(string FilePath){
 
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Selected GUI Style -> "+SETTINGS["GuiStyle"]);
 
@@ -540,67 +540,67 @@ void XaLibAction::SetLayout(const string &LayoutType){
 
 	if (LayoutType=="Standalone" ) {
 
-		AddXslPath("XaGuiHead");
-		AddXslPath("XaGuiHeader");
-		AddXslPath("XaGuiFooter");
-		AddXslPath("XaGuiNav");
-		AddXslPath("templates");
+		AddXslFile("XaGuiHead");
+		AddXslFile("XaGuiHeader");
+		AddXslFile("XaGuiFooter");
+		AddXslFile("XaGuiNav");
+		AddXslFile("templates");
 
-		//AddXslPath("manifest");
-		AddXmlPath("XaLabel-"+REQUEST.Language);
-		AddXmlPath("XaGuiNav");
+		//AddXslFile("manifest");
+		AddXmlFile("XaLabel-"+REQUEST.Language);
+		AddXmlFile("XaGuiNav");
 	
 	} else if (LayoutType=="Included") {
 
-		AddXslPath("templates");
+		AddXslFile("templates");
 
 	} else if (LayoutType=="Standard" || LayoutType=="NoHttpParam") {
 
-		AddXslPath("XaGuiHead");
-		AddXslPath("XaGuiHeader");
-		AddXslPath("XaGuiFooter");
-		AddXslPath("XaGuiNav");
-		AddXslPath("templates");
+		AddXslFile("XaGuiHead");
+		AddXslFile("XaGuiHeader");
+		AddXslFile("XaGuiFooter");
+		AddXslFile("XaGuiNav");
+		AddXslFile("templates");
 
-		//AddXslPath("manifest");
-		AddXmlPath("XaLabel-"+REQUEST.Language);
-		AddXmlPath("XaGuiNav");
+		//AddXslFile("manifest");
+		AddXmlFile("XaLabel-"+REQUEST.Language);
+		AddXmlFile("XaGuiNav");
 
 	} else if (LayoutType=="Included") {
 
-		AddXslPath("templates");
-		AddXmlPath("XaLabel-"+REQUEST.Language);
+		AddXslFile("templates");
+		AddXmlFile("XaLabel-"+REQUEST.Language);
 
 	} else if (LayoutType=="Chart") {
 
-		AddXslPath("templates");
-		AddXmlPath("XaLabel-"+REQUEST.Language);
+		AddXslFile("templates");
+		AddXmlFile("XaLabel-"+REQUEST.Language);
 
 	} else if (LayoutType=="ModalWindow") {
 
-		AddXslPath("XaGuiHead");
-		AddXslPath("templates");
-		AddXmlPath("XaLabel-"+REQUEST.Language);
+		AddXslFile("XaGuiHead");
+		AddXslFile("templates");
+		AddXmlFile("XaLabel-"+REQUEST.Language);
 
 	} else if (LayoutType=="LoginFrm") {
 
-		AddXslPath("XaGuiHead");
-		AddXslPath("header-internet");
-		AddXslPath("XaGuiFooter");
-		AddXmlPath("XaLabel-"+REQUEST.Language);
+		AddXslFile("XaGuiHead");
+		AddXslFile("header-internet");
+		AddXslFile("XaGuiFooter");
+		AddXmlFile("XaLabel-"+REQUEST.Language);
 
 	} else if (LayoutType=="InfoPage") {
 
-		AddXslPath("XaGuiHead");
+		AddXslFile("XaGuiHead");
 
 	} else if (LayoutType=="Search") {
 
-		AddXslPath("XaGuiHead");
-		AddXslPath("XaGuiHeader");
-		AddXslPath("XaGuiFooter");
-		AddXslPath("XaGuiNav");
-		AddXslPath("templates-search");
-		AddXmlPath("XaLabel-"+REQUEST.Language);
+		AddXslFile("XaGuiHead");
+		AddXslFile("XaGuiHeader");
+		AddXslFile("XaGuiFooter");
+		AddXslFile("XaGuiNav");
+		AddXslFile("templates-search");
+		AddXmlFile("XaLabel-"+REQUEST.Language);
 
 	} else {
 

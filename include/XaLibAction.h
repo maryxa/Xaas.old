@@ -60,9 +60,9 @@ class XaLibAction : protected XaLibBase {
 
 		typedef map<int, map<string,string> > ParamFromDomMap;
 
-		void AddXmlPath   (string FilePath);
+		void AddXmlFile   (string FilePath);
 		void AddXmlString (string XmlString);
-		void AddXslPath   (string FilePath);
+		void AddXslFile   (string FilePath);
 		void AddXslString (string XslString);
 
 		void   AddOptionsByDb                      (XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string TableName,string XPathExpr);
