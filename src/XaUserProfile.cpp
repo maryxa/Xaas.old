@@ -48,10 +48,10 @@ void XaUserProfile::XaUserProfileAddFrm (){
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaUserProfile");
+    XaLibAction::AddXmlFile("XaUserProfile");
 
-    XaLibAction::AddXslPath("XaUserProfileTpl");
-    XaLibAction::AddXslPath("XaUserProfileAddFrm");
+    XaLibAction::AddXslFile("XaUserProfileTpl");
+    XaLibAction::AddXslFile("XaUserProfileAddFrm");
 
     XaLibDom* LibDom=new XaLibDom();
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -192,9 +192,9 @@ void XaUserProfile::XaUserProfileMod(){
 void XaUserProfile::XaUserProfileList (){
 	
 	XaLibAction::SetLayout("Standard");
-    XaLibAction::AddXslPath("XaUserProfileList");
+    XaLibAction::AddXslFile("XaUserProfileList");
 
-    XaLibAction::AddXmlPath("XaUserProfileListStruct");
+    XaLibAction::AddXmlFile("XaUserProfileListStruct");
 
 	XaLibDom* LibDom=new XaLibDom();
 	xmlDocPtr XmlDomDocData=LibDom->DomFromFile(SETTINGS["XmlDir"]+"XaUserProfileListData.xml");
@@ -244,10 +244,10 @@ void XaUserProfile::XaUserProfileXaUserActionAddFrm (){
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaUserProfileXaUserAction");
+    XaLibAction::AddXmlFile("XaUserProfileXaUserAction");
 
-    XaLibAction::AddXslPath("XaUserProfileXaUserActionTpl");
-    XaLibAction::AddXslPath("XaUserProfileXaUserActionAddFrm");
+    XaLibAction::AddXslFile("XaUserProfileXaUserActionTpl");
+    XaLibAction::AddXslFile("XaUserProfileXaUserActionAddFrm");
 
     XaLibDom* LibDom=new XaLibDom();
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);

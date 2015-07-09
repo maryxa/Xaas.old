@@ -172,12 +172,12 @@ void XaLanguage::XaLanguageList (){
 	XaLibAction::AddXmlString(XmlString);
 
     string XmlPage="XaLanguageList";
-    XaLibAction::AddXmlPath(XmlPage);
+    XaLibAction::AddXmlFile(XmlPage);
 
 	XaLibAction::SetLayout("Standard");
 
     string XslPage="XaLanguageList";
-    XaLibAction::AddXslPath(XslPage);
+    XaLibAction::AddXslFile(XslPage);
 
     XaLibDom* LibDom=new XaLibDom();
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -197,12 +197,12 @@ void XaLanguage::XaLanguageList (){
 void XaLanguage::XaLanguageAddFrm (){
 
     string XmlPage="XaLanguageAddFrm";
-    XaLibAction::AddXmlPath(XmlPage);
+    XaLibAction::AddXmlFile(XmlPage);
 
 	XaLibAction::SetLayout("Standard");
 
     string XslPage="XaLanguageAddFrm";
-    XaLibAction::AddXslPath(XslPage);
+    XaLibAction::AddXslFile(XslPage);
 
     XaLibDom* LibDom=new XaLibDom();
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);

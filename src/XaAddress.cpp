@@ -79,9 +79,9 @@ void XaAddress::XaAddressGeoAddFrm(){
 	
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaAddressGeo");
-	XaLibAction::AddXslPath("XaAddressGeoTpl");
-    XaLibAction::AddXslPath("XaAddressGeoAddFrm");
+    XaLibAction::AddXmlFile("XaAddressGeo");
+	XaLibAction::AddXslFile("XaAddressGeoTpl");
+    XaLibAction::AddXslFile("XaAddressGeoAddFrm");
 
     XaLibDom* LibDom=new XaLibDom();
 	
@@ -201,9 +201,9 @@ void XaAddress::XaAddressGeoModFrm(){
 	
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaAddressGeo");
-	XaLibAction::AddXslPath("XaAddressGeoTpl");
-    XaLibAction::AddXslPath("XaAddressGeoModFrm");
+    XaLibAction::AddXmlFile("XaAddressGeo");
+	XaLibAction::AddXslFile("XaAddressGeoTpl");
+    XaLibAction::AddXslFile("XaAddressGeoModFrm");
 
     XaLibDom* LibDom=new XaLibDom();
 	
@@ -265,8 +265,8 @@ void XaAddress::XaAddressGeoList(){
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaAddressGeoListStruct");
-    XaLibAction::AddXslPath("XaAddressGeoList");
+    XaLibAction::AddXmlFile("XaAddressGeoListStruct");
+    XaLibAction::AddXslFile("XaAddressGeoList");
 
 	XaLibDom* LibDom=new XaLibDom();
 	xmlDocPtr XmlDomDocData=LibDom->DomFromFile(SETTINGS["XmlDir"]+"XaAddressGeoListData.xml");
@@ -350,9 +350,9 @@ void XaAddress::XaAddressPhoneAddFrm(){
 	
 	XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaAddressPhone");
-    XaLibAction::AddXslPath("XaAddressPhoneAddFrm");
-    XaLibAction::AddXslPath("XaAddressPhoneTpl");
+    XaLibAction::AddXmlFile("XaAddressPhone");
+    XaLibAction::AddXslFile("XaAddressPhoneAddFrm");
+    XaLibAction::AddXslFile("XaAddressPhoneTpl");
 
     XaLibDom* LibDom=new XaLibDom();
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -468,9 +468,9 @@ void XaAddress::XaAddressPhoneModFrm(){
 
 	XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaAddressPhone");
-    XaLibAction::AddXslPath("XaAddressPhoneModFrm");
-    XaLibAction::AddXslPath("XaAddressPhoneTpl");
+    XaLibAction::AddXmlFile("XaAddressPhone");
+    XaLibAction::AddXslFile("XaAddressPhoneModFrm");
+    XaLibAction::AddXslFile("XaAddressPhoneTpl");
 
     XaLibDom* LibDom=new XaLibDom();
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -532,8 +532,8 @@ void XaAddress::XaAddressPhoneList(){
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaAddressPhoneListStruct");
-    XaLibAction::AddXslPath("XaAddressPhoneList");
+    XaLibAction::AddXmlFile("XaAddressPhoneListStruct");
+    XaLibAction::AddXslFile("XaAddressPhoneList");
 
 	XaLibDom* LibDom=new XaLibDom();
 	xmlDocPtr XmlDomDocData=LibDom->DomFromFile(SETTINGS["XmlDir"]+"XaAddressPhoneListData.xml");
@@ -618,10 +618,10 @@ void XaAddress::XaAddressMailAddFrm(){
 	
 	XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaAddressMail");
+    XaLibAction::AddXmlFile("XaAddressMail");
 
-    XaLibAction::AddXslPath("XaAddressMailAddFrm");
-    XaLibAction::AddXslPath("XaAddressMailTpl");
+    XaLibAction::AddXslFile("XaAddressMailAddFrm");
+    XaLibAction::AddXslFile("XaAddressMailTpl");
 
     XaLibDom* LibDom=new XaLibDom();
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -735,9 +735,9 @@ void XaAddress::XaAddressMailModFrm(){
 
 	XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaAddressMail");
-    XaLibAction::AddXslPath("XaAddressMailModFrm");
-    XaLibAction::AddXslPath("XaAddressMailTpl");
+    XaLibAction::AddXmlFile("XaAddressMail");
+    XaLibAction::AddXslFile("XaAddressMailModFrm");
+    XaLibAction::AddXslFile("XaAddressMailTpl");
 
     XaLibDom* LibDom=new XaLibDom();
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -796,8 +796,8 @@ void XaAddress::XaAddressMailList(){
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaAddressMailListStruct");
-    XaLibAction::AddXslPath("XaAddressMailList");
+    XaLibAction::AddXmlFile("XaAddressMailListStruct");
+    XaLibAction::AddXslFile("XaAddressMailList");
 
 	XaLibDom* LibDom=new XaLibDom();
 	xmlDocPtr XmlDomDocData=LibDom->DomFromFile(SETTINGS["XmlDir"]+"XaAddressMailListData.xml");

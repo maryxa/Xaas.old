@@ -232,10 +232,10 @@ void XaLabel::XaLabelFromFileAddFrm (){
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaLabelFromFile");
+    XaLibAction::AddXmlFile("XaLabelFromFile");
     
-    XaLibAction::AddXslPath("XaLabelFromFileTpl");
-    XaLibAction::AddXslPath("XaLabelFromFileAddFrm");
+    XaLibAction::AddXslFile("XaLabelFromFileTpl");
+    XaLibAction::AddXslFile("XaLabelFromFileAddFrm");
 
     XaLibDom* LibDom=new XaLibDom();
 		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -499,12 +499,12 @@ void XaLabel::XaLabelList (){
 	XaLibAction::AddXmlString(XmlString);
 
     string XmlPage="XaLabelList";
-    XaLibAction::AddXmlPath(XmlPage);
+    XaLibAction::AddXmlFile(XmlPage);
 
 	XaLibAction::SetLayout("Standard");
 
     string XslPage="XaLabelList";
-    XaLibAction::AddXslPath(XslPage);
+    XaLibAction::AddXslFile(XslPage);
 
     XaLibDom* LibDom=new XaLibDom();
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -545,12 +545,12 @@ void XaLabel::XaLabelList (){
 void XaLabel::XaLabelAddFrm (){
 
     string XmlPage="XaLabelAddFrm";
-    XaLibAction::AddXmlPath(XmlPage);
+    XaLibAction::AddXmlFile(XmlPage);
 
 	XaLibAction::SetLayout("Standard");
 
     string XslPage="XaLabelAddFrm";
-    XaLibAction::AddXslPath(XslPage);
+    XaLibAction::AddXslFile(XslPage);
 
     XaLibDom* LibDom=new XaLibDom();
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -699,12 +699,12 @@ void XaLabel::XaTranslationAddFrm (){
 	XaLibAction::AddXmlString(XmlString);
 
     string XmlPage="XaTranslationAddFrm";
-    XaLibAction::AddXmlPath(XmlPage);
+    XaLibAction::AddXmlFile(XmlPage);
 
 	XaLibAction::SetLayout("Standard");
 
     string XslPage="XaTranslationAddFrm";
-    XaLibAction::AddXslPath(XslPage);
+    XaLibAction::AddXslFile(XslPage);
 
     XaLibDom* LibDom=new XaLibDom();
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);

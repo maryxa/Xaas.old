@@ -87,9 +87,9 @@ void XaUser::XaUserLoginFrm (){
 	string StrError=HTTP.GetHttpParam("error");
 	
 	XaLibAction::SetLayout("LoginFrm");
-    XaLibAction::AddXmlPath("XaUserLoginFrm");
-    XaLibAction::AddXslPath("XaUserLoginFrm");
-	XaLibAction::AddXslPath("XaGuiHeader");
+    XaLibAction::AddXmlFile("XaUserLoginFrm");
+    XaLibAction::AddXslFile("XaUserLoginFrm");
+	XaLibAction::AddXslFile("XaGuiHeader");
 
 	unique_ptr<XaLibDom> LibDom (new XaLibDom());
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -262,8 +262,8 @@ void XaUser::XaUserLogout (){
 	LibSql->UnlockTable(DB_SESSION);
 
     XaLibAction::SetLayout("Standard");
-    XaLibAction::AddXmlPath("XaUserLogout");
-    XaLibAction::AddXslPath("XaUserLogout");
+    XaLibAction::AddXmlFile("XaUserLogout");
+    XaLibAction::AddXslFile("XaUserLogout");
 
 	unique_ptr<XaLibDom> LibDom(new XaLibDom());
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -280,9 +280,9 @@ void XaUser::XaUserLoginAddFrm() {
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaUserLogin");
-	XaLibAction::AddXslPath("XaUserLoginTpl");
-    XaLibAction::AddXslPath("XaUserLoginAddFrm");
+    XaLibAction::AddXmlFile("XaUserLogin");
+	XaLibAction::AddXslFile("XaUserLoginTpl");
+    XaLibAction::AddXslFile("XaUserLoginAddFrm");
 
 	string XaUser_ID=HTTP.GetHttpParam("XaUser_ID");
 	
@@ -403,9 +403,9 @@ void XaUser::XaUserLoginModFrm() {
 
     XaLibAction::SetLayout("Included");
 
-    XaLibAction::AddXmlPath("XaUserLoginModFrm");
-	XaLibAction::AddXslPath("XaUserLoginModFrmTpl");
-    XaLibAction::AddXslPath("XaUserLoginModFrm");
+    XaLibAction::AddXmlFile("XaUserLoginModFrm");
+	XaLibAction::AddXslFile("XaUserLoginModFrmTpl");
+    XaLibAction::AddXslFile("XaUserLoginModFrm");
 	
 	string XaUser_ID=XaLibAction::DecryptParamId(HTTP.GetHttpParam("XaUser_ID"));
 	
@@ -578,7 +578,7 @@ void XaUser::XaUserLoginMod(){
 void XaUser::XaUserLoginView (){
         
 	XaLibAction::SetLayout("Included");
-	XaLibAction::AddXslPath("XaUserLoginViewIncluded");
+	XaLibAction::AddXslFile("XaUserLoginViewIncluded");
 
 	string XaUser_ID=XaLibAction::DecryptParamId(HTTP.GetHttpParam("RowId"));
 	
@@ -668,9 +668,9 @@ void XaUser::XaUserLoginList (){
 	string Login=HTTP.GetHttpParam("XaUser-Login");
 	
 	XaLibAction::SetLayout("Standard");
-    XaLibAction::AddXslPath("XaUserLoginList");
+    XaLibAction::AddXslFile("XaUserLoginList");
 
-    XaLibAction::AddXmlPath("XaUserLoginListStruct");
+    XaLibAction::AddXmlFile("XaUserLoginListStruct");
 
 	XaLibDom* LibDom=new XaLibDom();
 	xmlDocPtr XmlDomDocData=LibDom->DomFromFile(SETTINGS["XmlDir"]+"XaUserLoginListData.xml");
@@ -800,9 +800,9 @@ void XaUser::XaUserPasswordModFrm() {
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaUserPasswordModFrm");
-	XaLibAction::AddXslPath("XaUserPasswordModFrmTpl");
-    XaLibAction::AddXslPath("XaUserPasswordModFrm");
+    XaLibAction::AddXmlFile("XaUserPasswordModFrm");
+	XaLibAction::AddXslFile("XaUserPasswordModFrmTpl");
+    XaLibAction::AddXslFile("XaUserPasswordModFrm");
 	
 	//string XaUser_ID=XaLibAction::DecryptParamId(HTTP.GetHttpParam("XaUser_ID"));
 	string XaUser_ID=FromIntToString(REQUEST.XaUser_ID);
@@ -898,10 +898,10 @@ void XaUser::XaUserCompanyAddFrm (){
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaUserCompany");
+    XaLibAction::AddXmlFile("XaUserCompany");
     
-    XaLibAction::AddXslPath("XaUserCompanyTpl");
-    XaLibAction::AddXslPath("XaUserCompanyAddFrm");
+    XaLibAction::AddXslFile("XaUserCompanyTpl");
+    XaLibAction::AddXslFile("XaUserCompanyAddFrm");
     
     XaLibDom* LibDom=new XaLibDom();
 		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -988,8 +988,8 @@ void XaUser::XaUserCompanyModFrm (){
 /// prendere layout da HttpParam
 	XaLibAction::SetLayout("Included");
     
-	XaLibAction::AddXslPath("XaUserCompanyTpl");
-	XaLibAction::AddXslPath("XaUserCompanyModFrmIncluded");
+	XaLibAction::AddXslFile("XaUserCompanyTpl");
+	XaLibAction::AddXslFile("XaUserCompanyModFrmIncluded");
     
 	XaLibDom* LibDom=new XaLibDom();
 
@@ -1102,8 +1102,8 @@ void XaUser::XaUserCompanyList (){
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaUserCompanyListStruct");
-    XaLibAction::AddXslPath("XaUserCompanyList");
+    XaLibAction::AddXmlFile("XaUserCompanyListStruct");
+    XaLibAction::AddXslFile("XaUserCompanyList");
 
 	XaLibDom* LibDom=new XaLibDom();
 	xmlDocPtr XmlDomDocData=LibDom->DomFromFile(SETTINGS["XmlDir"]+"XaUserCompanyListData.xml");
@@ -1197,14 +1197,14 @@ void XaUser::XaUserCompanyView (){
 
 	string LayoutType=HTTP.GetHttpParam("LayoutType");
     
-    XaLibAction::AddXmlPath("XaUserCompanyViewStruct");
+    XaLibAction::AddXmlFile("XaUserCompanyViewStruct");
     
     if(LayoutType=="Included"){
 		XaLibAction::SetLayout("Included");
-		XaLibAction::AddXslPath("XaUserCompanyViewIncluded");
+		XaLibAction::AddXslFile("XaUserCompanyViewIncluded");
 	} else {
 		XaLibAction::SetLayout("ModalWindow");
-		XaLibAction::AddXslPath("XaUserCompanyView");
+		XaLibAction::AddXslFile("XaUserCompanyView");
 	}
 
 	string XaUser_ID=XaLibAction::DecryptParamId(HTTP.GetHttpParam("RowId"));
@@ -1381,10 +1381,10 @@ void XaUser::XaUserDepartmentAddFrm (){
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaUserDepartment");
+    XaLibAction::AddXmlFile("XaUserDepartment");
 
-    XaLibAction::AddXslPath("XaUserDepartmentTpl");
-    XaLibAction::AddXslPath("XaUserDepartmentAddFrm");
+    XaLibAction::AddXslFile("XaUserDepartmentTpl");
+    XaLibAction::AddXslFile("XaUserDepartmentAddFrm");
 
     XaLibDom* LibDom=new XaLibDom();
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -1488,8 +1488,8 @@ void XaUser::XaUserDepartmentModFrm (){
 /// prendere layout da HttpParam
     XaLibAction::SetLayout("Included");
 
-    XaLibAction::AddXslPath("XaUserDepartmentTpl");
-    XaLibAction::AddXslPath("XaUserDepartmentModFrmIncluded");
+    XaLibAction::AddXslFile("XaUserDepartmentTpl");
+    XaLibAction::AddXslFile("XaUserDepartmentModFrmIncluded");
     
     XaLibDom* LibDom=new XaLibDom();
 
@@ -1605,14 +1605,14 @@ void XaUser::XaUserDepartmentView (){
 
     string LayoutType=HTTP.GetHttpParam("LayoutType");
     
-    XaLibAction::AddXmlPath("XaUserDepartmentViewStruct");
+    XaLibAction::AddXmlFile("XaUserDepartmentViewStruct");
     
     if(LayoutType=="Included"){
 		XaLibAction::SetLayout("Included");
-		XaLibAction::AddXslPath("XaUserDepartmentViewIncluded");
+		XaLibAction::AddXslFile("XaUserDepartmentViewIncluded");
 	} else {
 		XaLibAction::SetLayout("ModalWindow");
-		XaLibAction::AddXslPath("XaUserDepartmentView");
+		XaLibAction::AddXslFile("XaUserDepartmentView");
 	}
 
 	string XaUser_ID=XaLibAction::DecryptParamId(HTTP.GetHttpParam("RowId"));
@@ -1678,8 +1678,8 @@ void XaUser::XaUserOrgTree (){
 
 	XaLibAction::SetLayout("Standard");
 
-	XaLibAction::AddXmlPath("XaUserOrgTree");
-	XaLibAction::AddXslPath("XaUserOrgTree");
+	XaLibAction::AddXmlFile("XaUserOrgTree");
+	XaLibAction::AddXslFile("XaUserOrgTree");
 
 	XaLibDom* LibDom=new XaLibDom();
 	xmlDocPtr XmlDomDocTree=LibDom->DomFromFile(SETTINGS["XmlDir"]+"XaUserOrgTree.xml");
@@ -1801,7 +1801,7 @@ void XaUser::XaUserOrgTreeView (){
 
 	XaLibAction::SetLayout("Standard");
 
-	XaLibAction::AddXslPath("XaUserOrgTreeView");
+	XaLibAction::AddXslFile("XaUserOrgTreeView");
 
 	XaLibDom* LibDom=new XaLibDom();
 		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -1819,8 +1819,8 @@ void XaUser::XaUserOrgChart (){
 
 	XaLibAction::SetLayout("Standard");
 
-	XaLibAction::AddXmlPath("XaUserOrgChart");
-	XaLibAction::AddXslPath("XaUserOrgChart");
+	XaLibAction::AddXmlFile("XaUserOrgChart");
+	XaLibAction::AddXslFile("XaUserOrgChart");
 
 	
 	XaLibDom* LibDom=new XaLibDom();
@@ -1950,8 +1950,8 @@ void XaUser::XaUserOrgChartView (){
 
 	XaLibAction::SetLayout("Standard");
 
-	XaLibAction::AddXslPath("XaUserOrgChartView");
-	XaLibAction::AddXmlPath("XaUserOrgChartViewFilter");
+	XaLibAction::AddXslFile("XaUserOrgChartView");
+	XaLibAction::AddXmlFile("XaUserOrgChartViewFilter");
 
 	XaLibDom* LibDom=new XaLibDom();
 	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -2199,8 +2199,8 @@ void XaUser::XaUserRegistrationFrm (){
 	string StrError=HTTP.GetHttpParam("error");
 	
 	XaLibAction::SetLayout("LoginFrm");
-    XaLibAction::AddXmlPath("XaUserRegistrationFrm");
-    XaLibAction::AddXslPath("XaUserRegistrationFrm");
+    XaLibAction::AddXmlFile("XaUserRegistrationFrm");
+    XaLibAction::AddXslFile("XaUserRegistrationFrm");
 
 	unique_ptr<XaLibDom> LibDom (new XaLibDom());
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -2435,10 +2435,10 @@ void XaUser::XaUserXaDomainAddFrm (){
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaUserXaDomain");
+    XaLibAction::AddXmlFile("XaUserXaDomain");
 
-    XaLibAction::AddXslPath("XaUserXaDomainTpl");
-    XaLibAction::AddXslPath("XaUserXaDomainAddFrm");
+    XaLibAction::AddXslFile("XaUserXaDomainTpl");
+    XaLibAction::AddXslFile("XaUserXaDomainAddFrm");
 
     XaLibDom* LibDom=new XaLibDom();
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);

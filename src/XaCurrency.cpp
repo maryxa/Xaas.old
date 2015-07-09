@@ -21,10 +21,10 @@ void XaCurrency::XaCurrencyRateAddFrm (){
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaCurrencyRate");
+    XaLibAction::AddXmlFile("XaCurrencyRate");
 
-    XaLibAction::AddXslPath("XaCurrencyRateTpl");
-    XaLibAction::AddXslPath("XaCurrencyRateAddFrm");
+    XaLibAction::AddXslFile("XaCurrencyRateTpl");
+    XaLibAction::AddXslFile("XaCurrencyRateAddFrm");
 
     XaLibDom* LibDom=new XaLibDom();
     
@@ -208,8 +208,8 @@ void XaCurrency::XaCurrencyRateList(){
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaCurrencyRateListStruct");
-    XaLibAction::AddXslPath("XaCurrencyRateList");
+    XaLibAction::AddXmlFile("XaCurrencyRateListStruct");
+    XaLibAction::AddXslFile("XaCurrencyRateList");
 
 	XaLibDom* LibDom=new XaLibDom();
 	xmlDocPtr XmlDomDocData=LibDom->DomFromFile(SETTINGS["XmlDir"]+"XaCurrencyRateListData.xml");

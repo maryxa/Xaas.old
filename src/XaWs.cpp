@@ -24,9 +24,9 @@ void XaWs::Dispatcher (const string &CalledEvent) {
 void XaWs::List (){
 
 	XaLibAction::SetLayout("Standard");
-    XaLibAction::AddXslPath("XaWsList");
+    XaLibAction::AddXslFile("XaWsList");
 
-    XaLibAction::AddXmlPath("XaWsListStruct");
+    XaLibAction::AddXmlFile("XaWsListStruct");
 
 	XaLibDom* LibDom=new XaLibDom();
 	xmlDocPtr XmlDomDocData=LibDom->DomFromFile(SETTINGS["XmlDir"]+"XaWsListData.xml");

@@ -32,10 +32,10 @@ void XaDomain::XaDomainRowAddFrm (){
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaDomainRow");
+    XaLibAction::AddXmlFile("XaDomainRow");
 
-    XaLibAction::AddXslPath("XaDomainRowTpl");
-    XaLibAction::AddXslPath("XaDomainRowAddFrm");
+    XaLibAction::AddXslFile("XaDomainRowTpl");
+    XaLibAction::AddXslFile("XaDomainRowAddFrm");
 
     XaLibDom* LibDom=new XaLibDom();
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -204,8 +204,8 @@ void XaDomain::XaDomainList (){
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaDomainListStruct");
-    XaLibAction::AddXslPath("XaDomainList");
+    XaLibAction::AddXmlFile("XaDomainListStruct");
+    XaLibAction::AddXslFile("XaDomainList");
 
 	XaLibDom* LibDom=new XaLibDom();
 	xmlDocPtr XmlDomDocData=LibDom->DomFromFile(SETTINGS["XmlDir"]+"XaDomainListData.xml");
@@ -295,10 +295,10 @@ void XaDomain::XaDomainAddFrm (){
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaDomain");
+    XaLibAction::AddXmlFile("XaDomain");
 
-    XaLibAction::AddXslPath("XaDomainTpl");
-    XaLibAction::AddXslPath("XaDomainAddFrm");
+    XaLibAction::AddXslFile("XaDomainTpl");
+    XaLibAction::AddXslFile("XaDomainAddFrm");
 
     XaLibDom* LibDom=new XaLibDom();
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);

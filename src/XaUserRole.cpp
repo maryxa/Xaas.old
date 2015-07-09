@@ -34,10 +34,10 @@ void XaUserRole::XaUserRoleAddFrm (){
 
     XaLibAction::SetLayout("Standard");
 
-    XaLibAction::AddXmlPath("XaUserRole");
+    XaLibAction::AddXmlFile("XaUserRole");
 
-    XaLibAction::AddXslPath("XaUserRoleTpl");
-    XaLibAction::AddXslPath("XaUserRoleAddFrm");
+    XaLibAction::AddXslFile("XaUserRoleTpl");
+    XaLibAction::AddXslFile("XaUserRoleAddFrm");
 
     XaLibDom* LibDom=new XaLibDom();
     xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
@@ -179,9 +179,9 @@ void XaUserRole::XaUserRoleList (){
 	//string Login=HTTP.GetHttpParam("XaUser-Login");
 	
 	XaLibAction::SetLayout("Standard");
-    XaLibAction::AddXslPath("XaUserRoleList");
+    XaLibAction::AddXslFile("XaUserRoleList");
 
-    XaLibAction::AddXmlPath("XaUserRoleListStruct");
+    XaLibAction::AddXmlFile("XaUserRoleListStruct");
 
 	XaLibDom* LibDom=new XaLibDom();
 	xmlDocPtr XmlDomDocData=LibDom->DomFromFile(SETTINGS["XmlDir"]+"XaUserRoleListData.xml");
