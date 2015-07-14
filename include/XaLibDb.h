@@ -2,10 +2,8 @@
 #define XALIBDB_H
 
 #include <XaLibBase.h>
-#include <XaLibLog.h>
 #include <mysql.h>
 
-extern XaLibLog LOG;
 extern XaSettings SETTINGS;
 
 class XaLibDb : private XaLibBase {
@@ -15,7 +13,7 @@ class XaLibDb : private XaLibBase {
 		MYSQL* ConnWrite;
         MYSQL* ConnRead;
         MYSQL* ConnSession;
-
+        MYSQL* ConnLog;
 		int ActiveConnection;
 
 	protected:

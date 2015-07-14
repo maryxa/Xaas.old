@@ -7,7 +7,7 @@
 * @param ParamsConfiguration - ParamsConfigurationMap - System Configuration
 * @param LibLog - XaLibLog* - log Library
 * @param MyLogFile - ofstream* - log stream file
-* @param DbType - int - 1:=write 2:=read 3:=session
+* @param DbType - int - 1:=write 2:=read 3:=session 4:log
 * @see
 * @return void
 */
@@ -17,22 +17,29 @@ XaLibDb::XaLibDb(){
 
 void XaLibDb::Connect(int DbType) {
 
+	vector<string> DbTypeName ={"","Write","Read","Session","Log"};
+	
+	this->ActiveConnection=DbType;
+
+	const char* DbHost=SETTINGS["Db"+DbTypeName[DbType]+"Host"].c_str();
+	const char* DbDatabase=SETTINGS["Db"+DbTypeName[DbType]+"Database"].c_str();
+	const char* DbUser=SETTINGS["Db"+DbTypeName[DbType]+"User"].c_str();
+	const char* DbPassword=SETTINGS["Db"+DbTypeName[DbType]+"Password"].c_str();
+	unsigned int DbPort=atoi(SETTINGS["Db"+DbTypeName[DbType]+"Port"].c_str());
+	
     if (DbType==1){
 		
-		this->ActiveConnection=1;
+		//this->ActiveConnection=1;
 
-		const char* DbHost=SETTINGS["DbWriteHost"].c_str();
-		const char* DbDatabase=SETTINGS["DbWriteDatabase"].c_str();
-		const char* DbUser=SETTINGS["DbWriteUser"].c_str();
-		const char* DbPassword=SETTINGS["DbWritePassword"].c_str();
-
-        unsigned int DbPort=atoi(SETTINGS["DbWritePort"].c_str());
+		//const char* DbHost=SETTINGS["DbWriteHost"].c_str();
+		//const char* DbDatabase=SETTINGS["DbWriteDatabase"].c_str();
+		//const char* DbUser=SETTINGS["DbWriteUser"].c_str();
+		//const char* DbPassword=SETTINGS["DbWritePassword"].c_str();
+        //unsigned int DbPort=atoi(SETTINGS["DbWritePort"].c_str());
             
         ConnWrite = mysql_init(NULL);
 
         if (mysql_real_connect(ConnWrite, DbHost, DbUser, DbPassword, DbDatabase, DbPort, NULL, 0)==NULL){
-
-            LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Database Write Connection Problem->"+SETTINGS["DbWriteDatabase"]+" at->" + SETTINGS["DbWriteHost"]);
 
 			XaLibBase::SendHtmlHeaders();
             printf("Error %u: %s\n", mysql_errno(ConnWrite), mysql_error(ConnWrite));
@@ -40,25 +47,21 @@ void XaLibDb::Connect(int DbType) {
 			
         } else {
 
-            LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Database Write Connection -> "+SETTINGS["DbWriteDatabase"]+" at->" + SETTINGS["DbWriteHost"]);
         }
         
     } else if (DbType==2){
     
-		this->ActiveConnection=2;
+		//this->ActiveConnection=2;
 
-		const char* DbHost=SETTINGS["DbReadHost"].c_str();
-		const char* DbDatabase=SETTINGS["DbReadDatabase"].c_str();
-		const char* DbUser=SETTINGS["DbReadUser"].c_str();
-		const char* DbPassword=SETTINGS["DbReadPassword"].c_str();
-
-        unsigned int DbPort=atoi(SETTINGS["DbReadPort"].c_str());
+		//const char* DbHost=SETTINGS["DbReadHost"].c_str();
+		//const char* DbDatabase=SETTINGS["DbReadDatabase"].c_str();
+		//const char* DbUser=SETTINGS["DbReadUser"].c_str();
+		//const char* DbPassword=SETTINGS["DbReadPassword"].c_str();
+        //unsigned int DbPort=atoi(SETTINGS["DbReadPort"].c_str());
 
         ConnRead = mysql_init(NULL);
 
         if (mysql_real_connect(ConnRead, DbHost, DbUser, DbPassword, DbDatabase, DbPort, NULL, 0)==NULL){
-
-            LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Database Read Connection Problem->"+SETTINGS["DbReadDatabase"]+" at->" + SETTINGS["DbReadHost"]);
 			
 			XaLibBase::SendHtmlHeaders();
             printf("Error %u: %s\n", mysql_errno(ConnRead), mysql_error(ConnRead));	
@@ -66,25 +69,21 @@ void XaLibDb::Connect(int DbType) {
 			
         } else {
 
-            LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Database Read Connection -> "+SETTINGS["DbReadDatabase"]+" at->" + SETTINGS["DbReadHost"]);
         }
 
     } else if (DbType==3){
         
-		this->ActiveConnection=3;
+		//this->ActiveConnection=3;
 
-		const char* DbHost=SETTINGS["DbSessionHost"].c_str();
-		const char* DbDatabase=SETTINGS["DbSessionDatabase"].c_str();
-		const char* DbUser=SETTINGS["DbSessionUser"].c_str();
-		const char* DbPassword=SETTINGS["DbSessionPassword"].c_str();
-
-        unsigned int DbPort=atoi(SETTINGS["DbSessionPort"].c_str());
+		//const char* DbHost=SETTINGS["DbSessionHost"].c_str();
+		//const char* DbDatabase=SETTINGS["DbSessionDatabase"].c_str();
+		//const char* DbUser=SETTINGS["DbSessionUser"].c_str();
+		//const char* DbPassword=SETTINGS["DbSessionPassword"].c_str();
+        //unsigned int DbPort=atoi(SETTINGS["DbSessionPort"].c_str());
 
         ConnSession = mysql_init(NULL);
 
         if (mysql_real_connect(ConnSession, DbHost, DbUser, DbPassword, DbDatabase, DbPort, NULL, 0)==NULL){
-
-            LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Database Session Connection Problem->"+SETTINGS["DbSessionDatabase"]+" at->" + SETTINGS["DbSessionHost"]);
 
 			XaLibBase::SendHtmlHeaders();
 			printf("Error %u: %s\n", mysql_errno(ConnSession), mysql_error(ConnSession));	
@@ -92,15 +91,33 @@ void XaLibDb::Connect(int DbType) {
 
         } else {
 
-            LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Database Session Connection -> "+SETTINGS["DbSessionDatabase"]+" at->" + SETTINGS["DbSessionHost"]);
-        }
-    
-    } else {
+		}
 
-        LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"DbType is not valid");
+	} else if (DbType==4){
+
+		//this->ActiveConnection=4;
+
+		//const char* DbHost=SETTINGS["DbLogHost"].c_str();
+		//const char* DbDatabase=SETTINGS["DbLogDatabase"].c_str();
+		//const char* DbUser=SETTINGS["DbLogUser"].c_str();
+		//const char* DbPassword=SETTINGS["DbLogPassword"].c_str();
+        //unsigned int DbPort=atoi(SETTINGS["DbLogPort"].c_str());
+
+        ConnLog = mysql_init(NULL);
+
+        if (mysql_real_connect(ConnLog, DbHost, DbUser, DbPassword, DbDatabase, DbPort, NULL, 0)==NULL) {
+
+			XaLibBase::SendHtmlHeaders();
+			printf("Error %u: %s\n", mysql_errno(ConnLog), mysql_error(ConnLog));	
+			cout<< "Database Log Connection Problem->"+SETTINGS["DbLogDatabase"]+" at->" + SETTINGS["DbLogHost"]<<endl;
+
+        } else {
+
+		}
+
+	} else {
 
     }
-
 };
 
 int XaLibDb::ExInsert(string SqlQry) {
@@ -112,19 +129,54 @@ int XaLibDb::ExInsert(string SqlQry) {
 
 		mysql_query(ConnWrite,"set character_set_server='utf8'");
 		mysql_query(ConnWrite,"SET NAMES 'utf8'");
-		mysql_query(ConnWrite, cstr);
+		
+		if(mysql_query(ConnWrite, cstr)==0) {
 
-		return mysql_insert_id(ConnWrite);
+			return mysql_insert_id(ConnWrite);
+
+		} else {
+			XaLibBase::SendHtmlHeaders();
+			printf("Error %u: %s\n", mysql_errno(ConnWrite), mysql_error(ConnWrite));	
+			return 0;
+
+		}
 
 	} else if(this->ActiveConnection==3){
 
 		mysql_query(ConnSession,"set character_set_server='utf8'");
 		mysql_query(ConnSession,"SET NAMES 'utf8'");
-		mysql_query(ConnSession, cstr);
 
-		return mysql_insert_id(ConnSession);
+		if(mysql_query(ConnSession, cstr)==0) {
+
+			return mysql_insert_id(ConnSession);
+
+		} else {
+			XaLibBase::SendHtmlHeaders();
+			printf("Error %u: %s\n", mysql_errno(ConnSession), mysql_error(ConnSession));	
+			return 0;
+
+		}
+
+	} else if(this->ActiveConnection==4){
+
+		
+		mysql_query(ConnLog,"set character_set_server='utf8'");
+		mysql_query(ConnLog,"SET NAMES 'utf8'");
+				
+		if(mysql_query(ConnLog, cstr)==0) {
+
+			return mysql_insert_id(ConnLog);
+
+		} else {
+			XaLibBase::SendHtmlHeaders();
+			printf("Error %u: %s\n", mysql_errno(ConnLog), mysql_error(ConnLog));	
+			return 0;
+
+		}
 
 	} else {
+		XaLibBase::SendHtmlHeaders();
+		cout<< "Database Inserts Are Only Allowed For DB_WRITE - DB_SESSION - DB_LOG"<<endl;
 
 		return 0;
 	}
@@ -140,20 +192,38 @@ int XaLibDb::ExUpdate(string SqlQry) {
 
 		mysql_query(ConnWrite,"set character_set_server='utf8'");
 		mysql_query(ConnWrite,"SET NAMES 'utf8'");
-		mysql_query(ConnWrite, cstr);
 
-		return 1;
+		if(mysql_query(ConnWrite, cstr)==0) {
+
+			return 1;
+
+		} else {
+			XaLibBase::SendHtmlHeaders();
+			printf("Error %u: %s\n", mysql_errno(ConnWrite), mysql_error(ConnWrite));	
+			return 0;
+
+		}
 
 	} else if(this->ActiveConnection==3){
 
 		mysql_query(ConnSession,"set character_set_server='utf8'");
 		mysql_query(ConnSession,"SET NAMES 'utf8'");
-		mysql_query(ConnSession, cstr);
+		
+		if(mysql_query(ConnSession, cstr)==0) {
 
-		return 1;
+			return 1;
+
+		} else {
+			XaLibBase::SendHtmlHeaders();
+			printf("Error %u: %s\n", mysql_errno(ConnSession), mysql_error(ConnSession));	
+			return 0;
+
+		}
 
 	} else {
 
+		XaLibBase::SendHtmlHeaders();
+		cout<< "Database Updates Are Only Allowed For DB_WRITE - DB_SESSION"<<endl;
 		return 0;
 	}
 
@@ -168,20 +238,54 @@ int XaLibDb::ExDelete(string SqlQry) {
 
 		mysql_query(ConnWrite,"set character_set_server='utf8'");
 		mysql_query(ConnWrite,"SET NAMES 'utf8'");
-		mysql_query(ConnWrite, cstr);
 
-		return 1;
+		if(mysql_query(ConnWrite, cstr)==0) {
+
+			return 1;
+
+		} else {
+
+			XaLibBase::SendHtmlHeaders();
+			printf("Error %u: %s\n", mysql_errno(ConnWrite), mysql_error(ConnWrite));	
+			return 0;
+		}
 
 	} else if(this->ActiveConnection==3){
 
 		mysql_query(ConnSession,"set character_set_server='utf8'");
 		mysql_query(ConnSession,"SET NAMES 'utf8'");
-		mysql_query(ConnSession, cstr);
 
-		return 1;
+		if(mysql_query(ConnSession, cstr)==0) {
+
+			return 1;
+
+		} else {
+
+			XaLibBase::SendHtmlHeaders();
+			printf("Error %u: %s\n", mysql_errno(ConnSession), mysql_error(ConnSession));	
+			return 0;
+		}
+
+	} else if(this->ActiveConnection==4){
+
+		mysql_query(ConnLog,"set character_set_server='utf8'");
+		mysql_query(ConnLog,"SET NAMES 'utf8'");
+
+		if(mysql_query(ConnLog, cstr)==0) {
+
+			return 1;
+
+		} else {
+
+			XaLibBase::SendHtmlHeaders();
+			printf("Error %u: %s\n", mysql_errno(ConnLog), mysql_error(ConnLog));	
+			return 0;
+		}
 
 	} else {
 
+		XaLibBase::SendHtmlHeaders();
+		cout<< "Database Deletes Are Only Allowed For DB_WRITE - DB_SESSION - DB_LOG "<<endl;
 		return 0;
 	}
 
@@ -189,7 +293,6 @@ int XaLibDb::ExDelete(string SqlQry) {
 
 XaLibDb::DbResMap XaLibDb::ExSelect(string SqlQry) {
 
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executing Sql Query-> " + SqlQry);
 
 	DbResMap DbRes;
 	MYSQL_RES *result;
@@ -205,8 +308,6 @@ XaLibDb::DbResMap XaLibDb::ExSelect(string SqlQry) {
 			if (mysql_query(ConnRead, cstr)!=0){
 
 				string log=qry.c_str();
-
-				LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR Sql Query-> " + log);
 
 				XaLibBase::SendHtmlHeaders();
 				printf("Error %u: %s\n", mysql_errno(ConnSession), mysql_error(ConnSession));
@@ -231,7 +332,6 @@ XaLibDb::DbResMap XaLibDb::ExSelect(string SqlQry) {
 
 				string log=qry.c_str();
 
-				LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Sql Query-> " + log);
 
 				XaLibBase::SendHtmlHeaders();				
 
@@ -244,6 +344,31 @@ XaLibDb::DbResMap XaLibDb::ExSelect(string SqlQry) {
 			} else {
 
 				result = mysql_store_result(ConnSession);
+				DbRes=this->RetrieveRows(result);
+				return DbRes;
+			}
+
+		} else if(this->ActiveConnection==4){
+
+			mysql_query(ConnLog,"set character_set_server='utf8'");
+			mysql_query(ConnLog,"SET NAMES 'utf8'");
+
+			if (mysql_query(ConnLog, cstr)!=0){
+
+				string log=qry.c_str();
+
+
+				XaLibBase::SendHtmlHeaders();				
+
+				printf("Error %u: %s\n", mysql_errno(ConnLog), mysql_error(ConnLog));
+				cout<< "Error occurred during execution Query-> " + log<<endl;
+
+				DbRes.clear();
+				return DbRes;
+
+			} else {
+
+				result = mysql_store_result(ConnLog);
 				DbRes=this->RetrieveRows(result);
 				return DbRes;
 			}
@@ -307,19 +432,65 @@ int XaLibDb::ExSystemQry(string SqlQry) {
 
 		mysql_query(ConnWrite,"set character_set_server='utf8'");
 		mysql_query(ConnWrite,"SET NAMES 'utf8'");
-		mysql_query(ConnWrite, cstr);
+
+		if(mysql_query(ConnWrite, cstr)==0) {
+
+			return 1;
+
+		} else {
+
+			XaLibBase::SendHtmlHeaders();
+			printf("Error %u: %s\n", mysql_errno(ConnWrite), mysql_error(ConnWrite));	
+			return 0;
+		}
 
 	} else if(this->ActiveConnection==2){
 
 		mysql_query(ConnRead,"set character_set_server='utf8'");
 		mysql_query(ConnRead,"SET NAMES 'utf8'");
-		mysql_query(ConnRead, cstr);
+		
+		if(mysql_query(ConnRead, cstr)==0) {
+
+			return 1;
+
+		} else {
+
+			XaLibBase::SendHtmlHeaders();
+			printf("Error %u: %s\n", mysql_errno(ConnLog), mysql_error(ConnLog));	
+			return 0;
+		}
 
 	} else if(this->ActiveConnection==3){
 	
 		mysql_query(ConnSession,"set character_set_server='utf8'");
 		mysql_query(ConnSession,"SET NAMES 'utf8'");
-		mysql_query(ConnSession, cstr);
+		
+		if(mysql_query(ConnSession, cstr)==0) {
+
+			return 1;
+
+		} else {
+
+			XaLibBase::SendHtmlHeaders();
+			printf("Error %u: %s\n", mysql_errno(ConnSession), mysql_error(ConnSession));	
+			return 0;
+		}
+
+	} else if(this->ActiveConnection==4){
+	
+		mysql_query(ConnLog,"set character_set_server='utf8'");
+		mysql_query(ConnLog,"SET NAMES 'utf8'");
+		
+		if(mysql_query(ConnLog, cstr)==0) {
+
+			return 1;
+
+		} else {
+
+			XaLibBase::SendHtmlHeaders();
+			printf("Error %u: %s\n", mysql_errno(ConnLog), mysql_error(ConnLog));	
+			return 0;
+		}
 	}
 
 	return 1;
@@ -327,10 +498,4 @@ int XaLibDb::ExSystemQry(string SqlQry) {
 };
 
 XaLibDb::~XaLibDb() {
-
-	#ifdef _WIN32
-
-	#else
-
-	#endif
 };
