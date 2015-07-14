@@ -27,6 +27,7 @@ class XaLibController : protected XaLibBase {
 
 		void GetCall();
 		void GetLayout();
+		void GetServerInfo();
 		void GetClientInfo();
 		void GetWs();
 
