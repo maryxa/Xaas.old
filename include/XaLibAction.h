@@ -25,6 +25,8 @@ extern XaLibHttp HTTP;
 //extern XaLibDb DB_SESSION;
 extern XaLibDb DB_READ;
 extern XaLibDb DB_WRITE;
+extern XaLibDb DB_LOG;
+
 extern XaLibSession SESSION;
 extern XaRequest REQUEST;
 extern XaResponse RESPONSE;
