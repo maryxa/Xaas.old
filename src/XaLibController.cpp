@@ -25,6 +25,7 @@ XaLibHttp HTTP;
 XaLibDb DB_SESSION;
 XaLibDb DB_READ;
 XaLibDb DB_WRITE;
+XaLibDb DB_LOG;
 
 XaLibSession SESSION;
 unique_ptr<ofstream> MY_LOG_FILE;
@@ -44,17 +45,23 @@ void XaLibController::LoadXmlConfFile(string ConfFile){
 
 void XaLibController::StartLog(){
 
-	MY_LOG_FILE.reset(new ofstream((char*)(SETTINGS["LogDir"]+SETTINGS["LogFile"]).c_str(), ios::out | ios::app));
-
-	if (MY_LOG_FILE.get()->is_open()){
-
-		LOG.Init(SETTINGS["LogLevel"]);
+	if (SETTINGS["LogUseDb"]=="yes" && SETTINGS["DatabaseEnable"]=="yes") {
+	
+		MY_LOG_FILE.reset(nullptr);
 
 	} else {
 
-		cout << "Unable to open Log file: "<<SETTINGS["LogDir"]+SETTINGS["LogFile"]<<endl;
-    }
+		MY_LOG_FILE.reset(new ofstream((char*)(SETTINGS["LogDir"]+SETTINGS["LogFile"]).c_str(), ios::out | ios::app));
 
+		if (MY_LOG_FILE.get()->is_open()){
+
+			//LOG.Init(SETTINGS["LogLevel"]);
+
+		} else {
+
+			cout << "Unable to open Log file: "<<SETTINGS["LogDir"]+SETTINGS["LogFile"]<<endl;
+		}
+	}
 };
 
 void XaLibController::StartHttp(){
@@ -66,22 +73,30 @@ void XaLibController::StartDb(){
 
 	if (SETTINGS["DatabaseEnable"]=="yes") {
 
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Databases Enabled");
-
 		DB_SESSION.Connect(3);
 		DB_WRITE.Connect(1);
 		DB_READ.Connect(2);
+		DB_LOG.Connect(4);
 
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Databases Enabled");
+
+		
 	} else {
-	
+
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Databases Disabled");
 	}
 };
 
+void XaLibController::GetServerInfo(){
+
+	REQUEST.ServerIpAddress=HTTP.GetServerIpAddress();
+};
+
 void XaLibController::GetClientInfo(){
 
-	REQUEST.ClientIpAddress=HTTP.GetIpAddress();
-	LOG.SetIpAddress(REQUEST.ClientIpAddress);
+	REQUEST.ClientIpAddress=HTTP.GetClientIpAddress();
+
+	//LOG.SetIpAddress(REQUEST.ClientIpAddress);
 
 	string Language=HTTP.GetHttpParam("l");
 

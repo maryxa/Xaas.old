@@ -2,7 +2,6 @@
 
 #include <XaLibBase.h>
 #include <XaLibLog.h>
-
 #include <XaLibDb.h>
 #include <XaLibChar.h>
 
@@ -11,7 +10,7 @@ XaLibSql::XaLibSql(){
 };
 
 int XaLibSql::Insert(XaLibDb& LibDb,string TableName,VectorFields VectorFields,VectorValues VectorValues){
-
+		
 	XaLibChar* LibChar=new XaLibChar();
 	
 	string SqlQry="INSERT INTO ";
@@ -54,26 +53,22 @@ int XaLibSql::Insert(XaLibDb& LibDb,string TableName,VectorFields VectorFields,V
 	    }
 	SqlQry.append(")");
 	
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Query Insert -> " +SqlQry);
+	//LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Query Insert -> " +SqlQry);
 
 
 	unsigned NextId=LibDb.ExInsert(SqlQry);
 
 	delete LibChar;
 
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executed Query Insert -> " +SqlQry);
+	//LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executed Query Insert -> " +SqlQry);
 
-
-	if (NextId==0){
-
-		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error occurred inserting a new Record in -> "+ TableName);
+	if (NextId==0) {
 
 		return 0;
 
 	} else {
 
 		return NextId;
-
 	}
 
 };

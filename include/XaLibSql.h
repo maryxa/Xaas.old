@@ -3,7 +3,7 @@
 
 #include <XaLibBase.h>
 #include <XaLibDb.h>
-#include <XaLibChar.h>
+#include <XaLibLog.h>
 
 extern XaLibLog LOG;
 extern XaSettings SETTINGS;
@@ -28,10 +28,9 @@ class XaLibSql : protected XaLibBase {
 	public:
 
 		XaLibSql();
-		
 		~XaLibSql();
 
-		int Insert(XaLibDb& LibDb,string TableName,VectorFields VectorFields,VectorValues VectorValues);
+		static int Insert(XaLibDb& LibDb,string TableName,VectorFields VectorFields,VectorValues VectorValues);
 		int InsertMulti(XaLibDb& LibDb,string TableName,VectorFields VectorFields,vector<vector<string> > VectorValues);
 		int Update(XaLibDb& LibDb,string TableName,VectorFields VectorFields,VectorValues VectorValues,WhereFields WhereFields,WhereValues WhereValues);
 		
