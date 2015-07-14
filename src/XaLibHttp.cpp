@@ -173,8 +173,6 @@ string XaLibHttp::GetHttpHeadersString(){
 	//cout<<HttpString<<endl;
 	//HttpString.append("&");
 
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Read HttpString -> " +HttpString);
-
 	HttpString.erase(remove(HttpString.begin(), HttpString.end(), ' '), HttpString.end());
 	HttpString.erase(remove(HttpString.begin(), HttpString.end(), '\n'), HttpString.end());
 	HttpString.erase(remove(HttpString.begin(), HttpString.end(), '\r'), HttpString.end());
@@ -365,7 +363,7 @@ string XaLibHttp::GetSessionId(){
 	}
 };
 
-string XaLibHttp::GetIpAddress (){
+string XaLibHttp::GetClientIpAddress (){
 
 	string IpAddress="";
 	
@@ -381,6 +379,11 @@ string XaLibHttp::GetIpAddress (){
 	}
 
 	return IpAddress;
+};
+
+string XaLibHttp::GetServerIpAddress (){
+
+	return this->HTTP_SERVER_ADDR;
 };
 
 XaLibHttp::~XaLibHttp(){

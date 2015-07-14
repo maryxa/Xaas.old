@@ -51,7 +51,8 @@ class XaLibHttp : private XaLibBase {
 		vector<string>  GetHttpParamStruct(string HttpParamName,string StructType);
 		string GetHttpHeadersString();
         string GetSessionId();
-		string GetIpAddress ();
+		string GetClientIpAddress ();
+		string GetServerIpAddress ();
 
 };
 #endif
