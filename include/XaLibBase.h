@@ -83,6 +83,7 @@ struct XaRequest {
 	string Brand="";
 	string Device="";
 	string ClientIpAddress="";
+	string ServerIpAddress="";
 
 	bool FlowCheck=true;
 };
@@ -131,7 +132,7 @@ class XaLibBase {
 		string FromStringToHex(string StringValue);
 		int FromCharToInt(char CharValue);
 
-		virtual void SendHtmlHeaders();
+		void SendHtmlHeaders();
 
     public:
 
