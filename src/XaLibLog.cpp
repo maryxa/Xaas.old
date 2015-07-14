@@ -1,16 +1,9 @@
 #include <XaLibLog.h>
-
-#include <string>
-#include <sstream>
-#include <iostream>
-#include <fstream>
-#include <random>
-#include <chrono>
-
+#include <XaLibBase.h>
 #include <XaLibTime.h>
-
-extern unique_ptr<ofstream> MY_LOG_FILE;
+#include <XaLibSql.h>
 mutex m;
+extern XaLibDb DB_LOG;
 
 XaLibLog::XaLibLog(){
 };
@@ -23,46 +16,60 @@ XaLibLog::XaLibLog(){
 * @return MyLogFile - ofstream
 */
 
-void XaLibLog::Init(string SysLogLevelConf){
-	
-	this->SysLogLevel=SysLogLevelConf;
-}
-
 //LIVELLI DI LOG: 0=NIENTE 1=TUTTO 2=SOLO ERR
-void XaLibLog::Write(string LogMessageLevel,const char* ClassName,const char* MethodName,int LineNumber,string LogMessage){
+void XaLibLog::Write(const string& LogMessageLevel,const char* ClassName,const char* MethodName,const int& LineNumber,const string& LogMessage){
 
-	
-	if (this->SysLogLevel=="0"){
+	stringstream LineNumberStringStream;
+	LineNumberStringStream << LineNumber;
+	string LineNumberString= LineNumberStringStream.str();
+
+	if (SETTINGS["LogLevel"]=="0"){
 
 	} else {
 
-		unique_ptr<XaLibTime> LibTimeLocal(new XaLibTime());
-		string LogTime=LibTimeLocal->GetDateTimeIsoComplete();
+		if (SETTINGS["LogUseDb"]=="yes" && SETTINGS["DatabaseEnable"]=="yes") {
 
-		stringstream LineNumberStringStream;
-		LineNumberStringStream << LineNumber;
-		string LineNumberString= LineNumberStringStream.str();
+			WriteDb(LogMessageLevel,ClassName,MethodName,LineNumberString,LogMessage);
 
-		string MyLogString="["+LogMessageLevel+"]["+LogTime+"]["+IpAddress+ "]["+ClassName +"]["+LineNumberString+"]["+MethodName+"]["+LogMessage+"]";
+		} else {
 
-		
-	
-		WriteFile(MyLogString,LogMessageLevel);
-	
+			unique_ptr<XaLibTime> LibTimeLocal(new XaLibTime());
+			string LogTime=LibTimeLocal->GetDateTimeIsoComplete();
+
+			string MyLogString="["+SETTINGS["AppName"]+"]["+LogMessageLevel+"]["+REQUEST.ServerIpAddress+"]["+LogTime+"]["+REQUEST.ClientIpAddress+ "]["+FromIntToString(REQUEST.XaUser_ID)+"]["+ClassName +"]["+LineNumberString+"]["+MethodName+"]["+LogMessage+"]";
+
+			WriteFile(MyLogString,LogMessageLevel);
+		}
 	}
 };
 
 //void XaLibLog::WriteFile (string MyLogString,string LogMessageLevel,mutex *m){
-	
+
+void XaLibLog::WriteDb (const string& LogMessageLevel,const char* ClassName,const char* MethodName,const string& LineNumber,const string& LogMessage){
+
+	vector<string> VectorFields ={"app_name","log_level","server_ip_address","ip_address","XaUser_ID","class_name","method_name","line_number","message"}; 
+	vector<string> VectorValues ={SETTINGS["AppName"],LogMessageLevel,REQUEST.ServerIpAddress,REQUEST.ClientIpAddress,FromIntToString(REQUEST.XaUser_ID),ClassName,MethodName,LineNumber,LogMessage};
+
+	if (SETTINGS["LogLevel"]=="1"){
+
+		XaLibSql::Insert(DB_LOG,"XaSystemLog",VectorFields,VectorValues);
+
+	} else if (SETTINGS["LogLevel"]=="2" && LogMessageLevel=="ERR"){
+
+		XaLibSql::Insert(DB_LOG,"XaSystemLog",VectorFields,VectorValues);
+	}
+};
+
+
 void XaLibLog::WriteFile (string MyLogString,string LogMessageLevel){
 
-	if (this->SysLogLevel=="1"){		
+	if (SETTINGS["LogLevel"]=="1"){		
 
 		m.lock();
 		*MY_LOG_FILE<<MyLogString<<endl;
 		m.unlock();
 
-	} else if (this->SysLogLevel=="2" && LogMessageLevel=="ERR"){
+	} else if (SETTINGS["LogLevel"]=="2" && LogMessageLevel=="ERR"){
 
 		m.lock();
 		*MY_LOG_FILE<<MyLogString<<endl;
@@ -70,11 +77,6 @@ void XaLibLog::WriteFile (string MyLogString,string LogMessageLevel){
 
 	}
 
-};
-
-void XaLibLog::SetIpAddress(string &_IpAddress){
-
-	this->IpAddress=_IpAddress;
 };
 
 void XaLibLog::Rotate(){

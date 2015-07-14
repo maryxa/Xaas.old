@@ -1,22 +1,18 @@
 #ifndef XALIBLOG_H
 #define XALIBLOG_H
 
-#include <string>
-#include <map>
-#include <vector>
-#include <memory>
+#include <XaLibBase.h>
+#include <XaLibDb.h>
 
-using namespace std;
+extern unique_ptr<ofstream> MY_LOG_FILE;
+extern XaRequest REQUEST;
+extern XaLibDb DB_LOG;
 
-class XaLibLog {
+class XaLibLog : protected XaLibBase {
 
 	private:
 
-		string SysLogLevel;
-		string IpAddress;
-
 		void Rotate();
-		//static void *WriteFile(void*);
 
 	protected:
 
@@ -25,15 +21,10 @@ class XaLibLog {
 		XaLibLog();
 		~XaLibLog();
 
-		void Init(string SysLogLevelConf);
-		void SetIpAddress(string &_IpAddress);
-
-		void Write(string LogMessageLevel, const char* ClassName, const char* MethodName,int LineNumber,string LogMessage);
-
-		//void WriteFile (string MyLogString,string LogMessageLevel,mutex *m);
+		void Write(const string& LogMessageLevel, const char* ClassName, const char* MethodName,const int& LineNumber,const string& LogMessage);
+		void WriteDb (const string& LogMessageLevel,const char* ClassName,const char* MethodName,const string& LineNumber,const string& LogMessage);
 		void WriteFile (string MyLogString,string LogMessageLevel);
 
-		
 		void Close();
 
 };
