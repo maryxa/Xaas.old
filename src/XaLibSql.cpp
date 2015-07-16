@@ -53,21 +53,21 @@ int XaLibSql::Insert(XaLibDb& LibDb,string TableName,VectorFields VectorFields,V
 	    }
 	SqlQry.append(")");
 	
-	//LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Query Insert -> " +SqlQry);
-
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Query Insert -> " +SqlQry);
 
 	unsigned NextId=LibDb.ExInsert(SqlQry);
 
 	delete LibChar;
 
-	//LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executed Query Insert -> " +SqlQry);
 
 	if (NextId==0) {
 
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Executing Query Insert -> " +SqlQry);
 		return 0;
 
 	} else {
 
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executed Query Insert -> " +SqlQry);
 		return NextId;
 	}
 
@@ -341,7 +341,7 @@ XaLibSql::DbResMap XaLibSql::SelectOne(XaLibDb& LibDb,string TableName, int RowI
 	string SqlQry="SELECT * FROM ";
 	SqlQry.append(TableName);
 	SqlQry.append(" WHERE ID=");
-	SqlQry.append(XaLibBase::FromIntToString(RowId));
+	SqlQry.append(to_string(RowId));
 	
 	DbRes=LibDb.ExSelect(SqlQry);
 
@@ -355,12 +355,12 @@ XaLibSql::DbResMap XaLibSql::SelectOne(XaLibDb& LibDb,string TableName, int RowI
 	string SqlQry="SELECT * FROM ";
 	SqlQry.append(TableName);
 	SqlQry.append(" WHERE ID=");
-	SqlQry.append(XaLibBase::FromIntToString(RowId));
+	SqlQry.append(to_string(RowId));
 
 	SqlQry.append(" AND active=");
-	SqlQry.append(XaLibBase::FromIntToString(Active));
+	SqlQry.append(to_string(Active));
 	SqlQry.append(" AND deleted=");
-	SqlQry.append(XaLibBase::FromIntToString(Deleted));
+	SqlQry.append(to_string(Deleted));
 
 	DbRes=LibDb.ExSelect(SqlQry);
 
