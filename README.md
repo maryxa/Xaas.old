@@ -1,5 +1,5 @@
 # XaLib
-c++ application framework
+XAllegro c++ application framework
 
 Designed to get easier developing of web apps using the most advanced patterns:
 
