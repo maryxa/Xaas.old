@@ -12,7 +12,7 @@ void XaLibAction::AddXmlFile(string FilePath){
 	if (fp) {
 
 		XmlFilePaths.push_back(TmpString);
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XmlFilePath -> "+TmpString);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XmlFile -> "+TmpString);
 
 	} else {
 
@@ -40,11 +40,11 @@ void XaLibAction::AddXslFile(string FilePath){
 
 	if (f1) {
 		XslFilePaths.push_back(XslLayoutPath);
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFilePath -> "+XslLayoutPath);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile -> "+XslLayoutPath);
 
 	} else if (f2) {
 		XslFilePaths.push_back(XslDefaultPath);
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFilePath Default-> "+XslDefaultPath);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile Default-> "+XslDefaultPath);
 
 	} else {
 	
