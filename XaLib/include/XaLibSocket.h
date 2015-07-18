@@ -1,11 +1,9 @@
 #ifndef XALIBSOCKET_H
 #define XALIBSOCKET_H
 
-#include <string>
-#include <map>
-#include <vector>
-
 #include <XaLibSocket.h>
+#include <XaLibBase.h>
+#include <XaLibLog.h>
 
 /*
 	XaLibSocket* LibSocket=new XaLibSocket();
@@ -14,9 +12,10 @@
 	delete LibSocket;
 */
 
-using namespace std;
+extern XaLibLog LOG;
+extern XaSettings SETTINGS;
 
-class XaLibSocket {
+class XaLibSocket : protected XaLibBase  {
 
 	private:
 		//string XHtmlPage;
@@ -38,7 +37,7 @@ class XaLibSocket {
 		void SocketShutdown(int SocketNumber);
 		void SocketClose(int SocketNumber);
 
-		void GetHostByName();
-		void MakeArpTable();
+		int SystemPing(const string &target,const int &count);
+
 };
 #endif

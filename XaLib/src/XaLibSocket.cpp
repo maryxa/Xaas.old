@@ -29,6 +29,8 @@
 	#include <arpa/inet.h>
 	#include <netinet/ip.h>
 
+#include "XaLibBase.h"
+
 #endif
 
 using namespace std;
@@ -307,13 +309,36 @@ sock_addr.sin_addr.S_un.S_un_b.s_b4=16;
 
 };
 
-void XaLibSocket::GetHostByName(){
+int XaLibSocket::SystemPing(const string &target,const int &count) {
+
+	int ReturnValue=0;
+
+	string cmd="sudo ping -c "+FromIntToString(count)+" "+target;
+	FILE* pipe = popen(cmd.c_str(), "r");
+
+	if (!pipe) {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Executing Command -> sudo ping -c "+FromIntToString(count)+" "+target);
+
+	} else {
+
+		char buffer[128];
+
+		while(!feof(pipe)) {
+
+			if(fgets(buffer, 128, pipe) != NULL){
+
+				//result.append(string(buffer));
+			}
+  		}
+	}
+
+	pclose(pipe);
+	
+	//LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"WiFiScan Result -> "+result);
+	
+	return ReturnValue;
 };
-
-void XaLibSocket::MakeArpTable () {
-
-};
-
 
 XaLibSocket::~XaLibSocket(){
 };
