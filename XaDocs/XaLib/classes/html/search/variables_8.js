@@ -1,6 +1,0 @@
-var searchData=
-[
-  ['language',['Language',['../struct_xa_request.html#af28de8fe380982f412fe6355fff4ed05',1,'XaRequest']]],
-  ['localparamsconfiguration',['LocalParamsConfiguration',['../class_xa_lib_sql.html#ac0747889a6ce3a172754828266e5099e',1,'XaLibSql']]],
-  ['log',['LOG',['../_xa_lib_action_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903',1,'LOG():&#160;XaLibController.cpp'],['../_xa_lib_crypto_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903',1,'LOG():&#160;XaLibController.cpp'],['../_xa_lib_db_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903',1,'LOG():&#160;XaLibController.cpp'],['../_xa_lib_dom_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903',1,'LOG():&#160;XaLibController.cpp'],['../_xa_lib_mail_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903',1,'LOG():&#160;XaLibController.cpp'],['../_xa_lib_rb_gp_io_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903',1,'LOG():&#160;XaLibController.cpp'],['../_xa_lib_rb_uart_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903',1,'LOG():&#160;XaLibController.cpp'],['../_xa_lib_session_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903',1,'LOG():&#160;XaLibController.cpp'],['../_xa_lib_sql_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903',1,'LOG():&#160;XaLibController.cpp'],['../_xa_lib_controller_8cpp.html#a4f7e146c4c04b3b3574c3d19fcdc0903',1,'LOG():&#160;XaLibController.cpp']]]
-];
