@@ -1,0 +1,770 @@
+/* FONT DEFINITION START*/
+/* Light */
+@font-face {
+  font-family: 'MySans';
+  src: url("/font/OpenSans/OpenSans-Light.eot");
+  src: url("/font/OpenSans/OpenSans-Light.eot?#iefix") format("embedded-opentype"), url("/font/OpenSans/OpenSans-Light.woff") format("woff"), url("/font/OpenSans/OpenSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Light Italic */
+@font-face {
+  font-family: 'MySans';
+  src: url("/font/OpenSans/OpenSans-LightItalic.eot");
+  src: url("/font/OpenSans/OpenSans-LightItalic.eot?#iefix") format("embedded-opentype"), url("/font/OpenSans/OpenSans-LightItalic.woff") format("woff"), url("/font/OpenSans/OpenSans-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Regular */
+@font-face {
+  font-family: 'MySans';
+  src: url("/font/OpenSans/OpenSans-Regular.eot");
+  src: url("/font/OpenSans/OpenSans-Regular.eot?#iefix") format("embedded-opentype"), url("/font/OpenSans/OpenSans-Regular.woff") format("woff"), url("/font/OpenSans/OpenSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Regular Italic */
+@font-face {
+  font-family: 'MySans';
+  src: url("/font/OpenSans/OpenSans-Italic.eot");
+  src: url("/font/OpenSans/OpenSans-Italic.eot?#iefix") format("embedded-opentype"), url("/font/OpenSans/OpenSans-Italic.woff") format("woff"), url("/font/OpenSans/OpenSans-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* SemiBold */
+@font-face {
+  font-family: 'MySans';
+  src: url("/font/OpenSans/OpenSans-Semibold.eot");
+  src: url("/font/OpenSans/OpenSans-Semibold.eot?#iefix") format("embedded-opentype"), url("/font/OpenSans/OpenSans-Semibold.woff") format("woff"), url("/font/OpenSans/OpenSans-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* SemiBold Italic */
+@font-face {
+  font-family: 'MySans';
+  src: url("/font/OpenSans/OpenSans-SemiboldItalic.eot");
+  src: url("/font/OpenSans/OpenSans-SemiboldItalic.eot?#iefix") format("embedded-opentype"), url("/font/OpenSans/OpenSans-SemiboldItalic.woff") format("woff"), url("/font/OpenSans/OpenSans-SemiboldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* Bold */
+@font-face {
+  font-family: 'MySans';
+  src: url("/font/OpenSans/OpenSans-Bold.eot");
+  src: url("/font/OpenSans/OpenSans-Bold.eot?#iefix") format("embedded-opentype"), url("/font/OpenSans/OpenSans-Bold.woff") format("woff"), url("/font/OpenSans/OpenSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Bold Italic */
+@font-face {
+  font-family: 'MySans';
+  src: url("/font/OpenSans/OpenSans-BoldItalic.eot");
+  src: url("/font/OpenSans/OpenSans-BoldItalic.eot?#iefix") format("embedded-opentype"), url("/font/OpenSans/OpenSans-BoldItalic.woff") format("woff"), url("/font/OpenSans/OpenSans-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* Extra Bold */
+@font-face {
+  font-family: 'MySans';
+  src: url("/font/OpenSans/OpenSans-ExtraBold.eot");
+  src: url("/font/OpenSans/OpenSans-ExtraBold.eot?#iefix") format("embedded-opentype"), url("/font/OpenSans/OpenSans-ExtraBold.woff") format("woff"), url("/font/OpenSans/OpenSans-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+/* Extra Bold Italic */
+@font-face {
+  font-family: 'MySans';
+  src: url("/font/OpenSans/OpenSans-ExtraBoldItalic.eot");
+  src: url("/font/OpenSans/OpenSans-ExtraBoldItalic.eot?#iefix") format("embedded-opentype"), url("/font/OpenSans/OpenSans-ExtraBoldItalic.woff") format("woff"), url("/font/OpenSans/OpenSans-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+}
+
+/* FONT DEFINITION END*/
+/* XAllegro Ltd 2015
+ *
+ * www.xallegro.com - info@xallegro.com
+ *
+ */
+/*
+ * Green : #77B710
+ * Green Scuro: #95AE0C
+
+* Blue  : #336699
+* BlueJ:#205081
+ * Orange: #FF9900
+ * Red:    #A42700
+ * Gray :  #F4F4F4
+ * Text :  #222222;
+ACID GREEN: #C8EA17
+ */
+/*
+$ColorBlue:#205081;
+
+$ColorGreen:#77B710;
+$ColorGreenAcid:#C8EA17;
+$ColorOrange:#FF9900;
+$ColorRed:#A42700;
+
+$ColorTextBlack:#444444;
+$ColorTextWhite:#FFFFFF;
+
+$ColorBorderBlack:#444444;
+
+
+$MenuTopFontSize:1.2em;
+$MenuTopLineHeight:2.2em;
+
+$MenuDownFontSize:1.4em;
+$MenuDownLineHeight:2.4em;
+
+$FontSizeRegular:1em;
+*/
+/* XAllegro Ltd 2015
+ * 
+ * www.xallegro.com - info@xallegro.com
+ * 
+ */
+/* XAllegro Ltd 2015
+ *
+ * www.xallegro.com - info@xallegro.com
+ *
+ */
+/*
+ * Green : #77B710
+ * Green Scuro: #95AE0C
+
+* Blue  : #336699
+* BlueJ:#205081
+ * Orange: #FF9900
+ * Red:    #A42700
+ * Gray :  #F4F4F4
+ * Text :  #222222;
+ACID GREEN: #C8EA17
+ */
+/*
+$ColorBlue:#205081;
+
+$ColorGreen:#77B710;
+$ColorGreenAcid:#C8EA17;
+$ColorOrange:#FF9900;
+$ColorRed:#A42700;
+
+$ColorTextBlack:#444444;
+$ColorTextWhite:#FFFFFF;
+
+$ColorBorderBlack:#444444;
+
+
+$MenuTopFontSize:1.2em;
+$MenuTopLineHeight:2.2em;
+
+$MenuDownFontSize:1.4em;
+$MenuDownLineHeight:2.4em;
+
+$FontSizeRegular:1em;
+*/
+/* line 9, ../../scss/default/_form.scss */
+.form {
+  width: 100%;
+  background-color: #fefefe;
+  font-size: 1.8vh;
+  padding-bottom: 0.5%;
+  border-radius: 0.2em;
+}
+/* line 15, ../../scss/default/_form.scss */
+.form fieldset {
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 2%;
+}
+/* line 20, ../../scss/default/_form.scss */
+.form fieldset legend {
+  padding-left: 2%;
+  padding-top: 1%;
+  padding-bottom: 1.5%;
+  text-transform: uppercase;
+  white-space: nowrap;
+  float: left;
+  font-size: 1.92vh;
+}
+/* line 30, ../../scss/default/_form.scss */
+.form fieldset ul {
+  clear: both;
+  margin: 0 auto;
+  text-align: center;
+}
+/* line 35, ../../scss/default/_form.scss */
+.form fieldset ul li {
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 1.5%;
+}
+/* line 40, ../../scss/default/_form.scss */
+.form fieldset ul li label {
+  text-align: right;
+  display: inline-block;
+  text-transform: capitalize;
+  margin-right: 1%;
+}
+/* line 47, ../../scss/default/_form.scss */
+.form fieldset ul li label:after {
+  content: ":";
+}
+/* line 51, ../../scss/default/_form.scss */
+.form fieldset ul li input, .form fieldset ul li textarea, .form fieldset ul li select {
+  color: #222222;
+  font-size: 1.8vh;
+  padding: 0.5vh;
+  border-radius: 0.2em;
+  border: 1px solid #dddddd;
+}
+/* line 59, ../../scss/default/_form.scss */
+.form fieldset ul li textarea {
+  border: 1px solid green;
+  font-family: inherit;
+  font-size: inherit;
+}
+/* line 65, ../../scss/default/_form.scss */
+.form fieldset ul li select {
+  border-radius: 0.2em;
+  font-family: inherit;
+  font-size: inherit;
+}
+/* line 74, ../../scss/default/_form.scss */
+.form button {
+  font-family: inherit;
+  font-size: inherit;
+  border: 1px solid #77b710;
+  border-radius: 0.2em;
+  /*background: #4C9028;*/
+  background-color: #77b710;
+  color: #fefefe;
+  text-align: center;
+  bottom: 0.5vw;
+  margin: 0.5vw;
+  text-transform: capitalize;
+  outline: none;
+}
+/* line 89, ../../scss/default/_form.scss */
+.form button:hover {
+  opacity: .75;
+  cursor: pointer;
+  outline: none;
+}
+/* line 95, ../../scss/default/_form.scss */
+.form button:active {
+  border: 1px solid brown;
+  opacity: .75;
+  outline: none;
+}
+
+/* line 102, ../../scss/default/_form.scss */
+.form input:focus, .form textarea:focus, .form select:focus {
+  border: 1px solid #555555;
+}
+
+/* line 106, ../../scss/default/_form.scss */
+.form input:focus:invalid, .form textarea:focus:invalid, .form select:focus:invalid {
+  background: #fefefe url(img/london/FormInvalid.png) no-repeat 98% center;
+  border-color: #b03535;
+}
+
+/* line 111, ../../scss/default/_form.scss */
+.form input:required:valid, .form textarea:required:valid, .form select:required:valid {
+  background: #fefefe url(img/london/FormValid.png) no-repeat 98% center;
+  border-color: #28921f;
+}
+
+/*
+.form input:required:invalid,.form textarea:required:invalid {
+	background: $FormBackgroundColor url(img/london/FormInvalid.png) no-repeat 98% center;
+	border-color: $FormInputColorInvalid;
+	background-position:99% 50%;
+	box-shadow:none;
+}
+*/
+/* line 123, ../../scss/default/_form.scss */
+.form input:required, .form textarea:required, .form select:required {
+  background: #fefefe url(img/london/FormRequired.png) no-repeat 98% center;
+}
+
+/* line 130, ../../scss/default/_form.scss */
+.form input:focus, .form textarea:focus,
+.form input:focus:invalid, .form textarea:focus:invalid,
+.form input:required:valid, .form textarea:required:valid,
+.form input:required, .form textarea:required {
+  background-position: 99% 50%;
+  box-shadow: none;
+  outline: none;
+}
+
+/* line 136, ../../scss/default/_form.scss */
+.form select:focus, .form select:focus:invalid, .form select:required:valid, .form select:required {
+  background-position: 95% 50%;
+  box-shadow: none;
+  outline: none;
+}
+
+/* line 145, ../../scss/default/_form.scss */
+.form-1-column ul {
+  width: 99%;
+}
+/* line 149, ../../scss/default/_form.scss */
+.form-1-column label {
+  width: 25%;
+}
+/* line 153, ../../scss/default/_form.scss */
+.form-1-column input, .form-1-column textarea {
+  width: 45%;
+}
+/* line 157, ../../scss/default/_form.scss */
+.form-1-column select {
+  width: 46%;
+}
+
+/*
+.form-1-column .help {
+	width:1.3em;
+	height:1.3em;
+	line-height: 1.3em;
+	background-image:url('img/FormHelp.png');
+	background-repeat:no-repeat;
+	background-position: center center;
+	background-size: auto 95%;
+    display:inline-block;
+}
+
+
+.form-1-column a:link, .form-1-column a:visited, .form-1-column a:hover, .form-1-column a:active {
+}
+*/
+/*
+.form-1-column select:focus:invalid {
+    box-shadow: 0 0 0.1em #d45252;
+    border-color: #b03535;
+}
+
+.form-1-column select:required {
+}
+
+.form-1-column select:required:valid {
+    box-shadow: 0 0 0.1em #5cd053;
+    border-color: #28921f;
+}
+
+.form-1-column select[multiple] {
+	padding:0.1em;
+    border-radius:0.2em;
+	border:1px solid #ddd;
+	margin: 0.25em;
+
+}
+
+
+.form-1-column select[multiple] :focus:invalid {
+    box-shadow: 0 0 0.1em #d45252;
+    border-color: #b03535;
+}
+
+.form-1-column select[multiple] :required {
+}
+
+.form-1-column select[multiple] :required:valid {
+    box-shadow: 0 0 0.1em #5cd053;
+    border-color: #28921f;
+}
+
+
+
+.form-1-column button:hover {
+    opacity:.75;
+    cursor: pointer;
+}
+
+.form-1-column button:active {
+	border: 1px solid brown;
+	opacity:.75;
+}
+/*
+.form button[type="button"] {
+ 
+	background-image:url('img/IconSave.svg');
+	background-repeat:no-repeat;
+	background-position: 10% center;
+	background-size: auto 65%;
+}
+
+.form button[type="submit"] {
+
+	background-image:url('img/IconSave.svg');
+	background-repeat:no-repeat;
+	background-position: 10% center;
+	background-size: auto 65%;
+}
+*/
+/*
+.form-1-column button[type="edit"] {
+	width: 5%;
+	margin: 0 auto;
+}
+
+div#ButtonContainer {
+	width:99%;
+	float:left;
+	text-align: center;
+}
+
+.dropdown select {
+	width: 8em;
+}
+
+.form-1-column input::-webkit-input-placeholder { 
+}
+.form-1-column input:-moz-placeholder {
+}
+.form-1-column input::-moz-placeholder {
+}
+.form-1-column input:-ms-input-placeholder {
+}*/
+/* XAllegro Ltd 2015
+ * 
+ * www.xallegro.com - info@xallegro.com
+ * 
+ */
+/* XAllegro Ltd 2015
+ *
+ * www.xallegro.com - info@xallegro.com
+ *
+ */
+/*
+ * Green : #77B710
+ * Green Scuro: #95AE0C
+
+* Blue  : #336699
+* BlueJ:#205081
+ * Orange: #FF9900
+ * Red:    #A42700
+ * Gray :  #F4F4F4
+ * Text :  #222222;
+ACID GREEN: #C8EA17
+ */
+/*
+$ColorBlue:#205081;
+
+$ColorGreen:#77B710;
+$ColorGreenAcid:#C8EA17;
+$ColorOrange:#FF9900;
+$ColorRed:#A42700;
+
+$ColorTextBlack:#444444;
+$ColorTextWhite:#FFFFFF;
+
+$ColorBorderBlack:#444444;
+
+
+$MenuTopFontSize:1.2em;
+$MenuTopLineHeight:2.2em;
+
+$MenuDownFontSize:1.4em;
+$MenuDownLineHeight:2.4em;
+
+$FontSizeRegular:1em;
+*/
+/* line 9, ../../scss/default/_list.scss */
+.list {
+  width: 100%;
+  background-color: #fefefe;
+  font-size: 1.8vh;
+  padding-bottom: 0.5%;
+  margin-top: 0.5%;
+  border-radius: 0.2em;
+}
+/* line 17, ../../scss/default/_list.scss */
+.list .title {
+  color: #dddddd;
+  height: 4vh;
+}
+/* line 22, ../../scss/default/_list.scss */
+.list .title td {
+  background: #2d353a;
+  border-radius: 0.2em;
+  height: 4vh;
+}
+/* line 27, ../../scss/default/_list.scss */
+.list .title td span {
+  padding: 0.5%;
+  line-height: 4vh;
+}
+/* line 32, ../../scss/default/_list.scss */
+.list .title td .RightToolbar {
+  float: right;
+  width: 10%;
+  height: 100%;
+}
+/* line 37, ../../scss/default/_list.scss */
+.list .title td .RightToolbar li {
+  display: inline-block;
+}
+/* line 41, ../../scss/default/_list.scss */
+.list .title td .RightToolbar .FunctionIcon {
+  width: 45%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-left: 4%;
+  background-size: auto 60%;
+}
+/* line 50, ../../scss/default/_list.scss */
+.list .title td .RightToolbar .Refresh {
+  float: right;
+  background-image: url("img/london/IconRefresh.svg");
+}
+/* line 55, ../../scss/default/_list.scss */
+.list .title td .RightToolbar .Expand {
+  float: right;
+  background-image: url("img/london/IconExpand.svg");
+}
+/* line 63, ../../scss/default/_list.scss */
+.list .header {
+  color: #222222;
+}
+/* line 67, ../../scss/default/_list.scss */
+.list .header th {
+  text-align: left;
+  border-bottom: 2px solid #DDDDDD;
+  padding: 0.5%;
+}
+/* line 75, ../../scss/default/_list.scss */
+.list .row {
+  color: #222222;
+}
+/* line 79, ../../scss/default/_list.scss */
+.list .row td {
+  border-bottom: 1px solid #DDDDDD;
+  padding: 0.5%;
+}
+/* line 87, ../../scss/default/_list.scss */
+.list tr:hover td {
+  background-color: #ff9900;
+  color: white;
+}
+
+/* line 13, ../../scss/default/style.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  background: transparent;
+  border: 0;
+  margin: 0 auto;
+  padding: 0;
+  vertical-align: baseline;
+  list-style-type: none;
+}
+
+/* GENERAL LAYOUT */
+/* line 23, ../../scss/default/style.scss */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 30, ../../scss/default/style.scss */
+body {
+  font-family: 'MySans', sans-serif;
+  color: #222222;
+}
+
+/* line 35, ../../scss/default/style.scss */
+header {
+  max-width: 100vw;
+  height: 4.5vh;
+  background-color: #2d353a;
+  background: linear-gradient(to right, #2d353a 0%, #333333 75%);
+  color: #dddddd;
+  font-size: 1.92vh;
+  line-height: 4.2vh;
+  letter-spacing: 0px;
+}
+/* line 45, ../../scss/default/style.scss */
+header .MenuIcon {
+  width: 4.5vh;
+  height: 4.5vh;
+  line-height: 4vh;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-left: 4%;
+  background-size: auto 60%;
+}
+/* line 55, ../../scss/default/style.scss */
+header .LeftToolbar {
+  width: 14vw;
+  height: 4.5vh;
+  float: left;
+}
+/* line 61, ../../scss/default/style.scss */
+header .LeftToolbar .MenuToggle {
+  float: left;
+  background-image: url("IconMenu.svg");
+}
+/* line 66, ../../scss/default/style.scss */
+header .LeftToolbar .MenuMyPage {
+  float: left;
+  background-image: url("IconMyPage.svg");
+}
+/* line 73, ../../scss/default/style.scss */
+header .CenterToolbar {
+  float: left;
+  width: 65%;
+}
+/* line 77, ../../scss/default/style.scss */
+header .CenterToolbar li {
+  display: inline-block;
+  margin-right: .5%;
+  margin-top: .1%;
+  background-color: #1a2228;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+/* line 87, ../../scss/default/style.scss */
+header .CenterToolbar li:hover {
+  background-color: #ff9900;
+  color: white;
+}
+/* line 93, ../../scss/default/style.scss */
+header .CenterToolbar li:target {
+  background-color: #77b710;
+  color: white;
+}
+/* line 100, ../../scss/default/style.scss */
+header .RightToolbar {
+  float: right;
+  width: 14vw;
+  height: 4.5vh;
+}
+/* line 105, ../../scss/default/style.scss */
+header .RightToolbar .MenuHelp {
+  float: right;
+  background-image: url("IconHelp.svg");
+}
+/* line 110, ../../scss/default/style.scss */
+header .RightToolbar .MenuSettings {
+  float: right;
+  background-image: url("IconSettings.svg");
+}
+
+/* line 118, ../../scss/default/style.scss */
+nav {
+  width: 14vw;
+  position: fixed;
+  top: 4.5vh;
+  bottom: 0;
+  background-color: #2d353a;
+  color: #dddddd;
+  font-weight: 600;
+  font-size: 1.68vh;
+  border-top: 1px solid #dddddd;
+}
+/* line 129, ../../scss/default/style.scss */
+nav .nav {
+  height: 100%;
+  margin-top: 4.5vh;
+}
+/* line 133, ../../scss/default/style.scss */
+nav .nav ul, nav .nav li, nav .nav a, nav .nav span {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  letter-spacing: 1px;
+}
+/* line 141, ../../scss/default/style.scss */
+nav .nav li {
+  list-style: none;
+  text-transform: uppercase;
+}
+/* line 146, ../../scss/default/style.scss */
+nav .nav li > a {
+  display: block;
+  text-align: left;
+  position: relative;
+  padding: 0 10px 0 15px;
+  color: #dddddd;
+  line-height: 2.3em;
+  text-decoration: none;
+  /*background:#336699;*/
+  border-bottom: 1px solid #dddddd;
+  transition: all 0.25s;
+}
+/* line 160, ../../scss/default/style.scss */
+nav .nav li:hover {
+  background-color: #ff9900;
+  color: white;
+  color: black;
+}
+/* line 166, ../../scss/default/style.scss */
+nav .nav li:hover a:hover {
+  color: white;
+}
+/* line 173, ../../scss/default/style.scss */
+nav .nav li:target {
+  background-color: #77b710;
+}
+/* line 177, ../../scss/default/style.scss */
+nav .nav li:target a {
+  color: white;
+}
+/* line 184, ../../scss/default/style.scss */
+nav .Logo {
+  border-top: 1px solid #dddddd;
+  position: fixed;
+  bottom: 0;
+  width: 14vw;
+  height: 4.5vh;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url("XAllegroLogoW.svg");
+  background-size: auto 90%;
+}
+
+/* line 198, ../../scss/default/style.scss */
+.container {
+  position: fixed;
+  left: 14vw;
+  overflow: auto;
+  top: 4.5vh;
+  bottom: 0;
+  padding: 0.5%;
+  right: 0;
+  background-color: #dddddd;
+}
+
+/* line 211, ../../scss/default/style.scss */
+.form label {
+  border: 1px solid green;
+}
+
+/* line 215, ../../scss/default/style.scss */
+.LogHomePage {
+  width: 96%;
+}
+/* line 218, ../../scss/default/style.scss */
+.LogHomePage img {
+  content: url("XAllegroLogo.svg");
+}
