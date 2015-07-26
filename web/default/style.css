@@ -173,7 +173,7 @@ $MenuDownLineHeight:2.4em;
 
 $FontSizeRegular:1em;
 */
-/* line 9, ../../scss/default/_form.scss */
+/* line 9, /XAllegro/Xaas/scss/default/_form.scss */
 .form {
   width: 100%;
   background-color: #fefefe;
@@ -181,13 +181,13 @@ $FontSizeRegular:1em;
   padding-bottom: 0.5%;
   border-radius: 0.2em;
 }
-/* line 15, ../../scss/default/_form.scss */
+/* line 15, /XAllegro/Xaas/scss/default/_form.scss */
 .form fieldset {
   text-align: center;
   margin: 0 auto;
   margin-bottom: 2%;
 }
-/* line 20, ../../scss/default/_form.scss */
+/* line 20, /XAllegro/Xaas/scss/default/_form.scss */
 .form fieldset legend {
   padding-left: 2%;
   padding-top: 1%;
@@ -197,30 +197,30 @@ $FontSizeRegular:1em;
   float: left;
   font-size: 1.92vh;
 }
-/* line 30, ../../scss/default/_form.scss */
+/* line 30, /XAllegro/Xaas/scss/default/_form.scss */
 .form fieldset ul {
   clear: both;
   margin: 0 auto;
   text-align: center;
 }
-/* line 35, ../../scss/default/_form.scss */
+/* line 35, /XAllegro/Xaas/scss/default/_form.scss */
 .form fieldset ul li {
   margin: 0 auto;
   text-align: center;
   margin-top: 1.5%;
 }
-/* line 40, ../../scss/default/_form.scss */
+/* line 40, /XAllegro/Xaas/scss/default/_form.scss */
 .form fieldset ul li label {
   text-align: right;
   display: inline-block;
   text-transform: capitalize;
   margin-right: 1%;
 }
-/* line 47, ../../scss/default/_form.scss */
+/* line 47, /XAllegro/Xaas/scss/default/_form.scss */
 .form fieldset ul li label:after {
   content: ":";
 }
-/* line 51, ../../scss/default/_form.scss */
+/* line 51, /XAllegro/Xaas/scss/default/_form.scss */
 .form fieldset ul li input, .form fieldset ul li textarea, .form fieldset ul li select {
   color: #222222;
   font-size: 1.8vh;
@@ -228,19 +228,19 @@ $FontSizeRegular:1em;
   border-radius: 0.2em;
   border: 1px solid #dddddd;
 }
-/* line 59, ../../scss/default/_form.scss */
+/* line 59, /XAllegro/Xaas/scss/default/_form.scss */
 .form fieldset ul li textarea {
   border: 1px solid green;
   font-family: inherit;
   font-size: inherit;
 }
-/* line 65, ../../scss/default/_form.scss */
+/* line 65, /XAllegro/Xaas/scss/default/_form.scss */
 .form fieldset ul li select {
   border-radius: 0.2em;
   font-family: inherit;
   font-size: inherit;
 }
-/* line 74, ../../scss/default/_form.scss */
+/* line 74, /XAllegro/Xaas/scss/default/_form.scss */
 .form button {
   font-family: inherit;
   font-size: inherit;
@@ -255,33 +255,33 @@ $FontSizeRegular:1em;
   text-transform: capitalize;
   outline: none;
 }
-/* line 89, ../../scss/default/_form.scss */
+/* line 89, /XAllegro/Xaas/scss/default/_form.scss */
 .form button:hover {
   opacity: .75;
   cursor: pointer;
   outline: none;
 }
-/* line 95, ../../scss/default/_form.scss */
+/* line 95, /XAllegro/Xaas/scss/default/_form.scss */
 .form button:active {
   border: 1px solid brown;
   opacity: .75;
   outline: none;
 }
 
-/* line 102, ../../scss/default/_form.scss */
+/* line 102, /XAllegro/Xaas/scss/default/_form.scss */
 .form input:focus, .form textarea:focus, .form select:focus {
   border: 1px solid #555555;
 }
 
-/* line 106, ../../scss/default/_form.scss */
+/* line 106, /XAllegro/Xaas/scss/default/_form.scss */
 .form input:focus:invalid, .form textarea:focus:invalid, .form select:focus:invalid {
-  background: #fefefe url(img/london/FormInvalid.png) no-repeat 98% center;
+  background: #fefefe url(FormInvalid.png) no-repeat 98% center;
   border-color: #b03535;
 }
 
-/* line 111, ../../scss/default/_form.scss */
+/* line 111, /XAllegro/Xaas/scss/default/_form.scss */
 .form input:required:valid, .form textarea:required:valid, .form select:required:valid {
-  background: #fefefe url(img/london/FormValid.png) no-repeat 98% center;
+  background: #fefefe url(FormValid.png) no-repeat 98% center;
   border-color: #28921f;
 }
 
@@ -293,12 +293,12 @@ $FontSizeRegular:1em;
 	box-shadow:none;
 }
 */
-/* line 123, ../../scss/default/_form.scss */
+/* line 123, /XAllegro/Xaas/scss/default/_form.scss */
 .form input:required, .form textarea:required, .form select:required {
-  background: #fefefe url(img/london/FormRequired.png) no-repeat 98% center;
+  background: #fefefe url(FormRequired.png) no-repeat 98% center;
 }
 
-/* line 130, ../../scss/default/_form.scss */
+/* line 130, /XAllegro/Xaas/scss/default/_form.scss */
 .form input:focus, .form textarea:focus,
 .form input:focus:invalid, .form textarea:focus:invalid,
 .form input:required:valid, .form textarea:required:valid,
@@ -308,26 +308,26 @@ $FontSizeRegular:1em;
   outline: none;
 }
 
-/* line 136, ../../scss/default/_form.scss */
+/* line 136, /XAllegro/Xaas/scss/default/_form.scss */
 .form select:focus, .form select:focus:invalid, .form select:required:valid, .form select:required {
   background-position: 95% 50%;
   box-shadow: none;
   outline: none;
 }
 
-/* line 145, ../../scss/default/_form.scss */
+/* line 145, /XAllegro/Xaas/scss/default/_form.scss */
 .form-1-column ul {
   width: 99%;
 }
-/* line 149, ../../scss/default/_form.scss */
+/* line 149, /XAllegro/Xaas/scss/default/_form.scss */
 .form-1-column label {
   width: 25%;
 }
-/* line 153, ../../scss/default/_form.scss */
+/* line 153, /XAllegro/Xaas/scss/default/_form.scss */
 .form-1-column input, .form-1-column textarea {
   width: 45%;
 }
-/* line 157, ../../scss/default/_form.scss */
+/* line 157, /XAllegro/Xaas/scss/default/_form.scss */
 .form-1-column select {
   width: 46%;
 }
@@ -480,7 +480,7 @@ $MenuDownLineHeight:2.4em;
 
 $FontSizeRegular:1em;
 */
-/* line 9, ../../scss/default/_list.scss */
+/* line 9, /XAllegro/Xaas/scss/default/_list.scss */
 .list {
   width: 100%;
   background-color: #fefefe;
@@ -489,33 +489,33 @@ $FontSizeRegular:1em;
   margin-top: 0.5%;
   border-radius: 0.2em;
 }
-/* line 17, ../../scss/default/_list.scss */
+/* line 17, /XAllegro/Xaas/scss/default/_list.scss */
 .list .title {
   color: #dddddd;
   height: 4vh;
 }
-/* line 22, ../../scss/default/_list.scss */
+/* line 22, /XAllegro/Xaas/scss/default/_list.scss */
 .list .title td {
   background: #2d353a;
   border-radius: 0.2em;
   height: 4vh;
 }
-/* line 27, ../../scss/default/_list.scss */
+/* line 27, /XAllegro/Xaas/scss/default/_list.scss */
 .list .title td span {
   padding: 0.5%;
   line-height: 4vh;
 }
-/* line 32, ../../scss/default/_list.scss */
+/* line 32, /XAllegro/Xaas/scss/default/_list.scss */
 .list .title td .RightToolbar {
   float: right;
   width: 10%;
   height: 100%;
 }
-/* line 37, ../../scss/default/_list.scss */
+/* line 37, /XAllegro/Xaas/scss/default/_list.scss */
 .list .title td .RightToolbar li {
   display: inline-block;
 }
-/* line 41, ../../scss/default/_list.scss */
+/* line 41, /XAllegro/Xaas/scss/default/_list.scss */
 .list .title td .RightToolbar .FunctionIcon {
   width: 45%;
   height: 100%;
@@ -524,36 +524,36 @@ $FontSizeRegular:1em;
   margin-left: 4%;
   background-size: auto 60%;
 }
-/* line 50, ../../scss/default/_list.scss */
+/* line 50, /XAllegro/Xaas/scss/default/_list.scss */
 .list .title td .RightToolbar .Refresh {
   float: right;
   background-image: url("img/london/IconRefresh.svg");
 }
-/* line 55, ../../scss/default/_list.scss */
+/* line 55, /XAllegro/Xaas/scss/default/_list.scss */
 .list .title td .RightToolbar .Expand {
   float: right;
   background-image: url("img/london/IconExpand.svg");
 }
-/* line 63, ../../scss/default/_list.scss */
+/* line 63, /XAllegro/Xaas/scss/default/_list.scss */
 .list .header {
   color: #222222;
 }
-/* line 67, ../../scss/default/_list.scss */
+/* line 67, /XAllegro/Xaas/scss/default/_list.scss */
 .list .header th {
   text-align: left;
   border-bottom: 2px solid #DDDDDD;
   padding: 0.5%;
 }
-/* line 75, ../../scss/default/_list.scss */
+/* line 75, /XAllegro/Xaas/scss/default/_list.scss */
 .list .row {
   color: #222222;
 }
-/* line 79, ../../scss/default/_list.scss */
+/* line 79, /XAllegro/Xaas/scss/default/_list.scss */
 .list .row td {
   border-bottom: 1px solid #DDDDDD;
   padding: 0.5%;
 }
-/* line 87, ../../scss/default/_list.scss */
+/* line 87, /XAllegro/Xaas/scss/default/_list.scss */
 .list tr:hover td {
   background-color: #ff9900;
   color: white;
@@ -755,16 +755,11 @@ nav .Logo {
   background-color: #dddddd;
 }
 
-/* line 211, ../../scss/default/style.scss */
-.form label {
-  border: 1px solid green;
-}
-
-/* line 215, ../../scss/default/style.scss */
+/* line 209, ../../scss/default/style.scss */
 .LogHomePage {
   width: 96%;
 }
-/* line 218, ../../scss/default/style.scss */
+/* line 212, ../../scss/default/style.scss */
 .LogHomePage img {
   content: url("XAllegroLogo.svg");
 }
