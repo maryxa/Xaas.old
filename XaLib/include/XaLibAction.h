@@ -73,8 +73,8 @@ class XaLibAction : protected XaLibBase {
 		* Adds file to vector<string> XmlFiles\n
 		* All files in the vector will be added in the generated Dom Object.\n
 		* The search order for the file:\n
-		* 1) Common shared Directory SETTINGS["SharedDir"]+"/xml/"\n
-		* 2) Application Xml Directory SETTINGS["XmlDir"]\n
+		* 1) Application Xml Directory SETTINGS["XmlDir"]\n
+		* 2) Common shared Directory SETTINGS["SharedDir"]+"/xml/"\n
 		* The 2 parameters: SharedDir and XmlDir are configurable in the configuration file\n
 		* 
 		* @param FilePath the name of the file
@@ -113,8 +113,8 @@ class XaLibAction : protected XaLibBase {
 		* Adds file to the vector<string> XslFiles\n
 		* All files in the vector will be added in the generated Dom Object.\n
 		* The search order for the file:\n
-		* 1) Common shared Directory SETTINGS["SharedDir"]+"/xsl/"\n
-		* 2) Application Xsl Directory SETTINGS["XslDir"]\n
+		* 1) Application Xsl Directory SETTINGS["XslDir"]\n
+		* 2) Common shared Directory SETTINGS["SharedDir"]+"/xsl/"\n
 		* The 2 parameters: SharedDir and XslDir are configurable in the configuration file\n
 		* 
 		* @param FilePath the name of the file
