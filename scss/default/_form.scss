@@ -104,12 +104,12 @@
 }
 
 .form input:focus:invalid, .form textarea:focus:invalid, .form select:focus:invalid {
-	background: $FormBackgroundColor url(img/london/FormInvalid.png) no-repeat 98% center;
+	background: $FormBackgroundColor url(FormInvalid.png) no-repeat 98% center;
 	border-color: $FormInputColorInvalid;
 }
 
 .form input:required:valid,.form textarea:required:valid,.form select:required:valid {
-	background: $FormBackgroundColor url(img/london/FormValid.png) no-repeat 98% center;
+	background: $FormBackgroundColor url(FormValid.png) no-repeat 98% center;
 	border-color: $FormInputColorValid;
 }
 /*
@@ -121,7 +121,7 @@
 }
 */
 .form input:required, .form textarea:required, .form select:required {
-	background: $FormBackgroundColor url(img/london/FormRequired.png) no-repeat 98% center;
+	background: $FormBackgroundColor url(FormRequired.png) no-repeat 98% center;
 }
 
 .form input:focus,.form textarea:focus,
