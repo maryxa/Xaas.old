@@ -8,15 +8,15 @@ void XaLibAction::AddXmlFile(const string& FilePath){
 	string XmlSharedPath=SETTINGS["SharedDir"]+"/xml/"+FilePath+".xml";
 	string XmlDefaultPath=SETTINGS["XmlDir"]+FilePath+".xml";
 	
-	unique_ptr<FILE, int(*)(FILE*)> f1(fopen(XmlSharedPath.c_str(), "r"), fclose);
-	unique_ptr<FILE, int(*)(FILE*)> f2(fopen(XmlDefaultPath.c_str(), "r"), fclose);
-	
+	unique_ptr<FILE, int(*)(FILE*)> f1(fopen(XmlDefaultPath.c_str(), "r"), fclose);
+	unique_ptr<FILE, int(*)(FILE*)> f2(fopen(XmlSharedPath.c_str(), "r"), fclose);
+
 	if (f1) {
-		XmlFiles.push_back(XmlSharedPath);
+		XmlFiles.push_back(XmlDefaultPath);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile -> "+XmlSharedPath);
 
 	} else if (f2) {
-		XmlFiles.push_back(XmlDefaultPath);
+		XmlFiles.push_back(XmlSharedPath);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile Default-> "+XmlDefaultPath);
 
 	} else {
@@ -35,20 +35,18 @@ void XaLibAction::AddXmlString(const string& XmlString){
 
 void XaLibAction::AddXslFile(const string& FilePath){
 
-	//LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Selected GUI Style -> "+SETTINGS["GuiStyle"]);
-
 	string XslSharedPath=SETTINGS["SharedDir"]+"/xsl/"+FilePath+".xsl";
 	string XslDefaultPath=SETTINGS["XslDir"]+FilePath+".xsl";
 	
-	unique_ptr<FILE, int(*)(FILE*)> f1(fopen(XslSharedPath.c_str(), "r"), fclose);
-	unique_ptr<FILE, int(*)(FILE*)> f2(fopen(XslDefaultPath.c_str(), "r"), fclose);
+	unique_ptr<FILE, int(*)(FILE*)> f1(fopen(XslDefaultPath.c_str(), "r"), fclose);
+	unique_ptr<FILE, int(*)(FILE*)> f2(fopen(XslSharedPath.c_str(), "r"), fclose);
 
 	if (f1) {
-		XslFiles.push_back(XslSharedPath);
+		XslFiles.push_back(XslDefaultPath);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile -> "+XslSharedPath);
 
 	} else if (f2) {
-		XslFiles.push_back(XslDefaultPath);
+		XslFiles.push_back(XslSharedPath);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile Default-> "+XslDefaultPath);
 
 	} else {
