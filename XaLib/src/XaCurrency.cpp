@@ -57,9 +57,9 @@ void XaCurrency::XaCurrencyRateAddFrm (){
 
 	delete(LibSql);
 
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
 	
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
     const int MAXITEMS = 2;
@@ -247,8 +247,8 @@ void XaCurrency::XaCurrencyRateList(){
 
 	delete(LibSql);
 	
-		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	
 		string XPathExprType;
 		XPathExprType="/root/XaCurrencyRateList/fieldset/field[@name='XaCurrency']/options";

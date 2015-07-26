@@ -180,9 +180,9 @@ void XaLanguage::XaLanguageList (){
     XaLibAction::AddXslFile(XslPage);
 
     XaLibDom* LibDom=new XaLibDom();
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
 
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 
 	delete(LibDom);
 
@@ -205,9 +205,9 @@ void XaLanguage::XaLanguageAddFrm (){
     XaLibAction::AddXslFile(XslPage);
 
     XaLibDom* LibDom=new XaLibDom();
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
 
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 
 	delete(LibDom);
 

@@ -28,7 +28,7 @@ xmlDocPtr XaLibDom::DomFromString(string XmlString) {
 	return XmlDomDoc;
 };
 
-xmlDocPtr XaLibDom::DomFromStringAndFile(const VectorXmlFilePath& XmlFilePaths,const VectorXmlString& XmlStrings,const int& AddRootTag) {
+xmlDocPtr XaLibDom::DomFromStringAndFile(const VectorXmlFilePath& XmlFiles,const VectorXmlString& XmlStrings,const int& AddRootTag) {
 
 	xmlDocPtr XmlDomDoc;
     string XmlStringTotal="";
@@ -45,15 +45,15 @@ xmlDocPtr XaLibDom::DomFromStringAndFile(const VectorXmlFilePath& XmlFilePaths,c
     }
 
     //ADDING FILE
-    int XmlFilePathsSize=XmlFilePaths.size();
+    int XmlFilesSize=XmlFiles.size();
 
-    if(XmlFilePathsSize>0) {
+    if(XmlFilesSize>0) {
 
 		unique_ptr<XaLibChar> LibChar (new XaLibChar());
 		   
-		for(int i=0; i<XmlFilePathsSize; i++) {
+		for(int i=0; i<XmlFilesSize; i++) {
 
-			string XmlFilePath=XmlFilePaths.at(i).c_str();
+			string XmlFilePath=XmlFiles.at(i).c_str();
             char* XmlFilePathChar=(char*)XmlFilePath.c_str();
 
             ifstream MyFile;

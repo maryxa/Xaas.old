@@ -35,7 +35,7 @@ class XaLibDom : protected XaLibBase {
 
 		xmlDocPtr DomFromFile(string XmlFilePath);
 		xmlDocPtr DomFromString(string XmlString);
-        static xmlDocPtr DomFromStringAndFile(const VectorXmlFilePath& XmlFilePaths,const VectorXmlString& XmlStrings,const int& AddRootTag);
+        static xmlDocPtr DomFromStringAndFile(const VectorXmlFilePath& XmlFiles,const VectorXmlString& XmlStrings,const int& AddRootTag);
 
 		string StringFromDom(xmlDocPtr XmlDomDoc);
 

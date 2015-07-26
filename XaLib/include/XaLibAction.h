@@ -32,6 +32,18 @@ extern XaRequest REQUEST;
 extern XaResponse RESPONSE;
 extern XaSettings SETTINGS;
 
+/**
+ * @brief Parent Class for business actions
+ *
+ * @details Parent Class for business actions:
+ * All action class inherit from this class
+ *
+ * @see XaLibBase
+ * 
+ * @see http://www.xallegro.com
+ * @author Alessandro Mariotti
+*/
+
 class XaLibAction : protected XaLibBase {
 
 	private:
@@ -40,20 +52,15 @@ class XaLibAction : protected XaLibBase {
 		string NowTimeMysql;
 		string TodayMysql;
 
-        typedef vector<string> VectorFilePaths;
-        typedef vector<string> VectorStrings;
+        vector<string> XmlFiles;
+        vector<string> XmlStrings;
 
-        VectorFilePaths XmlFilePaths;
-        VectorStrings   XmlStrings;
+        vector<string> XslFiles;
+        vector<string> XslStrings;
 
-        VectorFilePaths XslFilePaths;
-        VectorStrings   XslStrings;
-
-		typedef vector<string> VectorXmlFields;
-        typedef vector<string> VectorXmlValues;
-
-		VectorXmlFields XmlFields;
-		VectorXmlValues XmlValues;
+		vector<string> XmlFields;
+        vector<string> XmlValues;
+		vector<string> XslParams;
 
 		vector<string> OptionReturnedFields;
 		vector<string> OptionWhereFields;
@@ -62,10 +69,118 @@ class XaLibAction : protected XaLibBase {
 
 		typedef map<int, map<string,string> > ParamFromDomMap;
 
-		void AddXmlFile   (string FilePath);
-		void AddXmlString (string XmlString);
-		void AddXslFile   (string FilePath);
-		void AddXslString (string XslString);
+		/**
+		* Adds file to vector<string> XmlFiles\n
+		* All files in the vector will be added in the generated Dom Object.\n
+		* The search order for the file:\n
+		* 1) Common shared Directory SETTINGS["SharedDir"]+"/xml/"\n
+		* 2) Application Xml Directory SETTINGS["XmlDir"]\n
+		* The 2 parameters: SharedDir and XmlDir are configurable in the configuration file\n
+		* 
+		* @param FilePath the name of the file
+		* 
+		* @return void
+		*
+		* @code
+		*
+		* AddXmlFile("MyXml");
+		* 
+		* @endcode
+		*
+		*/
+		void AddXmlFile   (const string& FilePath);
+
+		/**
+		* 
+		* Adds a well formed XML string to the vector<string> XmlStrings\n
+		* All strings in the vector will be added in the generated Dom Object.\n
+		* 
+		* @param XmlString the XmlString
+		* 
+		* @return void
+		*
+		* @code
+		* string xml="<name>MyName</name>";
+		*
+		* AddXmlString(xml);
+		* 
+		* @endcode
+		*
+		*/
+		void AddXmlString (const string& XmlString);
+		
+		/**
+		* Adds file to the vector<string> XslFiles\n
+		* All files in the vector will be added in the generated Dom Object.\n
+		* The search order for the file:\n
+		* 1) Common shared Directory SETTINGS["SharedDir"]+"/xsl/"\n
+		* 2) Application Xsl Directory SETTINGS["XslDir"]\n
+		* The 2 parameters: SharedDir and XslDir are configurable in the configuration file\n
+		* 
+		* @param FilePath the name of the file
+		* 
+		* @return void
+		*
+		* @code
+		*
+		* AddXslFile("MyXsl");
+		* 
+		* @endcode
+		*
+		*/
+		void AddXslFile   (const string& FilePath);
+		
+		/**
+		* 
+		* Adds a well formed XSL string to the vector<string> XslStrings\n
+		* All strings in the vector will be added in the generated Dom Object.\n
+		* 
+		* @param XslString the XslString
+		* 
+		* @return void
+		*
+		* @code
+		*
+		* AddXmlString(xsl);
+		* 
+		* @endcode
+		*
+		*/
+		void AddXslString (const string& XslString);
+
+		/**
+		* Adds to the Vector vector<string> XslParams common variables to passe at the XSTL parser .\n
+		* Variables as set as name and value and statically defined in the class\n
+		* todo: move in a  configuration file\n
+		* 
+		* @return void
+		*
+		* @code
+		*
+		* AddXslParamCommon();
+		* 
+		* @endcode
+		*
+		*/
+		void AddXslParamCommon();
+
+		/**
+		* Adds to the Vector vector<string> XslParams a variable .\n
+		* Variables has set with name and value\n
+		* 
+		* @param ParamName the Variable Name
+		* @param ParamValue the Variable Value
+		* 
+		* @return void
+		*
+		* @code
+		*
+		* AddXslParam("name", "value");
+		* 
+		* @endcode
+		*
+		*/
+		void AddXslParam (const string& ParamName, const string& ParamValue);
 
 		void   AddOptionsByDb                      (XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string TableName,string XPathExpr);
 		void   AddOptionsByDb                      (XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string TableName,string XPathExpr,string OptionValueField,string OptionLabelField);

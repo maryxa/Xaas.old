@@ -25,12 +25,12 @@ class XaLibCrypto : protected XaLibBase {
 		XaLibCrypto();
 		~XaLibCrypto();
 
-		string GetSha1(string WordToCrypt);
-		string GetSha2(string WordToCrypt);
+		static string GetSha1(const string& WordToCrypt);
+		static string GetSha2(const string& WordToCrypt);
 
-		string AesEncrypt(string StringToEncrypt);
-		string AesDecrypt(string EncryptedValue);
-		string AesEncryptCtr(string StringToEncrypt, string EncryptionKey, string EncryptionIV);
-		string AesDecryptCtr(string EncryptedValue, string EncryptionKey, string EncryptionIV);
+		string AesEncrypt(const string& StringToEncrypt);
+		string AesDecrypt(const string& EncryptedValue);
+		string AesEncryptCtr(const string& StringToEncrypt, const string& EncryptionKey, const string& EncryptionIV);
+		string AesDecryptCtr(const string& EncryptedValue, const string& EncryptionKey, const string& EncryptionIV);
 };
 #endif

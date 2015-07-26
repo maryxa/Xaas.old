@@ -16,8 +16,8 @@ extern XaSettings SETTINGS;
  * @details Database interaction:
  * this class implements Sql statements, the database connection is established from the controller. 
  *
- * @ref XaLidDb
- * @see XaLidController
+ * @see XaLibDb
+ * @see XaLibController
  * 
  * 
  * @see http://www.xallegro.com

@@ -9,12 +9,12 @@ XaUser::XaUser(){
 
 void XaUser::Dispatcher (const string &CalledEvent) {
 
-	if (CalledEvent=="XaUserLoginFrm"){
-        this->XaUserLoginFrm();
-	} else if (CalledEvent=="XaUserLogin"){
-        this->XaUserLogin();
-    } else if (CalledEvent=="XaUserLogout"){
-        this->XaUserLogout();
+	if (CalledEvent=="LoginFrm"){
+        this->LoginFrm();
+	} else if (CalledEvent=="Login"){
+        this->Login();
+    } else if (CalledEvent=="Logout"){
+        this->Logout();
     } else if (CalledEvent=="XaUserLoginAddFrm"){
         this->XaUserLoginAddFrm();
     } else if (CalledEvent=="XaUserLoginAdd"){
@@ -78,42 +78,41 @@ void XaUser::Dispatcher (const string &CalledEvent) {
     } else if (CalledEvent=="XaUserCheckIfExist"){
         this->XaUserCheckIfExist();
     } else {
-		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"REQUESTed Event Does Not Exists -> "+CalledEvent);
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Event Does Not Exists -> "+CalledEvent);
+		//MANDARE DA QUALCHE PARTE VEDI LOGIN
 	}
 
 }
-void XaUser::XaUserLoginFrm (){
-		
-	string StrError=HTTP.GetHttpParam("error");
+void XaUser::LoginFrm (){
 	
-	XaLibAction::SetLayout("LoginFrm");
-    XaLibAction::AddXmlFile("XaUserLoginFrm");
-    XaLibAction::AddXslFile("XaUserLoginFrm");
-	XaLibAction::AddXslFile("XaGuiHeader");
+	string StrError=HTTP.GetHttpParam("error");
+
+	//SetLayout(REQUEST.CalledLayout);
+
+	SetLayout("LoginFrm");
+
+	AddXmlFile("LoginFrm");
+	AddXslFile("LoginFrm");
 
 	unique_ptr<XaLibDom> LibDom (new XaLibDom());
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-    xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 
-    string XslParams[4] = {"LoginWrong",StrError,"BaseUrl",SETTINGS["BaseUrl"]};
- 
-	unique_ptr<XaLibXsl> LibXsl (new XaLibXsl(XmlDomDoc,XslDomDoc,XslParams,4));
+	AddXslParamCommon();
+    unique_ptr<XaLibXsl> LibXsl (new XaLibXsl(XmlDomDoc,XslDomDoc,XslParams));
 
-	RESPONSE.ResponseType="html";
-    RESPONSE.Content=LibXsl->GetXHtml();
-
+	RESPONSE.Content=LibXsl->GetXHtml();
 };
 
-void XaUser::XaUserLogin (){
+void XaUser::Login (){
 	
 	string StrEmail=HTTP.GetHttpParam("email");
 	string StrPassword=HTTP.GetHttpParam("password");
 
 	if (StrEmail !="" && StrPassword !="") {
 
-		XaLibCrypto* LibCrypto=new XaLibCrypto();
-		string ShaPassword=LibCrypto->GetSha1(StrPassword);
-		delete (LibCrypto);
+		string ShaPassword=XaLibCrypto::GetSha1(StrPassword);
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Encrypted Password -> "+ShaPassword);
 
@@ -126,10 +125,6 @@ void XaUser::XaUserLogin (){
 
 			DbRes=LibSql.Select(DB_SESSION,"XaUser",ReturnedFields,WhereFields,WhereValues);
 
-			ReturnedFields.clear();
-			WhereFields.clear();
-			WhereValues.clear();
-
 		int n=DbRes.size();
 
 		if (n==0){
@@ -137,9 +132,8 @@ void XaUser::XaUserLogin (){
 			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"User Does Not Exist Or The Password Is Wrong -> " + StrEmail);
 
 			RESPONSE.Object="XaUser";
-			RESPONSE.Event="XaUserLoginFrm";
+			RESPONSE.Event="LoginFrm";
 			RESPONSE.Headers="&error=yes";
-			
 
 		} else if (n==1){
 
@@ -162,22 +156,64 @@ void XaUser::XaUserLogin (){
 
 			RESPONSE.Object="XaPages";
 			RESPONSE.Event="XaMyPage";
-						
+
 		} else {
 
 			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"User Is Not Unique");
 			RESPONSE.Object="XaPages";
 			RESPONSE.Event="XaInfoPage";
 		}
-		
+
 	} else {
 		
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Username Or Password Is Empty");
-		//XaLibAction::PostAction="obj=XaUser&evt=XaUserLoginFrm";
 		RESPONSE.Object="XaUser";
-		RESPONSE.Event="XaUserLoginFrm";
-
+		RESPONSE.Event="LoginFrm";
 	}
+
+};
+
+void XaUser::Logout (){
+	
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Destroying Session -> SessionID::"+REQUEST.XaSession_ID +" AND UserID::"+ XaLibBase::FromIntToString(REQUEST.XaUser_ID));
+
+	unique_ptr<XaLibSql> LibSql(new XaLibSql());
+
+	LibSql->LockTable(DB_SESSION,"XaSession");
+
+		//DELETE SESSION DATA
+		vector<string> VectorWhereSessionDataFields {"XaSession_ID"};
+		vector<string> VectorWhereSessionDataValues {REQUEST.XaSession_ID};
+
+		LibSql->Delete(DB_SESSION,"XaSessionData",VectorWhereSessionDataFields,VectorWhereSessionDataValues);
+
+		VectorWhereSessionDataFields.clear();
+		VectorWhereSessionDataValues.clear();
+				
+		//DELETE SESSION
+		vector<string> VectorWhereSessionFields {"SessionID","XaUser_ID"};
+
+		vector<string> VectorWhereSessionValues {REQUEST.XaSession_ID,XaLibBase::FromIntToString(REQUEST.XaUser_ID)};
+
+		LibSql->Delete(DB_SESSION,"XaSession",VectorWhereSessionFields,VectorWhereSessionValues);
+		
+		VectorWhereSessionFields.clear();
+		VectorWhereSessionValues.clear();
+
+	LibSql->UnlockTable(DB_SESSION);
+
+    XaLibAction::SetLayout("Standard");
+    XaLibAction::AddXmlFile("XaUserLogout");
+    XaLibAction::AddXslFile("XaUserLogout");
+
+	unique_ptr<XaLibDom> LibDom(new XaLibDom());
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
+
+	const int MAXITEMS = 2;
+	string XslParams[MAXITEMS] = {"a","b"};
+	unique_ptr<XaLibXsl> LibXsl(new XaLibXsl(XmlDomDoc,XslDomDoc,XslParams,MAXITEMS));
+	RESPONSE.Content=LibXsl->GetXHtml();
 
 };
 
@@ -232,50 +268,6 @@ int XaUser::Authenticate (string StrEmail,string StrPassword) {
 
 };
 
-void XaUser::XaUserLogout (){
-	
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Destroying Session -> SessionID::"+REQUEST.XaSession_ID +" AND UserID::"+ XaLibBase::FromIntToString(REQUEST.XaUser_ID));
-
-	unique_ptr<XaLibSql> LibSql(new XaLibSql());
-
-	LibSql->LockTable(DB_SESSION,"XaSession");
-
-		//DELETE SESSION DATA
-		vector<string> VectorWhereSessionDataFields {"XaSession_ID"};
-		vector<string> VectorWhereSessionDataValues {REQUEST.XaSession_ID};
-
-		LibSql->Delete(DB_SESSION,"XaSessionData",VectorWhereSessionDataFields,VectorWhereSessionDataValues);
-
-		VectorWhereSessionDataFields.clear();
-		VectorWhereSessionDataValues.clear();
-				
-		//DELETE SESSION
-		vector<string> VectorWhereSessionFields {"SessionID","XaUser_ID"};
-
-		vector<string> VectorWhereSessionValues {REQUEST.XaSession_ID,XaLibBase::FromIntToString(REQUEST.XaUser_ID)};
-
-		LibSql->Delete(DB_SESSION,"XaSession",VectorWhereSessionFields,VectorWhereSessionValues);
-		
-		VectorWhereSessionFields.clear();
-		VectorWhereSessionValues.clear();
-
-	LibSql->UnlockTable(DB_SESSION);
-
-    XaLibAction::SetLayout("Standard");
-    XaLibAction::AddXmlFile("XaUserLogout");
-    XaLibAction::AddXslFile("XaUserLogout");
-
-	unique_ptr<XaLibDom> LibDom(new XaLibDom());
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
-
-	const int MAXITEMS = 2;
-	string XslParams[MAXITEMS] = {"a","b"};
-	unique_ptr<XaLibXsl> LibXsl(new XaLibXsl(XmlDomDoc,XslDomDoc,XslParams,MAXITEMS));
-	RESPONSE.Content=LibXsl->GetXHtml();
-
-};
-
 void XaUser::XaUserLoginAddFrm() {
 
     XaLibAction::SetLayout("Standard");
@@ -287,7 +279,7 @@ void XaUser::XaUserLoginAddFrm() {
 	string XaUser_ID=HTTP.GetHttpParam("XaUser_ID");
 	
     XaLibDom* LibDom=new XaLibDom();
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
 
 	//ADD OPTION XaUserProfile
 	string XPathExprXaUserProfile="//field[@name='XaUserXaUserProfile-XaUserProfile_ID']/options";
@@ -300,7 +292,7 @@ void XaUser::XaUserLoginAddFrm() {
 	XaLibAction::OptionOrderByFields.push_back("email");
 	XaLibAction::AddOptionsByDb(LibDom,XmlDomDoc,"XaAddressMail",XPathExprType,"id","email");
 	
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
 	if (XaUser_ID!="NoHttpParam"){
@@ -410,8 +402,8 @@ void XaUser::XaUserLoginModFrm() {
 	string XaUser_ID=XaLibAction::DecryptParamId(HTTP.GetHttpParam("XaUser_ID"));
 	
     XaLibDom* LibDom=new XaLibDom();
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-    xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+    xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 
 	//ADD OPTION XaUserProfile
 	string XPathExprXaUserProfile="//field[@name='XaUserXaUserProfile-XaUserProfile_ID']/options";
@@ -647,8 +639,8 @@ void XaUser::XaUserLoginView (){
 
 	delete(LibSql);
 	
-		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
     const int MAXITEMS = 4;
@@ -723,8 +715,8 @@ void XaUser::XaUserLoginList (){
 
 	delete(LibSql);
 	
-		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 		
 		string XPB1="/root/XaUserLoginList/fieldset/";
 		string r1 =XPB1+"field[@name='XaUser-Login']/value";								
@@ -807,8 +799,8 @@ void XaUser::XaUserPasswordModFrm() {
 	//string XaUser_ID=XaLibAction::DecryptParamId(HTTP.GetHttpParam("XaUser_ID"));
 	string XaUser_ID=FromIntToString(REQUEST.XaUser_ID);
     XaLibDom* LibDom=new XaLibDom();
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-    xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+    xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 
 	delete(LibDom);
 
@@ -904,8 +896,8 @@ void XaUser::XaUserCompanyAddFrm (){
     XaLibAction::AddXslFile("XaUserCompanyAddFrm");
     
     XaLibDom* LibDom=new XaLibDom();
-		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
     const int MAXITEMS = 2;
@@ -1027,8 +1019,8 @@ void XaUser::XaUserCompanyModFrm (){
 
 	}
 
-	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 
 	delete(LibDom);
 
@@ -1181,8 +1173,8 @@ void XaUser::XaUserCompanyList (){
 
 	delete(LibSql);
 	
-		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
     const int MAXITEMS = 2;
@@ -1252,9 +1244,9 @@ void XaUser::XaUserCompanyView (){
 
 	delete(LibSql);
 	
-		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
 		//LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,LibDom->StringFromDom(XmlDomDoc));
-		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
     const int MAXITEMS = 2;
@@ -1387,14 +1379,14 @@ void XaUser::XaUserDepartmentAddFrm (){
     XaLibAction::AddXslFile("XaUserDepartmentAddFrm");
 
     XaLibDom* LibDom=new XaLibDom();
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
 
 	this->GetMyChildren("XaUser","/",REQUEST.XaUser_ID);
 
 		string XPathExprTreeParentID="/root/fieldset[@id='XaUserDepartment']/field[@name='tree_parent_ID']/options";
 		XaLibAction::AddOptionsByVectors(LibDom,XmlDomDoc,XPathExprTreeParentID);
 
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
     const int MAXITEMS = 2;
@@ -1526,8 +1518,8 @@ void XaUser::XaUserDepartmentModFrm (){
 
 	}
 
-	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 
 	this->GetMyChildren("XaUser","/",REQUEST.XaUser_ID);
 	string XPathExprTreeParentID="/root/fieldset[@id='XaUserDepartment']/field[@name='tree_parent_ID']/options";
@@ -1660,9 +1652,9 @@ void XaUser::XaUserDepartmentView (){
 
 	delete(LibSql);
 	
-		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
 		//LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,LibDom->StringFromDom(XmlDomDoc));
-		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
     const int MAXITEMS = 2;
@@ -1777,8 +1769,8 @@ void XaUser::XaUserOrgTree (){
 
 		XaLibAction::AddXmlString(LibDom->StringFromDom(XmlDomDocTree));
 
-		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 		delete(LibDom);
 	
 	const int MAXITEMS = 2;
@@ -1804,8 +1796,8 @@ void XaUser::XaUserOrgTreeView (){
 	XaLibAction::AddXslFile("XaUserOrgTreeView");
 
 	XaLibDom* LibDom=new XaLibDom();
-		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
 const int MAXITEMS = 2;
@@ -1934,8 +1926,8 @@ if (RowId!="NoHttpParam") {
 
 }
 
-		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 		delete(LibDom);
 
 const int MAXITEMS = 2;
@@ -1954,8 +1946,8 @@ void XaUser::XaUserOrgChartView (){
 	XaLibAction::AddXmlFile("XaUserOrgChartViewFilter");
 
 	XaLibDom* LibDom=new XaLibDom();
-	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 
 	int RootId=1; // cerca company
 	this->GetTreeChildren("XaUser",RootId,1,0);
@@ -2203,8 +2195,8 @@ void XaUser::XaUserRegistrationFrm (){
     XaLibAction::AddXslFile("XaUserRegistrationFrm");
 
 	unique_ptr<XaLibDom> LibDom (new XaLibDom());
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-    xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+    xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 
     string XslParams[2] = {"RegistrationError",StrError};
  
@@ -2441,14 +2433,14 @@ void XaUser::XaUserXaDomainAddFrm (){
     XaLibAction::AddXslFile("XaUserXaDomainAddFrm");
 
     XaLibDom* LibDom=new XaLibDom();
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
 
 	string XPathExprType;
 
 	XPathExprType="/root/fieldset[@id='XaUserXaDomain']/field[@name='XaUser-Section']/options";
 	this->AddOptionsAllSection(LibDom,XmlDomDoc,XPathExprType);
 
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
     const int MAXITEMS = 2;

@@ -17,10 +17,10 @@ class XaUser : public XaLibAction {
 
 		void Dispatcher(const string &CalledEvent);
 
-		void XaUserLoginFrm();
-		void XaUserLogin();
+		void LoginFrm();
+		void Login();
+		void Logout();
 
-		void XaUserLogout();
 		void XaUserLoginAddFrm();
 		void XaUserLoginAdd();
 		void XaUserLoginModFrm();
@@ -85,6 +85,7 @@ class XaUser : public XaLibAction {
 		void XaUserGetAllCompanyDepartmentSection ();
 
 	public:
+
 		XaUser();
 
 		virtual int Authenticate(string StrEmail,string StrPassword);

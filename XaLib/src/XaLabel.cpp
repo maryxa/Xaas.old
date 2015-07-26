@@ -238,8 +238,8 @@ void XaLabel::XaLabelFromFileAddFrm (){
     XaLibAction::AddXslFile("XaLabelFromFileAddFrm");
 
     XaLibDom* LibDom=new XaLibDom();
-		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
 
@@ -507,7 +507,7 @@ void XaLabel::XaLabelList (){
     XaLibAction::AddXslFile(XslPage);
 
     XaLibDom* LibDom=new XaLibDom();
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
     
     string XPathExprType;
 
@@ -530,7 +530,7 @@ void XaLabel::XaLabelList (){
 	XPathExpr1.clear();
 	XPathValue1.clear();
 	
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 
 	delete(LibDom);
 
@@ -553,14 +553,14 @@ void XaLabel::XaLabelAddFrm (){
     XaLibAction::AddXslFile(XslPage);
 
     XaLibDom* LibDom=new XaLibDom();
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
     
     string XPathExprType;
 
 	XPathExprType="/root/fieldset[@id='XaLabelAddFrm']/field[@name='XaDomain-XaLanguage']/options";
 	XaLibAction::AddOptionsByDomain(LibDom,XmlDomDoc,"XaLanguage",XPathExprType);
 
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 
 	delete(LibDom);
 
@@ -707,9 +707,9 @@ void XaLabel::XaTranslationAddFrm (){
     XaLibAction::AddXslFile(XslPage);
 
     XaLibDom* LibDom=new XaLibDom();
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
 
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 
 	delete(LibDom);
 

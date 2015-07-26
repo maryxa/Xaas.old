@@ -54,8 +54,8 @@ void XaUserProfile::XaUserProfileAddFrm (){
     XaLibAction::AddXslFile("XaUserProfileAddFrm");
 
     XaLibDom* LibDom=new XaLibDom();
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
     const int MAXITEMS = 2;
@@ -227,8 +227,8 @@ void XaUserProfile::XaUserProfileList (){
 
 	delete(LibSql);
 	
-		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	
 	delete(LibDom);
 
@@ -250,14 +250,14 @@ void XaUserProfile::XaUserProfileXaUserActionAddFrm (){
     XaLibAction::AddXslFile("XaUserProfileXaUserActionAddFrm");
 
     XaLibDom* LibDom=new XaLibDom();
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
 
 	string XPathExprType;
 
 	XPathExprType="/root/fieldset[@id='XaUserProfileXaUserAction']/field[@name='XaUserProfile']/options";
 	XaLibAction::AddOptionsByDbWithCondition(LibDom,XmlDomDoc,"XaUserProfile",XPathExprType," AND id>2");
 
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
     const int MAXITEMS = 2;

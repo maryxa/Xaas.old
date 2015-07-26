@@ -4,7 +4,7 @@
 XaLibCrypto::XaLibCrypto() {
 };
 
-string XaLibCrypto::GetSha1(string WordToCrypt) {
+string XaLibCrypto::GetSha1(const string& WordToCrypt) {
 
 	string WordToCryptStr=WordToCrypt;
 	string WordCrypted;
@@ -39,7 +39,7 @@ string XaLibCrypto::GetSha1(string WordToCrypt) {
 
 };
 
-string XaLibCrypto::GetSha2(string WordToCrypt) {
+string XaLibCrypto::GetSha2(const string& WordToCrypt) {
 
 	string WordToCryptStr=WordToCrypt;
 	string WordCrypted;
@@ -71,7 +71,7 @@ string XaLibCrypto::GetSha2(string WordToCrypt) {
 
 };
 
-string XaLibCrypto::AesEncrypt(string StringToEncrypt) {
+string XaLibCrypto::AesEncrypt(const string& StringToEncrypt) {
 	
 	char* intext=XaLibBase::FromStringToCharArray(StringToEncrypt);
 
@@ -110,7 +110,7 @@ string XaLibCrypto::AesEncrypt(string StringToEncrypt) {
 
 };
 
-string XaLibCrypto::AesDecrypt(string EncryptedValue) {
+string XaLibCrypto::AesDecrypt(const string& EncryptedValue) {
 	int outlen;
 	int tmplen;
 
@@ -155,7 +155,7 @@ string XaLibCrypto::AesDecrypt(string EncryptedValue) {
 
 };
 
-string XaLibCrypto::AesEncryptCtr(string StringToEncrypt, string EncryptionKey, string EncryptionIV) {
+string XaLibCrypto::AesEncryptCtr(const string& StringToEncrypt, const string& EncryptionKey, const string& EncryptionIV) {
 	
 #ifdef __APPLE__
 
@@ -214,7 +214,7 @@ string XaLibCrypto::AesEncryptCtr(string StringToEncrypt, string EncryptionKey, 
 #endif
 };
 
-string XaLibCrypto::AesDecryptCtr(string EncryptedValue, string EncryptionKey, string EncryptionIV) {
+string XaLibCrypto::AesDecryptCtr(const string& EncryptedValue, const string& EncryptionKey, const string& EncryptionIV) {
 
 #ifdef __APPLE__
 

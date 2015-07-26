@@ -85,9 +85,9 @@ void XaAddress::XaAddressGeoAddFrm(){
 
     XaLibDom* LibDom=new XaLibDom();
 	
-	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
 	XaLibAction::AddOptionsByDomain(LibDom,XmlDomDoc,XaDomainType,"//root/fieldset[@id='XaAddressGeo']/field[@name='XaDomainType_ID']/options");
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
 	string XaUser_ID=HTTP.GetHttpParam("XaUser_ID");
@@ -207,7 +207,7 @@ void XaAddress::XaAddressGeoModFrm(){
 
     XaLibDom* LibDom=new XaLibDom();
 	
-	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
 	XaLibAction::AddOptionsByDomain(LibDom,XmlDomDoc,XaDomainType,"//root/fieldset[@id='XaAddressGeo']/field[@name='XaDomainType_ID']/options");
 
 	XaLibSql* LibSql=new XaLibSql();
@@ -236,7 +236,7 @@ void XaAddress::XaAddressGeoModFrm(){
 
 	}
 
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
 	string XaUser_ID=HTTP.GetHttpParam("XaUser_ID");
@@ -327,8 +327,8 @@ void XaAddress::XaAddressGeoList(){
 
 	delete(LibSql);
 
-	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
 	const int MAXITEMS = 6;
@@ -355,13 +355,13 @@ void XaAddress::XaAddressPhoneAddFrm(){
     XaLibAction::AddXslFile("XaAddressPhoneTpl");
 
     XaLibDom* LibDom=new XaLibDom();
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
 
 		XaLibAction::AddOptionsByDomain(LibDom,XmlDomDoc,XaDomainType,"//field[@name='XaDomainType_ID']/options");
 		XaLibAction::OptionOrderByFields.push_back("description");
 		XaLibAction::AddOptionsByDomainWithDescription(LibDom,XmlDomDoc,XaDomainCode,"//field[@name='XaDomainCode_ID']/options");
 	
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
 
@@ -473,7 +473,7 @@ void XaAddress::XaAddressPhoneModFrm(){
     XaLibAction::AddXslFile("XaAddressPhoneTpl");
 
     XaLibDom* LibDom=new XaLibDom();
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
 
 	XaLibAction::AddOptionsByDomain(LibDom,XmlDomDoc,XaDomainType,"//field[@name='XaDomainType_ID']/options");
 	XaLibAction::OptionOrderByFields.push_back("description");
@@ -507,7 +507,7 @@ void XaAddress::XaAddressPhoneModFrm(){
 
 	}
 
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
 	if (XaUser_ID!="NoHttpParam" && XaTable!="NoHttpParam"){
@@ -596,8 +596,8 @@ void XaAddress::XaAddressPhoneList(){
 
 	delete(LibSql);
 
-	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
 	const int MAXITEMS = 6;
@@ -624,11 +624,11 @@ void XaAddress::XaAddressMailAddFrm(){
     XaLibAction::AddXslFile("XaAddressMailTpl");
 
     XaLibDom* LibDom=new XaLibDom();
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
 
 		XaLibAction::AddOptionsByDomain(LibDom,XmlDomDoc,XaDomainType,"//field[@name='XaDomainType_ID']/options");
 	
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
 
@@ -740,7 +740,7 @@ void XaAddress::XaAddressMailModFrm(){
     XaLibAction::AddXslFile("XaAddressMailTpl");
 
     XaLibDom* LibDom=new XaLibDom();
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
+    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
 
 	XaLibAction::AddOptionsByDomain(LibDom,XmlDomDoc,XaDomainType,"//field[@name='XaDomainType_ID']/options");
 
@@ -770,7 +770,7 @@ void XaAddress::XaAddressMailModFrm(){
 
 	}
 
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
 	if (XaUser_ID!="NoHttpParam" && XaTable!="NoHttpParam"){
@@ -859,8 +859,8 @@ void XaAddress::XaAddressMailList(){
 
 	delete(LibSql);
 
-	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFilePaths,XmlStrings,1);
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFilePaths,XslStrings,2);
+	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
+	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
 	delete(LibDom);
 
 	const int MAXITEMS = 6;

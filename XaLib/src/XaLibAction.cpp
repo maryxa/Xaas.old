@@ -3,24 +3,29 @@
 XaLibAction::XaLibAction(){
 };
 
-void XaLibAction::AddXmlFile(string FilePath){
+void XaLibAction::AddXmlFile(const string& FilePath){
 
-	string TmpString=SETTINGS["XmlDir"]+FilePath+".xml";
+	string XmlSharedPath=SETTINGS["SharedDir"]+"/xml/"+FilePath+".xml";
+	string XmlDefaultPath=SETTINGS["XmlDir"]+FilePath+".xml";
+	
+	unique_ptr<FILE, int(*)(FILE*)> f1(fopen(XmlSharedPath.c_str(), "r"), fclose);
+	unique_ptr<FILE, int(*)(FILE*)> f2(fopen(XmlDefaultPath.c_str(), "r"), fclose);
+	
+	if (f1) {
+		XmlFiles.push_back(XmlSharedPath);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile -> "+XmlSharedPath);
 
-	unique_ptr<FILE, int(*)(FILE*)> fp(fopen(TmpString.c_str(), "r"), fclose);
-
-	if (fp) {
-
-		XmlFilePaths.push_back(TmpString);
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XmlFile -> "+TmpString);
+	} else if (f2) {
+		XmlFiles.push_back(XmlDefaultPath);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile Default-> "+XmlDefaultPath);
 
 	} else {
-
-		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Xml File Does Not Exist -> "+TmpString);
+	
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Xsl File Does Not Exist-> "+XmlDefaultPath);
 	}
 };
 
-void XaLibAction::AddXmlString(string XmlString){
+void XaLibAction::AddXmlString(const string& XmlString){
 
 	//ToDo= Check if is valid Xml String
 	XmlStrings.push_back(XmlString);
@@ -28,22 +33,22 @@ void XaLibAction::AddXmlString(string XmlString){
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XmlString -> "+XmlString);
 };
 
-void XaLibAction::AddXslFile(string FilePath){
+void XaLibAction::AddXslFile(const string& FilePath){
 
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Selected GUI Style -> "+SETTINGS["GuiStyle"]);
+	//LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Selected GUI Style -> "+SETTINGS["GuiStyle"]);
 
-	string XslLayoutPath=SETTINGS["XslDir"]+SETTINGS["GuiStyle"]+"/"+FilePath+".xsl";
+	string XslSharedPath=SETTINGS["SharedDir"]+"/xsl/"+FilePath+".xsl";
 	string XslDefaultPath=SETTINGS["XslDir"]+FilePath+".xsl";
 	
-	unique_ptr<FILE, int(*)(FILE*)> f1(fopen(XslLayoutPath.c_str(), "r"), fclose);
+	unique_ptr<FILE, int(*)(FILE*)> f1(fopen(XslSharedPath.c_str(), "r"), fclose);
 	unique_ptr<FILE, int(*)(FILE*)> f2(fopen(XslDefaultPath.c_str(), "r"), fclose);
 
 	if (f1) {
-		XslFilePaths.push_back(XslLayoutPath);
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile -> "+XslLayoutPath);
+		XslFiles.push_back(XslSharedPath);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile -> "+XslSharedPath);
 
 	} else if (f2) {
-		XslFilePaths.push_back(XslDefaultPath);
+		XslFiles.push_back(XslDefaultPath);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile Default-> "+XslDefaultPath);
 
 	} else {
@@ -52,10 +57,28 @@ void XaLibAction::AddXslFile(string FilePath){
 	}
 };
 
-void XaLibAction::AddXslString(string XslString){
+void XaLibAction::AddXslString(const string& XslString){
 
 	XslStrings.push_back(XslString);
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslString -> "+XslString);
+};
+
+void XaLibAction::AddXslParamCommon() {
+
+	XslParams.push_back("AppName");
+	XslParams.push_back(SETTINGS["AppName"]);
+	XslParams.push_back("GuiStyle");
+	XslParams.push_back(SETTINGS["GuiStyle"]);
+
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslParamCommon -> AppName::"+SETTINGS["AppName"]+" GuiStyle::"+SETTINGS["GuiStyle"]);
+};
+
+void XaLibAction::AddXslParam(const string& ParamName, const string& ParamValue) {
+
+	XslParams.push_back(ParamName);
+	XslParams.push_back(ParamValue);
+
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslParam -> "+ParamName+"::"+ParamValue);
 };
 
 void XaLibAction::AddOptionsByDb(XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string TableName,string XPathExpr){
@@ -561,8 +584,6 @@ void XaLibAction::SetLayout(const string &LayoutType){
 		AddXslFile("XaGuiFooter");
 		AddXslFile("XaGuiNav");
 		AddXslFile("templates");
-
-		//AddXslFile("manifest");
 		AddXmlFile("XaLabel-"+REQUEST.Language);
 		AddXmlFile("XaGuiNav");
 
@@ -585,7 +606,7 @@ void XaLibAction::SetLayout(const string &LayoutType){
 	} else if (LayoutType=="LoginFrm") {
 
 		AddXslFile("XaGuiHead");
-		AddXslFile("header-internet");
+		AddXslFile("XaGuiHeaderInternet");
 		AddXslFile("XaGuiFooter");
 		AddXmlFile("XaLabel-"+REQUEST.Language);
 
