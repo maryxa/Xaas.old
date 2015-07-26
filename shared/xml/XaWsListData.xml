@@ -1,0 +1,16 @@
+<XaWsList>
+	<data>
+		<ws>
+			<XaWs-Id></XaWs-Id>
+            <XaWs-XaUser_ID></XaWs-XaUser_ID>
+			<XaWs-Caller></XaWs-Caller>
+            <XaWs-Object></XaWs-Object>
+            <XaWs-Event></XaWs-Event>
+            <XaWs-Request></XaWs-Request>
+            <XaWs-Response></XaWs-Response>
+            <XaWs-LogData></XaWs-LogData>
+            <XaWs-Request_Time></XaWs-Request_Time>
+            <XaWs-Response_Time></XaWs-Response_Time>
+		</ws>
+	</data>
+</XaWsList>
