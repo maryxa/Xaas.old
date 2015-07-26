@@ -1,0 +1,98 @@
+/* XAllegro Ltd 2015
+ *
+ * www.xallegro.com - info@xallegro.com
+ *
+ */
+
+/*
+ * Green : #77B710
+ * Green Scuro: #95AE0C
+
+* Blue  : #336699
+* BlueJ:#205081
+ * Orange: #FF9900
+ * Red:    #A42700
+ * Gray :  #F4F4F4
+ * Text :  #222222;
+ACID GREEN: #C8EA17
+ */
+
+$FontSize:2.4vh;
+ 
+$FontColor:#222222;
+$BorderRadius:0.2em;
+$HeaderHeight:4.5vh;
+$HeaderBackgroundColor:#2D353A;
+$HeaderFontColor:#DDDDDD;
+$HeaderFontSize:$FontSize/100*80; //80%
+$HeaderLineHeight:4.2vh;
+$HeaderToolbarLiBackgroundColor:#1A2228;
+$HeaderToolbarLiBackgroundColorHover:#FF9900;
+$HeaderToolbarLiBackgroundColorTarget:#77B710;
+$HeaderToolbarLiFontColorHover:#FFFFFF;
+$HeaderToolbarLiFontColorTarget:#FFFFFF;
+
+$MenuToggleHeight:4.0vh;
+$MenuToggleWidth:4.0vh;
+
+$NavWidth:14vw;
+$NavBackgroundColor:#2D353A;
+$NavFontColor:#DDDDDD;
+$NavFontSize:$FontSize/100*70; //70%
+$NavColorOver:#FF9900;
+$NavFontColorHover:#FFFFFF;
+$NavColorTarget:#77B710;
+$NavFontColorTarget:#FFFFFF;
+
+$LogoHeight:4.5vh;
+
+$ContainerBackgroundColor:#DDDDDD;
+
+/*
+$ColorBlue:#205081;
+
+$ColorGreen:#77B710;
+$ColorGreenAcid:#C8EA17;
+$ColorOrange:#FF9900;
+$ColorRed:#A42700;
+
+$ColorTextBlack:#444444;
+$ColorTextWhite:#FFFFFF;
+
+$ColorBorderBlack:#444444;
+
+
+$MenuTopFontSize:1.2em;
+$MenuTopLineHeight:2.2em;
+
+$MenuDownFontSize:1.4em;
+$MenuDownLineHeight:2.4em;
+
+$FontSizeRegular:1em;
+*/
+
+$FormFontColor:#222222;
+$FormBackgroundColor:#fefefe;
+$FormFieldsetBorderColor:#FF9900;
+$FormLegendFontSize:$FontSize/100*80; //80%
+$FormFontSize:$FontSize/100*75; //75%
+
+$FormInputBorderColor: #DDDDDD;
+$FormInputColorFocus: #555555;
+$FormInputColorInvalid:#b03535;
+$FormInputColorValid:#28921f;
+
+$FormButtonBackgroundColor: #77B710;
+$FormButtonFontColor: #FEFEFE;
+
+
+$ListTitleHeight:4vh;
+
+$ListBackgroundColor:#fefefe;
+$ListFontColor:#222222;
+$ListFontSize:$FontSize/100*75; //75%
+
+$ListHeaderBackgroundColor:#2D353A;
+$ListHeaderFontColor:#DDDDDD;
+$ListRowBackgroundColorHover:#FF9900;
+$ListRowFontColorHover:#FFFFFF;
