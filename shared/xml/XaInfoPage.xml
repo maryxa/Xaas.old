@@ -1,0 +1,10 @@
+<XaInfoPage>
+<errors>
+    <ObjectNotFound>
+		<description>The requested Object does not exist</description>
+	</ObjectNotFound>
+	 <EventNotFound>
+		<description>The requested Event does not exist</description>
+	</EventNotFound>
+</errors>
+</XaInfoPage>
