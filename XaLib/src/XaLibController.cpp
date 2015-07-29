@@ -364,7 +364,17 @@ void XaLibController::Dispatch() {
 
 		} else if(SETTINGS["AccessControl"]=="no") {
 
-			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"+++ ACCESS CONTROL DISABLED +++");			
+			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"+++ ACCESS CONTROL DISABLED +++");
+			
+			if (REQUEST.HeadersString!="") {
+
+					REQUEST.HeadersString+=REQUEST.HeadersStringCustom;
+
+				} else {
+
+					REQUEST.HeadersString+="?"+REQUEST.HeadersStringCustom;
+				}
+
 			this->ExecuteCalledObject();
 		}
 
@@ -382,7 +392,6 @@ void XaLibController::Dispatch() {
 void XaLibController::ExecuteCalledObject() {};
 		
 void XaLibController::SendResponse(){
-
 	
 	if (RESPONSE.Object!="" && RESPONSE.Event!="") {
 
@@ -398,15 +407,15 @@ void XaLibController::SendResponse(){
 		Dispatch();
 
 	} else {
-		
-		//LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Sending Page Content -> " +RESPONSE.Content);
+
+		//LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Sending Page Content -> " +RESPONSE.Content);
 		XaLibController::SendHeaders(RESPONSE.ResponseType);
 		cout<<RESPONSE.Content<<endl;
 
 	}
 };
 
-void XaLibController::SendHeaders (string& HeadersType) const{
+void XaLibController::SendHeaders (string& HeadersType) const {
 
 	if (HeadersType=="html" || HeadersType=="xhtml") {
 		

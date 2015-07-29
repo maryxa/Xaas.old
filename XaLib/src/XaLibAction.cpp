@@ -5,23 +5,23 @@ XaLibAction::XaLibAction(){
 
 void XaLibAction::AddXmlFile(const string& FilePath){
 
-	string XmlSharedPath=SETTINGS["SharedDir"]+"/xml/"+FilePath+".xml";
 	string XmlDefaultPath=SETTINGS["XmlDir"]+FilePath+".xml";
-	
+	string XmlSharedPath=SETTINGS["SharedDir"]+"xml/"+FilePath+".xml";
+
 	unique_ptr<FILE, int(*)(FILE*)> f1(fopen(XmlDefaultPath.c_str(), "r"), fclose);
 	unique_ptr<FILE, int(*)(FILE*)> f2(fopen(XmlSharedPath.c_str(), "r"), fclose);
 
 	if (f1) {
 		XmlFiles.push_back(XmlDefaultPath);
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile -> "+XmlSharedPath);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XmlFile Custom-> "+XmlDefaultPath);
 
 	} else if (f2) {
 		XmlFiles.push_back(XmlSharedPath);
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile Default-> "+XmlDefaultPath);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XmlFile Shared-> "+XmlSharedPath);
 
 	} else {
 	
-		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Xsl File Does Not Exist-> "+XmlDefaultPath);
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Xml File Does Not Exist-> "+FilePath);
 	}
 };
 
@@ -35,23 +35,23 @@ void XaLibAction::AddXmlString(const string& XmlString){
 
 void XaLibAction::AddXslFile(const string& FilePath){
 
-	string XslSharedPath=SETTINGS["SharedDir"]+"/xsl/"+FilePath+".xsl";
 	string XslDefaultPath=SETTINGS["XslDir"]+FilePath+".xsl";
+	string XslSharedPath=SETTINGS["SharedDir"]+"xsl/"+FilePath+".xsl";
 	
 	unique_ptr<FILE, int(*)(FILE*)> f1(fopen(XslDefaultPath.c_str(), "r"), fclose);
 	unique_ptr<FILE, int(*)(FILE*)> f2(fopen(XslSharedPath.c_str(), "r"), fclose);
 
 	if (f1) {
 		XslFiles.push_back(XslDefaultPath);
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile -> "+XslSharedPath);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile Custom-> "+XslDefaultPath);
 
 	} else if (f2) {
 		XslFiles.push_back(XslSharedPath);
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile Default-> "+XslDefaultPath);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile Shared-> "+XslSharedPath);
 
 	} else {
 	
-		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Xsl File Does Not Exist-> "+XslDefaultPath);
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Xsl File Does Not Exist-> "+FilePath);
 	}
 };
 
@@ -78,6 +78,16 @@ void XaLibAction::AddXslParam(const string& ParamName, const string& ParamValue)
 
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslParam -> "+ParamName+"::"+ParamValue);
 };
+
+void XaLibAction::ErrorPage (const string& ErrorType) {
+
+	LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Redirection to ErrorPage -> "+ErrorType);
+
+	RESPONSE.Object="XaPages";
+	RESPONSE.Event="XaInfoPage";
+	RESPONSE.Headers="&ErrorMessage="+ErrorType;
+};
+
 
 void XaLibAction::AddOptionsByDb(XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string TableName,string XPathExpr){
 
@@ -585,10 +595,11 @@ void XaLibAction::SetLayout(const string &LayoutType){
 		AddXmlFile("XaLabel-"+REQUEST.Language);
 		AddXmlFile("XaGuiNav");
 
-	} else if (LayoutType=="Included") {
+	} else if (LayoutType=="InfoPage") {
 
-		AddXslFile("templates");
-		AddXmlFile("XaLabel-"+REQUEST.Language);
+		AddXslFile("XaGuiHead");
+		AddXslFile("XaInfoPage");
+		AddXmlFile("XaInfoPage");
 
 	} else if (LayoutType=="Chart") {
 
@@ -607,10 +618,6 @@ void XaLibAction::SetLayout(const string &LayoutType){
 		AddXslFile("XaGuiHeaderInternet");
 		AddXslFile("XaGuiFooter");
 		AddXmlFile("XaLabel-"+REQUEST.Language);
-
-	} else if (LayoutType=="InfoPage") {
-
-		AddXslFile("XaGuiHead");
 
 	} else if (LayoutType=="Search") {
 

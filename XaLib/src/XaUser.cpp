@@ -80,7 +80,7 @@ void XaUser::Dispatcher (const string &CalledEvent) {
     } else {
 
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Event Does Not Exists -> "+CalledEvent);
-		//MANDARE DA QUALCHE PARTE VEDI LOGIN
+		ErrorPage ("EventNotFound");
 	}
 
 }
@@ -88,16 +88,13 @@ void XaUser::LoginFrm (){
 	
 	string StrError=HTTP.GetHttpParam("error");
 
-	//SetLayout(REQUEST.CalledLayout);
-
 	SetLayout("LoginFrm");
 
 	AddXmlFile("LoginFrm");
 	AddXslFile("LoginFrm");
 
-	unique_ptr<XaLibDom> LibDom (new XaLibDom());
-	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
+	xmlDocPtr XmlDomDoc=XaLibDom::DomFromStringAndFile(XmlFiles,XmlStrings,1);
+	xmlDocPtr XslDomDoc=XaLibDom::DomFromStringAndFile(XslFiles,XslStrings,2);
 
 	AddXslParamCommon();
     unique_ptr<XaLibXsl> LibXsl (new XaLibXsl(XmlDomDoc,XslDomDoc,XslParams));
@@ -177,44 +174,41 @@ void XaUser::Logout (){
 	
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Destroying Session -> SessionID::"+REQUEST.XaSession_ID +" AND UserID::"+ XaLibBase::FromIntToString(REQUEST.XaUser_ID));
 
-	unique_ptr<XaLibSql> LibSql(new XaLibSql());
-
-	LibSql->LockTable(DB_SESSION,"XaSession");
+	XaLibSql LibSql;
+	//LibSql.LockTable(DB_SESSION,"XaSession");
 
 		//DELETE SESSION DATA
 		vector<string> VectorWhereSessionDataFields {"XaSession_ID"};
 		vector<string> VectorWhereSessionDataValues {REQUEST.XaSession_ID};
 
-		LibSql->Delete(DB_SESSION,"XaSessionData",VectorWhereSessionDataFields,VectorWhereSessionDataValues);
+		LibSql.Delete(DB_SESSION,"XaSessionData",VectorWhereSessionDataFields,VectorWhereSessionDataValues);
 
 		VectorWhereSessionDataFields.clear();
 		VectorWhereSessionDataValues.clear();
 				
 		//DELETE SESSION
 		vector<string> VectorWhereSessionFields {"SessionID","XaUser_ID"};
-
 		vector<string> VectorWhereSessionValues {REQUEST.XaSession_ID,XaLibBase::FromIntToString(REQUEST.XaUser_ID)};
 
-		LibSql->Delete(DB_SESSION,"XaSession",VectorWhereSessionFields,VectorWhereSessionValues);
+		LibSql.Delete(DB_SESSION,"XaSession",VectorWhereSessionFields,VectorWhereSessionValues);
 		
 		VectorWhereSessionFields.clear();
 		VectorWhereSessionValues.clear();
 
-	LibSql->UnlockTable(DB_SESSION);
+	//LibSql.UnlockTable(DB_SESSION);
 
-    XaLibAction::SetLayout("Standard");
-    XaLibAction::AddXmlFile("XaUserLogout");
-    XaLibAction::AddXslFile("XaUserLogout");
+	SetLayout("LoginFrm");
 
-	unique_ptr<XaLibDom> LibDom(new XaLibDom());
-    xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
-	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
+	AddXmlFile("Logout");
+	AddXslFile("Logout");
 
-	const int MAXITEMS = 2;
-	string XslParams[MAXITEMS] = {"a","b"};
-	unique_ptr<XaLibXsl> LibXsl(new XaLibXsl(XmlDomDoc,XslDomDoc,XslParams,MAXITEMS));
+	xmlDocPtr XmlDomDoc=XaLibDom::DomFromStringAndFile(XmlFiles,XmlStrings,1);
+	xmlDocPtr XslDomDoc=XaLibDom::DomFromStringAndFile(XslFiles,XslStrings,2);
+
+	AddXslParamCommon();
+    unique_ptr<XaLibXsl> LibXsl (new XaLibXsl(XmlDomDoc,XslDomDoc,XslParams));
+
 	RESPONSE.Content=LibXsl->GetXHtml();
-
 };
 
 int XaUser::Authenticate (string StrEmail,string StrPassword) {

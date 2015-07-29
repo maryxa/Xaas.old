@@ -82,9 +82,7 @@ class XaLibAction : protected XaLibBase {
 		* @return void
 		*
 		* @code
-		*
 		* AddXmlFile("MyXml");
-		* 
 		* @endcode
 		*
 		*/
@@ -103,7 +101,6 @@ class XaLibAction : protected XaLibBase {
 		* string xml="<name>MyName</name>";
 		*
 		* AddXmlString(xml);
-		* 
 		* @endcode
 		*
 		*/
@@ -122,9 +119,7 @@ class XaLibAction : protected XaLibBase {
 		* @return void
 		*
 		* @code
-		*
 		* AddXslFile("MyXsl");
-		* 
 		* @endcode
 		*
 		*/
@@ -140,9 +135,7 @@ class XaLibAction : protected XaLibBase {
 		* @return void
 		*
 		* @code
-		*
 		* AddXmlString(xsl);
-		* 
 		* @endcode
 		*
 		*/
@@ -156,9 +149,7 @@ class XaLibAction : protected XaLibBase {
 		* @return void
 		*
 		* @code
-		*
 		* AddXslParamCommon();
-		* 
 		* @endcode
 		*
 		*/
@@ -174,13 +165,24 @@ class XaLibAction : protected XaLibBase {
 		* @return void
 		*
 		* @code
-		*
 		* AddXslParam("name", "value");
-		* 
 		* @endcode
 		*
 		*/
 		void AddXslParam (const string& ParamName, const string& ParamValue);
+		
+		/**
+		* Redirects to the InfoPage to manage .\n
+		* 
+		* @param ErrorType Type of Error
+		* @return void
+		*
+		* @code
+		* ErrorPage ("EventNotfound");
+		* @endcode
+		*
+		*/
+		void ErrorPage (const string& ErrorType);
 
 		void   AddOptionsByDb                      (XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string TableName,string XPathExpr);
 		void   AddOptionsByDb                      (XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string TableName,string XPathExpr,string OptionValueField,string OptionLabelField);
