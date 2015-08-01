@@ -9,11 +9,12 @@ UNAME_S := $(shell uname -s)
 ## TESTED: MINGW32_NT-6.2
 ifeq ($(filter MINGW32_NT-%.%,$(UNAME_S)),)
    
-    XALLEGRO_DIR = C:\XAllegro
+    XALLEGRO_DIR = C:\XAllegro\Xaas
     MINGW_DIR = C:\MinGW\mingw32
     MYSQL_DIR = C:\MySQL\MySQL\ Server\ 5.5
 
     XALIB_DIR = $(XALLEGRO_DIR)\XaLib
+    EXT_LIB_DIR = C:\XAllegro
 
     CPP      = g++
     OBJDIR   = $(XALIB_DIR)\objects\\
@@ -22,9 +23,9 @@ ifeq ($(filter MINGW32_NT-%.%,$(UNAME_S)),)
    
     LIBS     = -static -L$(MYSQL_DIR)\include\lib 
     CPPINCS  = -I$(XALIB_DIR)\include -I$(MINGW_DIR)\include \
-		-I$(MYSQL_DIR)\include -I$(XALLEGRO_DIR)\libs\libxml2\include \
-		-I$(XALLEGRO_DIR)\libs\libxslt\include -I$(XALLEGRO_DIR)\libs\openssl\include \
-		-I$(XALLEGRO_DIR)\libs\curl\include
+		-I$(MYSQL_DIR)\include -I$(EXT_LIB_DIR)\libs\libxml2\include \
+		-I$(EXT_LIB_DIR)\libs\libxslt\include -I$(EXT_LIB_DIR)\libs\openssl\include \
+		-I$(EXT_LIB_DIR)\libs\curl\include
 
     LDFLAGS  =
     CPPFLAGS = $(CPPINCS) -std=c++0x -O3 -D__NO_INLINE__ -Wall
