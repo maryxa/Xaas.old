@@ -1,36 +1,31 @@
 ##  Makefile
-##  Project: XAllegro
-##  Author XAllegro - Alessandro Mariotti
+##  Project: XAAS
+##  Alessandro Mariotti
 ##  alex@xallegro.com
 
 UNAME_S := $(shell uname -s)
 
 ## WINDOWS MINGW32_NT
 ## TESTED: MINGW32_NT-6.2
+## TESTED WIN7 - WIN10
+## ASSUMING XAAS INSTALLED UNDER c:/XAllegro
 ifeq ($(filter MINGW32_NT-%.%,$(UNAME_S)),)
-   
-    XALLEGRO_DIR = C:\XAllegro\Xaas
-    MINGW_DIR = C:\MinGW\mingw32
-    MYSQL_DIR = C:\MySQL\MySQL\ Server\ 5.5
 
-    XALIB_DIR = $(XALLEGRO_DIR)\XaLib
-    EXT_LIB_DIR = C:\XAllegro
-
+    EXT_LIB = C:\XAllegro\libs
     CPP      = g++
-    OBJDIR   = $(XALIB_DIR)\objects\\
-    RM       = rm -f -r 
+    OBJDIR   = ..\objects\\
+    RM       = rm -f -r
     CUR_DIR  = $(cmd %cd%)
-   
-    LIBS     = -static -L$(MYSQL_DIR)\include\lib 
-    CPPINCS  = -I$(XALIB_DIR)\include -I$(MINGW_DIR)\include \
-		-I$(MYSQL_DIR)\include -I$(EXT_LIB_DIR)\libs\libxml2\include \
-		-I$(EXT_LIB_DIR)\libs\libxslt\include -I$(EXT_LIB_DIR)\libs\openssl\include \
-		-I$(EXT_LIB_DIR)\libs\curl\include
+  
+    LIBS     = -static -L$(EXT_LIB)\mysql\lib 
+    CPPINCS  = -I..\include -I..\include \
+		-I$(EXT_LIB)\mysql\include -I$(EXT_LIB)\libxml2\include \
+		-I$(EXT_LIB)\libxslt\include -I$(EXT_LIB)\openssl\include \
+		-I$(EXT_LIB)\curl\include
 
-    LDFLAGS  =
     CPPFLAGS = $(CPPINCS) -std=c++0x -O3 -D__NO_INLINE__ -Wall
 
-    BIN      = $(XALIB_DIR)\bin\XaLib.a
+    BIN      = ..\bin\XaLib.a
 
 .KEEP_STATE:
 .KEEP_STATE_FILE:.make.state.GNU-amd64-Windows
@@ -44,7 +39,7 @@ ifeq ($(UNAME_S),Linux)
     OBJDIR   = ../objects/
     RM       = rm -f
     CUR_DIR  = $(shell pwd)
-    BIN      = $(CUR_DIR)/../../XaLib/bin/XaLib.so
+    BIN      = ../bin/XaLib.so
 
     LIBS     = -lxml2 -lxslt -lexslt -lssl -lcrypto -lmysqlclient -lcurl 
     CPPINCS  = -I../include -I/usr/include -I/usr/include/libxml2 -I/usr/include/mysql -I$(CUR_DIR)/../../XaLib/include
@@ -61,7 +56,7 @@ ifeq ($(UNAME_S),Darwin)
     OBJDIR   = ../objects/
     RM       = rm -f
     CUR_DIR  = $(shell pwd)
-    BIN      = $(CUR_DIR)/../../XaLib/bin/XaLib.so
+    BIN      = ../bin/XaLib.so
 
     LIBS     = -lxml2 -lxslt -lexslt -lssl -lcrypto -L/usr/local/mysql/lib -lmysqlclient -lcurl 
     CPPINCS  = -I../include -I/usr/include -I/usr/include/libxml2 -I/usr/local/mysql/include -I$(CUR_DIR)/../../XaLib/include
@@ -71,17 +66,8 @@ ifeq ($(UNAME_S),Darwin)
 endif
 
     UNAME_P := $(shell uname -p)
-    ifeq ($(UNAME_P),x86_64)
 
-    endif
-    ifneq ($(filter %86,$(UNAME_P)),)
-
-    endif
-    ifneq ($(filter arm%,$(UNAME_P)),)
-
-    endif
-
-#XALLEGRO OBJ
+#XAAS OBJ
 OBJ=$(OBJDIR)XaLibBase.o $(OBJDIR)XaLibAction.o $(OBJDIR)XaLibHttp.o $(OBJDIR)XaLibSession.o \
     $(OBJDIR)XaLibDb.o $(OBJDIR)XaLibSql.o $(OBJDIR)XaLibConfig.o $(OBJDIR)XaLibXsl.o $(OBJDIR)XaLibCrypto.o \
     $(OBJDIR)XaLibDom.o $(OBJDIR)XaLibChar.o $(OBJDIR)XaLibCurl.o $(OBJDIR)XaLibSocket.o $(OBJDIR)XaLibLog.o \
