@@ -1,9 +1,8 @@
-/* XAllegro Ltd 2015
- * 
- * www.xallegro.com - info@xallegro.com
- * 
- */
-
+/*
+	Project: XAAS
+	Alessandro Mariotti
+	alex@xallegro.com
+*/
 @import '_variables';
 
 .form {
@@ -158,114 +157,3 @@
 		width:46%;
 	}
 }
-
-
-/*
-.form-1-column .help {
-	width:1.3em;
-	height:1.3em;
-	line-height: 1.3em;
-	background-image:url('img/FormHelp.png');
-	background-repeat:no-repeat;
-	background-position: center center;
-	background-size: auto 95%;
-    display:inline-block;
-}
-
-
-.form-1-column a:link, .form-1-column a:visited, .form-1-column a:hover, .form-1-column a:active {
-}
-*/
-
-
-
-
-
-/*
-.form-1-column select:focus:invalid {
-    box-shadow: 0 0 0.1em #d45252;
-    border-color: #b03535;
-}
-
-.form-1-column select:required {
-}
-
-.form-1-column select:required:valid {
-    box-shadow: 0 0 0.1em #5cd053;
-    border-color: #28921f;
-}
-
-.form-1-column select[multiple] {
-	padding:0.1em;
-    border-radius:0.2em;
-	border:1px solid #ddd;
-	margin: 0.25em;
-
-}
-
-
-.form-1-column select[multiple] :focus:invalid {
-    box-shadow: 0 0 0.1em #d45252;
-    border-color: #b03535;
-}
-
-.form-1-column select[multiple] :required {
-}
-
-.form-1-column select[multiple] :required:valid {
-    box-shadow: 0 0 0.1em #5cd053;
-    border-color: #28921f;
-}
-
-
-
-.form-1-column button:hover {
-    opacity:.75;
-    cursor: pointer;
-}
-
-.form-1-column button:active {
-	border: 1px solid brown;
-	opacity:.75;
-}
-/*
-.form button[type="button"] {
- 
-	background-image:url('img/IconSave.svg');
-	background-repeat:no-repeat;
-	background-position: 10% center;
-	background-size: auto 65%;
-}
-
-.form button[type="submit"] {
-
-	background-image:url('img/IconSave.svg');
-	background-repeat:no-repeat;
-	background-position: 10% center;
-	background-size: auto 65%;
-}
-*/
-/*
-.form-1-column button[type="edit"] {
-	width: 5%;
-	margin: 0 auto;
-}
-
-div#ButtonContainer {
-	width:99%;
-	float:left;
-	text-align: center;
-}
-
-.dropdown select {
-	width: 8em;
-}
-
-.form-1-column input::-webkit-input-placeholder { 
-}
-.form-1-column input:-moz-placeholder {
-}
-.form-1-column input::-moz-placeholder {
-}
-.form-1-column input:-ms-input-placeholder {
-}*/

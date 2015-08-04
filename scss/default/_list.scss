@@ -1,9 +1,8 @@
-/* XAllegro Ltd 2015
- * 
- * www.xallegro.com - info@xallegro.com
- * 
- */
-
+/*
+	Project: XAAS
+	Alessandro Mariotti
+	alex@xallegro.com
+*/
 @import '_variables';
 
 .list {
@@ -49,12 +48,12 @@
 
 				.Refresh {
 					float:right;
-					background-image:url('img/london/IconRefresh.svg');
+					background-image:url('IconRefresh.svg');
 				}
 
 				.Expand {
 					float:right;
-					background-image:url('img/london/IconExpand.svg');
+					background-image:url('IconExpand.svg');
 				}
 			}
 		}

@@ -1,3 +1,9 @@
+/*
+	Project: XAAS
+	Alessandro Mariotti
+	alex@xallegro.com
+*/
+
 @import '_font_open_sans';
 @import '_variables';
 @import '_form';
@@ -151,7 +157,6 @@ nav {
 			color: $NavFontColor;
 			line-height: 2.3em;
 			text-decoration: none;
-			/*background:#336699;*/
 			border-bottom: 1px solid $ContainerBackgroundColor;
 			transition: all 0.25s;
 
@@ -212,6 +217,10 @@ nav {
 	img {
 		content:url('XAllegroLogo.svg');
 	}
+}
+
+.ErrorMessage {
+
 }
 
 footer {
