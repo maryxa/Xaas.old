@@ -88,6 +88,14 @@ void XaLibAction::ErrorPage (const string& ErrorType) {
 	RESPONSE.Headers="&ErrorMessage="+ErrorType;
 };
 
+void XaLibAction::ErrorExit (const string& ErrorType) {
+
+	LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Redirection to ErrorPage -> "+ErrorType);
+
+	REQUEST.CalledObject="XaPages";
+	REQUEST.CalledEvent="XaInfoPage";
+	REQUEST.HeadersStringCustom="&ErrorMessage="+ErrorType;
+};
 
 void XaLibAction::AddOptionsByDb(XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string TableName,string XPathExpr){
 
@@ -454,13 +462,13 @@ string XaLibAction::HttpParamValidation (string ParamName, string ParamValue, st
 	if (Required=="yes" && ParamValue=="NoHttpParam"){
 
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Validation Required Test Failed For Field: " + ParamName);
-		this->ErrorExit("XaInfoPage","HttpParamValidation");
+		//this->ErrorExit("XaInfoPage","HttpParamValidation");
 	}
 
 	if (Dimension!="" && ParamValue.size()>XaLibBase::FromStringToInt(Dimension)) {
 
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Validation Dimension Test Failed For Field: " + ParamName);
-		this->ErrorExit("XaInfoPage","HttpParamValidation");
+		//this->ErrorExit("XaInfoPage","HttpParamValidation");
 	}
 
 	if (DefaultValue!="" && ParamValue=="") {
@@ -473,18 +481,6 @@ string XaLibAction::HttpParamValidation (string ParamName, string ParamValue, st
 		return ParamValue;
 	}
 
-};
-
-void XaLibAction::ErrorExit(string ErrorPage,string ErrorCode) {
-
-	//ErrorPage="XaInfoPage";
-	
-	LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Page Generated: " + ErrorCode);
-	//XaLibAction::PostAction="do="+ErrorPage+"&ErrorMessage="+ErrorCode;
-	//Response.Action=ErrorPage;
-	RESPONSE.Object="XaPages";
-	RESPONSE.Event="XaInfoPage";
-	RESPONSE.Headers="&ErrorMessage="+ErrorCode;
 };
 
 string XaLibAction::EncryptParam(string ClearValue){

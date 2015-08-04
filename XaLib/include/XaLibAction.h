@@ -172,8 +172,8 @@ class XaLibAction : protected XaLibBase {
 		void AddXslParam (const string& ParamName, const string& ParamValue);
 		
 		/**
-		* Redirects to the InfoPage to manage .\n
-		* 
+		* Redirects to the InfoPage .\n
+		* To Use with classes that provide the Method GetResponse\n
 		* @param ErrorType Type of Error
 		* @return void
 		*
@@ -183,6 +183,19 @@ class XaLibAction : protected XaLibBase {
 		*
 		*/
 		void ErrorPage (const string& ErrorType);
+
+		/**
+		* Redirects to the InfoPage and return the control to the Controller.\n
+		* To Use with classes that don't provide the Method GetResponse\n
+		* @param ErrorType Type of Error
+		* @return void
+		*
+		* @code
+		* ErrorExit ("EventNotfound");
+		* @endcode
+		*
+		*/
+		void ErrorExit (const string& ErrorType);
 
 		void   AddOptionsByDb                      (XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string TableName,string XPathExpr);
 		void   AddOptionsByDb                      (XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string TableName,string XPathExpr,string OptionValueField,string OptionLabelField);
@@ -198,7 +211,6 @@ class XaLibAction : protected XaLibBase {
 		string SelectUserItem		               (string XaUser_ID);
 
 		string HttpParamValidation (string ParamName, string ParamValue, string DataType, string Required, string Dimension, string Domain, string DefaultValue);
-		void ErrorExit(string ErrorPage,string ErrorCode);
 
 		string EncryptParam(string ClearValue);
 		string EncryptParam(int ClearValue);
