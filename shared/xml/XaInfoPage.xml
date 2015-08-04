@@ -3,8 +3,11 @@
     <ObjectNotFound>
 		<description>The requested Object does not exist</description>
 	</ObjectNotFound>
-	 <EventNotFound>
+	<EventNotFound>
 		<description>The requested Event does not exist</description>
 	</EventNotFound>
+	<EventNotProfiled>
+		<description>The requested Event is not profiled for this User</description>
+	</EventNotProfiled>
 </errors>
 </XaInfoPage>
