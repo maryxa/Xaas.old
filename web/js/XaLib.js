@@ -1,6 +1,8 @@
-/* XAllegro Ltd 2013
+/* Alessandro Mariotti
  * 
- * www.xallegro.com - info@xallegro.com
+ * alex@xallegro.com
+ * 
+ * @file XaLibJs.js
  * 
  */
 
