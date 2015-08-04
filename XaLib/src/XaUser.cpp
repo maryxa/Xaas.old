@@ -86,7 +86,7 @@ void XaUser::Dispatcher (const string &CalledEvent) {
 }
 void XaUser::LoginFrm (){
 	
-	string StrError=HTTP.GetHttpParam("error");
+	string StrError=HTTP.GetHttpParam("LoginStatus");
 
 	SetLayout("LoginFrm");
 
@@ -97,6 +97,12 @@ void XaUser::LoginFrm (){
 	xmlDocPtr XslDomDoc=XaLibDom::DomFromStringAndFile(XslFiles,XslStrings,2);
 
 	AddXslParamCommon();
+		
+	if (StrError=="error") {
+
+		AddXslParam("LoginStatus","error");
+	}
+
     unique_ptr<XaLibXsl> LibXsl (new XaLibXsl(XmlDomDoc,XslDomDoc,XslParams));
 
 	RESPONSE.Content=LibXsl->GetXHtml();
@@ -166,6 +172,7 @@ void XaUser::Login (){
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Username Or Password Is Empty");
 		RESPONSE.Object="XaUser";
 		RESPONSE.Event="LoginFrm";
+		RESPONSE.Headers="&LoginStatus=error";
 	}
 
 };
@@ -175,7 +182,7 @@ void XaUser::Logout (){
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Destroying Session -> SessionID::"+REQUEST.XaSession_ID +" AND UserID::"+ XaLibBase::FromIntToString(REQUEST.XaUser_ID));
 
 	XaLibSql LibSql;
-	//LibSql.LockTable(DB_SESSION,"XaSession");
+	LibSql.LockTable(DB_SESSION,"XaSession");
 
 		//DELETE SESSION DATA
 		vector<string> VectorWhereSessionDataFields {"XaSession_ID"};
@@ -195,7 +202,7 @@ void XaUser::Logout (){
 		VectorWhereSessionFields.clear();
 		VectorWhereSessionValues.clear();
 
-	//LibSql.UnlockTable(DB_SESSION);
+	LibSql.UnlockTable(DB_SESSION);
 
 	SetLayout("LoginFrm");
 
@@ -300,7 +307,7 @@ void XaUser::XaUserLoginAddFrm() {
 
 	} else {
 
-		XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
+		//XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
 	}
 
 };
@@ -459,7 +466,7 @@ void XaUser::XaUserLoginModFrm() {
 
 	} else {
 
-		XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
+//		XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
 	}
 
 };
@@ -809,7 +816,7 @@ void XaUser::XaUserPasswordModFrm() {
 
 	} else {
 
-		XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
+//		XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
 	}
 
 };
@@ -2091,7 +2098,7 @@ void XaUser::UpdateTreeData(DbResMap DbResParent,int NextId){
 	} else {
 
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Updating Tree Data For User -> " + XaLibBase::FromIntToString(NextId));
-		this->ErrorExit("XaInfoPage","InsertDb");
+//		this->ErrorExit("XaInfoPage","InsertDb");
 	}
 };
 
@@ -2137,7 +2144,7 @@ void XaUser::UpdateTreeData(int ParentId,int NextId){
 		
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Updating Tree Data For User -> " + XaLibBase::FromIntToString(NextId));
 
-		this->ErrorExit("XaInfoPage","InsertDb");
+//		this->ErrorExit("XaInfoPage","InsertDb");
 	}
 };
 
@@ -2172,7 +2179,7 @@ void XaUser::XaUserXaUserProfileAdd(int XaUser_ID,int XaUserProfile_ID) {
 	if (NextId==0) {
 
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Adding XaUserXaUserProfile Id -> " + XaLibBase::FromIntToString(XaUserProfile_ID) + " For User -> " + XaLibBase::FromIntToString(XaUser_ID));
-		this->ErrorExit("XaInfoPage","InsertDb");
+//		this->ErrorExit("XaInfoPage","InsertDb");
 
 	} else {
 

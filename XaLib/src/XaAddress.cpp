@@ -103,7 +103,7 @@ void XaAddress::XaAddressGeoAddFrm(){
 
 	} else {
 
-		XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
+//		XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
 	}
 
 };
@@ -252,7 +252,7 @@ void XaAddress::XaAddressGeoModFrm(){
 
 	} else {
 
-		XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
+//		XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
 	}
 
 };
@@ -375,7 +375,7 @@ void XaAddress::XaAddressPhoneAddFrm(){
 
 	} else {
 
-		XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
+//		XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
 	}
 };
 
@@ -520,7 +520,7 @@ void XaAddress::XaAddressPhoneModFrm(){
 
 	} else {
 
-		XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
+//		XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
 	}
 };
 
@@ -642,7 +642,7 @@ void XaAddress::XaAddressMailAddFrm(){
 
 	} else {
 
-		XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
+//		XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
 	}
 
 };
@@ -783,7 +783,7 @@ void XaAddress::XaAddressMailModFrm(){
 
 	} else {
 
-		XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
+//		XaLibAction::ErrorExit("XaInfoPage","GetHttpParam");
 	}
 };
 

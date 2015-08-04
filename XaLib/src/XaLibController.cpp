@@ -355,9 +355,11 @@ void XaLibController::Dispatch() {
 			} else {
 
 				LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Not Profiled Object-Event -> "+REQUEST.CalledObject+"::"+REQUEST.CalledEvent);
-				REQUEST.CalledObject="XaPages";
-				REQUEST.CalledEvent="XaInfoPage";
-				REQUEST.HeadersStringCustom="&ErrorMessage=EventNotProfiled";
+				
+				RESPONSE.Object="XaPages";
+				RESPONSE.Event="XaInfoPage";
+				RESPONSE.Headers="&ErrorMessage=EventNotProfiled";
+				
 				this->Dispatch();
 
 			}

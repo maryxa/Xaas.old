@@ -548,6 +548,7 @@ int XaUserProfile::EventProfile(const string& CalledObject, const string& Called
 	} else {
 		//LOPPA
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Object-Event Is NOT In Profile -> "+CalledObject+"::"+CalledEvent);
+		ErrorExit("EventNotProfiled");
 	}
 
 	DbResAction.clear();
