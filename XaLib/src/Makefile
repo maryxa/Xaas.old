@@ -11,17 +11,17 @@ UNAME_S := $(shell uname -s)
 ## ASSUMING XAAS INSTALLED UNDER c:/XAllegro
 ifeq ($(filter MINGW32_NT-%.%,$(UNAME_S)),)
 
-    EXT_LIB = C:\XAllegro\libs
+    MYSQL_LIB = C:\XAllegro\libs\mysql
+    MINGW_LIB_DIR=C:\XAllegro\msys\1.0\opt\windows_32\include
+
     CPP      = g++
     OBJDIR   = ..\objects\\
     RM       = rm -f -r
     CUR_DIR  = $(cmd %cd%)
-  
-    LIBS     = -static -L$(EXT_LIB)\mysql\lib 
-    CPPINCS  = -I..\include -I..\include \
-		-I$(EXT_LIB)\mysql\include -I$(EXT_LIB)\libxml2\include \
-		-I$(EXT_LIB)\libxslt\include -I$(EXT_LIB)\openssl\include \
-		-I$(EXT_LIB)\curl\include
+
+    LIBS     = -static -L$(MYSQL_LIB)\lib 
+    CPPINCS  = -I..\include -I..\include -I$(MINGW_LIB_DIR) \
+		-I$(MYSQL_LIB)\include -I$(MINGW_LIB_DIR)\libxml2 \
 
     CPPFLAGS = $(CPPINCS) -std=c++0x -O3 -D__NO_INLINE__ -Wall
 
