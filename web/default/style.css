@@ -1,3 +1,8 @@
+/*
+	Project: XAAS
+	Alessandro Mariotti
+	alex@xallegro.com
+*/
 /* FONT DEFINITION START*/
 /* Light */
 @font-face {
@@ -90,104 +95,36 @@
 }
 
 /* FONT DEFINITION END*/
-/* XAllegro Ltd 2015
- *
- * www.xallegro.com - info@xallegro.com
- *
- */
 /*
- * Green : #77B710
- * Green Scuro: #95AE0C
-
-* Blue  : #336699
-* BlueJ:#205081
- * Orange: #FF9900
- * Red:    #A42700
- * Gray :  #F4F4F4
- * Text :  #222222;
-ACID GREEN: #C8EA17
- */
-/*
-$ColorBlue:#205081;
-
-$ColorGreen:#77B710;
-$ColorGreenAcid:#C8EA17;
-$ColorOrange:#FF9900;
-$ColorRed:#A42700;
-
-$ColorTextBlack:#444444;
-$ColorTextWhite:#FFFFFF;
-
-$ColorBorderBlack:#444444;
-
-
-$MenuTopFontSize:1.2em;
-$MenuTopLineHeight:2.2em;
-
-$MenuDownFontSize:1.4em;
-$MenuDownLineHeight:2.4em;
-
-$FontSizeRegular:1em;
+	Project: XAAS
+	Alessandro Mariotti
+	alex@xallegro.com
 */
-/* XAllegro Ltd 2015
- * 
- * www.xallegro.com - info@xallegro.com
- * 
- */
-/* XAllegro Ltd 2015
- *
- * www.xallegro.com - info@xallegro.com
- *
- */
 /*
- * Green : #77B710
- * Green Scuro: #95AE0C
-
-* Blue  : #336699
-* BlueJ:#205081
- * Orange: #FF9900
- * Red:    #A42700
- * Gray :  #F4F4F4
- * Text :  #222222;
-ACID GREEN: #C8EA17
- */
-/*
-$ColorBlue:#205081;
-
-$ColorGreen:#77B710;
-$ColorGreenAcid:#C8EA17;
-$ColorOrange:#FF9900;
-$ColorRed:#A42700;
-
-$ColorTextBlack:#444444;
-$ColorTextWhite:#FFFFFF;
-
-$ColorBorderBlack:#444444;
-
-
-$MenuTopFontSize:1.2em;
-$MenuTopLineHeight:2.2em;
-
-$MenuDownFontSize:1.4em;
-$MenuDownLineHeight:2.4em;
-
-$FontSizeRegular:1em;
+	Project: XAAS
+	Alessandro Mariotti
+	alex@xallegro.com
 */
-/* line 9, /XAllegro/Xaas/scss/default/_form.scss */
+/*
+	Project: XAAS
+	Alessandro Mariotti
+	alex@xallegro.com
+*/
+/* line 8, ../../scss/default/_form.scss */
 .form {
   width: 100%;
   background-color: #fefefe;
-  font-size: 1.8vh;
+  font-size: 75%;
   padding-bottom: 0.5%;
   border-radius: 0.2em;
 }
-/* line 15, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 14, ../../scss/default/_form.scss */
 .form fieldset {
   text-align: center;
   margin: 0 auto;
   margin-bottom: 2%;
 }
-/* line 20, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 19, ../../scss/default/_form.scss */
 .form fieldset legend {
   padding-left: 2%;
   padding-top: 1%;
@@ -195,52 +132,52 @@ $FontSizeRegular:1em;
   text-transform: uppercase;
   white-space: nowrap;
   float: left;
-  font-size: 1.92vh;
+  font-size: 80%;
 }
-/* line 30, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 29, ../../scss/default/_form.scss */
 .form fieldset ul {
   clear: both;
   margin: 0 auto;
   text-align: center;
 }
-/* line 35, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 34, ../../scss/default/_form.scss */
 .form fieldset ul li {
   margin: 0 auto;
   text-align: center;
   margin-top: 1.5%;
 }
-/* line 40, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 39, ../../scss/default/_form.scss */
 .form fieldset ul li label {
   text-align: right;
   display: inline-block;
   text-transform: capitalize;
   margin-right: 1%;
 }
-/* line 47, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 46, ../../scss/default/_form.scss */
 .form fieldset ul li label:after {
   content: ":";
 }
-/* line 51, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 50, ../../scss/default/_form.scss */
 .form fieldset ul li input, .form fieldset ul li textarea, .form fieldset ul li select {
   color: #222222;
-  font-size: 1.8vh;
+  font-size: 75%;
   padding: 0.5vh;
   border-radius: 0.2em;
   border: 1px solid #dddddd;
 }
-/* line 59, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 58, ../../scss/default/_form.scss */
 .form fieldset ul li textarea {
   border: 1px solid green;
   font-family: inherit;
   font-size: inherit;
 }
-/* line 65, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 64, ../../scss/default/_form.scss */
 .form fieldset ul li select {
   border-radius: 0.2em;
   font-family: inherit;
   font-size: inherit;
 }
-/* line 74, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 73, ../../scss/default/_form.scss */
 .form button {
   font-family: inherit;
   font-size: inherit;
@@ -255,31 +192,31 @@ $FontSizeRegular:1em;
   text-transform: capitalize;
   outline: none;
 }
-/* line 89, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 88, ../../scss/default/_form.scss */
 .form button:hover {
   opacity: .75;
   cursor: pointer;
   outline: none;
 }
-/* line 95, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 94, ../../scss/default/_form.scss */
 .form button:active {
   border: 1px solid brown;
   opacity: .75;
   outline: none;
 }
 
-/* line 102, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 101, ../../scss/default/_form.scss */
 .form input:focus, .form textarea:focus, .form select:focus {
   border: 1px solid #555555;
 }
 
-/* line 106, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 105, ../../scss/default/_form.scss */
 .form input:focus:invalid, .form textarea:focus:invalid, .form select:focus:invalid {
   background: #fefefe url(FormInvalid.png) no-repeat 98% center;
   border-color: #b03535;
 }
 
-/* line 111, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 110, ../../scss/default/_form.scss */
 .form input:required:valid, .form textarea:required:valid, .form select:required:valid {
   background: #fefefe url(FormValid.png) no-repeat 98% center;
   border-color: #28921f;
@@ -293,12 +230,12 @@ $FontSizeRegular:1em;
 	box-shadow:none;
 }
 */
-/* line 123, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 122, ../../scss/default/_form.scss */
 .form input:required, .form textarea:required, .form select:required {
   background: #fefefe url(FormRequired.png) no-repeat 98% center;
 }
 
-/* line 130, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 129, ../../scss/default/_form.scss */
 .form input:focus, .form textarea:focus,
 .form input:focus:invalid, .form textarea:focus:invalid,
 .form input:required:valid, .form textarea:required:valid,
@@ -308,214 +245,76 @@ $FontSizeRegular:1em;
   outline: none;
 }
 
-/* line 136, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 135, ../../scss/default/_form.scss */
 .form select:focus, .form select:focus:invalid, .form select:required:valid, .form select:required {
   background-position: 95% 50%;
   box-shadow: none;
   outline: none;
 }
 
-/* line 145, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 144, ../../scss/default/_form.scss */
 .form-1-column ul {
   width: 99%;
 }
-/* line 149, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 148, ../../scss/default/_form.scss */
 .form-1-column label {
   width: 25%;
 }
-/* line 153, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 152, ../../scss/default/_form.scss */
 .form-1-column input, .form-1-column textarea {
   width: 45%;
 }
-/* line 157, /XAllegro/Xaas/scss/default/_form.scss */
+/* line 156, ../../scss/default/_form.scss */
 .form-1-column select {
   width: 46%;
 }
 
 /*
-.form-1-column .help {
-	width:1.3em;
-	height:1.3em;
-	line-height: 1.3em;
-	background-image:url('img/FormHelp.png');
-	background-repeat:no-repeat;
-	background-position: center center;
-	background-size: auto 95%;
-    display:inline-block;
-}
-
-
-.form-1-column a:link, .form-1-column a:visited, .form-1-column a:hover, .form-1-column a:active {
-}
+	Project: XAAS
+	Alessandro Mariotti
+	alex@xallegro.com
 */
 /*
-.form-1-column select:focus:invalid {
-    box-shadow: 0 0 0.1em #d45252;
-    border-color: #b03535;
-}
-
-.form-1-column select:required {
-}
-
-.form-1-column select:required:valid {
-    box-shadow: 0 0 0.1em #5cd053;
-    border-color: #28921f;
-}
-
-.form-1-column select[multiple] {
-	padding:0.1em;
-    border-radius:0.2em;
-	border:1px solid #ddd;
-	margin: 0.25em;
-
-}
-
-
-.form-1-column select[multiple] :focus:invalid {
-    box-shadow: 0 0 0.1em #d45252;
-    border-color: #b03535;
-}
-
-.form-1-column select[multiple] :required {
-}
-
-.form-1-column select[multiple] :required:valid {
-    box-shadow: 0 0 0.1em #5cd053;
-    border-color: #28921f;
-}
-
-
-
-.form-1-column button:hover {
-    opacity:.75;
-    cursor: pointer;
-}
-
-.form-1-column button:active {
-	border: 1px solid brown;
-	opacity:.75;
-}
-/*
-.form button[type="button"] {
- 
-	background-image:url('img/IconSave.svg');
-	background-repeat:no-repeat;
-	background-position: 10% center;
-	background-size: auto 65%;
-}
-
-.form button[type="submit"] {
-
-	background-image:url('img/IconSave.svg');
-	background-repeat:no-repeat;
-	background-position: 10% center;
-	background-size: auto 65%;
-}
+	Project: XAAS
+	Alessandro Mariotti
+	alex@xallegro.com
 */
-/*
-.form-1-column button[type="edit"] {
-	width: 5%;
-	margin: 0 auto;
-}
-
-div#ButtonContainer {
-	width:99%;
-	float:left;
-	text-align: center;
-}
-
-.dropdown select {
-	width: 8em;
-}
-
-.form-1-column input::-webkit-input-placeholder { 
-}
-.form-1-column input:-moz-placeholder {
-}
-.form-1-column input::-moz-placeholder {
-}
-.form-1-column input:-ms-input-placeholder {
-}*/
-/* XAllegro Ltd 2015
- * 
- * www.xallegro.com - info@xallegro.com
- * 
- */
-/* XAllegro Ltd 2015
- *
- * www.xallegro.com - info@xallegro.com
- *
- */
-/*
- * Green : #77B710
- * Green Scuro: #95AE0C
-
-* Blue  : #336699
-* BlueJ:#205081
- * Orange: #FF9900
- * Red:    #A42700
- * Gray :  #F4F4F4
- * Text :  #222222;
-ACID GREEN: #C8EA17
- */
-/*
-$ColorBlue:#205081;
-
-$ColorGreen:#77B710;
-$ColorGreenAcid:#C8EA17;
-$ColorOrange:#FF9900;
-$ColorRed:#A42700;
-
-$ColorTextBlack:#444444;
-$ColorTextWhite:#FFFFFF;
-
-$ColorBorderBlack:#444444;
-
-
-$MenuTopFontSize:1.2em;
-$MenuTopLineHeight:2.2em;
-
-$MenuDownFontSize:1.4em;
-$MenuDownLineHeight:2.4em;
-
-$FontSizeRegular:1em;
-*/
-/* line 9, /XAllegro/Xaas/scss/default/_list.scss */
+/* line 8, ../../scss/default/_list.scss */
 .list {
   width: 100%;
   background-color: #fefefe;
-  font-size: 1.8vh;
+  font-size: 75%;
   padding-bottom: 0.5%;
   margin-top: 0.5%;
   border-radius: 0.2em;
 }
-/* line 17, /XAllegro/Xaas/scss/default/_list.scss */
+/* line 16, ../../scss/default/_list.scss */
 .list .title {
   color: #dddddd;
   height: 4vh;
 }
-/* line 22, /XAllegro/Xaas/scss/default/_list.scss */
+/* line 21, ../../scss/default/_list.scss */
 .list .title td {
   background: #2d353a;
   border-radius: 0.2em;
   height: 4vh;
 }
-/* line 27, /XAllegro/Xaas/scss/default/_list.scss */
+/* line 26, ../../scss/default/_list.scss */
 .list .title td span {
   padding: 0.5%;
   line-height: 4vh;
 }
-/* line 32, /XAllegro/Xaas/scss/default/_list.scss */
+/* line 31, ../../scss/default/_list.scss */
 .list .title td .RightToolbar {
   float: right;
   width: 10%;
   height: 100%;
 }
-/* line 37, /XAllegro/Xaas/scss/default/_list.scss */
+/* line 36, ../../scss/default/_list.scss */
 .list .title td .RightToolbar li {
   display: inline-block;
 }
-/* line 41, /XAllegro/Xaas/scss/default/_list.scss */
+/* line 40, ../../scss/default/_list.scss */
 .list .title td .RightToolbar .FunctionIcon {
   width: 45%;
   height: 100%;
@@ -524,42 +323,42 @@ $FontSizeRegular:1em;
   margin-left: 4%;
   background-size: auto 60%;
 }
-/* line 50, /XAllegro/Xaas/scss/default/_list.scss */
+/* line 49, ../../scss/default/_list.scss */
 .list .title td .RightToolbar .Refresh {
   float: right;
-  background-image: url("img/london/IconRefresh.svg");
+  background-image: url("IconRefresh.svg");
 }
-/* line 55, /XAllegro/Xaas/scss/default/_list.scss */
+/* line 54, ../../scss/default/_list.scss */
 .list .title td .RightToolbar .Expand {
   float: right;
-  background-image: url("img/london/IconExpand.svg");
+  background-image: url("IconExpand.svg");
 }
-/* line 63, /XAllegro/Xaas/scss/default/_list.scss */
+/* line 62, ../../scss/default/_list.scss */
 .list .header {
   color: #222222;
 }
-/* line 67, /XAllegro/Xaas/scss/default/_list.scss */
+/* line 66, ../../scss/default/_list.scss */
 .list .header th {
   text-align: left;
   border-bottom: 2px solid #DDDDDD;
   padding: 0.5%;
 }
-/* line 75, /XAllegro/Xaas/scss/default/_list.scss */
+/* line 74, ../../scss/default/_list.scss */
 .list .row {
   color: #222222;
 }
-/* line 79, /XAllegro/Xaas/scss/default/_list.scss */
+/* line 78, ../../scss/default/_list.scss */
 .list .row td {
   border-bottom: 1px solid #DDDDDD;
   padding: 0.5%;
 }
-/* line 87, /XAllegro/Xaas/scss/default/_list.scss */
+/* line 86, ../../scss/default/_list.scss */
 .list tr:hover td {
   background-color: #ff9900;
   color: white;
 }
 
-/* line 13, ../../scss/default/style.scss */
+/* line 19, ../../scss/default/style.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -577,7 +376,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 
 /* GENERAL LAYOUT */
-/* line 23, ../../scss/default/style.scss */
+/* line 29, ../../scss/default/style.scss */
 html, body {
   height: 100%;
   width: 100%;
@@ -585,24 +384,24 @@ html, body {
   padding: 0;
 }
 
-/* line 30, ../../scss/default/style.scss */
+/* line 36, ../../scss/default/style.scss */
 body {
   font-family: 'MySans', sans-serif;
   color: #222222;
 }
 
-/* line 35, ../../scss/default/style.scss */
+/* line 41, ../../scss/default/style.scss */
 header {
   max-width: 100vw;
   height: 4.5vh;
   background-color: #2d353a;
   background: linear-gradient(to right, #2d353a 0%, #333333 75%);
   color: #dddddd;
-  font-size: 1.92vh;
+  font-size: 80%;
   line-height: 4.2vh;
   letter-spacing: 0px;
 }
-/* line 45, ../../scss/default/style.scss */
+/* line 51, ../../scss/default/style.scss */
 header .MenuIcon {
   width: 4.5vh;
   height: 4.5vh;
@@ -612,28 +411,28 @@ header .MenuIcon {
   margin-left: 4%;
   background-size: auto 60%;
 }
-/* line 55, ../../scss/default/style.scss */
+/* line 61, ../../scss/default/style.scss */
 header .LeftToolbar {
   width: 14vw;
   height: 4.5vh;
   float: left;
 }
-/* line 61, ../../scss/default/style.scss */
+/* line 67, ../../scss/default/style.scss */
 header .LeftToolbar .MenuToggle {
   float: left;
   background-image: url("IconMenu.svg");
 }
-/* line 66, ../../scss/default/style.scss */
+/* line 72, ../../scss/default/style.scss */
 header .LeftToolbar .MenuMyPage {
   float: left;
   background-image: url("IconMyPage.svg");
 }
-/* line 73, ../../scss/default/style.scss */
+/* line 79, ../../scss/default/style.scss */
 header .CenterToolbar {
   float: left;
   width: 65%;
 }
-/* line 77, ../../scss/default/style.scss */
+/* line 83, ../../scss/default/style.scss */
 header .CenterToolbar li {
   display: inline-block;
   margin-right: .5%;
@@ -642,34 +441,34 @@ header .CenterToolbar li {
   padding-left: 1%;
   padding-right: 1%;
 }
-/* line 87, ../../scss/default/style.scss */
+/* line 93, ../../scss/default/style.scss */
 header .CenterToolbar li:hover {
   background-color: #ff9900;
   color: white;
 }
-/* line 93, ../../scss/default/style.scss */
+/* line 99, ../../scss/default/style.scss */
 header .CenterToolbar li:target {
   background-color: #77b710;
   color: white;
 }
-/* line 100, ../../scss/default/style.scss */
+/* line 106, ../../scss/default/style.scss */
 header .RightToolbar {
   float: right;
   width: 14vw;
   height: 4.5vh;
 }
-/* line 105, ../../scss/default/style.scss */
+/* line 111, ../../scss/default/style.scss */
 header .RightToolbar .MenuHelp {
   float: right;
   background-image: url("IconHelp.svg");
 }
-/* line 110, ../../scss/default/style.scss */
+/* line 116, ../../scss/default/style.scss */
 header .RightToolbar .MenuSettings {
   float: right;
   background-image: url("IconSettings.svg");
 }
 
-/* line 118, ../../scss/default/style.scss */
+/* line 124, ../../scss/default/style.scss */
 nav {
   width: 14vw;
   position: fixed;
@@ -678,15 +477,15 @@ nav {
   background-color: #2d353a;
   color: #dddddd;
   font-weight: 600;
-  font-size: 1.68vh;
+  font-size: 70%;
   border-top: 1px solid #dddddd;
 }
-/* line 129, ../../scss/default/style.scss */
+/* line 135, ../../scss/default/style.scss */
 nav .nav {
   height: 100%;
   margin-top: 4.5vh;
 }
-/* line 133, ../../scss/default/style.scss */
+/* line 139, ../../scss/default/style.scss */
 nav .nav ul, nav .nav li, nav .nav a, nav .nav span {
   margin: 0;
   padding: 0;
@@ -694,12 +493,12 @@ nav .nav ul, nav .nav li, nav .nav a, nav .nav span {
   outline: none;
   letter-spacing: 1px;
 }
-/* line 141, ../../scss/default/style.scss */
+/* line 147, ../../scss/default/style.scss */
 nav .nav li {
   list-style: none;
   text-transform: uppercase;
 }
-/* line 146, ../../scss/default/style.scss */
+/* line 152, ../../scss/default/style.scss */
 nav .nav li > a {
   display: block;
   text-align: left;
@@ -708,29 +507,28 @@ nav .nav li > a {
   color: #dddddd;
   line-height: 2.3em;
   text-decoration: none;
-  /*background:#336699;*/
   border-bottom: 1px solid #dddddd;
   transition: all 0.25s;
 }
-/* line 160, ../../scss/default/style.scss */
+/* line 165, ../../scss/default/style.scss */
 nav .nav li:hover {
   background-color: #ff9900;
   color: white;
   color: black;
 }
-/* line 166, ../../scss/default/style.scss */
+/* line 171, ../../scss/default/style.scss */
 nav .nav li:hover a:hover {
   color: white;
 }
-/* line 173, ../../scss/default/style.scss */
+/* line 178, ../../scss/default/style.scss */
 nav .nav li:target {
   background-color: #77b710;
 }
-/* line 177, ../../scss/default/style.scss */
+/* line 182, ../../scss/default/style.scss */
 nav .nav li:target a {
   color: white;
 }
-/* line 184, ../../scss/default/style.scss */
+/* line 189, ../../scss/default/style.scss */
 nav .Logo {
   border-top: 1px solid #dddddd;
   position: fixed;
@@ -743,7 +541,7 @@ nav .Logo {
   background-size: auto 90%;
 }
 
-/* line 198, ../../scss/default/style.scss */
+/* line 203, ../../scss/default/style.scss */
 .container {
   position: fixed;
   left: 14vw;
@@ -755,11 +553,11 @@ nav .Logo {
   background-color: #dddddd;
 }
 
-/* line 209, ../../scss/default/style.scss */
+/* line 214, ../../scss/default/style.scss */
 .LogHomePage {
   width: 96%;
 }
-/* line 212, ../../scss/default/style.scss */
+/* line 217, ../../scss/default/style.scss */
 .LogHomePage img {
   content: url("XAllegroLogo.svg");
 }
