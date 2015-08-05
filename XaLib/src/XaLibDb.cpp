@@ -15,10 +15,12 @@
 XaLibDb::XaLibDb(){
 };
 
-void XaLibDb::Connect(int DbType) {
+int XaLibDb::Connect(int DbType) {
 
-	vector<string> DbTypeName ={"","Write","Read","Session","Log"};
+	int XaStatus=0;
 	
+	vector<string> DbTypeName = {"","Write","Read","Session","Log"};
+
 	this->ActiveConnection=DbType;
 
 	const char* DbHost=SETTINGS["Db"+DbTypeName[DbType]+"Host"].c_str();
@@ -27,16 +29,8 @@ void XaLibDb::Connect(int DbType) {
 	const char* DbPassword=SETTINGS["Db"+DbTypeName[DbType]+"Password"].c_str();
 	unsigned int DbPort=atoi(SETTINGS["Db"+DbTypeName[DbType]+"Port"].c_str());
 	
-    if (DbType==1){
-		
-		//this->ActiveConnection=1;
+    if (DbType==1) {
 
-		//const char* DbHost=SETTINGS["DbWriteHost"].c_str();
-		//const char* DbDatabase=SETTINGS["DbWriteDatabase"].c_str();
-		//const char* DbUser=SETTINGS["DbWriteUser"].c_str();
-		//const char* DbPassword=SETTINGS["DbWritePassword"].c_str();
-        //unsigned int DbPort=atoi(SETTINGS["DbWritePort"].c_str());
-            
         ConnWrite = mysql_init(NULL);
 
         if (mysql_real_connect(ConnWrite, DbHost, DbUser, DbPassword, DbDatabase, DbPort, NULL, 0)==NULL){
@@ -47,17 +41,10 @@ void XaLibDb::Connect(int DbType) {
 			
         } else {
 
+			XaStatus=1;
         }
         
-    } else if (DbType==2){
-    
-		//this->ActiveConnection=2;
-
-		//const char* DbHost=SETTINGS["DbReadHost"].c_str();
-		//const char* DbDatabase=SETTINGS["DbReadDatabase"].c_str();
-		//const char* DbUser=SETTINGS["DbReadUser"].c_str();
-		//const char* DbPassword=SETTINGS["DbReadPassword"].c_str();
-        //unsigned int DbPort=atoi(SETTINGS["DbReadPort"].c_str());
+    } else if (DbType==2) {
 
         ConnRead = mysql_init(NULL);
 
@@ -69,17 +56,10 @@ void XaLibDb::Connect(int DbType) {
 			
         } else {
 
+			XaStatus=1;
         }
 
-    } else if (DbType==3){
-        
-		//this->ActiveConnection=3;
-
-		//const char* DbHost=SETTINGS["DbSessionHost"].c_str();
-		//const char* DbDatabase=SETTINGS["DbSessionDatabase"].c_str();
-		//const char* DbUser=SETTINGS["DbSessionUser"].c_str();
-		//const char* DbPassword=SETTINGS["DbSessionPassword"].c_str();
-        //unsigned int DbPort=atoi(SETTINGS["DbSessionPort"].c_str());
+    } else if (DbType==3) {
 
         ConnSession = mysql_init(NULL);
 
@@ -91,17 +71,10 @@ void XaLibDb::Connect(int DbType) {
 
         } else {
 
+			XaStatus=1;
 		}
 
-	} else if (DbType==4){
-
-		//this->ActiveConnection=4;
-
-		//const char* DbHost=SETTINGS["DbLogHost"].c_str();
-		//const char* DbDatabase=SETTINGS["DbLogDatabase"].c_str();
-		//const char* DbUser=SETTINGS["DbLogUser"].c_str();
-		//const char* DbPassword=SETTINGS["DbLogPassword"].c_str();
-        //unsigned int DbPort=atoi(SETTINGS["DbLogPort"].c_str());
+	} else if (DbType==4) {
 
         ConnLog = mysql_init(NULL);
 
@@ -113,11 +86,14 @@ void XaLibDb::Connect(int DbType) {
 
         } else {
 
+			XaStatus=1;
 		}
 
 	} else {
 
     }
+	
+	return XaStatus;
 };
 
 int XaLibDb::ExInsert(string SqlQry) {

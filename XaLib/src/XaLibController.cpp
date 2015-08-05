@@ -37,6 +37,38 @@ XaResponse RESPONSE;
 XaLibController::XaLibController() {
 };
 
+void XaLibController::OnStart(const string& ConfFile) {
+
+	LoadXmlConfFile(ConfFile);
+	StartLog();
+
+	StartDb();
+	StartHttp();
+	
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"########################### STARTING ACTION LOG ############################");
+	
+	GetServerInfo();
+	GetClientInfo();
+
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request IP -> "+REQUEST.ClientIpAddress);
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Read HttpString -> " + REQUEST.HeadersString);
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request Language -> "+REQUEST.Language);
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request Device -> "+REQUEST.Device);
+
+	if (SETTINGS["WsEnable"]=="yes" && SETTINGS["WsEnable"]!="" && SETTINGS["WsEnable"]!="NoHttpParam"){
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"WS Enabled");
+
+	} else {
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"WS Disabled");
+	}
+
+	RESPONSE.ResponseType=REQUEST.ResponseType;
+	
+
+};
+
 void XaLibController::LoadXmlConfFile(string ConfFile){
 
 	unique_ptr<XaLibConfig> LibConfig(new XaLibConfig());
@@ -60,6 +92,7 @@ void XaLibController::StartLog(){
 		} else {
 
 			cout << "Unable to open Log file: "<<SETTINGS["LogDir"]+SETTINGS["LogFile"]<<endl;
+			OnStartStatus=0;
 		}
 	}
 };
@@ -73,14 +106,24 @@ void XaLibController::StartDb(){
 
 	if (SETTINGS["DatabaseEnable"]=="yes") {
 
-		DB_SESSION.Connect(3);
-		DB_WRITE.Connect(1);
-		DB_READ.Connect(2);
-		DB_LOG.Connect(4);
+		if (DB_SESSION.Connect(3)==0) {
+			OnStartStatus=0;
+		}
+
+		if (DB_WRITE.Connect(1)==0) {
+			OnStartStatus=0;
+		}
+
+		if (DB_READ.Connect(2)==0) {
+			OnStartStatus=0;
+		}
+
+		if (DB_LOG.Connect(4)==0) {
+			OnStartStatus=0;
+		}
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Databases Enabled");
 
-		
 	} else {
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Databases Disabled");
@@ -411,7 +454,7 @@ void XaLibController::SendResponse(){
 	} else {
 
 		//LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Sending Page Content -> " +RESPONSE.Content);
-		XaLibController::SendHeaders(RESPONSE.ResponseType);
+		SendHeaders(RESPONSE.ResponseType);
 		cout<<RESPONSE.Content<<endl;
 
 	}
@@ -432,7 +475,6 @@ void XaLibController::SendHeaders (string& HeadersType) const {
 		cout<< "Content-Type: text/xml\n\n";
 	
 	} else {
-	
 		cout<< "Content-Type: text/html; charset=utf-8\n\n";
 
 	}

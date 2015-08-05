@@ -8,9 +8,13 @@ class XaLibController : protected XaLibBase {
 	private:
 	protected:
 
+		int OnStartStatus=1;
+		void OnStart(const string& ConfFile);
+
 		void LoadXmlConfFile(string ConfFile);
-		void StartLog();
+		void StartLog();	
 		void StartHttp();
+		void StartDb();
 
 		int  ProfileCalledObject(const string& CalledObject,const string& CalledEvent);
 
@@ -33,6 +37,6 @@ class XaLibController : protected XaLibBase {
 
 		XaLibController();
 		virtual ~XaLibController();
-		void StartDb();
+	
 };
 #endif
