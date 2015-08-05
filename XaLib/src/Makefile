@@ -50,16 +50,18 @@ endif
 
 ## MAC
 ## TESTED: 10.10.3
+## TESTED: 10.10.4
 ifeq ($(UNAME_S),Darwin)
+
 
     CPP      = g++
     OBJDIR   = ../objects/
     RM       = rm -f
     CUR_DIR  = $(shell pwd)
-    BIN      = ../bin/XaLib.so
+    BIN      = $(CUR_DIR)/../bin/XaLib.so
 
     LIBS     = -lxml2 -lxslt -lexslt -lssl -lcrypto -L/usr/local/mysql/lib -lmysqlclient -lcurl 
-    CPPINCS  = -I../include -I/usr/include -I/usr/include/libxml2 -I/usr/local/mysql/include -I$(CUR_DIR)/../../XaLib/include
+    CPPINCS  = -I../include -I/usr/include -I/usr/include/libxml2 -I/usr/local/mysql/include
     LDFLAGS  = -dynamiclib -install_name
     CPPFLAGS = $(CPPINCS) -fPIC -std=c++0x -O3 -Wall
 
@@ -85,11 +87,10 @@ clean:
 all-before:
 	${RM} $(OBJ)
 all-after:
-	${RM} $(OBJ)
+	$(OBJ)
 
 print-varialbes:
 	@echo "I am compiling on : " $(UNAME_P) $(UNAME_S) $(OS)
-
 
 #LINK
 ifeq ($(findstring MINGW32_NT,$(UNAME_S)),MINGW32_NT)
