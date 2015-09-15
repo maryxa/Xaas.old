@@ -18,7 +18,7 @@ void XaLibConfig::GetParams(string& ConfFile){
 	doc = xmlReadFile(docname,NULL,0);
 
 	if (doc == NULL ) {
-
+		SendHtmlHeaders();
 		cout<<"the config file [config/config.xml] does not exist"<<endl;
 
 	} else {
@@ -27,7 +27,8 @@ void XaLibConfig::GetParams(string& ConfFile){
 			int checkParamsTag=xmlStrcmp(cur->name, (const xmlChar*) "params");
 
 			if (checkParamsTag!=0) {
-
+			
+				SendHtmlHeaders();
 				cout<<"the config file does not contain the [params] element"<<endl;
 
 			} else {

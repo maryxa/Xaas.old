@@ -267,7 +267,7 @@ inline bool XaLibChar::is_base64(unsigned char c) {
 	return (isalnum(c) || (c == '+') || (c == '/'));
 };
 
-string XaLibChar::B64Decode(string StringToDecode) {
+string XaLibChar::B64Decode(const string& StringToDecode) {
 
 	string encoded_string=StringToDecode;
 	static const std::string base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -318,7 +318,7 @@ string XaLibChar::B64Decode(string StringToDecode) {
 	return ret;
 };
 
-string XaLibChar::B64Encode(string StringToEncode) {
+string XaLibChar::B64Encode(const string& StringToEncode) {
 
 	static const char b64_charset[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
@@ -330,8 +330,8 @@ string XaLibChar::B64Encode(string StringToEncode) {
 	int i=0, j=0,size;
 
 	size = StringToEncode.size();
-	
-	string::iterator it;
+
+	string::const_iterator it;
 	it=StringToEncode.begin();
 
 	while(size--) {
@@ -371,7 +371,7 @@ string XaLibChar::B64Encode(string StringToEncode) {
 };
 
 
-string XaLibChar::B64Encode(char * CharToEncode, int size) {
+string XaLibChar::B64Encode(char* CharToEncode, int size) {
 
 	static const char b64_charset[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
@@ -420,6 +420,21 @@ string XaLibChar::B64Encode(char * CharToEncode, int size) {
 	return ret.c_str();
 };
 
+string XaLibChar::B64EncodeHexString(const string& StringToEncode) {
+	
+	string Decoded="";
+	
+	for (auto k=0;k<StringToEncode.size();k=k+2){
+		
+			int x = strtoul(StringToEncode.substr(k,2).c_str(), NULL, 16);
+
+			char myChar = (char) x;
+			Decoded=Decoded+myChar;
+		}
+		
+		XaLibChar LibChar;
+		return LibChar.B64Encode(Decoded);
+};
 
 string XaLibChar::imgBase64RemPlus(string StringToDecode) {
 
@@ -819,7 +834,7 @@ string XaLibChar::RemoveNs(string StringToDecode) {
 return StringToDecode;
 };
 	
-string XaLibChar::ClearReturn(string StringToClear) {
+string XaLibChar::ClearReturn(string& StringToClear) {
 
 	int pos;
 
@@ -843,6 +858,23 @@ string XaLibChar::ClearReturn(string StringToClear) {
 		}
 	}
 
+	return StringToClear;
+};
+
+string XaLibChar::ClearSpace(string& StringToClear) {
+
+	int pos;
+
+	pos=0;
+	pos=StringToClear.find_first_of(" ");
+		
+	if (pos!=-1){
+		while(pos!=-1){
+			StringToClear.replace(pos,1,"");
+			pos=StringToClear.find_first_of(" ",pos+1);
+		}
+	}
+ 
 	return StringToClear;
 };
 

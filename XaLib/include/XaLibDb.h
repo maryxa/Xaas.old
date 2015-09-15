@@ -23,7 +23,7 @@ class XaLibDb : private XaLibBase {
 		XaLibDb();
 		~XaLibDb();
 
-		int Connect(int DbType);
+		int Connect(const int& DbType);
 
 		int ExInsert(string SqlQry);
 		int ExUpdate(string SqlQry);

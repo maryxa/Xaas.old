@@ -37,7 +37,7 @@ void XaLibAction::AddXslFile(const string& FilePath){
 
 	string XslDefaultPath=SETTINGS["XslDir"]+FilePath+".xsl";
 	string XslSharedPath=SETTINGS["SharedDir"]+"xsl/"+FilePath+".xsl";
-	
+
 	unique_ptr<FILE, int(*)(FILE*)> f1(fopen(XslDefaultPath.c_str(), "r"), fclose);
 	unique_ptr<FILE, int(*)(FILE*)> f2(fopen(XslSharedPath.c_str(), "r"), fclose);
 
@@ -50,7 +50,7 @@ void XaLibAction::AddXslFile(const string& FilePath){
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslFile Shared-> "+XslSharedPath);
 
 	} else {
-	
+
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Xsl File Does Not Exist-> "+FilePath);
 	}
 };
@@ -691,13 +691,26 @@ void XaLibAction::GetResponse(){
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executing Object Event ->"+Event);
 		this->Dispatcher(Event);
-	
+
 	} else {
-		
-		//
+
 	}
 };
 
+void XaLibAction::Execute(){
+
+	//EXECUTE OBJECT DISPATCHER (CLASS DISPATCHER)
+	if (REQUEST.CalledObject!="" && REQUEST.CalledEvent!="") {
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executing Object Event ->"+REQUEST.CalledEvent);
+		this->Dispatcher(REQUEST.CalledEvent);
+
+	} else {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Event Is empty");
+		throw 41;
+	}
+}
 void XaLibAction::Dispatcher (const string &CalledEvent){};
 
 XaLibAction::~XaLibAction(){

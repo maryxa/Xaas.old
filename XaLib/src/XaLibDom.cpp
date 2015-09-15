@@ -150,7 +150,7 @@ string XaLibDom::GetRootValue(xmlDocPtr XmlDomDoc) {
 
 	} else {
 		
-		stringValue="ERROR-ROOT-ELEMENT-NOT-DEFINED";
+		stringValue="ROOT-ELEMENT-NOT-DEFINED";
 	}
 return stringValue;
 };
@@ -194,13 +194,13 @@ string XaLibDom::GetElementValueByXPath(xmlDocPtr XmlDomDoc,string XPathExpr) {
 		
 					} else {
 		
-						stringValue="ERROR-ELEMENT-NOT-DEFINED";
+						stringValue="ELEMENT-NOT-DEFINED";
 					}
 		   		}
 	
 			} else {
 				
-				stringValue="ERROR-ELEMENT-NOT-DEFINED";
+				stringValue="ELEMENT-NOT-DEFINED";
 			}
 			
 	   } else {

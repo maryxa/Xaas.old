@@ -16,6 +16,8 @@
 #include <XaLibTime.h>
 #include <XaLibCurl.h>
 #include <XaLibGui.h>
+//#include <XaLibWebSocket.h>
+
 
 
 //SUPERGLOBALS VARIABLES
@@ -195,6 +197,8 @@ class XaLibAction : protected XaLibBase {
 		* @endcode
 		*
 		*/
+		
+		
 		void ErrorExit (const string& ErrorType);
 
 		void   AddOptionsByDb                      (XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string TableName,string XPathExpr);
@@ -227,6 +231,8 @@ class XaLibAction : protected XaLibBase {
 		void ResetRequest();
 
     public:
+
+		void Execute();
 
 		void virtual GetResponse();
 

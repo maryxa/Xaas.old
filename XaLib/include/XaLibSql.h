@@ -1,5 +1,3 @@
-
-
 #ifndef XALIBSQL_H
 #define XALIBSQL_H
 
@@ -27,17 +25,6 @@ extern XaSettings SETTINGS;
 class XaLibSql : protected XaLibBase {
 
 	private:
-
-		typedef vector<string> VectorFields;
-		typedef vector<string> VectorValues;
-
-		typedef vector<string> ReturnedFields;
-
-		typedef vector<string> WhereFields;
-		typedef vector<string> WhereValues;
-
-		typedef vector<string> OrderByFields;
-		typedef vector<string> GroupByFields;
 
 	protected:
 
@@ -70,11 +57,11 @@ class XaLibSql : protected XaLibBase {
 		* @endcode
 		*
 		*/
-		static int Insert(XaLibDb& LibDb,string TableName,VectorFields VectorFields,VectorValues VectorValues);
-		int InsertMulti(XaLibDb& LibDb,string TableName,VectorFields VectorFields,vector<vector<string> > VectorValues);
-		static int Update(XaLibDb& LibDb,string TableName,VectorFields VectorFields,VectorValues VectorValues,WhereFields WhereFields,WhereValues WhereValues);
+		static int Insert(XaLibDb& LibDb,string TableName,const vector<string>& VectorFields,const vector<string>& VectorValues);
+		static int InsertMulti(XaLibDb& LibDb,string TableName,const vector<string>& VectorFields,vector<vector<string> > VectorValues);
+		static int Update(XaLibDb& LibDb,string TableName,const vector<string>& VectorFields,const vector<string>& VectorValues,const vector<string>& WhereFields,const vector<string>& WhereValues);
 		
-		static int Delete(XaLibDb& LibDb,string TableName, WhereFields WhereFields,WhereValues WhereValues);
+		static int Delete(XaLibDb& LibDb,string TableName, const vector<string>& WhereFields,const vector<string>& WhereValues);
 		static void DeleteOne(XaLibDb& LibDb,string TableName,string RowId);
 		static int DeleteOneLogic(XaLibDb& LibDb,string TableName,string RowId);
 		static int DeleteOneLogicWithKey(XaLibDb& LibDb,string TableName,string RowId,string KeyTable,string KeyId);
@@ -82,12 +69,13 @@ class XaLibSql : protected XaLibBase {
 		static DbResMap SelectOne(XaLibDb& LibDb,string TableName, int RowId);
 		static DbResMap SelectOne(XaLibDb& LibDb,string TableName, int RowId,int Active, int Deleted);
 
-		static DbResMap Select(XaLibDb& LibDb,const string& TableName,const ReturnedFields& ReturnedFields);
-		static DbResMap Select(XaLibDb& LibDb,const string& TableName,const ReturnedFields& ReturnedFields,const WhereFields& WhereFields, const WhereValues& WhereValues);
-		static DbResMap Select(XaLibDb& LibDb,string TableName,ReturnedFields ReturnedFields,WhereFields WhereFields, WhereValues WhereValues, OrderByFields OrderByFields);
-		static DbResMap Select(XaLibDb& LibDb,string TableName,ReturnedFields ReturnedFields,WhereFields WhereFields, WhereValues WhereValues, OrderByFields OrderByFields, GroupByFields GroupByFields);
+		static DbResMap Select(XaLibDb& LibDb,const string& TableName,const vector<string>& ReturnedFields);
+		static DbResMap Select(XaLibDb& LibDb,const string& TableName,const vector<string>& ReturnedFields,const vector<string>& WhereFields, const vector<string>& WhereValues);
+		static DbResMap Select(XaLibDb& LibDb,string TableName,const vector<string>& ReturnedFields,const vector<string>& WhereFields, const vector<string>& WhereValues, const vector<string>& OrderByFields);
+		static DbResMap Select(XaLibDb& LibDb,string TableName,const vector<string>& ReturnedFields,const vector<string>& WhereFields, const vector<string>& WhereValues, const vector<string>& OrderByFields, const vector<string>& GroupByFields);
+		static DbResMap Select(XaLibDb& LibDb,string TableName,const vector<string>& ReturnedFields,const vector<string>& WhereFields, const vector<string>& WhereValues, const vector<string>& OrderByFields,const vector<string>& GroupByFields,const int& Limit=0);
 
-		static DbResMap FreeQuery(XaLibDb&LibDb,string SqlQry);
+		static DbResMap FreeQuery(XaLibDb& LibDb,string SqlQry);
 		static void FreeQueryNoRes(XaLibDb& LibDb,string SqlQry);
 
 		//LOCKING AND TRANSACTION

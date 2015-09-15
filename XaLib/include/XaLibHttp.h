@@ -53,6 +53,7 @@ class XaLibHttp : private XaLibBase {
         string GetSessionId();
 		string GetClientIpAddress ();
 		string GetServerIpAddress ();
+		string GetSecWebSocketKey();
 
 };
 #endif

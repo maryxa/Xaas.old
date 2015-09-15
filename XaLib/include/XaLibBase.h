@@ -23,7 +23,6 @@
 #include <random>
 #include <iomanip>
 
-
 #ifdef _WIN32
 	#include <winsock2.h>
     #include <windows.h>
@@ -51,54 +50,85 @@ using namespace std;
 
 struct XaRequest {
 
+	/*LEGACY*/
+	
 	string WsXml="";
 	string WsXmlData="";
 	string WsXmlDataEncoding="";
 	string WsXmlDataKey="";
 	string WsXmlDataIV="";
 
-	string WsXmlUsername="";
-	string WsXmlPassword="";
 	string WsCallerName="";
 	string WsCallerKey="";
 
 	string ResponseType="";
 	string RedirectLocation="";
-
-	int XaUser_ID=0;
+	string WsXmlUsername="";
+	string WsXmlPassword="";
 	string XaSession_ID="";
 	string XaSession_KEY="";
 	string XaSession_COOKIE="";
 
+	string CalledLayout="";
+
+	string Brand="";
+	string Device="";
+
+	bool FlowCheck=true;
+	/*LEGACY END*/
 	
+	//CARATTERISTICHE DEL WebService
+	//string WsReqType="";
+	//string WsData="";
+	//string WsEncoding="";
+	//string WsEncryption="";
+	//string WsResType="";
+
+	//CARATTERISTICHE DELLA CHIAMATA
+	//string WsXmlUsername="";
+	//string WsXmlPassword="";
+	//string WsConsumerId="";
+	//string WsConsumerName="";
+	//string WsConsumerKey="";
+	
+	//string WsTokenId="";
+	string Token="";
+	int XaUser_ID=0;
 	int XaWsSession_ID;
+
 	//string CalledAction="";
 	string CalledObject="";
 	string CalledEvent="";
-	string CalledLayout="";
 
 	string HeadersString="";
 	string HeadersStringCustom="";
+
+
 	string Language="";
-	string Brand="";
-	string Device="";
+
 	string ClientIpAddress="";
 	string ServerIpAddress="";
 
-	bool FlowCheck=true;
+	//STATO DELLA CHIAMATA
+	//int RequestStatus=1;
+	//string RequestErrorCode="";
+	//string RequestErrorMessage="";
 };
 
 struct XaResponse {
 
+	/*LEGACY*/
 	string Object;
 	string Event;
 	string Headers;
+	/*LEGACY END*/
+	
 	string Content;
 	string ResponseType;
 };
 
 typedef map<string, string> XaSettings;
-
+	
 #ifdef _WIN32
     template < typename T > std::string to_string( const T& n ) {
         std::ostringstream stm ;
@@ -117,7 +147,7 @@ class XaLibBase {
 		typedef map<int, map<string,string> > DbResMap;
 
 		string FromIntToString(int IntValue);
-		int FromStringToInt(string StringValue);
+		int FromStringToInt(const string& StringValue);
 		unsigned int FromHexStringToUnsignedInt(string StringValue);
 
 		string FromFloatToString(float FloatValue);
@@ -129,7 +159,7 @@ class XaLibBase {
 		string FromCharToString(char CharValue);
 		string FromCharArrayToString(char CharValue[]);
 		char* FromStringToCharArray(string StringValue);
-		string FromStringToHex(string StringValue);
+		string FromStringToHex(const string& StringValue,int CapitalCase);
 		int FromCharToInt(char CharValue);
 
 		void SendHtmlHeaders();

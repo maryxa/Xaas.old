@@ -280,7 +280,7 @@ string XaLibXsl::GetXHtml(){
 
 	xmlChar *out=0;
 	int len = 9999;
-	
+
 	if( xsltSaveResultToString(&out,&len, res, cur)==0) {
 
 		out[len] = 0;
@@ -296,12 +296,7 @@ string XaLibXsl::GetXHtml(){
 		cout<<"errore parsing"<<endl;
 	}
 
-	string strVoid="";
-	string *XHtmlStr = &strVoid;
-	
-	char* XHtmlChr;
-
-	XHtmlChr=(char*)out;
+	char* XHtmlChr=(char*)out;
 
 	if( *XHtmlChr==0){
 
@@ -309,9 +304,10 @@ string XaLibXsl::GetXHtml(){
 
 	} else {
 
-		*XHtmlStr=XHtmlChr;
-		
-		return *XHtmlStr;
+		string Form=FromCharArrayToString(XHtmlChr);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Generated Xhtml -> "+Form);
+		return Form;
+
 	}
 };
 

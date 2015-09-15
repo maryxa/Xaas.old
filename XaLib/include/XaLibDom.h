@@ -34,21 +34,23 @@ class XaLibDom : protected XaLibBase {
 		~XaLibDom();
 
 		xmlDocPtr DomFromFile(string XmlFilePath);
-		xmlDocPtr DomFromString(string XmlString);
+		static xmlDocPtr DomFromString(string XmlString);
         static xmlDocPtr DomFromStringAndFile(const VectorXmlFilePath& XmlFiles,const VectorXmlString& XmlStrings,const int& AddRootTag);
 
 		string StringFromDom(xmlDocPtr XmlDomDoc);
 
 		string GetRootValue(xmlDocPtr XmlDomDoc);
-		string GetElementValueByXPath(xmlDocPtr XmlDomDoc,string XPathExpr);
+		static string GetElementValueByXPath(xmlDocPtr XmlDomDoc,string XPathExpr);
+
 		string GetNumRowByXPath(xmlDocPtr XmlDomDoc,string XPathExpr);
+		int GetNumRowByXPathInt(xmlDocPtr XmlDomDoc,string XPathExpr);
 
 		ParamFromDomMap MapParamFromDom       (xmlDocPtr XmlDomDoc, VectorKey VectorKey, string SearchStartTag, string RecursiveTag);
 		ParamFromDomMap MapParamFromDomByXPath(xmlDocPtr XmlDomDoc, VectorKey VectorKey, string XPathExpr, string SearchStartTag, string RecursiveTag);
 
 		void ParseParamFromDom (xmlDocPtr doc, xmlNodePtr cur, VectorKey VectorKey,int counter);
 
-		int GetNumRowByXPathInt(xmlDocPtr XmlDomDoc,string XPathExpr);
+		
 
 		void UpdateElementValueByXPath(xmlDocPtr XmlDomDoc, VectorXPathExpr XPathExpr, VectorXPathValue XPathValue);
 

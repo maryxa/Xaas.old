@@ -1,41 +1,40 @@
 #ifndef XALIBCURL_H
 #define XALIBCURL_H
 
-#include <cstring>
-#include <string>
-#include <cassert>
-#include <cstdlib>
-#include <iostream>
-#include <new>
-#include <vector>
-#include <map>
+#include <XaLibBase.h>
+#include <XaLibLog.h>
 
 #include <curl/curl.h>
 
-using namespace std;
-
-class XaLibCurl {
-
-	private:
+extern XaLibLog LOG;
 
 	
+class XaLibCurl : protected XaLibBase {
+
+	private:
+	void* curl;
+		//string content;
+
 	protected:
 
-
 	public:
+		
+		string download(const string& url);
+	string Call(const std::string& url);
 
 		XaLibCurl();
 		~XaLibCurl();
 
-		string content;
+		//typedef size_t(*CURL_WRITEFUNCTION_PTR)(void*, size_t, size_t, void*);
 
-		typedef size_t(*CURL_WRITEFUNCTION_PTR)(void*, size_t, size_t, void*);
+		//static int writer(char *data, size_t size, size_t nmemb,std::string *writerData);
+		//static size_t handle(char * data, size_t size, size_t nmemb, string * p);
+    	//size_t handle_impl(char * data, size_t size, size_t nmemb);
 
-		static size_t handle(char * data, size_t size, size_t nmemb, void * p);
-    	size_t handle_impl(char * data, size_t size, size_t nmemb);
+		//string MakeCall(const string& Url,const int& Ssl=0);
+		//string MakeCall1(const string& Url,const int& Ssl=0);
 
-    	string GetCurlResponse();
-
+    	//string GetCurlResponse();
 };
 
 #endif

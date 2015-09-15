@@ -70,11 +70,13 @@ endif
     UNAME_P := $(shell uname -p)
 
 #XAAS OBJ
-OBJ=$(OBJDIR)XaLibBase.o $(OBJDIR)XaLibAction.o $(OBJDIR)XaLibHttp.o $(OBJDIR)XaLibSession.o \
+OBJ=$(OBJDIR)XaLibBase.o $(OBJDIR)XaLibAction.o $(OBJDIR)XaLibModel.o $(OBJDIR)XaLibHttp.o $(OBJDIR)XaLibSession.o $(OBJDIR)XaLibToken.o \
     $(OBJDIR)XaLibDb.o $(OBJDIR)XaLibSql.o $(OBJDIR)XaLibConfig.o $(OBJDIR)XaLibXsl.o $(OBJDIR)XaLibCrypto.o \
-    $(OBJDIR)XaLibDom.o $(OBJDIR)XaLibChar.o $(OBJDIR)XaLibCurl.o $(OBJDIR)XaLibSocket.o $(OBJDIR)XaLibLog.o \
-    $(OBJDIR)XaLibTime.o $(OBJDIR)XaWs.o $(OBJDIR)XaLibGui.o $(OBJDIR)XaLibController.o \
-    $(OBJDIR)XaUser.o $(OBJDIR)XaUserProfile.o $(OBJDIR)XaAddress.o $(OBJDIR)XaLabel.o $(OBJDIR)XaLanguage.o \
+    $(OBJDIR)XaLibDom.o $(OBJDIR)XaLibChar.o $(OBJDIR)XaLibCurl.o $(OBJDIR)XaLibError.o \
+    $(OBJDIR)XaLibSocket.o $(OBJDIR)XaLibWebSocket.o $(OBJDIR)XaLibLog.o \
+    $(OBJDIR)XaLibTime.o $(OBJDIR)XaLibWs.o $(OBJDIR)XaLibGui.o $(OBJDIR)XaLibController.o $(OBJDIR)XaLibControllerBackEnd.o $(OBJDIR)XaLibControllerFrontEnd.o\
+    $(OBJDIR)XaOuType.o $(OBJDIR)XaOuObj.o $(OBJDIR)XaOu.o \
+    $(OBJDIR)XaUser.o $(OBJDIR)XaUserUi.o $(OBJDIR)XaUserProfile.o $(OBJDIR)XaAddress.o $(OBJDIR)XaLabel.o $(OBJDIR)XaLanguage.o \
     $(OBJDIR)XaUserRole.o $(OBJDIR)XaCurrency.o $(OBJDIR)XaDomain.o  \
     $(OBJDIR)XaLibMail.o $(OBJDIR)XaLibRbUart.o $(OBJDIR)XaLibRbGpIo.o
 
@@ -112,14 +114,22 @@ endif
 #COMPILE
 $(OBJDIR)XaLibController.o: XaLibController.cpp 
 	$(CPP) -c XaLibController.cpp -o $(OBJDIR)XaLibController.o $(CPPFLAGS)
+$(OBJDIR)XaLibControllerBackEnd.o: XaLibControllerBackEnd.cpp 
+	$(CPP) -c XaLibControllerBackEnd.cpp -o $(OBJDIR)XaLibControllerBackEnd.o $(CPPFLAGS)
+$(OBJDIR)XaLibControllerFrontEnd.o: XaLibControllerFrontEnd.cpp 
+	$(CPP) -c XaLibControllerFrontEnd.cpp -o $(OBJDIR)XaLibControllerFrontEnd.o $(CPPFLAGS)
 $(OBJDIR)XaLibBase.o: XaLibBase.cpp 
 	$(CPP) -c XaLibBase.cpp -o $(OBJDIR)XaLibBase.o $(CPPFLAGS)
 $(OBJDIR)XaLibAction.o: XaLibAction.cpp 
 	$(CPP) -c XaLibAction.cpp -o $(OBJDIR)XaLibAction.o $(CPPFLAGS)
+$(OBJDIR)XaLibModel.o: XaLibModel.cpp 
+	$(CPP) -c XaLibModel.cpp -o $(OBJDIR)XaLibModel.o $(CPPFLAGS)
 $(OBJDIR)XaLibHttp.o: XaLibHttp.cpp 
 	$(CPP) -c XaLibHttp.cpp -o $(OBJDIR)XaLibHttp.o $(CPPFLAGS)
 $(OBJDIR)XaLibSession.o: XaLibSession.cpp 
 	$(CPP) -c XaLibSession.cpp -o $(OBJDIR)XaLibSession.o $(CPPFLAGS)
+$(OBJDIR)XaLibToken.o: XaLibToken.cpp 
+	$(CPP) -c XaLibToken.cpp -o $(OBJDIR)XaLibToken.o $(CPPFLAGS)
 $(OBJDIR)XaLibDb.o: XaLibDb.cpp
 	$(CPP) -c XaLibDb.cpp -o $(OBJDIR)XaLibDb.o $(CPPFLAGS)
 $(OBJDIR)XaLibSql.o: XaLibSql.cpp
@@ -136,18 +146,33 @@ $(OBJDIR)XaLibChar.o: XaLibChar.cpp
 	$(CPP) -c XaLibChar.cpp -o $(OBJDIR)XaLibChar.o $(CPPFLAGS)
 $(OBJDIR)XaLibCurl.o: XaLibCurl.cpp 
 	$(CPP) -c XaLibCurl.cpp -o $(OBJDIR)XaLibCurl.o $(CPPFLAGS)
+$(OBJDIR)XaLibError.o: XaLibError.cpp 
+	$(CPP) -c XaLibError.cpp -o $(OBJDIR)XaLibError.o $(CPPFLAGS)
 $(OBJDIR)XaLibSocket.o: XaLibSocket.cpp 
 	$(CPP) -c XaLibSocket.cpp -o $(OBJDIR)XaLibSocket.o $(CPPFLAGS)
+$(OBJDIR)XaLibWebSocket.o: XaLibWebSocket.cpp 
+	$(CPP) -c XaLibWebSocket.cpp -o $(OBJDIR)XaLibWebSocket.o $(CPPFLAGS)
 $(OBJDIR)XaLibLog.o: XaLibLog.cpp 
 	$(CPP) -c XaLibLog.cpp -o $(OBJDIR)XaLibLog.o $(CPPFLAGS)
 $(OBJDIR)XaLibTime.o: XaLibTime.cpp 
 	$(CPP) -c XaLibTime.cpp -o $(OBJDIR)XaLibTime.o $(CPPFLAGS)
-$(OBJDIR)XaWs.o: XaWs.cpp 
-	$(CPP) -c XaWs.cpp -o $(OBJDIR)XaWs.o $(CPPFLAGS)
+$(OBJDIR)XaLibWs.o: XaLibWs.cpp 
+	$(CPP) -c XaLibWs.cpp -o $(OBJDIR)XaLibWs.o $(CPPFLAGS)
 $(OBJDIR)XaLibGui.o: XaLibGui.cpp 
 	$(CPP) -c XaLibGui.cpp -o $(OBJDIR)XaLibGui.o $(CPPFLAGS)
 $(OBJDIR)XaUser.o: XaUser.cpp 
 	$(CPP) -c XaUser.cpp -o $(OBJDIR)XaUser.o $(CPPFLAGS)
+$(OBJDIR)XaUserUi.o: XaUserUi.cpp 
+	$(CPP) -c XaUserUi.cpp -o $(OBJDIR)XaUserUi.o $(CPPFLAGS)
+
+$(OBJDIR)XaOuType.o: XaOuType.cpp 
+	$(CPP) -c XaOuType.cpp -o $(OBJDIR)XaOuType.o $(CPPFLAGS)
+
+$(OBJDIR)XaOuObj.o: XaOuObj.cpp 
+	$(CPP) -c XaOuObj.cpp -o $(OBJDIR)XaOuObj.o $(CPPFLAGS)
+$(OBJDIR)XaOu.o: XaOu.cpp 
+	$(CPP) -c XaOu.cpp -o $(OBJDIR)XaOu.o $(CPPFLAGS)
+
 $(OBJDIR)XaUserProfile.o: XaUserProfile.cpp 
 	$(CPP) -c XaUserProfile.cpp -o $(OBJDIR)XaUserProfile.o $(CPPFLAGS)
 $(OBJDIR)XaAddress.o: XaAddress.cpp 

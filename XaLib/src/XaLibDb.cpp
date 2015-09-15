@@ -15,7 +15,7 @@
 XaLibDb::XaLibDb(){
 };
 
-int XaLibDb::Connect(int DbType) {
+int XaLibDb::Connect(const int& DbType) {
 
 	int XaStatus=0;
 	
@@ -269,7 +269,6 @@ int XaLibDb::ExDelete(string SqlQry) {
 
 XaLibDb::DbResMap XaLibDb::ExSelect(string SqlQry) {
 
-
 	DbResMap DbRes;
 	MYSQL_RES *result;
 
@@ -309,8 +308,7 @@ XaLibDb::DbResMap XaLibDb::ExSelect(string SqlQry) {
 				string log=qry.c_str();
 
 
-				XaLibBase::SendHtmlHeaders();				
-
+				XaLibBase::SendHtmlHeaders();
 				printf("Error %u: %s\n", mysql_errno(ConnSession), mysql_error(ConnSession));
 				cout<< "Error occurred during execution Query-> " + log<<endl;
 
@@ -334,8 +332,7 @@ XaLibDb::DbResMap XaLibDb::ExSelect(string SqlQry) {
 				string log=qry.c_str();
 
 
-				XaLibBase::SendHtmlHeaders();				
-
+				XaLibBase::SendHtmlHeaders();
 				printf("Error %u: %s\n", mysql_errno(ConnLog), mysql_error(ConnLog));
 				cout<< "Error occurred during execution Query-> " + log<<endl;
 

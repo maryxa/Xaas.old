@@ -29,7 +29,11 @@ class XaLibCrypto : protected XaLibBase {
 		static string GetSha2(const string& WordToCrypt);
 
 		string AesEncrypt(const string& StringToEncrypt);
+		string AesEncrypt(const string& StringToEncrypt, const string& EncryptionKey);
+
 		string AesDecrypt(const string& EncryptedValue);
+		string AesDecrypt(const string& EncryptedValue, const string& EncryptionKey);
+
 		string AesEncryptCtr(const string& StringToEncrypt, const string& EncryptionKey, const string& EncryptionIV);
 		string AesDecryptCtr(const string& EncryptedValue, const string& EncryptionKey, const string& EncryptionIV);
 };

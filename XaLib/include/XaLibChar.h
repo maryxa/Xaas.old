@@ -24,11 +24,16 @@ class XaLibChar : protected XaLibBase {
 		string imgBase64RemPlus(string StringToDecode);
 		string UrlDecode(string StringToDecode);
 		string UrlEncode(string StringToEncode);
-		string B64Decode(string StringToDecode);
-		string B64Encode(string StringToEncode);
+
+		string B64Decode(const string& StringToDecode);
+		string B64Encode(const string& StringToEncode);
+		string B64EncodeHexString(const string& StringToEncode);
+		
 		string B64Encode(char * CharToEncode, int size);
 
-		static string ClearReturn(string StringToDecode);
+		static string ClearReturn(string& StringToClear);
+		static string ClearSpace(string& StringToClear);
+
 		string RemoveNewLine(string StringToDecode);
 		string RemoveNs(string StringToDecode);
 		string RemoveEmptyspace(string StringToDecode);

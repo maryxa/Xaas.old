@@ -2,6 +2,9 @@
 #define XALIBXSL_H
 
 #include <XaLibBase.h>
+#include <XaLibLog.h>
+
+extern XaLibLog LOG;
 
 class XaLibXsl : private XaLibBase {
 	private:

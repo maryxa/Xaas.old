@@ -44,7 +44,7 @@ string XaLibBase::FromIntToString(int IntValue){
 	return to_string(IntValue);
 };
 
-int XaLibBase::FromStringToInt(string StringValue){
+int XaLibBase::FromStringToInt(const string& StringValue){
 
 	return atoi(StringValue.c_str());
 };
@@ -52,8 +52,8 @@ int XaLibBase::FromStringToInt(string StringValue){
 unsigned int XaLibBase::FromHexStringToUnsignedInt(string StringValue){
 	
 	unsigned int IntValue;   
-	std::stringstream ss;
-	ss << std::hex << StringValue;
+	stringstream ss;
+	ss << hex << StringValue;
 	ss >> IntValue;
 
 	return IntValue;
@@ -101,7 +101,7 @@ char* XaLibBase::FromStringToCharArray(string StringValue){
 	int StringSize=StringValue.size();
 
 	char* CharValue = new char[StringSize+1];
-	
+
 	for (int i=0;i<=StringSize;i++) {
 		CharValue[i]=StringValue[i];
 	}
@@ -109,14 +109,31 @@ char* XaLibBase::FromStringToCharArray(string StringValue){
 	return CharValue;
 };
 
-string XaLibBase::FromStringToHex(string StringValue){
+string XaLibBase::FromStringToHex(const string& StringValue,int CapitalCase){
 
+    static const char* const lut = "0123456789ABCDEF";
+    size_t len = StringValue.length();
+
+	string HexString;
+    HexString.reserve(2 * len);
+
+    for (size_t i = 0; i < len; ++i) {
+
+        const unsigned char c = StringValue[i];
+        HexString.push_back(lut[c >> 4]);
+        HexString.push_back(lut[c & 15]);
+    }
+	
+	
+	return HexString;
+	
+	/*
 	stringstream str;
 	str << StringValue;
 
 	string HexValue;
 	str >> hex >> HexValue;
-	return HexValue;
+	return HexValue;*/
 };
 
 int XaLibBase::FromCharToInt(char CharValue){

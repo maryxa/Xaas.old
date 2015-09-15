@@ -6,10 +6,9 @@
 #include <XaLibChar.h>
 
 XaLibSql::XaLibSql(){
-
 };
 
-int XaLibSql::Insert(XaLibDb& LibDb,string TableName,VectorFields VectorFields,VectorValues VectorValues){
+int XaLibSql::Insert(XaLibDb& LibDb,string TableName,const vector<string>& VectorFields,const vector<string>& VectorValues){
 		
 	XaLibChar* LibChar=new XaLibChar();
 	
@@ -31,8 +30,8 @@ int XaLibSql::Insert(XaLibDb& LibDb,string TableName,VectorFields VectorFields,V
 	     	}
 	    }
 
-	SqlQry.append(") VALUES (");
 	//ADDING VALUES
+	SqlQry.append(") VALUES (");
 
 		for(unsigned n=0; n<VectorValues.size(); ++n) {
 
@@ -59,7 +58,6 @@ int XaLibSql::Insert(XaLibDb& LibDb,string TableName,VectorFields VectorFields,V
 
 	delete LibChar;
 
-
 	if (NextId==0) {
 
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Executing Query Insert -> " +SqlQry);
@@ -74,7 +72,7 @@ int XaLibSql::Insert(XaLibDb& LibDb,string TableName,VectorFields VectorFields,V
 };
 
 
-int XaLibSql::InsertMulti(XaLibDb& LibDb,string TableName,VectorFields VectorFields,vector<vector<string> > VectorValuesMulti){
+int XaLibSql::InsertMulti(XaLibDb& LibDb,string TableName,const vector<string>& VectorFields,vector<vector<string> > VectorValuesMulti){
 	
 	XaLibChar* LibChar=new XaLibChar();
 	
@@ -101,7 +99,7 @@ int XaLibSql::InsertMulti(XaLibDb& LibDb,string TableName,VectorFields VectorFie
 
 	for(unsigned i=0; i<VectorValuesMulti.size(); ++i) {
 
-		VectorValues VectorValues=VectorValuesMulti.at(i);
+		vector<string> VectorValues=VectorValuesMulti.at(i);
 
    		SqlQry.append("(");
 
@@ -150,12 +148,10 @@ int XaLibSql::InsertMulti(XaLibDb& LibDb,string TableName,VectorFields VectorFie
 		return NextId;
 
 	}
-
-
 };
 
 
-int XaLibSql::Update(XaLibDb& LibDb,string TableName,VectorFields VectorFields,VectorValues VectorValues, WhereFields WhereFields,WhereValues WhereValues) {
+int XaLibSql::Update(XaLibDb& LibDb,string TableName,const vector<string>& VectorFields,const vector<string>& VectorValues, const vector<string>& WhereFields,const vector<string>& WhereValues) {
 
 	if (WhereFields.size()>0 && WhereFields.size()==WhereValues.size()){
 
@@ -219,7 +215,7 @@ int XaLibSql::Update(XaLibDb& LibDb,string TableName,VectorFields VectorFields,V
 	}
 };
 
-int XaLibSql::Delete(XaLibDb& LibDb,string TableName, WhereFields WhereFields,WhereValues WhereValues) {
+int XaLibSql::Delete(XaLibDb& LibDb,string TableName, const vector<string>& WhereFields,const vector<string>& WhereValues) {
 
 	if (WhereFields.size()>0 && WhereFields.size()==WhereValues.size()){
 
@@ -334,7 +330,7 @@ int XaLibSql::DeleteOneLogicWithKey(XaLibDb& LibDb,string TableName,string RowId
 
 };
 
-XaLibSql::DbResMap XaLibSql::SelectOne(XaLibDb& LibDb,string TableName, int RowId){
+XaLibBase::DbResMap XaLibSql::SelectOne(XaLibDb& LibDb,string TableName, int RowId){
 
 	DbResMap DbRes;
 
@@ -348,7 +344,7 @@ XaLibSql::DbResMap XaLibSql::SelectOne(XaLibDb& LibDb,string TableName, int RowI
 	return DbRes;
 };
 
-XaLibSql::DbResMap XaLibSql::SelectOne(XaLibDb& LibDb,string TableName, int RowId, int Active, int Deleted){
+XaLibBase::DbResMap XaLibSql::SelectOne(XaLibDb& LibDb,string TableName, int RowId, int Active, int Deleted){
 
 	DbResMap DbRes;
 
@@ -367,7 +363,7 @@ XaLibSql::DbResMap XaLibSql::SelectOne(XaLibDb& LibDb,string TableName, int RowI
 	return DbRes;
 };
 
-XaLibSql::DbResMap XaLibSql::Select(XaLibDb& LibDb,const string& TableName,const ReturnedFields& ReturnedFields) {
+XaLibBase::DbResMap XaLibSql::Select(XaLibDb& LibDb,const string& TableName,const vector<string>& ReturnedFields) {
 
 	DbResMap DbRes;
 	
@@ -403,7 +399,7 @@ XaLibSql::DbResMap XaLibSql::Select(XaLibDb& LibDb,const string& TableName,const
 
 }
 
-XaLibSql::DbResMap XaLibSql::Select(XaLibDb& LibDb,const string& TableName,const ReturnedFields& ReturnedFields,const WhereFields& WhereFields, const WhereValues& WhereValues) {
+XaLibBase::DbResMap XaLibSql::Select(XaLibDb& LibDb,const string& TableName,const vector<string>& ReturnedFields,const vector<string>& WhereFields, const vector<string>& WhereValues) {
 
 	DbResMap DbRes;
 	
@@ -464,7 +460,7 @@ XaLibSql::DbResMap XaLibSql::Select(XaLibDb& LibDb,const string& TableName,const
 	return DbRes;
 };
 
-XaLibSql::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,ReturnedFields ReturnedFields,WhereFields WhereFields, WhereValues WhereValues, OrderByFields OrderByFields) {
+XaLibBase::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,const vector<string>& ReturnedFields,const vector<string>& WhereFields, const vector<string>& WhereValues, const vector<string>& OrderByFields) {
 	
 	DbResMap DbRes;
 	
@@ -545,7 +541,7 @@ XaLibSql::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,ReturnedFiel
 }
 
 
-XaLibSql::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,ReturnedFields ReturnedFields,WhereFields WhereFields, WhereValues WhereValues, OrderByFields OrderByFields,GroupByFields GroupByFields) {
+XaLibBase::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,const vector<string>& ReturnedFields,const vector<string>& WhereFields, const vector<string>& WhereValues, const vector<string>& OrderByFields,const vector<string>& GroupByFields) {
 
 	DbResMap DbRes;
 	
@@ -643,10 +639,117 @@ XaLibSql::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,ReturnedFiel
 
 }
 
-XaLibSql::DbResMap XaLibSql::FreeQuery(XaLibDb& LibDb,string SqlQry){
+XaLibBase::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,const vector<string>& ReturnedFields,const vector<string>& WhereFields, const vector<string>& WhereValues, const vector<string>& OrderByFields,const vector<string>& GroupByFields,const int& Limit) {
+
+	DbResMap DbRes;
+	
+	string SqlQry="SELECT ";
+
+		XaLibChar* LibChar=new XaLibChar();
+
+		if(ReturnedFields.at(0)=="*"){
+			
+			SqlQry.append("*");
+			
+		} else {
+			
+			for(unsigned m=0; m<ReturnedFields.size(); ++m) {
+			
+				SqlQry.append(ReturnedFields.at(m));
+
+				if(m==ReturnedFields.size()-1){
+
+	     	} else {
+
+				SqlQry.append(",");
+	     	}
+	    }
+	}
+
+	SqlQry.append(" FROM ");
+	SqlQry.append(TableName);
+
+
+	if (WhereFields.size()==WhereValues.size() && WhereFields.size()>0 ){
+
+		SqlQry.append(" WHERE ");
+
+		for(unsigned n=0; n<WhereFields.size(); ++n) {
+
+     		SqlQry.append(WhereFields.at(n));
+     		SqlQry.append("=\"");
+     		string ToAppend=LibChar->ClearSqlEntities(WhereValues.at(n));
+     		SqlQry.append(ToAppend);
+     		SqlQry.append("\"");
+
+	     	if(n==WhereFields.size()-1){
+
+	     	} else{
+
+	     		SqlQry.append(" AND ");
+	     	}
+	    }
+
+	} else {
+		//NUMERO VALORI E CAMPI DIVERSO
+	}
+
+	if (OrderByFields.size()>0 ){
+
+		SqlQry.append(" ORDER BY ");
+
+		for(unsigned n=0; n<OrderByFields.size(); ++n) {
+
+     		SqlQry.append(OrderByFields.at(n));
+
+	     	if(n==OrderByFields.size()-1){
+
+	     	} else{
+
+	     		SqlQry.append(",");
+	     	}
+	    }
+
+	}
+	
+	if (GroupByFields.size()>0 ){
+
+		SqlQry.append(" GROUP BY ");
+
+		for(unsigned n=0; n<GroupByFields.size(); ++n) {
+
+     		SqlQry.append(GroupByFields.at(n));
+
+	     	if(n==GroupByFields.size()-1){
+
+	     	} else{
+
+	     		SqlQry.append(",");
+	     	}
+	    }
+
+	}
+
+	if (Limit!=0) {
+	
+		SqlQry.append(" LIMIT ");
+		SqlQry.append(to_string(Limit));
+	}
+
+	DbRes=LibDb.ExSelect(SqlQry);
+
+	delete LibChar;
+	return DbRes;
+
+}
+
+XaLibBase::DbResMap XaLibSql::FreeQuery(XaLibDb& LibDb,string SqlQry){
 	
 	DbResMap DbRes;
 	DbRes=LibDb.ExSelect(SqlQry);
+	
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executed Free Query -> " +SqlQry);
+	
 	return DbRes;
 };
 
