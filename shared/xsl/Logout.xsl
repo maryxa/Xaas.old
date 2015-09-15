@@ -8,14 +8,6 @@
     </head>
 
 	<body id="body">
-
-		<div class="container" style="left:0;top:0">
-			
-					You have been successfully logged out.
-					<br/><br/>
-					Click <a href="?">here</a> to log in again.
-
-		</div>
 		
 		<div class="container" style="left:0;top:0">
 			<form style="height:99%" class="form form-1-column" id="Login" name="Login" method="POST" action="?obj=XaUser&amp;evt=Login">

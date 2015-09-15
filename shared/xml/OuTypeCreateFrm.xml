@@ -1,0 +1,30 @@
+<XaOuTypeCreateFrm>
+	
+	<fieldset id="XaAdvChannelAddFrm" name="">
+			<legend>Inserimento Canali</legend>
+
+			<field id="XaAdvChannel-Name" name="XaAdvChannel-Name">
+				<id>XaAdvChannel-Name</id>
+				<name>XaAdvChannel-Name</name>
+				<type>input-text</type>
+				<label>name</label>
+				<options/>
+				<placeholder>name</placeholder>
+				<value></value>
+				<required>yes</required>
+				<dimension></dimension>
+			</field>
+
+			<field id="XaAdvChannel-Description" name="XaAdvChannel-Description">
+				<id>XaAdvChannel-Description</id>
+				<name>XaAdvChannel-Description</name>
+				<type>input-textarea</type>
+				<label>description</label>
+				<options/>
+				<placeholder>description</placeholder>
+				<value></value>
+				<required>no</required>
+				<dimension></dimension>
+			</field>
+	</fieldset>
+</XaOuTypeCreateFrm>

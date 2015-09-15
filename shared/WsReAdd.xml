@@ -1,0 +1,17 @@
+<WsData>
+    <login>
+		<username>alex@xallegro.com</username>
+		<password>ranokkio</password>
+		<token></token>
+    </login>
+	<operation>
+		<object>XaOuType</object>
+		<event>List</event>
+	</operation>
+	<params>
+		<param>
+			<name>small_bedroom_2</name>
+			<value>1</value>
+		</param>
+	</params>
+</WsData>
