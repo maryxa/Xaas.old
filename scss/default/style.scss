@@ -8,6 +8,8 @@
 @import '_variables';
 @import '_form';
 @import '_list';
+@import '_explorer';
+
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -23,6 +25,14 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	padding: 0;
 	vertical-align: baseline;
 	list-style-type: none;
+}
+
+html { 
+	background: url('XAllegroBackground.jpg') no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
 /* GENERAL LAYOUT */
@@ -42,6 +52,7 @@ header {
 	max-width: 100vw;
 	height: $HeaderHeight;
 	background-color: $HeaderBackgroundColor;
+	opacity:$ForeGroundOpacity;
 	background: linear-gradient(to right, $HeaderBackgroundColor 0%,#333333 75%);
 	color: $HeaderFontColor;
 	font-size:$HeaderFontSize;
@@ -127,6 +138,7 @@ nav {
 	top:$HeaderHeight;
 	bottom:0;
 	background-color: $NavBackgroundColor;
+	opacity:$ForeGroundOpacity;
 	color:$NavFontColor;
 	font-weight: 600;
 	font-size:$NavFontSize;
@@ -201,6 +213,7 @@ nav {
 }
 
 .container {
+	opacity:$ForeGroundOpacity;
 	position: fixed;
 	left: $NavWidth;
 	overflow: auto;

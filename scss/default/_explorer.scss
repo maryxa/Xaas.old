@@ -1,0 +1,31 @@
+/*
+	Project: XAAS
+	Alessandro Mariotti
+	alex@xallegro.com
+*/
+@import '_variables';
+
+.explorer {
+
+	.tree {
+		position:fixed;
+		bottom:1%;
+		top:$HeaderHeight+1;	
+		width: $ExplorerTreeWidth;
+		background-color: $ExplorerTreeBackgroundColor;
+		font-size: $FormFontSize;
+		border-radius:$BorderRadius;
+	}
+
+	.detail {
+		position:fixed;
+		background-color: $ExplorerDetailBackgroundColor;
+		left: $NavWidth+$ExplorerTreeWidth+1;
+		top:$HeaderHeight+1;
+		right: 0.5%;
+		bottom:1%;
+		border-radius:$BorderRadius;
+
+	}
+
+}

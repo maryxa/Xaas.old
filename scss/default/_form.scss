@@ -10,7 +10,8 @@
 	background-color: $FormBackgroundColor;
 	font-size: $FormFontSize;
 	padding-bottom:0.5%;
-	border-radius:0.2em;
+	border-radius:$BorderRadius;
+
 	fieldset {
 		text-align: center;
 		margin: 0 auto;
@@ -25,13 +26,13 @@
 			float:left;
 			font-size: $FormLegendFontSize;
 		}
-		
+
 		ul {
 			clear: both;
 			margin: 0 auto;
 			text-align: center;
 
-			li {	
+			li {
 				margin: 0 auto;
 				text-align: center;
 				margin-top:1.5%;
@@ -41,6 +42,7 @@
 					display:inline-block;
 					text-transform: capitalize;	
 					margin-right: 1%;
+					font-size: $FormFontSize;
 				}
 
 				label:after {
@@ -48,23 +50,16 @@
 				}
 
 				input, textarea, select {
+
 					color:$FormFontColor;
-					font-size: $FormFontSize;					
 					padding:0.5vh;
 					border-radius:$BorderRadius;
 					border:1px solid $FormInputBorderColor;
+					font-size: $FormFontSize;
 				}
 
 				textarea {
-					border:1px solid green;
-					font-family: inherit;
-					font-size: inherit;
-				}
-
-				select {
-					border-radius:$BorderRadius;
-					font-family: inherit;
-					font-size: inherit;
+					/*$FormFontSize:$FontSize/100*90; //75%*/
 				}
 			}
 		}
