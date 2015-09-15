@@ -63,32 +63,37 @@
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_xa_lib_base_8h.html">XaLibBase.h</a>&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_xa_lib_log_8h.html">XaLibLog.h</a>&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_xa_lib_char_8h.html">XaLibChar.h</a>&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="class_xa_lib_gui.html">    8</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_xa_lib_gui.html">XaLibGui</a> : <span class="keyword">protected</span> <a class="code" href="class_xa_lib_base.html">XaLibBase</a> {</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_xa_lib_dom_8h.html">XaLibDom.h</a>&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_xa_lib_xsl_8h.html">XaLibXsl.h</a>&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_xa_lib_gui.html#ae4d15ee9c26bce76db5e563567d80b5a">   11</a></span>&#160;        <span class="keyword">typedef</span> vector&lt;string&gt; <a class="code" href="class_xa_lib_gui.html#ae4d15ee9c26bce76db5e563567d80b5a">ElementTagNames</a>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">string</span> <a class="code" href="class_xa_lib_gui.html#a26595fd7c22de8c55685cd9e0d627528">List</a>(<a class="code" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a> ResMap,<span class="keyword">const</span> ElementTagNames&amp; TagNames,<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; RootTagName,<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; GroupTagName);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="class_xa_lib_gui.html#a61d7d9d89b9a0b1fd6b182db790de271">XaLibGui</a>();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="class_xa_lib_gui.html#a554496040147df0eb2582b68afcdf93a">~XaLibGui</a>();</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;};</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="class_xa_lib_gui_html"><div class="ttname"><a href="class_xa_lib_gui.html">XaLibGui</a></div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_gui_8h_source.html#l00008">XaLibGui.h:8</a></div></div>
-<div class="ttc" id="class_xa_lib_gui_html_a554496040147df0eb2582b68afcdf93a"><div class="ttname"><a href="class_xa_lib_gui.html#a554496040147df0eb2582b68afcdf93a">XaLibGui::~XaLibGui</a></div><div class="ttdeci">~XaLibGui()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_gui_8cpp_source.html#l00043">XaLibGui.cpp:43</a></div></div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="class_xa_lib_gui.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_xa_lib_gui.html">XaLibGui</a> : <span class="keyword">protected</span> <a class="code" href="class_xa_lib_base.html">XaLibBase</a> {</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">string</span> <a class="code" href="class_xa_lib_gui.html#a31461e15ad55f841a834a331e1751f21">CreateForm</a>(<span class="keyword">const</span> vector&lt;string&gt;&amp; XmlFiles, <span class="keyword">const</span> vector&lt;string&gt;&amp; XmlStrings,<span class="keyword">const</span> vector&lt;string&gt;&amp; XslFiles,<span class="keyword">const</span> vector&lt;string&gt;&amp; XslStrings,<span class="keyword">const</span> vector&lt;string&gt;&amp; XslParams);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">string</span> <a class="code" href="class_xa_lib_gui.html#a5715499d09cc5f58e8ff49fe774cefc3">CreateList</a>(<a class="code" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a> ResMap,<span class="keyword">const</span> vector&lt;string&gt;&amp; TagNames,<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; RootTagName,<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; GroupTagName);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="class_xa_lib_gui.html#a61d7d9d89b9a0b1fd6b182db790de271">XaLibGui</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="class_xa_lib_gui.html#a554496040147df0eb2582b68afcdf93a">~XaLibGui</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;};</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="class_xa_lib_gui_html"><div class="ttname"><a href="class_xa_lib_gui.html">XaLibGui</a></div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_gui_8h_source.html#l00010">XaLibGui.h:10</a></div></div>
+<div class="ttc" id="class_xa_lib_gui_html_a554496040147df0eb2582b68afcdf93a"><div class="ttname"><a href="class_xa_lib_gui.html#a554496040147df0eb2582b68afcdf93a">XaLibGui::~XaLibGui</a></div><div class="ttdeci">~XaLibGui()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_gui_8cpp_source.html#l00050">XaLibGui.cpp:50</a></div></div>
 <div class="ttc" id="_xa_lib_base_8h_html"><div class="ttname"><a href="_xa_lib_base_8h.html">XaLibBase.h</a></div></div>
 <div class="ttc" id="_xa_lib_char_8h_html"><div class="ttname"><a href="_xa_lib_char_8h.html">XaLibChar.h</a></div></div>
-<div class="ttc" id="class_xa_lib_gui_html_ae4d15ee9c26bce76db5e563567d80b5a"><div class="ttname"><a href="class_xa_lib_gui.html#ae4d15ee9c26bce76db5e563567d80b5a">XaLibGui::ElementTagNames</a></div><div class="ttdeci">vector&lt; string &gt; ElementTagNames</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_gui_8h_source.html#l00011">XaLibGui.h:11</a></div></div>
-<div class="ttc" id="class_xa_lib_gui_html_a61d7d9d89b9a0b1fd6b182db790de271"><div class="ttname"><a href="class_xa_lib_gui.html#a61d7d9d89b9a0b1fd6b182db790de271">XaLibGui::XaLibGui</a></div><div class="ttdeci">XaLibGui()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_gui_8cpp_source.html#l00007">XaLibGui.cpp:7</a></div></div>
-<div class="ttc" id="class_xa_lib_gui_html_a26595fd7c22de8c55685cd9e0d627528"><div class="ttname"><a href="class_xa_lib_gui.html#a26595fd7c22de8c55685cd9e0d627528">XaLibGui::List</a></div><div class="ttdeci">static string List(DbResMap ResMap, const ElementTagNames &amp;TagNames, const string &amp;RootTagName, const string &amp;GroupTagName)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_gui_8cpp_source.html#l00010">XaLibGui.cpp:10</a></div></div>
-<div class="ttc" id="class_xa_lib_base_html_a9f5f4d0c8d82a28f6f54b6679ff60849"><div class="ttname"><a href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">XaLibBase::DbResMap</a></div><div class="ttdeci">map&lt; int, map&lt; string, string &gt; &gt; DbResMap</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_base_8h_source.html#l00117">XaLibBase.h:117</a></div></div>
-<div class="ttc" id="class_xa_lib_base_html"><div class="ttname"><a href="class_xa_lib_base.html">XaLibBase</a></div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_base_8h_source.html#l00111">XaLibBase.h:111</a></div></div>
+<div class="ttc" id="_xa_lib_xsl_8h_html"><div class="ttname"><a href="_xa_lib_xsl_8h.html">XaLibXsl.h</a></div></div>
+<div class="ttc" id="class_xa_lib_gui_html_a61d7d9d89b9a0b1fd6b182db790de271"><div class="ttname"><a href="class_xa_lib_gui.html#a61d7d9d89b9a0b1fd6b182db790de271">XaLibGui::XaLibGui</a></div><div class="ttdeci">XaLibGui()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_gui_8cpp_source.html#l00003">XaLibGui.cpp:3</a></div></div>
+<div class="ttc" id="class_xa_lib_gui_html_a5715499d09cc5f58e8ff49fe774cefc3"><div class="ttname"><a href="class_xa_lib_gui.html#a5715499d09cc5f58e8ff49fe774cefc3">XaLibGui::CreateList</a></div><div class="ttdeci">static string CreateList(DbResMap ResMap, const vector&lt; string &gt; &amp;TagNames, const string &amp;RootTagName, const string &amp;GroupTagName)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_gui_8cpp_source.html#l00006">XaLibGui.cpp:6</a></div></div>
+<div class="ttc" id="class_xa_lib_gui_html_a31461e15ad55f841a834a331e1751f21"><div class="ttname"><a href="class_xa_lib_gui.html#a31461e15ad55f841a834a331e1751f21">XaLibGui::CreateForm</a></div><div class="ttdeci">static string CreateForm(const vector&lt; string &gt; &amp;XmlFiles, const vector&lt; string &gt; &amp;XmlStrings, const vector&lt; string &gt; &amp;XslFiles, const vector&lt; string &gt; &amp;XslStrings, const vector&lt; string &gt; &amp;XslParams)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_gui_8cpp_source.html#l00039">XaLibGui.cpp:39</a></div></div>
+<div class="ttc" id="class_xa_lib_base_html_a9f5f4d0c8d82a28f6f54b6679ff60849"><div class="ttname"><a href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">XaLibBase::DbResMap</a></div><div class="ttdeci">map&lt; int, map&lt; string, string &gt; &gt; DbResMap</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_base_8h_source.html#l00147">XaLibBase.h:147</a></div></div>
+<div class="ttc" id="class_xa_lib_base_html"><div class="ttname"><a href="class_xa_lib_base.html">XaLibBase</a></div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_base_8h_source.html#l00141">XaLibBase.h:141</a></div></div>
 <div class="ttc" id="_xa_lib_log_8h_html"><div class="ttname"><a href="_xa_lib_log_8h.html">XaLibLog.h</a></div></div>
+<div class="ttc" id="_xa_lib_dom_8h_html"><div class="ttname"><a href="_xa_lib_dom_8h.html">XaLibDom.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
@@ -98,7 +103,7 @@
 </div>
 </div>
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 25 2015 13:29:07 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
+Generated on Tue Sep 15 2015 20:03:18 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
 <!--img class="footer" src="doxygen.png" alt="doxygen"/-->
 </a> 1.8.10
 </small></address>

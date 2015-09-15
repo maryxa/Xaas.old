@@ -54,7 +54,6 @@
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pri-types">Private Types</a> &#124;
 <a href="class_xa_lib_sql-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">XaLibSql Class Reference</div>  </div>
@@ -77,8 +76,6 @@ Inheritance diagram for XaLibSql:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af00d3462aef14b98ea85928f4a4f57ab"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#af00d3462aef14b98ea85928f4a4f57ab">InsertMulti</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, <a class="el" href="class_xa_lib_sql.html#a31ef096b9020acdeb3f2a965c9460491">VectorFields</a> <a class="el" href="class_xa_lib_sql.html#a31ef096b9020acdeb3f2a965c9460491">VectorFields</a>, vector&lt; vector&lt; string &gt; &gt; <a class="el" href="class_xa_lib_sql.html#a401379480c9536c6a89d44ff05d61045">VectorValues</a>)</td></tr>
-<tr class="separator:af00d3462aef14b98ea85928f4a4f57ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa04798825f45a83debf5d1986c02bb85"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#aa04798825f45a83debf5d1986c02bb85">XaLibSql</a> ()</td></tr>
 <tr class="separator:aa04798825f45a83debf5d1986c02bb85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6458823a5fa1e7a623c97675f2abfd1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#ad6458823a5fa1e7a623c97675f2abfd1">~XaLibSql</a> ()</td></tr>
@@ -86,34 +83,38 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a528019ff27af205c1f67d40593286ff4"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a528019ff27af205c1f67d40593286ff4">Delete</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, <a class="el" href="class_xa_lib_sql.html#a8e968547a7ab85508fd4cb4f8cb06065">WhereFields</a> <a class="el" href="class_xa_lib_sql.html#a8e968547a7ab85508fd4cb4f8cb06065">WhereFields</a>, <a class="el" href="class_xa_lib_sql.html#a1624486083fc9902f82fd602d3b87699">WhereValues</a> <a class="el" href="class_xa_lib_sql.html#a1624486083fc9902f82fd602d3b87699">WhereValues</a>)</td></tr>
-<tr class="separator:a528019ff27af205c1f67d40593286ff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9edb488644f2bd27ada77cc7c863d07"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#ab9edb488644f2bd27ada77cc7c863d07">Delete</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, const vector&lt; string &gt; &amp;WhereFields, const vector&lt; string &gt; &amp;WhereValues)</td></tr>
+<tr class="separator:ab9edb488644f2bd27ada77cc7c863d07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03ba77e2bebe7a607f0461d28df5be33"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a03ba77e2bebe7a607f0461d28df5be33">DeleteOne</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, string RowId)</td></tr>
 <tr class="separator:a03ba77e2bebe7a607f0461d28df5be33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefc18659ba4994c73109b64741791712"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#aefc18659ba4994c73109b64741791712">DeleteOneLogic</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, string RowId)</td></tr>
 <tr class="separator:aefc18659ba4994c73109b64741791712"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46d5a51a18db9ae89847d8aa9e512bf5"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a46d5a51a18db9ae89847d8aa9e512bf5">DeleteOneLogicWithKey</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, string RowId, string KeyTable, string KeyId)</td></tr>
 <tr class="separator:a46d5a51a18db9ae89847d8aa9e512bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8489d49235bb48d89b0f6909b7bd8fe2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a8489d49235bb48d89b0f6909b7bd8fe2">FreeQuery</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string SqlQry)</td></tr>
-<tr class="separator:a8489d49235bb48d89b0f6909b7bd8fe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e14bb733ceb80f0d4412cfd16176f0f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a2e14bb733ceb80f0d4412cfd16176f0f">FreeQuery</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string SqlQry)</td></tr>
+<tr class="separator:a2e14bb733ceb80f0d4412cfd16176f0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29e58517d4d68285004ee07be15c8f50"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a29e58517d4d68285004ee07be15c8f50">FreeQueryNoRes</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string SqlQry)</td></tr>
 <tr class="separator:a29e58517d4d68285004ee07be15c8f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c24a56d4a41dff82ed68b9aaa87b92f"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a1c24a56d4a41dff82ed68b9aaa87b92f">Insert</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, <a class="el" href="class_xa_lib_sql.html#a31ef096b9020acdeb3f2a965c9460491">VectorFields</a> <a class="el" href="class_xa_lib_sql.html#a31ef096b9020acdeb3f2a965c9460491">VectorFields</a>, <a class="el" href="class_xa_lib_sql.html#a401379480c9536c6a89d44ff05d61045">VectorValues</a> <a class="el" href="class_xa_lib_sql.html#a401379480c9536c6a89d44ff05d61045">VectorValues</a>)</td></tr>
-<tr class="separator:a1c24a56d4a41dff82ed68b9aaa87b92f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a132806546b88aae856b212949a194ef0"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a132806546b88aae856b212949a194ef0">Insert</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, const vector&lt; string &gt; &amp;VectorFields, const vector&lt; string &gt; &amp;VectorValues)</td></tr>
+<tr class="separator:a132806546b88aae856b212949a194ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ca6a9207d48adf0aeafd2de3549fa7e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a6ca6a9207d48adf0aeafd2de3549fa7e">InsertMulti</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, const vector&lt; string &gt; &amp;VectorFields, vector&lt; vector&lt; string &gt; &gt; VectorValues)</td></tr>
+<tr class="separator:a6ca6a9207d48adf0aeafd2de3549fa7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7102de0b43ff49c4b4c6b96e5ba64518"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a7102de0b43ff49c4b4c6b96e5ba64518">LockTable</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName)</td></tr>
 <tr class="separator:a7102de0b43ff49c4b4c6b96e5ba64518"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d360075478e2363daed82945f7dad99"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a1d360075478e2363daed82945f7dad99">Select</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, const string &amp;TableName, const <a class="el" href="class_xa_lib_sql.html#a801b42f8cad0b8392af9a0bf7fb973ad">ReturnedFields</a> &amp;<a class="el" href="class_xa_lib_sql.html#a801b42f8cad0b8392af9a0bf7fb973ad">ReturnedFields</a>)</td></tr>
-<tr class="separator:a1d360075478e2363daed82945f7dad99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6db4877f7ec6a7c9e442ed040c4a4c43"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a6db4877f7ec6a7c9e442ed040c4a4c43">Select</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, const string &amp;TableName, const <a class="el" href="class_xa_lib_sql.html#a801b42f8cad0b8392af9a0bf7fb973ad">ReturnedFields</a> &amp;<a class="el" href="class_xa_lib_sql.html#a801b42f8cad0b8392af9a0bf7fb973ad">ReturnedFields</a>, const <a class="el" href="class_xa_lib_sql.html#a8e968547a7ab85508fd4cb4f8cb06065">WhereFields</a> &amp;<a class="el" href="class_xa_lib_sql.html#a8e968547a7ab85508fd4cb4f8cb06065">WhereFields</a>, const <a class="el" href="class_xa_lib_sql.html#a1624486083fc9902f82fd602d3b87699">WhereValues</a> &amp;<a class="el" href="class_xa_lib_sql.html#a1624486083fc9902f82fd602d3b87699">WhereValues</a>)</td></tr>
-<tr class="separator:a6db4877f7ec6a7c9e442ed040c4a4c43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7255dcb844339c956444b1c4539f615"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#aa7255dcb844339c956444b1c4539f615">Select</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, <a class="el" href="class_xa_lib_sql.html#a801b42f8cad0b8392af9a0bf7fb973ad">ReturnedFields</a> <a class="el" href="class_xa_lib_sql.html#a801b42f8cad0b8392af9a0bf7fb973ad">ReturnedFields</a>, <a class="el" href="class_xa_lib_sql.html#a8e968547a7ab85508fd4cb4f8cb06065">WhereFields</a> <a class="el" href="class_xa_lib_sql.html#a8e968547a7ab85508fd4cb4f8cb06065">WhereFields</a>, <a class="el" href="class_xa_lib_sql.html#a1624486083fc9902f82fd602d3b87699">WhereValues</a> <a class="el" href="class_xa_lib_sql.html#a1624486083fc9902f82fd602d3b87699">WhereValues</a>, <a class="el" href="class_xa_lib_sql.html#a886dc62a63b7ab41796f5d3610ac582d">OrderByFields</a> <a class="el" href="class_xa_lib_sql.html#a886dc62a63b7ab41796f5d3610ac582d">OrderByFields</a>)</td></tr>
-<tr class="separator:aa7255dcb844339c956444b1c4539f615"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a068939ea0a19924b48c2bcf27ff02b3b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a068939ea0a19924b48c2bcf27ff02b3b">Select</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, <a class="el" href="class_xa_lib_sql.html#a801b42f8cad0b8392af9a0bf7fb973ad">ReturnedFields</a> <a class="el" href="class_xa_lib_sql.html#a801b42f8cad0b8392af9a0bf7fb973ad">ReturnedFields</a>, <a class="el" href="class_xa_lib_sql.html#a8e968547a7ab85508fd4cb4f8cb06065">WhereFields</a> <a class="el" href="class_xa_lib_sql.html#a8e968547a7ab85508fd4cb4f8cb06065">WhereFields</a>, <a class="el" href="class_xa_lib_sql.html#a1624486083fc9902f82fd602d3b87699">WhereValues</a> <a class="el" href="class_xa_lib_sql.html#a1624486083fc9902f82fd602d3b87699">WhereValues</a>, <a class="el" href="class_xa_lib_sql.html#a886dc62a63b7ab41796f5d3610ac582d">OrderByFields</a> <a class="el" href="class_xa_lib_sql.html#a886dc62a63b7ab41796f5d3610ac582d">OrderByFields</a>, <a class="el" href="class_xa_lib_sql.html#a9ab41f6daca2b4020c0aa691e53362d7">GroupByFields</a> <a class="el" href="class_xa_lib_sql.html#a9ab41f6daca2b4020c0aa691e53362d7">GroupByFields</a>)</td></tr>
-<tr class="separator:a068939ea0a19924b48c2bcf27ff02b3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c63115848e28a22f099ea8912ffd59e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a8c63115848e28a22f099ea8912ffd59e">SelectOne</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, int RowId)</td></tr>
-<tr class="separator:a8c63115848e28a22f099ea8912ffd59e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb5ba83841d983e7c0274057040fdb03"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#acb5ba83841d983e7c0274057040fdb03">SelectOne</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, int RowId, int Active, int Deleted)</td></tr>
-<tr class="separator:acb5ba83841d983e7c0274057040fdb03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e3e58021003a48d0cea2d671afa8f50"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a8e3e58021003a48d0cea2d671afa8f50">Select</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, const string &amp;TableName, const vector&lt; string &gt; &amp;ReturnedFields)</td></tr>
+<tr class="separator:a8e3e58021003a48d0cea2d671afa8f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f6eaf3f192a8f102c545b89f2214c30"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a9f6eaf3f192a8f102c545b89f2214c30">Select</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, const string &amp;TableName, const vector&lt; string &gt; &amp;ReturnedFields, const vector&lt; string &gt; &amp;WhereFields, const vector&lt; string &gt; &amp;WhereValues)</td></tr>
+<tr class="separator:a9f6eaf3f192a8f102c545b89f2214c30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8ac1b6c13cc869848580755af13f495"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#af8ac1b6c13cc869848580755af13f495">Select</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, const vector&lt; string &gt; &amp;ReturnedFields, const vector&lt; string &gt; &amp;WhereFields, const vector&lt; string &gt; &amp;WhereValues, const vector&lt; string &gt; &amp;OrderByFields)</td></tr>
+<tr class="separator:af8ac1b6c13cc869848580755af13f495"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c74f7808c9519d06c73be6ca610cb4e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a3c74f7808c9519d06c73be6ca610cb4e">Select</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, const vector&lt; string &gt; &amp;ReturnedFields, const vector&lt; string &gt; &amp;WhereFields, const vector&lt; string &gt; &amp;WhereValues, const vector&lt; string &gt; &amp;OrderByFields, const vector&lt; string &gt; &amp;GroupByFields)</td></tr>
+<tr class="separator:a3c74f7808c9519d06c73be6ca610cb4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acad5b41a313367e2870a340365fecfdd"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#acad5b41a313367e2870a340365fecfdd">Select</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, const vector&lt; string &gt; &amp;ReturnedFields, const vector&lt; string &gt; &amp;WhereFields, const vector&lt; string &gt; &amp;WhereValues, const vector&lt; string &gt; &amp;OrderByFields, const vector&lt; string &gt; &amp;GroupByFields, const int &amp;Limit=0)</td></tr>
+<tr class="separator:acad5b41a313367e2870a340365fecfdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea0a6e49aac23c33550b3ef8bcc137d8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#aea0a6e49aac23c33550b3ef8bcc137d8">SelectOne</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, int RowId)</td></tr>
+<tr class="separator:aea0a6e49aac23c33550b3ef8bcc137d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af410c48196834417aba759c95253aa88"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#af410c48196834417aba759c95253aa88">SelectOne</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, int RowId, int Active, int Deleted)</td></tr>
+<tr class="separator:af410c48196834417aba759c95253aa88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70400df06ba5402a07839e9b63da2f5f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a70400df06ba5402a07839e9b63da2f5f">TransactionCommit</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb)</td></tr>
 <tr class="separator:a70400df06ba5402a07839e9b63da2f5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a004e771eb8b713a2fac7c5ef9756312e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a004e771eb8b713a2fac7c5ef9756312e">TransactionRollback</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb)</td></tr>
@@ -122,25 +123,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a2e6c652dd83e6fba061dbe0b1b02a289"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa04bdd2ecf2fc00150bcafeb1586df7d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#aa04bdd2ecf2fc00150bcafeb1586df7d">UnlockTable</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb)</td></tr>
 <tr class="separator:aa04bdd2ecf2fc00150bcafeb1586df7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b0f147e8894f38d16d620d2cf331da8"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a3b0f147e8894f38d16d620d2cf331da8">Update</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, <a class="el" href="class_xa_lib_sql.html#a31ef096b9020acdeb3f2a965c9460491">VectorFields</a> <a class="el" href="class_xa_lib_sql.html#a31ef096b9020acdeb3f2a965c9460491">VectorFields</a>, <a class="el" href="class_xa_lib_sql.html#a401379480c9536c6a89d44ff05d61045">VectorValues</a> <a class="el" href="class_xa_lib_sql.html#a401379480c9536c6a89d44ff05d61045">VectorValues</a>, <a class="el" href="class_xa_lib_sql.html#a8e968547a7ab85508fd4cb4f8cb06065">WhereFields</a> <a class="el" href="class_xa_lib_sql.html#a8e968547a7ab85508fd4cb4f8cb06065">WhereFields</a>, <a class="el" href="class_xa_lib_sql.html#a1624486083fc9902f82fd602d3b87699">WhereValues</a> <a class="el" href="class_xa_lib_sql.html#a1624486083fc9902f82fd602d3b87699">WhereValues</a>)</td></tr>
-<tr class="separator:a3b0f147e8894f38d16d620d2cf331da8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
-Private Types</h2></td></tr>
-<tr class="memitem:a9ab41f6daca2b4020c0aa691e53362d7"><td class="memItemLeft" align="right" valign="top">typedef vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a9ab41f6daca2b4020c0aa691e53362d7">GroupByFields</a></td></tr>
-<tr class="separator:a9ab41f6daca2b4020c0aa691e53362d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a886dc62a63b7ab41796f5d3610ac582d"><td class="memItemLeft" align="right" valign="top">typedef vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a886dc62a63b7ab41796f5d3610ac582d">OrderByFields</a></td></tr>
-<tr class="separator:a886dc62a63b7ab41796f5d3610ac582d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a801b42f8cad0b8392af9a0bf7fb973ad"><td class="memItemLeft" align="right" valign="top">typedef vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a801b42f8cad0b8392af9a0bf7fb973ad">ReturnedFields</a></td></tr>
-<tr class="separator:a801b42f8cad0b8392af9a0bf7fb973ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31ef096b9020acdeb3f2a965c9460491"><td class="memItemLeft" align="right" valign="top">typedef vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a31ef096b9020acdeb3f2a965c9460491">VectorFields</a></td></tr>
-<tr class="separator:a31ef096b9020acdeb3f2a965c9460491"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a401379480c9536c6a89d44ff05d61045"><td class="memItemLeft" align="right" valign="top">typedef vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a401379480c9536c6a89d44ff05d61045">VectorValues</a></td></tr>
-<tr class="separator:a401379480c9536c6a89d44ff05d61045"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e968547a7ab85508fd4cb4f8cb06065"><td class="memItemLeft" align="right" valign="top">typedef vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a8e968547a7ab85508fd4cb4f8cb06065">WhereFields</a></td></tr>
-<tr class="separator:a8e968547a7ab85508fd4cb4f8cb06065"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1624486083fc9902f82fd602d3b87699"><td class="memItemLeft" align="right" valign="top">typedef vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a1624486083fc9902f82fd602d3b87699">WhereValues</a></td></tr>
-<tr class="separator:a1624486083fc9902f82fd602d3b87699"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20301369ed8f182279783da1e8a1f9fe"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_sql.html#a20301369ed8f182279783da1e8a1f9fe">Update</a> (<a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;LibDb, string TableName, const vector&lt; string &gt; &amp;VectorFields, const vector&lt; string &gt; &amp;VectorValues, const vector&lt; string &gt; &amp;WhereFields, const vector&lt; string &gt; &amp;WhereValues)</td></tr>
+<tr class="separator:a20301369ed8f182279783da1e8a1f9fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -168,10 +152,10 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a3186fcd286b976374139302424adebf1 inherit pro_methods_class_xa_lib_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32fdb9dec05a560226c6fc64b0700e4d inherit pro_methods_class_xa_lib_base"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_base.html#a32fdb9dec05a560226c6fc64b0700e4d">FromStringToFloat</a> (string StringValue)</td></tr>
 <tr class="separator:a32fdb9dec05a560226c6fc64b0700e4d inherit pro_methods_class_xa_lib_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51e60f643c2a0b16b5d45364c418824e inherit pro_methods_class_xa_lib_base"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_base.html#a51e60f643c2a0b16b5d45364c418824e">FromStringToHex</a> (string StringValue)</td></tr>
-<tr class="separator:a51e60f643c2a0b16b5d45364c418824e inherit pro_methods_class_xa_lib_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbaa2487e2ab44787e7d4201a8c7de11 inherit pro_methods_class_xa_lib_base"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_base.html#adbaa2487e2ab44787e7d4201a8c7de11">FromStringToInt</a> (string StringValue)</td></tr>
-<tr class="separator:adbaa2487e2ab44787e7d4201a8c7de11 inherit pro_methods_class_xa_lib_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a81aebd47cd1a3dfb891c242ebecc7e inherit pro_methods_class_xa_lib_base"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_base.html#a4a81aebd47cd1a3dfb891c242ebecc7e">FromStringToHex</a> (const string &amp;StringValue, int CapitalCase)</td></tr>
+<tr class="separator:a4a81aebd47cd1a3dfb891c242ebecc7e inherit pro_methods_class_xa_lib_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a007496cfd361e6f3e9d0d3782f181c08 inherit pro_methods_class_xa_lib_base"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_base.html#a007496cfd361e6f3e9d0d3782f181c08">FromStringToInt</a> (const string &amp;StringValue)</td></tr>
+<tr class="separator:a007496cfd361e6f3e9d0d3782f181c08 inherit pro_methods_class_xa_lib_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6c3f394914bf994c01e187e373cfccb inherit pro_methods_class_xa_lib_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_base.html#ae6c3f394914bf994c01e187e373cfccb">SendHtmlHeaders</a> ()</td></tr>
 <tr class="separator:ae6c3f394914bf994c01e187e373cfccb inherit pro_methods_class_xa_lib_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03fcefc3c380f9e329dc343bdecec9e0 inherit pro_methods_class_xa_lib_base"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_base.html#a03fcefc3c380f9e329dc343bdecec9e0">XaLibBase</a> ()</td></tr>
@@ -184,168 +168,13 @@ Additional Inherited Members</h2></td></tr>
 <p>Database interaction: this class implements Sql statements, the database connection is established from the controller.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_xa_lib_db.html">XaLibDb</a> </dd>
 <dd>
-<a class="el" href="class_xa_lib_controller.html">XaLibController</a></dd>
+<a class="el" href="class_xa_lib_controller.html" title="Base Class for Controllrs. ">XaLibController</a></dd>
 <dd>
 <a href="http://www.xallegro.com">http://www.xallegro.com</a> </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Alessandro Mariotti </dd></dl>
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8h_source.html#l00027">27</a> of file <a class="el" href="_xa_lib_sql_8h_source.html">XaLibSql.h</a>.</p>
-</div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a class="anchor" id="a9ab41f6daca2b4020c0aa691e53362d7"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef vector&lt;string&gt; <a class="el" href="class_xa_lib_sql.html#a9ab41f6daca2b4020c0aa691e53362d7">XaLibSql::GroupByFields</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_sql_8h_source.html#l00040">40</a> of file <a class="el" href="_xa_lib_sql_8h_source.html">XaLibSql.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a886dc62a63b7ab41796f5d3610ac582d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef vector&lt;string&gt; <a class="el" href="class_xa_lib_sql.html#a886dc62a63b7ab41796f5d3610ac582d">XaLibSql::OrderByFields</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_sql_8h_source.html#l00039">39</a> of file <a class="el" href="_xa_lib_sql_8h_source.html">XaLibSql.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a801b42f8cad0b8392af9a0bf7fb973ad"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef vector&lt;string&gt; <a class="el" href="class_xa_lib_sql.html#a801b42f8cad0b8392af9a0bf7fb973ad">XaLibSql::ReturnedFields</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_sql_8h_source.html#l00034">34</a> of file <a class="el" href="_xa_lib_sql_8h_source.html">XaLibSql.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a31ef096b9020acdeb3f2a965c9460491"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef vector&lt;string&gt; <a class="el" href="class_xa_lib_sql.html#a31ef096b9020acdeb3f2a965c9460491">XaLibSql::VectorFields</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_sql_8h_source.html#l00031">31</a> of file <a class="el" href="_xa_lib_sql_8h_source.html">XaLibSql.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a401379480c9536c6a89d44ff05d61045"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef vector&lt;string&gt; <a class="el" href="class_xa_lib_sql.html#a401379480c9536c6a89d44ff05d61045">XaLibSql::VectorValues</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_sql_8h_source.html#l00032">32</a> of file <a class="el" href="_xa_lib_sql_8h_source.html">XaLibSql.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8e968547a7ab85508fd4cb4f8cb06065"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef vector&lt;string&gt; <a class="el" href="class_xa_lib_sql.html#a8e968547a7ab85508fd4cb4f8cb06065">XaLibSql::WhereFields</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_sql_8h_source.html#l00036">36</a> of file <a class="el" href="_xa_lib_sql_8h_source.html">XaLibSql.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1624486083fc9902f82fd602d3b87699"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef vector&lt;string&gt; <a class="el" href="class_xa_lib_sql.html#a1624486083fc9902f82fd602d3b87699">XaLibSql::WhereValues</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_sql_8h_source.html#l00037">37</a> of file <a class="el" href="_xa_lib_sql_8h_source.html">XaLibSql.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8h_source.html#l00025">25</a> of file <a class="el" href="_xa_lib_sql_8h_source.html">XaLibSql.h</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aa04798825f45a83debf5d1986c02bb85"></a>
 <div class="memitem">
 <div class="memproto">
@@ -376,12 +205,12 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00740">740</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00843">843</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a528019ff27af205c1f67d40593286ff4"></a>
+<a class="anchor" id="ab9edb488644f2bd27ada77cc7c863d07"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -403,13 +232,13 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a8e968547a7ab85508fd4cb4f8cb06065">WhereFields</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>WhereFields</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a1624486083fc9902f82fd602d3b87699">WhereValues</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>WhereValues</em>&#160;</td>
         </tr>
         <tr>
@@ -425,7 +254,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00222">222</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00218">218</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
@@ -467,7 +296,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00269">269</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00265">265</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
@@ -509,7 +338,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00282">282</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00278">278</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
@@ -563,11 +392,11 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00307">307</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00303">303</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8489d49235bb48d89b0f6909b7bd8fe2"></a>
+<a class="anchor" id="a2e14bb733ceb80f0d4412cfd16176f0f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -575,7 +404,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">XaLibSql::DbResMap</a> XaLibSql::FreeQuery </td>
+          <td class="memname"><a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">XaLibBase::DbResMap</a> XaLibSql::FreeQuery </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;&#160;</td>
           <td class="paramname"><em>LibDb</em>, </td>
@@ -599,7 +428,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00646">646</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00746">746</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
@@ -635,11 +464,11 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00653">653</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00756">756</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1c24a56d4a41dff82ed68b9aaa87b92f"></a>
+<a class="anchor" id="a132806546b88aae856b212949a194ef0"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -661,13 +490,13 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a31ef096b9020acdeb3f2a965c9460491">VectorFields</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>VectorFields</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a401379480c9536c6a89d44ff05d61045">VectorValues</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>VectorValues</em>&#160;</td>
         </tr>
         <tr>
@@ -697,18 +526,21 @@ Additional Inherited Members</h2></td></tr>
 <div class="fragment"><div class="line"><span class="keywordtype">string</span> Name=<a class="code" href="_xa_lib_action_8h.html#a4aabf1d9f9af7fbfa103a12d8cf6ab2d">HTTP</a>.<a class="code" href="class_xa_lib_http.html#aff7c6565dc09661172aa02cb35d10987">GetHttpParam</a>(<span class="stringliteral">&quot;Name&quot;</span>);</div>
 <div class="line"><span class="keywordtype">string</span> Description=<a class="code" href="_xa_lib_action_8h.html#a4aabf1d9f9af7fbfa103a12d8cf6ab2d">HTTP</a>.<a class="code" href="class_xa_lib_http.html#aff7c6565dc09661172aa02cb35d10987">GetHttpParam</a>(<span class="stringliteral">&quot;Description&quot;</span>);</div>
 <div class="line"></div>
-<div class="line">vector&lt;string&gt; <a class="code" href="class_xa_lib_sql.html#a31ef096b9020acdeb3f2a965c9460491">VectorFields</a> ={<span class="stringliteral">&quot;name&quot;</span>,<span class="stringliteral">&quot;description&quot;</span>}; </div>
-<div class="line">vector&lt;string&gt; <a class="code" href="class_xa_lib_sql.html#a401379480c9536c6a89d44ff05d61045">VectorValues</a> ={Name,Description};</div>
+<div class="line">vector&lt;string&gt; VectorFields ={<span class="stringliteral">&quot;name&quot;</span>,<span class="stringliteral">&quot;description&quot;</span>}; </div>
+<div class="line">vector&lt;string&gt; VectorValues ={Name,Description};</div>
 <div class="line"></div>
-<div class="line"><span class="keywordtype">int</span> NextId=<a class="code" href="class_xa_lib_sql.html#a1c24a56d4a41dff82ed68b9aaa87b92f">XaLibSql::Insert</a>(<a class="code" href="_xa_lib_action_8h.html#acf559d085985aacd47158fdd4f2d70ce">DB_WRITE</a>,<span class="stringliteral">&quot;MyTable&quot;</span>,VectorFields,VectorValues);</div>
+<div class="line"><span class="keywordtype">int</span> NextId=<a class="code" href="class_xa_lib_sql.html#a132806546b88aae856b212949a194ef0">XaLibSql::Insert</a>(<a class="code" href="_xa_lib_action_8h.html#acf559d085985aacd47158fdd4f2d70ce">DB_WRITE</a>,<span class="stringliteral">&quot;MyTable&quot;</span>,VectorFields,VectorValues);</div>
 </div><!-- fragment --> 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00012">12</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00011">11</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af00d3462aef14b98ea85928f4a4f57ab"></a>
+<a class="anchor" id="a6ca6a9207d48adf0aeafd2de3549fa7e"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int XaLibSql::InsertMulti </td>
@@ -725,7 +557,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a31ef096b9020acdeb3f2a965c9460491">VectorFields</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>VectorFields</em>, </td>
         </tr>
         <tr>
@@ -740,9 +572,14 @@ Additional Inherited Members</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00077">77</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00075">75</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
@@ -778,11 +615,11 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00660">660</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00763">763</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1d360075478e2363daed82945f7dad99"></a>
+<a class="anchor" id="a8e3e58021003a48d0cea2d671afa8f50"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -790,7 +627,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">XaLibSql::DbResMap</a> XaLibSql::Select </td>
+          <td class="memname"><a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">XaLibBase::DbResMap</a> XaLibSql::Select </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;&#160;</td>
           <td class="paramname"><em>LibDb</em>, </td>
@@ -804,7 +641,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="class_xa_lib_sql.html#a801b42f8cad0b8392af9a0bf7fb973ad">ReturnedFields</a> &amp;&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>ReturnedFields</em>&#160;</td>
         </tr>
         <tr>
@@ -820,11 +657,11 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00370">370</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00366">366</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a6db4877f7ec6a7c9e442ed040c4a4c43"></a>
+<a class="anchor" id="a9f6eaf3f192a8f102c545b89f2214c30"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -832,7 +669,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">XaLibSql::DbResMap</a> XaLibSql::Select </td>
+          <td class="memname"><a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">XaLibBase::DbResMap</a> XaLibSql::Select </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;&#160;</td>
           <td class="paramname"><em>LibDb</em>, </td>
@@ -846,19 +683,19 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="class_xa_lib_sql.html#a801b42f8cad0b8392af9a0bf7fb973ad">ReturnedFields</a> &amp;&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>ReturnedFields</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="class_xa_lib_sql.html#a8e968547a7ab85508fd4cb4f8cb06065">WhereFields</a> &amp;&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>WhereFields</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="class_xa_lib_sql.html#a1624486083fc9902f82fd602d3b87699">WhereValues</a> &amp;&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>WhereValues</em>&#160;</td>
         </tr>
         <tr>
@@ -874,11 +711,11 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00406">406</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00402">402</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa7255dcb844339c956444b1c4539f615"></a>
+<a class="anchor" id="af8ac1b6c13cc869848580755af13f495"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -886,7 +723,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">XaLibSql::DbResMap</a> XaLibSql::Select </td>
+          <td class="memname"><a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">XaLibBase::DbResMap</a> XaLibSql::Select </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;&#160;</td>
           <td class="paramname"><em>LibDb</em>, </td>
@@ -900,25 +737,25 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a801b42f8cad0b8392af9a0bf7fb973ad">ReturnedFields</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>ReturnedFields</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a8e968547a7ab85508fd4cb4f8cb06065">WhereFields</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>WhereFields</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a1624486083fc9902f82fd602d3b87699">WhereValues</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>WhereValues</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a886dc62a63b7ab41796f5d3610ac582d">OrderByFields</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>OrderByFields</em>&#160;</td>
         </tr>
         <tr>
@@ -934,11 +771,11 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00467">467</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00463">463</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a068939ea0a19924b48c2bcf27ff02b3b"></a>
+<a class="anchor" id="a3c74f7808c9519d06c73be6ca610cb4e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -946,7 +783,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">XaLibSql::DbResMap</a> XaLibSql::Select </td>
+          <td class="memname"><a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">XaLibBase::DbResMap</a> XaLibSql::Select </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;&#160;</td>
           <td class="paramname"><em>LibDb</em>, </td>
@@ -960,31 +797,31 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a801b42f8cad0b8392af9a0bf7fb973ad">ReturnedFields</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>ReturnedFields</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a8e968547a7ab85508fd4cb4f8cb06065">WhereFields</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>WhereFields</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a1624486083fc9902f82fd602d3b87699">WhereValues</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>WhereValues</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a886dc62a63b7ab41796f5d3610ac582d">OrderByFields</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>OrderByFields</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a9ab41f6daca2b4020c0aa691e53362d7">GroupByFields</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>GroupByFields</em>&#160;</td>
         </tr>
         <tr>
@@ -1000,11 +837,11 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00548">548</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00544">544</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8c63115848e28a22f099ea8912ffd59e"></a>
+<a class="anchor" id="acad5b41a313367e2870a340365fecfdd"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1012,7 +849,79 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">XaLibSql::DbResMap</a> XaLibSql::SelectOne </td>
+          <td class="memname"><a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">XaLibBase::DbResMap</a> XaLibSql::Select </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;&#160;</td>
+          <td class="paramname"><em>LibDb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>TableName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ReturnedFields</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>WhereFields</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>WhereValues</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>OrderByFields</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>GroupByFields</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>Limit</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00642">642</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aea0a6e49aac23c33550b3ef8bcc137d8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">XaLibBase::DbResMap</a> XaLibSql::SelectOne </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;&#160;</td>
           <td class="paramname"><em>LibDb</em>, </td>
@@ -1042,11 +951,11 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00337">337</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00333">333</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="acb5ba83841d983e7c0274057040fdb03"></a>
+<a class="anchor" id="af410c48196834417aba759c95253aa88"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1054,7 +963,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">XaLibSql::DbResMap</a> XaLibSql::SelectOne </td>
+          <td class="memname"><a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">XaLibBase::DbResMap</a> XaLibSql::SelectOne </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_xa_lib_db.html">XaLibDb</a> &amp;&#160;</td>
           <td class="paramname"><em>LibDb</em>, </td>
@@ -1096,7 +1005,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00351">351</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00347">347</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
@@ -1122,7 +1031,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00708">708</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00811">811</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
@@ -1148,7 +1057,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00724">724</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00827">827</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
@@ -1174,7 +1083,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00692">692</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00795">795</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
@@ -1200,11 +1109,11 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00676">676</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00779">779</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a3b0f147e8894f38d16d620d2cf331da8"></a>
+<a class="anchor" id="a20301369ed8f182279783da1e8a1f9fe"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1226,25 +1135,25 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a31ef096b9020acdeb3f2a965c9460491">VectorFields</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>VectorFields</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a401379480c9536c6a89d44ff05d61045">VectorValues</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>VectorValues</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a8e968547a7ab85508fd4cb4f8cb06065">WhereFields</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>WhereFields</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_sql.html#a1624486083fc9902f82fd602d3b87699">WhereValues</a>&#160;</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
           <td class="paramname"><em>WhereValues</em>&#160;</td>
         </tr>
         <tr>
@@ -1260,7 +1169,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00158">158</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_sql_8cpp_source.html#l00154">154</a> of file <a class="el" href="_xa_lib_sql_8cpp_source.html">XaLibSql.cpp</a>.</p>
 
 </div>
 </div>
@@ -1277,7 +1186,7 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 25 2015 13:29:07 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
+Generated on Tue Sep 15 2015 20:03:21 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
 <!--img class="footer" src="doxygen.png" alt="doxygen"/-->
 </a> 1.8.10
 </small></address>

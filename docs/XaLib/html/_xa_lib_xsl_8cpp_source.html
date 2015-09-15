@@ -339,7 +339,7 @@
 <div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    xmlChar *out=0;</div>
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    <span class="keywordtype">int</span> len = 9999;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    </div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;</div>
 <div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    <span class="keywordflow">if</span>( xsltSaveResultToString(&amp;out,&amp;len, <a class="code" href="class_xa_lib_xsl.html#a95e43b52589002394fead2838b60ddf9">res</a>, <a class="code" href="class_xa_lib_xsl.html#a394f7686b5ac909ec8c92e4b44c17ae1">cur</a>)==0) {</div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
 <div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        out[len] = 0;</div>
@@ -355,39 +355,38 @@
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        cout&lt;&lt;<span class="stringliteral">&quot;errore parsing&quot;</span>&lt;&lt;endl;</div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    }</div>
 <div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="keywordtype">string</span> strVoid=<span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <span class="keywordtype">string</span> *XHtmlStr = &amp;strVoid;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    </div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <span class="keywordtype">char</span>* XHtmlChr;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    XHtmlChr=(<span class="keywordtype">char</span>*)out;</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <span class="keywordflow">if</span>( *XHtmlChr==0){</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        <span class="keywordflow">return</span> <span class="stringliteral">&quot;Error XmlOutput&quot;</span>;</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;        *XHtmlStr=XHtmlChr;</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        </div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;        <span class="keywordflow">return</span> *XHtmlStr;</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    }</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;};</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div>
-<div class="line"><a name="l00318"></a><span class="lineno"><a class="line" href="class_xa_lib_xsl.html#a15cafdadb523628e503ad69b30813cfe">  318</a></span>&#160;<a class="code" href="class_xa_lib_xsl.html#a15cafdadb523628e503ad69b30813cfe">XaLibXsl::~XaLibXsl</a>(){</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;};</div>
-<div class="ttc" id="class_xa_lib_xsl_html_a11a60040aed1d577da670b0c26386582"><div class="ttname"><a href="class_xa_lib_xsl.html#a11a60040aed1d577da670b0c26386582">XaLibXsl::VectorXslParamsName</a></div><div class="ttdeci">vector&lt; string &gt; VectorXslParamsName</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_xsl_8h_source.html#l00013">XaLibXsl.h:13</a></div></div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="keywordtype">char</span>* XHtmlChr=(<span class="keywordtype">char</span>*)out;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <span class="keywordflow">if</span>( *XHtmlChr==0){</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        <span class="keywordflow">return</span> <span class="stringliteral">&quot;Error XmlOutput&quot;</span>;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        <span class="keywordtype">string</span> Form=<a class="code" href="class_xa_lib_base.html#af811d1491d93f6f152ef56e36b2c6cef">FromCharArrayToString</a>(XHtmlChr);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        <a class="code" href="_xa_lib_action_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903">LOG</a>.<a class="code" href="class_xa_lib_log.html#a9c39f51761652b605da4fb35cfd96772">Write</a>(<span class="stringliteral">&quot;INF&quot;</span>, __FILE__, __FUNCTION__,__LINE__,<span class="stringliteral">&quot;Generated Xhtml -&gt; &quot;</span>+Form);</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        <span class="keywordflow">return</span> Form;</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    }</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;};</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
+<div class="line"><a name="l00314"></a><span class="lineno"><a class="line" href="class_xa_lib_xsl.html#a15cafdadb523628e503ad69b30813cfe">  314</a></span>&#160;<a class="code" href="class_xa_lib_xsl.html#a15cafdadb523628e503ad69b30813cfe">XaLibXsl::~XaLibXsl</a>(){</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;};</div>
+<div class="ttc" id="class_xa_lib_xsl_html_a11a60040aed1d577da670b0c26386582"><div class="ttname"><a href="class_xa_lib_xsl.html#a11a60040aed1d577da670b0c26386582">XaLibXsl::VectorXslParamsName</a></div><div class="ttdeci">vector&lt; string &gt; VectorXslParamsName</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_xsl_8h_source.html#l00016">XaLibXsl.h:16</a></div></div>
+<div class="ttc" id="class_xa_lib_base_html_af811d1491d93f6f152ef56e36b2c6cef"><div class="ttname"><a href="class_xa_lib_base.html#af811d1491d93f6f152ef56e36b2c6cef">XaLibBase::FromCharArrayToString</a></div><div class="ttdeci">string FromCharArrayToString(char CharValue[])</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_base_8cpp_source.html#l00092">XaLibBase.cpp:92</a></div></div>
 <div class="ttc" id="_xa_lib_base_8h_html"><div class="ttname"><a href="_xa_lib_base_8h.html">XaLibBase.h</a></div></div>
-<div class="ttc" id="class_xa_lib_xsl_html_a9b6b299fde8b2aef124eb705f215137d"><div class="ttname"><a href="class_xa_lib_xsl.html#a9b6b299fde8b2aef124eb705f215137d">XaLibXsl::XslParams</a></div><div class="ttdeci">vector&lt; string &gt; XslParams</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_xsl_8h_source.html#l00011">XaLibXsl.h:11</a></div></div>
-<div class="ttc" id="class_xa_lib_xsl_html_a394f7686b5ac909ec8c92e4b44c17ae1"><div class="ttname"><a href="class_xa_lib_xsl.html#a394f7686b5ac909ec8c92e4b44c17ae1">XaLibXsl::cur</a></div><div class="ttdeci">xsltStylesheetPtr cur</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_xsl_8h_source.html#l00009">XaLibXsl.h:9</a></div></div>
-<div class="ttc" id="class_xa_lib_xsl_html_aa7b2572a037c9a0b1882f6b03fcb791b"><div class="ttname"><a href="class_xa_lib_xsl.html#aa7b2572a037c9a0b1882f6b03fcb791b">XaLibXsl::WithParams</a></div><div class="ttdeci">const char * WithParams[32+1]</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_xsl_8h_source.html#l00015">XaLibXsl.h:15</a></div></div>
+<div class="ttc" id="_xa_lib_action_8h_html_a4f7e146c4c04b3b3574c3d19fcdc0903"><div class="ttname"><a href="_xa_lib_action_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903">LOG</a></div><div class="ttdeci">XaLibLog LOG</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_8cpp_source.html#l00004">XaLibController.cpp:4</a></div></div>
+<div class="ttc" id="class_xa_lib_xsl_html_a9b6b299fde8b2aef124eb705f215137d"><div class="ttname"><a href="class_xa_lib_xsl.html#a9b6b299fde8b2aef124eb705f215137d">XaLibXsl::XslParams</a></div><div class="ttdeci">vector&lt; string &gt; XslParams</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_xsl_8h_source.html#l00014">XaLibXsl.h:14</a></div></div>
+<div class="ttc" id="class_xa_lib_xsl_html_a394f7686b5ac909ec8c92e4b44c17ae1"><div class="ttname"><a href="class_xa_lib_xsl.html#a394f7686b5ac909ec8c92e4b44c17ae1">XaLibXsl::cur</a></div><div class="ttdeci">xsltStylesheetPtr cur</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_xsl_8h_source.html#l00012">XaLibXsl.h:12</a></div></div>
+<div class="ttc" id="class_xa_lib_xsl_html_aa7b2572a037c9a0b1882f6b03fcb791b"><div class="ttname"><a href="class_xa_lib_xsl.html#aa7b2572a037c9a0b1882f6b03fcb791b">XaLibXsl::WithParams</a></div><div class="ttdeci">const char * WithParams[32+1]</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_xsl_8h_source.html#l00018">XaLibXsl.h:18</a></div></div>
 <div class="ttc" id="_xa_lib_xsl_8h_html"><div class="ttname"><a href="_xa_lib_xsl_8h.html">XaLibXsl.h</a></div></div>
-<div class="ttc" id="class_xa_lib_xsl_html_a15cafdadb523628e503ad69b30813cfe"><div class="ttname"><a href="class_xa_lib_xsl.html#a15cafdadb523628e503ad69b30813cfe">XaLibXsl::~XaLibXsl</a></div><div class="ttdeci">~XaLibXsl()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_xsl_8cpp_source.html#l00318">XaLibXsl.cpp:318</a></div></div>
+<div class="ttc" id="class_xa_lib_xsl_html_a15cafdadb523628e503ad69b30813cfe"><div class="ttname"><a href="class_xa_lib_xsl.html#a15cafdadb523628e503ad69b30813cfe">XaLibXsl::~XaLibXsl</a></div><div class="ttdeci">~XaLibXsl()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_xsl_8cpp_source.html#l00314">XaLibXsl.cpp:314</a></div></div>
+<div class="ttc" id="class_xa_lib_log_html_a9c39f51761652b605da4fb35cfd96772"><div class="ttname"><a href="class_xa_lib_log.html#a9c39f51761652b605da4fb35cfd96772">XaLibLog::Write</a></div><div class="ttdeci">void Write(const string &amp;LogMessageLevel, const char *ClassName, const char *MethodName, const int &amp;LineNumber, const string &amp;LogMessage)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_log_8cpp_source.html#l00020">XaLibLog.cpp:20</a></div></div>
 <div class="ttc" id="class_xa_lib_xsl_html_ab1b58965b016d317b39f75f95f0c2392"><div class="ttname"><a href="class_xa_lib_xsl.html#ab1b58965b016d317b39f75f95f0c2392">XaLibXsl::AddParams</a></div><div class="ttdeci">void AddParams(string XslParamsName, string XslParamsValue, int ParamPosition)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_xsl_8cpp_source.html#l00254">XaLibXsl.cpp:254</a></div></div>
 <div class="ttc" id="class_xa_lib_xsl_html_a704e371528ec83bace3391e5b407f8d8"><div class="ttname"><a href="class_xa_lib_xsl.html#a704e371528ec83bace3391e5b407f8d8">XaLibXsl::XaLibXsl</a></div><div class="ttdeci">XaLibXsl(const xmlDocPtr &amp;XmlDoc, const xmlDocPtr &amp;XslDoc, const XslParams &amp;XslParams)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_xsl_8cpp_source.html#l00004">XaLibXsl.cpp:4</a></div></div>
 <div class="ttc" id="class_xa_lib_xsl_html_aa23389ae6178c60fee9db4ebbd4d0fd9"><div class="ttname"><a href="class_xa_lib_xsl.html#aa23389ae6178c60fee9db4ebbd4d0fd9">XaLibXsl::GetXHtml</a></div><div class="ttdeci">string GetXHtml()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_xsl_8cpp_source.html#l00279">XaLibXsl.cpp:279</a></div></div>
-<div class="ttc" id="class_xa_lib_xsl_html_a89ec835d8ed7ebc713a565cc144fc08b"><div class="ttname"><a href="class_xa_lib_xsl.html#a89ec835d8ed7ebc713a565cc144fc08b">XaLibXsl::VectorXslParamsValue</a></div><div class="ttdeci">vector&lt; string &gt; VectorXslParamsValue</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_xsl_8h_source.html#l00014">XaLibXsl.h:14</a></div></div>
-<div class="ttc" id="class_xa_lib_xsl_html_a95e43b52589002394fead2838b60ddf9"><div class="ttname"><a href="class_xa_lib_xsl.html#a95e43b52589002394fead2838b60ddf9">XaLibXsl::res</a></div><div class="ttdeci">xmlDocPtr res</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_xsl_8h_source.html#l00008">XaLibXsl.h:8</a></div></div>
+<div class="ttc" id="class_xa_lib_xsl_html_a89ec835d8ed7ebc713a565cc144fc08b"><div class="ttname"><a href="class_xa_lib_xsl.html#a89ec835d8ed7ebc713a565cc144fc08b">XaLibXsl::VectorXslParamsValue</a></div><div class="ttdeci">vector&lt; string &gt; VectorXslParamsValue</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_xsl_8h_source.html#l00017">XaLibXsl.h:17</a></div></div>
+<div class="ttc" id="class_xa_lib_xsl_html_a95e43b52589002394fead2838b60ddf9"><div class="ttname"><a href="class_xa_lib_xsl.html#a95e43b52589002394fead2838b60ddf9">XaLibXsl::res</a></div><div class="ttdeci">xmlDocPtr res</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_xsl_8h_source.html#l00011">XaLibXsl.h:11</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
@@ -397,7 +396,7 @@
 </div>
 </div>
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 25 2015 13:29:07 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
+Generated on Tue Sep 15 2015 20:03:19 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
 <!--img class="footer" src="doxygen.png" alt="doxygen"/-->
 </a> 1.8.10
 </small></address>

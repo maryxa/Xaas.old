@@ -84,6 +84,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7a41fdd13b4ed81271a06bbba8ed0857"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32018041542fe78e8801e9fcce83c3e0"><td class="memItemLeft" align="right" valign="top">vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_http.html#a32018041542fe78e8801e9fcce83c3e0">GetHttpParamStruct</a> (string HttpParamName, string StructType)</td></tr>
 <tr class="separator:a32018041542fe78e8801e9fcce83c3e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afca19210a24101a141235462f2d46674"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_http.html#afca19210a24101a141235462f2d46674">GetSecWebSocketKey</a> ()</td></tr>
+<tr class="separator:afca19210a24101a141235462f2d46674"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a4ef145f1d72c87ccc1b1f7c25deac2"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_http.html#a8a4ef145f1d72c87ccc1b1f7c25deac2">GetServerIpAddress</a> ()</td></tr>
 <tr class="separator:a8a4ef145f1d72c87ccc1b1f7c25deac2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1eb544011cc17a40620e90364c759c7"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_http.html#aa1eb544011cc17a40620e90364c759c7">GetSessionId</a> ()</td></tr>
@@ -122,10 +124,10 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a3186fcd286b976374139302424adebf1 inherit pub_methods_class_xa_lib_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32fdb9dec05a560226c6fc64b0700e4d inherit pub_methods_class_xa_lib_base"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_base.html#a32fdb9dec05a560226c6fc64b0700e4d">FromStringToFloat</a> (string StringValue)</td></tr>
 <tr class="separator:a32fdb9dec05a560226c6fc64b0700e4d inherit pub_methods_class_xa_lib_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51e60f643c2a0b16b5d45364c418824e inherit pub_methods_class_xa_lib_base"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_base.html#a51e60f643c2a0b16b5d45364c418824e">FromStringToHex</a> (string StringValue)</td></tr>
-<tr class="separator:a51e60f643c2a0b16b5d45364c418824e inherit pub_methods_class_xa_lib_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbaa2487e2ab44787e7d4201a8c7de11 inherit pub_methods_class_xa_lib_base"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_base.html#adbaa2487e2ab44787e7d4201a8c7de11">FromStringToInt</a> (string StringValue)</td></tr>
-<tr class="separator:adbaa2487e2ab44787e7d4201a8c7de11 inherit pub_methods_class_xa_lib_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a81aebd47cd1a3dfb891c242ebecc7e inherit pub_methods_class_xa_lib_base"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_base.html#a4a81aebd47cd1a3dfb891c242ebecc7e">FromStringToHex</a> (const string &amp;StringValue, int CapitalCase)</td></tr>
+<tr class="separator:a4a81aebd47cd1a3dfb891c242ebecc7e inherit pub_methods_class_xa_lib_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a007496cfd361e6f3e9d0d3782f181c08 inherit pub_methods_class_xa_lib_base"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_base.html#a007496cfd361e6f3e9d0d3782f181c08">FromStringToInt</a> (const string &amp;StringValue)</td></tr>
+<tr class="separator:a007496cfd361e6f3e9d0d3782f181c08 inherit pub_methods_class_xa_lib_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6c3f394914bf994c01e187e373cfccb inherit pub_methods_class_xa_lib_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_base.html#ae6c3f394914bf994c01e187e373cfccb">SendHtmlHeaders</a> ()</td></tr>
 <tr class="separator:ae6c3f394914bf994c01e187e373cfccb inherit pub_methods_class_xa_lib_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -351,6 +353,21 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="_xa_lib_http_8cpp_source.html#l00321">321</a> of file <a class="el" href="_xa_lib_http_8cpp_source.html">XaLibHttp.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afca19210a24101a141235462f2d46674"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string XaLibHttp::GetSecWebSocketKey </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -996,7 +1013,7 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Jul 25 2015 13:29:07 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
+Generated on Tue Sep 15 2015 20:03:20 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
 <!--img class="footer" src="doxygen.png" alt="doxygen"/-->
 </a> 1.8.10
 </small></address>
