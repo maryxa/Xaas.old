@@ -67,6 +67,11 @@ void XaLibError::Setup() {
 	XaErrors[122]={""};
 	XaErrors[123]={""};
 
+	
+	
+	/*Fron End Errors*/
+	XaErrors[501]={"CURL Error Performing Request"};
+	
 };
 
 XaLibError::~XaLibError(){

@@ -8,19 +8,17 @@
 
 extern XaLibLog LOG;
 
-	
 class XaLibCurl : protected XaLibBase {
 
 	private:
-	void* curl;
-		//string content;
+
+		void* curl;
 
 	protected:
 
 	public:
-		
-		string download(const string& url);
-	string Call(const std::string& url);
+
+		string Call(const string& url);
 
 		XaLibCurl();
 		~XaLibCurl();
@@ -36,5 +34,4 @@ class XaLibCurl : protected XaLibBase {
 
     	//string GetCurlResponse();
 };
-
 #endif
