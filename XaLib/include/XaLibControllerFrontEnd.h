@@ -4,11 +4,11 @@
 #include <XaLibController.h>
 
 /**
- * @brief Base Class for Controllrs
+ * @brief Base Class for Front End Controllers
  *
- * @details Base Class for Controllrs:\n
+ * @details Base Class for Front End Controllrs:\n
  * 
- * Any Application Controller will extend from this class
+ * Any Front End Application Controller will extends this class
  *
  * @see alex@xallegro.com
  * @author Alessandro Mariotti
