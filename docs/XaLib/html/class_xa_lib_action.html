@@ -62,7 +62,7 @@
 </div><!--header-->
 <div class="contents">
 
-<p>Parent Class for business actions.  
+<p>Parent Class for View actions.  
  <a href="class_xa_lib_action.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_xa_lib_action_8h_source.html">XaLibAction.h</a>&gt;</code></p>
@@ -89,8 +89,6 @@ Inheritance diagram for XaLibAction:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2aa96013e54df9be7ddcf4121f3d5c07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a2aa96013e54df9be7ddcf4121f3d5c07">Execute</a> ()</td></tr>
 <tr class="separator:a2aa96013e54df9be7ddcf4121f3d5c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5e9ab091f5e3a96eb6dc6d669c84f3d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#ac5e9ab091f5e3a96eb6dc6d669c84f3d">GetResponse</a> ()</td></tr>
-<tr class="separator:ac5e9ab091f5e3a96eb6dc6d669c84f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91558b1aa00f8e64ccfb69c3d80927e5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a91558b1aa00f8e64ccfb69c3d80927e5">XaLibAction</a> ()</td></tr>
 <tr class="separator:a91558b1aa00f8e64ccfb69c3d80927e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31109b95891ff470461bbe91ccf0ad8b"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a31109b95891ff470461bbe91ccf0ad8b">~XaLibAction</a> ()</td></tr>
@@ -106,22 +104,6 @@ Protected Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:aba2c66915afad8fe84cb81e2481d1be8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#aba2c66915afad8fe84cb81e2481d1be8">AddOptionsByDb</a> (<a class="el" href="class_xa_lib_dom.html">XaLibDom</a> *LibDom, xmlDocPtr XmlDomDoc, string TableName, string XPathExpr)</td></tr>
-<tr class="separator:aba2c66915afad8fe84cb81e2481d1be8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb3b2a6be27cec24c6dd3a778c01e69e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#abb3b2a6be27cec24c6dd3a778c01e69e">AddOptionsByDb</a> (<a class="el" href="class_xa_lib_dom.html">XaLibDom</a> *LibDom, xmlDocPtr XmlDomDoc, string TableName, string XPathExpr, string OptionValueField, string OptionLabelField)</td></tr>
-<tr class="separator:abb3b2a6be27cec24c6dd3a778c01e69e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f1dc42a1f5e4100a6c7da19a5d70d1f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a5f1dc42a1f5e4100a6c7da19a5d70d1f">AddOptionsByDbWithCondition</a> (<a class="el" href="class_xa_lib_dom.html">XaLibDom</a> *LibDom, xmlDocPtr XmlDomDoc, string TableName, string XPathExpr, string Condition)</td></tr>
-<tr class="separator:a5f1dc42a1f5e4100a6c7da19a5d70d1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3735bf5a86baad2124b4b7fa6bd2d540"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a3735bf5a86baad2124b4b7fa6bd2d540">AddOptionsByDomain</a> (<a class="el" href="class_xa_lib_dom.html">XaLibDom</a> *LibDom, xmlDocPtr XmlDomDoc, string <a class="el" href="class_xa_domain.html">XaDomain</a>, string XPathExpr)</td></tr>
-<tr class="separator:a3735bf5a86baad2124b4b7fa6bd2d540"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d26295ce13f2b9c16b585d07e2aa4f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a1d26295ce13f2b9c16b585d07e2aa4f2">AddOptionsByDomainAndUser</a> (<a class="el" href="class_xa_lib_dom.html">XaLibDom</a> *LibDom, xmlDocPtr XmlDomDoc, string <a class="el" href="class_xa_domain.html">XaDomain</a>, string StrUserId, string XPathExpr)</td></tr>
-<tr class="separator:a1d26295ce13f2b9c16b585d07e2aa4f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07a5a616dbd05744ef29bb9054fc1803"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a07a5a616dbd05744ef29bb9054fc1803">AddOptionsByDomainWithDescription</a> (<a class="el" href="class_xa_lib_dom.html">XaLibDom</a> *LibDom, xmlDocPtr XmlDomDoc, string <a class="el" href="class_xa_domain.html">XaDomain</a>, string XPathExpr)</td></tr>
-<tr class="separator:a07a5a616dbd05744ef29bb9054fc1803"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d8ca7aab4f793b4fb6e145ca970d6d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a9d8ca7aab4f793b4fb6e145ca970d6d9">AddOptionsByVectors</a> (<a class="el" href="class_xa_lib_dom.html">XaLibDom</a> *LibDom, xmlDocPtr XmlDomDoc, string XPathExpr)</td></tr>
-<tr class="separator:a9d8ca7aab4f793b4fb6e145ca970d6d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29c76308cab73a9873830bd667c66841"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a29c76308cab73a9873830bd667c66841">AddValuesByDb</a> (<a class="el" href="class_xa_lib_dom.html">XaLibDom</a> *LibDom, xmlDocPtr XmlDomDoc, string TableName, string XPathExpr)</td></tr>
-<tr class="separator:a29c76308cab73a9873830bd667c66841"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06d226f63618acfdb94c84215c21c8ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a06d226f63618acfdb94c84215c21c8ad">AddXmlFile</a> (const string &amp;FilePath)</td></tr>
 <tr class="separator:a06d226f63618acfdb94c84215c21c8ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77d44a4d3f566f181effd78faef41b65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a77d44a4d3f566f181effd78faef41b65">AddXmlString</a> (const string &amp;XmlString)</td></tr>
@@ -134,38 +116,18 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a58399e2ee6934ffb3a6b4b2a76f2735e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96890954ed00761ca019fa3b4dc14a96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a96890954ed00761ca019fa3b4dc14a96">AddXslString</a> (const string &amp;XslString)</td></tr>
 <tr class="separator:a96890954ed00761ca019fa3b4dc14a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7eddf7aa189ca7754f29dd1d05c540e"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#ad7eddf7aa189ca7754f29dd1d05c540e">ComposeSearchCondition</a> (string Value, string Field, string Type)</td></tr>
-<tr class="separator:ad7eddf7aa189ca7754f29dd1d05c540e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aedfdc6035a52fd8708eaa2f55b3c44ec"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#aedfdc6035a52fd8708eaa2f55b3c44ec">DecryptParam</a> (string EncryptedValue)</td></tr>
-<tr class="separator:aedfdc6035a52fd8708eaa2f55b3c44ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a940f296d4060670b4b8be70b4774d642"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a940f296d4060670b4b8be70b4774d642">DecryptParamId</a> (string EncryptedValue)</td></tr>
-<tr class="separator:a940f296d4060670b4b8be70b4774d642"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e876552ec29497ee4522fb50601d22c"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a6e876552ec29497ee4522fb50601d22c">BuildBackEndCallBase</a> ()</td></tr>
+<tr class="separator:a6e876552ec29497ee4522fb50601d22c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2f0fa636a4c835e4efe80794ef0e630"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#aa2f0fa636a4c835e4efe80794ef0e630">BuildBackEndCallLogin</a> (const string &amp;Username, const string &amp;Password)</td></tr>
+<tr class="separator:aa2f0fa636a4c835e4efe80794ef0e630"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72020580d10d07218cb4d28b8f86ecb2"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a72020580d10d07218cb4d28b8f86ecb2">BuildBackEndCallSectionOperation</a> (const string &amp;Object, const string &amp;Event)</td></tr>
+<tr class="separator:a72020580d10d07218cb4d28b8f86ecb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9f89c1d4f73f7c3934c634f3338cbf0"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#ad9f89c1d4f73f7c3934c634f3338cbf0">BuildBackEndCallSectionParams</a> (const vector&lt; string &gt; &amp;Names, const vector&lt; string &gt; &amp;Values)</td></tr>
+<tr class="separator:ad9f89c1d4f73f7c3934c634f3338cbf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2d1fff1fe7b0a0577ef8517c5cc59ff"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#ab2d1fff1fe7b0a0577ef8517c5cc59ff">Dispatcher</a> (const string &amp;CalledEvent)</td></tr>
 <tr class="separator:ab2d1fff1fe7b0a0577ef8517c5cc59ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aedfbca9f2c0fbe98ebf313ff3f765b76"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#aedfbca9f2c0fbe98ebf313ff3f765b76">EncryptParam</a> (string ClearValue)</td></tr>
-<tr class="separator:aedfbca9f2c0fbe98ebf313ff3f765b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa69fdf55d425bb615be941b03b4c49d1"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#aa69fdf55d425bb615be941b03b4c49d1">EncryptParam</a> (int ClearValue)</td></tr>
-<tr class="separator:aa69fdf55d425bb615be941b03b4c49d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a743e11beb6e31aedf40ec4fe170398"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a8a743e11beb6e31aedf40ec4fe170398">ErrorExit</a> (const string &amp;ErrorType)</td></tr>
-<tr class="separator:a8a743e11beb6e31aedf40ec4fe170398"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfb5ea1a76c5cc41e51cde2c5757630d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#abfb5ea1a76c5cc41e51cde2c5757630d">ErrorPage</a> (const string &amp;ErrorType)</td></tr>
-<tr class="separator:abfb5ea1a76c5cc41e51cde2c5757630d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a953b6481434c7a6fc5dd0898388d8b93"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a953b6481434c7a6fc5dd0898388d8b93">HttpParamValidation</a> (string ParamName, string ParamValue, string DataType, string Required, string Dimension, string Domain, string DefaultValue)</td></tr>
-<tr class="separator:a953b6481434c7a6fc5dd0898388d8b93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8dd9d35887c88b6909cb6bee794423a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a8dd9d35887c88b6909cb6bee794423a7">ResetRequest</a> ()</td></tr>
-<tr class="separator:a8dd9d35887c88b6909cb6bee794423a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3503649882654d52e5b8052ae2cf8462"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a3503649882654d52e5b8052ae2cf8462">SelectDbItem</a> (string ID, string TableName)</td></tr>
-<tr class="separator:a3503649882654d52e5b8052ae2cf8462"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2590c9ba49531e228c85d5eece659b22"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a2590c9ba49531e228c85d5eece659b22">SelectDomainItem</a> (string XaDomain_ID)</td></tr>
-<tr class="separator:a2590c9ba49531e228c85d5eece659b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5422d6179309b5bae1a1051da03cceec"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a5422d6179309b5bae1a1051da03cceec">SelectDomainItemIdFromName</a> (string domain, string name)</td></tr>
-<tr class="separator:a5422d6179309b5bae1a1051da03cceec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe572c9db9da80a04ef0e643f4865044"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#afe572c9db9da80a04ef0e643f4865044">SelectUserItem</a> (string XaUser_ID)</td></tr>
-<tr class="separator:afe572c9db9da80a04ef0e643f4865044"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a315081c1b017faa5841317845589bb65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a315081c1b017faa5841317845589bb65">SetLayout</a> (const string &amp;LayoutType)</td></tr>
 <tr class="separator:a315081c1b017faa5841317845589bb65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4fdc10420e353941911f8c8ac1520e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#ac4fdc10420e353941911f8c8ac1520e5">UpdateSessionWsLog</a> (const string &amp;XaSessionWsLog_ID, const string &amp;LogData, const string &amp;Response)</td></tr>
-<tr class="separator:ac4fdc10420e353941911f8c8ac1520e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_xa_lib_base"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_xa_lib_base')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_xa_lib_base.html">XaLibBase</a></td></tr>
 <tr class="memitem:af811d1491d93f6f152ef56e36b2c6cef inherit pro_methods_class_xa_lib_base"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_base.html#af811d1491d93f6f152ef56e36b2c6cef">FromCharArrayToString</a> (char CharValue[])</td></tr>
 <tr class="separator:af811d1491d93f6f152ef56e36b2c6cef inherit pro_methods_class_xa_lib_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -228,11 +190,11 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a23aa3d9d1ede1502bf1fa65fde0f67e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Parent Class for business actions. </p>
-<p>Parent Class for business actions: All action class inherit from this class</p>
+<div class="textblock"><p>Parent Class for View actions. </p>
+<p>Parent Class for View actions: All action class inherit from this class</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_xa_lib_base.html">XaLibBase</a></dd>
 <dd>
-<a href="http://www.xallegro.com">http://www.xallegro.com</a> </dd></dl>
+<a href="#" onclick="location.href='mai'+'lto:'+'ale'+'x@'+'xal'+'le'+'gro'+'.c'+'om'; return false;">alex@<span style="display: none;">.nosp@m.</span>xall<span style="display: none;">.nosp@m.</span>egro.<span style="display: none;">.nosp@m.</span>com</a> </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Alessandro Mariotti </dd></dl>
 
 <p>Definition at line <a class="el" href="_xa_lib_action_8h_source.html#l00049">49</a> of file <a class="el" href="_xa_lib_action_8h_source.html">XaLibAction.h</a>.</p>
@@ -298,413 +260,11 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00716">716</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00812">812</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="aba2c66915afad8fe84cb81e2481d1be8"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void XaLibAction::AddOptionsByDb </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_dom.html">XaLibDom</a> *&#160;</td>
-          <td class="paramname"><em>LibDom</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">xmlDocPtr&#160;</td>
-          <td class="paramname"><em>XmlDomDoc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>TableName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>XPathExpr</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00100">100</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abb3b2a6be27cec24c6dd3a778c01e69e"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void XaLibAction::AddOptionsByDb </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_dom.html">XaLibDom</a> *&#160;</td>
-          <td class="paramname"><em>LibDom</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">xmlDocPtr&#160;</td>
-          <td class="paramname"><em>XmlDomDoc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>TableName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>XPathExpr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>OptionValueField</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>OptionLabelField</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00136">136</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5f1dc42a1f5e4100a6c7da19a5d70d1f"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void XaLibAction::AddOptionsByDbWithCondition </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_dom.html">XaLibDom</a> *&#160;</td>
-          <td class="paramname"><em>LibDom</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">xmlDocPtr&#160;</td>
-          <td class="paramname"><em>XmlDomDoc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>TableName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>XPathExpr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>Condition</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00170">170</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3735bf5a86baad2124b4b7fa6bd2d540"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void XaLibAction::AddOptionsByDomain </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_dom.html">XaLibDom</a> *&#160;</td>
-          <td class="paramname"><em>LibDom</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">xmlDocPtr&#160;</td>
-          <td class="paramname"><em>XmlDomDoc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>XaDomain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>XPathExpr</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00199">199</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1d26295ce13f2b9c16b585d07e2aa4f2"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void XaLibAction::AddOptionsByDomainAndUser </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_dom.html">XaLibDom</a> *&#160;</td>
-          <td class="paramname"><em>LibDom</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">xmlDocPtr&#160;</td>
-          <td class="paramname"><em>XmlDomDoc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>XaDomain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>StrUserId</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>XPathExpr</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00238">238</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a07a5a616dbd05744ef29bb9054fc1803"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void XaLibAction::AddOptionsByDomainWithDescription </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_dom.html">XaLibDom</a> *&#160;</td>
-          <td class="paramname"><em>LibDom</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">xmlDocPtr&#160;</td>
-          <td class="paramname"><em>XmlDomDoc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>XaDomain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>XPathExpr</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00271">271</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9d8ca7aab4f793b4fb6e145ca970d6d9"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void XaLibAction::AddOptionsByVectors </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_dom.html">XaLibDom</a> *&#160;</td>
-          <td class="paramname"><em>LibDom</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">xmlDocPtr&#160;</td>
-          <td class="paramname"><em>XmlDomDoc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>XPathExpr</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00315">315</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a29c76308cab73a9873830bd667c66841"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void XaLibAction::AddValuesByDb </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_xa_lib_dom.html">XaLibDom</a> *&#160;</td>
-          <td class="paramname"><em>LibDom</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">xmlDocPtr&#160;</td>
-          <td class="paramname"><em>XmlDomDoc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>TableName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>XPathExpr</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00337">337</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a06d226f63618acfdb94c84215c21c8ad"></a>
 <div class="memitem">
 <div class="memproto">
@@ -936,7 +496,7 @@ All strings in the vector will be added in the generated Dom Object.<br />
 
 </div>
 </div>
-<a class="anchor" id="ad7eddf7aa189ca7754f29dd1d05c540e"></a>
+<a class="anchor" id="a6e876552ec29497ee4522fb50601d22c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -944,22 +504,41 @@ All strings in the vector will be added in the generated Dom Object.<br />
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string XaLibAction::ComposeSearchCondition </td>
+          <td class="memname">string XaLibAction::BuildBackEndCallBase </td>
           <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>Value</em>, </td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00152">152</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa2f0fa636a4c835e4efe80794ef0e630"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string XaLibAction::BuildBackEndCallLogin </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>Username</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>Field</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>Type</em>&#160;</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>Password</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -974,11 +553,11 @@ All strings in the vector will be added in the generated Dom Object.<br />
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00652">652</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00215">215</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aedfdc6035a52fd8708eaa2f55b3c44ec"></a>
+<a class="anchor" id="a72020580d10d07218cb4d28b8f86ecb2"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -986,11 +565,21 @@ All strings in the vector will be added in the generated Dom Object.<br />
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string XaLibAction::DecryptParam </td>
+          <td class="memname">string XaLibAction::BuildBackEndCallSectionOperation </td>
           <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>EncryptedValue</em></td><td>)</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>Object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>Event</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -1000,11 +589,11 @@ All strings in the vector will be added in the generated Dom Object.<br />
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00523">523</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00232">232</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a940f296d4060670b4b8be70b4774d642"></a>
+<a class="anchor" id="ad9f89c1d4f73f7c3934c634f3338cbf0"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1012,11 +601,21 @@ All strings in the vector will be added in the generated Dom Object.<br />
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string XaLibAction::DecryptParamId </td>
+          <td class="memname">string XaLibAction::BuildBackEndCallSectionParams </td>
           <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>EncryptedValue</em></td><td>)</td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Names</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>Values</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -1025,8 +624,6 @@ All strings in the vector will be added in the generated Dom Object.<br />
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00542">542</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
 
 </div>
 </div>
@@ -1051,134 +648,20 @@ All strings in the vector will be added in the generated Dom Object.<br />
   </tr>
 </table>
 </div><div class="memdoc">
-
+<p>Dispatch Event in the object<br />
+The Class Name is representing the Object and the Method name is representing the Event<br />
+ </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CalledEvent</td><td>the Called Event (class Method)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
+<div class="fragment"><div class="line"><a class="code" href="class_xa_lib_action.html#ab2d1fff1fe7b0a0577ef8517c5cc59ff">Dispatcher</a>(<span class="stringliteral">&quot;EventName&quot;</span>);</div>
+</div><!-- fragment --> 
 <p>Reimplemented in <a class="el" href="class_xa_user_ui.html#acad09cfa02076f5c2e5e33113054f9b5">XaUserUi</a>, <a class="el" href="class_xa_domain.html#a9a12bc49acd2f6306d7c88fc95efaa78">XaDomain</a>, <a class="el" href="class_xa_user_profile.html#af2efdc12012130a07595a07e48d2ca06">XaUserProfile</a>, <a class="el" href="class_xa_address.html#a290da15febcdf934ea7eb18102f9ed47">XaAddress</a>, <a class="el" href="class_xa_currency.html#aa94746b7dd5b80a53d3af6013a8d32a5">XaCurrency</a>, <a class="el" href="class_xa_label.html#a34b69cf377d525b3d07cb6b3e6ed3854">XaLabel</a>, <a class="el" href="class_xa_language.html#a4984cbb0e4131c36d640b169b03406ae">XaLanguage</a>, <a class="el" href="class_xa_ou.html#a0480527f0d5e46a82a2b9cb96d898edd">XaOu</a>, and <a class="el" href="class_xa_user_role.html#a2fb9618562f2926f8af8ef3876189b64">XaUserRole</a>.</p>
 
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00714">714</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aedfbca9f2c0fbe98ebf313ff3f765b76"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string XaLibAction::EncryptParam </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>ClearValue</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00486">486</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa69fdf55d425bb615be941b03b4c49d1"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string XaLibAction::EncryptParam </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>ClearValue</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00504">504</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8a743e11beb6e31aedf40ec4fe170398"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void XaLibAction::ErrorExit </td>
-          <td>(</td>
-          <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>ErrorType</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Redirects to the InfoPage and return the control to the Controller.<br />
-To Use with classes that don't provide the Method GetResponse<br />
-</p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ErrorType</td><td>Type of Error </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
-<div class="fragment"><div class="line"><a class="code" href="class_xa_lib_action.html#a8a743e11beb6e31aedf40ec4fe170398">ErrorExit</a> (<span class="stringliteral">&quot;EventNotfound&quot;</span>);</div>
-</div><!-- fragment --> 
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00091">91</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abfb5ea1a76c5cc41e51cde2c5757630d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void XaLibAction::ErrorPage </td>
-          <td>(</td>
-          <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>ErrorType</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Redirects to the InfoPage .<br />
-To Use with classes that provide the Method GetResponse<br />
-</p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ErrorType</td><td>Type of Error </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
-<div class="fragment"><div class="line"><a class="code" href="class_xa_lib_action.html#abfb5ea1a76c5cc41e51cde2c5757630d">ErrorPage</a> (<span class="stringliteral">&quot;EventNotfound&quot;</span>);</div>
-</div><!-- fragment --> 
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00082">82</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00810">810</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
 
 </div>
 </div>
@@ -1194,248 +677,32 @@ To Use with classes that provide the Method GetResponse<br />
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00700">700</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac5e9ab091f5e3a96eb6dc6d669c84f3d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void XaLibAction::GetResponse </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00684">684</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a953b6481434c7a6fc5dd0898388d8b93"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string XaLibAction::HttpParamValidation </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>ParamName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>ParamValue</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>DataType</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>Required</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>Dimension</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>Domain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>DefaultValue</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00460">460</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8dd9d35887c88b6909cb6bee794423a7"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void XaLibAction::ResetRequest </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00678">678</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3503649882654d52e5b8052ae2cf8462"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string XaLibAction::SelectDbItem </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>ID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>TableName</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00373">373</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2590c9ba49531e228c85d5eece659b22"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string XaLibAction::SelectDomainItem </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>XaDomain_ID</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00395">395</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5422d6179309b5bae1a1051da03cceec"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int XaLibAction::SelectDomainItemIdFromName </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>domain</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00417">417</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="afe572c9db9da80a04ef0e643f4865044"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string XaLibAction::SelectUserItem </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>XaUser_ID</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00435">435</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
+<p>Redirects to the InfoPage .<br />
+To Use with classes that provide the Method GetResponse<br />
+</p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ErrorType</td><td>Type of Error </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
+<div class="fragment"><div class="line">ErrorPage (<span class="stringliteral">&quot;EventNotfound&quot;</span>);</div>
+</div><!-- fragment --><p> Redirects to the InfoPage and return the control to the Controller.<br />
+To Use with classes that don't provide the Method GetResponse<br />
+</p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ErrorType</td><td>Type of Error </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
+<div class="fragment"><div class="line">ErrorExit (<span class="stringliteral">&quot;EventNotfound&quot;</span>);</div>
+</div><!-- fragment --><p> Execute the Object Dispatcher<br />
+Execute the Object Dispatcher passing the Event Name<br />
+ </p><dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
+<div class="fragment"><div class="line"><a class="code" href="class_xa_lib_action.html#a2aa96013e54df9be7ddcf4121f3d5c07">Execute</a>(<span class="stringliteral">&quot;&quot;</span>);</div>
+</div><!-- fragment --> 
+<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00796">796</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
 
 </div>
 </div>
@@ -1460,50 +727,18 @@ To Use with classes that provide the Method GetResponse<br />
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00566">566</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac4fdc10420e353941911f8c8ac1520e5"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void XaLibAction::UpdateSessionWsLog </td>
-          <td>(</td>
-          <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>XaSessionWsLog_ID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>LogData</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>Response</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00636">636</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
+<p>Select the layout for the returned page<br />
+A layout is a collection of Xsl file, based on passed layout are added different files<br />
+ </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">LayoutType</td><td>the layout name</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
+<div class="fragment"><div class="line"><a class="code" href="class_xa_lib_action.html#a315081c1b017faa5841317845589bb65">SetLayout</a>(<span class="stringliteral">&quot;Default&quot;</span>);</div>
+</div><!-- fragment --> 
+<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00082">82</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
 
 </div>
 </div>
@@ -1807,7 +1042,7 @@ To Use with classes that provide the Method GetResponse<br />
 </div>
 </div>
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 15 2015 20:03:20 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
+Generated on Sun Sep 27 2015 15:37:11 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
 <!--img class="footer" src="doxygen.png" alt="doxygen"/-->
 </a> 1.8.10
 </small></address>

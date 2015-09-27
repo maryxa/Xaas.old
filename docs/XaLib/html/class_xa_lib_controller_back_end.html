@@ -89,8 +89,6 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a51da334df506994b0a3ed37c26719e35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a628c8258f554b773782d495b3ffa0fb5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_controller_back_end.html#a628c8258f554b773782d495b3ffa0fb5">ProfileCalledObject</a> (const string &amp;CalledObject, const string &amp;CalledEvent)</td></tr>
 <tr class="separator:a628c8258f554b773782d495b3ffa0fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab48fd574c852c2bbc4c0b8397c9e17a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_controller_back_end.html#ab48fd574c852c2bbc4c0b8397c9e17a7">SendLocationHeaders</a> (string Location)</td></tr>
-<tr class="separator:ab48fd574c852c2bbc4c0b8397c9e17a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9554831b9e5df51b5ee9235640d7ff84"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_controller_back_end.html#a9554831b9e5df51b5ee9235640d7ff84">SendResponse</a> ()</td></tr>
 <tr class="separator:a9554831b9e5df51b5ee9235640d7ff84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_xa_lib_controller"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_xa_lib_controller')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_xa_lib_controller.html">XaLibController</a></td></tr>
@@ -99,8 +97,10 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a11d2168d073f3ae683cd56a9255dc7e5 inherit pro_methods_class_xa_lib_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_controller.html#a11d2168d073f3ae683cd56a9255dc7e5">LoadXmlConfFile</a> (string ConfFile)</td></tr>
 <tr class="memdesc:a11d2168d073f3ae683cd56a9255dc7e5 inherit pro_methods_class_xa_lib_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load Configuration File.  <a href="#a11d2168d073f3ae683cd56a9255dc7e5">More...</a><br /></td></tr>
 <tr class="separator:a11d2168d073f3ae683cd56a9255dc7e5 inherit pro_methods_class_xa_lib_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8adab7f57857098b105478eb9236e9dd inherit pro_methods_class_xa_lib_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_controller.html#a8adab7f57857098b105478eb9236e9dd">SendHeaders</a> (string &amp;HeadersType) const </td></tr>
-<tr class="separator:a8adab7f57857098b105478eb9236e9dd inherit pro_methods_class_xa_lib_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5829e912ac07d40942a93dfb58ed2ac3 inherit pro_methods_class_xa_lib_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_controller.html#a5829e912ac07d40942a93dfb58ed2ac3">SendHeaders</a> (const string &amp;HeadersType)</td></tr>
+<tr class="separator:a5829e912ac07d40942a93dfb58ed2ac3 inherit pro_methods_class_xa_lib_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a576ad3a65371634cf050c36007608456 inherit pro_methods_class_xa_lib_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_controller.html#a576ad3a65371634cf050c36007608456">SendLocationHeaders</a> (const string &amp;Location)</td></tr>
+<tr class="separator:a576ad3a65371634cf050c36007608456 inherit pro_methods_class_xa_lib_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5668b4e00ad6bbd9c47886b864631b46 inherit pro_methods_class_xa_lib_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_controller.html#a5668b4e00ad6bbd9c47886b864631b46">StartDb</a> ()</td></tr>
 <tr class="separator:a5668b4e00ad6bbd9c47886b864631b46 inherit pro_methods_class_xa_lib_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab17460c9ec5d146e27d037c56e2832f8 inherit pro_methods_class_xa_lib_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_controller.html#ab17460c9ec5d146e27d037c56e2832f8">StartHttp</a> ()</td></tr>
@@ -195,7 +195,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_controller_back_end_8cpp_source.html#l00109">109</a> of file <a class="el" href="_xa_lib_controller_back_end_8cpp_source.html">XaLibControllerBackEnd.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_controller_back_end_8cpp_source.html#l00110">110</a> of file <a class="el" href="_xa_lib_controller_back_end_8cpp_source.html">XaLibControllerBackEnd.cpp</a>.</p>
 
 </div>
 </div>
@@ -225,7 +225,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Environment initialization. </p>
 <p>Initialization of Super Global Variable </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="class_xa_lib_base.html">XaLibBase</a> </dd>
 <dd>
-<a class="el" href="class_xa_lib_action.html" title="Parent Class for business actions. ">XaLibAction</a></dd></dl>
+<a class="el" href="class_xa_lib_action.html" title="Parent Class for View actions. ">XaLibAction</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ConFile</td><td>Configuration File - Relative or absolute path </td></tr>
@@ -297,30 +297,6 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab48fd574c852c2bbc4c0b8397c9e17a7"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void XaLibControllerBackEnd::SendLocationHeaders </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>Location</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="a9554831b9e5df51b5ee9235640d7ff84"></a>
 <div class="memitem">
 <div class="memproto">
@@ -342,7 +318,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_controller_back_end_8cpp_source.html#l00093">93</a> of file <a class="el" href="_xa_lib_controller_back_end_8cpp_source.html">XaLibControllerBackEnd.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_controller_back_end_8cpp_source.html#l00094">94</a> of file <a class="el" href="_xa_lib_controller_back_end_8cpp_source.html">XaLibControllerBackEnd.cpp</a>.</p>
 
 </div>
 </div>
@@ -359,7 +335,7 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 15 2015 20:03:20 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
+Generated on Sun Sep 27 2015 15:37:11 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
 <!--img class="footer" src="doxygen.png" alt="doxygen"/-->
 </a> 1.8.10
 </small></address>

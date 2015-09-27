@@ -62,52 +62,50 @@
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_xa_lib_base_8h.html">XaLibBase.h</a>&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_xa_lib_log_8h.html">XaLibLog.h</a>&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;curl/curl.h&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_xa_lib_log.html">XaLibLog</a> <a class="code" href="_xa_lib_curl_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903">LOG</a>;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_xa_lib_char_8h.html">XaLibChar.h</a>&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;curl/curl.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">extern</span> <a class="code" href="class_xa_lib_log.html">XaLibLog</a> <a class="code" href="_xa_lib_curl_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903">LOG</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
 <div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_xa_lib_curl.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_xa_lib_curl.html">XaLibCurl</a> : <span class="keyword">protected</span> <a class="code" href="class_xa_lib_base.html">XaLibBase</a> {</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="class_xa_lib_curl.html#a772ee993602c8e6187cac066c031dfff">   15</a></span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="class_xa_lib_curl.html#a772ee993602c8e6187cac066c031dfff">curl</a>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="comment">//string content;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="class_xa_lib_curl.html#a772ee993602c8e6187cac066c031dfff">   16</a></span>&#160;        <span class="keywordtype">void</span>* <a class="code" href="class_xa_lib_curl.html#a772ee993602c8e6187cac066c031dfff">curl</a>;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordtype">string</span> <a class="code" href="class_xa_lib_curl.html#ac9c0b991fd5d4e782ecceedf8dee45ad">download</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; url);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">string</span> <a class="code" href="class_xa_lib_curl.html#a0936ca8d8d4780c3ce802f432731f7ab">Call</a>(<span class="keyword">const</span> std::string&amp; url);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="class_xa_lib_curl.html#ab6e3132a55fe2510b7b690cd8710559a">XaLibCurl</a>();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="class_xa_lib_curl.html#aa06963d4aefafd714e883e4041bc2635">~XaLibCurl</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="comment">//typedef size_t(*CURL_WRITEFUNCTION_PTR)(void*, size_t, size_t, void*);</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="comment">//static int writer(char *data, size_t size, size_t nmemb,std::string *writerData);</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="comment">//static size_t handle(char * data, size_t size, size_t nmemb, string * p);</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="comment">//size_t handle_impl(char * data, size_t size, size_t nmemb);</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="comment">//string MakeCall(const string&amp; Url,const int&amp; Ssl=0);</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="comment">//string MakeCall1(const string&amp; Url,const int&amp; Ssl=0);</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="comment">//string GetCurlResponse();</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;};</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordtype">string</span> <a class="code" href="class_xa_lib_curl.html#a91701bfd900b8ec1151fc2ad0dcd7eec">Call</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; url);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="class_xa_lib_curl.html#ab6e3132a55fe2510b7b690cd8710559a">XaLibCurl</a>();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="class_xa_lib_curl.html#aa06963d4aefafd714e883e4041bc2635">~XaLibCurl</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="comment">//typedef size_t(*CURL_WRITEFUNCTION_PTR)(void*, size_t, size_t, void*);</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="comment">//static int writer(char *data, size_t size, size_t nmemb,std::string *writerData);</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="comment">//static size_t handle(char * data, size_t size, size_t nmemb, string * p);</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="comment">//size_t handle_impl(char * data, size_t size, size_t nmemb);</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="comment">//string MakeCall(const string&amp; Url,const int&amp; Ssl=0);</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="comment">//string MakeCall1(const string&amp; Url,const int&amp; Ssl=0);</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="comment">//string GetCurlResponse();</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;};</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="_xa_lib_base_8h_html"><div class="ttname"><a href="_xa_lib_base_8h.html">XaLibBase.h</a></div></div>
-<div class="ttc" id="class_xa_lib_curl_html_ac9c0b991fd5d4e782ecceedf8dee45ad"><div class="ttname"><a href="class_xa_lib_curl.html#ac9c0b991fd5d4e782ecceedf8dee45ad">XaLibCurl::download</a></div><div class="ttdeci">string download(const string &amp;url)</div></div>
-<div class="ttc" id="class_xa_lib_curl_html_aa06963d4aefafd714e883e4041bc2635"><div class="ttname"><a href="class_xa_lib_curl.html#aa06963d4aefafd714e883e4041bc2635">XaLibCurl::~XaLibCurl</a></div><div class="ttdeci">~XaLibCurl()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_curl_8cpp_source.html#l00074">XaLibCurl.cpp:74</a></div></div>
-<div class="ttc" id="class_xa_lib_curl_html_a772ee993602c8e6187cac066c031dfff"><div class="ttname"><a href="class_xa_lib_curl.html#a772ee993602c8e6187cac066c031dfff">XaLibCurl::curl</a></div><div class="ttdeci">void * curl</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_curl_8h_source.html#l00015">XaLibCurl.h:15</a></div></div>
-<div class="ttc" id="class_xa_lib_curl_html_ab6e3132a55fe2510b7b690cd8710559a"><div class="ttname"><a href="class_xa_lib_curl.html#ab6e3132a55fe2510b7b690cd8710559a">XaLibCurl::XaLibCurl</a></div><div class="ttdeci">XaLibCurl()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_curl_8cpp_source.html#l00012">XaLibCurl.cpp:12</a></div></div>
-<div class="ttc" id="class_xa_lib_curl_html_a0936ca8d8d4780c3ce802f432731f7ab"><div class="ttname"><a href="class_xa_lib_curl.html#a0936ca8d8d4780c3ce802f432731f7ab">XaLibCurl::Call</a></div><div class="ttdeci">string Call(const std::string &amp;url)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_curl_8cpp_source.html#l00055">XaLibCurl.cpp:55</a></div></div>
+<div class="ttc" id="_xa_lib_char_8h_html"><div class="ttname"><a href="_xa_lib_char_8h.html">XaLibChar.h</a></div></div>
+<div class="ttc" id="class_xa_lib_curl_html_aa06963d4aefafd714e883e4041bc2635"><div class="ttname"><a href="class_xa_lib_curl.html#aa06963d4aefafd714e883e4041bc2635">XaLibCurl::~XaLibCurl</a></div><div class="ttdeci">~XaLibCurl()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_curl_8cpp_source.html#l00041">XaLibCurl.cpp:41</a></div></div>
+<div class="ttc" id="class_xa_lib_curl_html_a772ee993602c8e6187cac066c031dfff"><div class="ttname"><a href="class_xa_lib_curl.html#a772ee993602c8e6187cac066c031dfff">XaLibCurl::curl</a></div><div class="ttdeci">void * curl</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_curl_8h_source.html#l00016">XaLibCurl.h:16</a></div></div>
+<div class="ttc" id="class_xa_lib_curl_html_ab6e3132a55fe2510b7b690cd8710559a"><div class="ttname"><a href="class_xa_lib_curl.html#ab6e3132a55fe2510b7b690cd8710559a">XaLibCurl::XaLibCurl</a></div><div class="ttdeci">XaLibCurl()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_curl_8cpp_source.html#l00010">XaLibCurl.cpp:10</a></div></div>
 <div class="ttc" id="class_xa_lib_log_html"><div class="ttname"><a href="class_xa_lib_log.html">XaLibLog</a></div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_log_8h_source.html#l00011">XaLibLog.h:11</a></div></div>
-<div class="ttc" id="class_xa_lib_base_html"><div class="ttname"><a href="class_xa_lib_base.html">XaLibBase</a></div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_base_8h_source.html#l00141">XaLibBase.h:141</a></div></div>
+<div class="ttc" id="class_xa_lib_base_html"><div class="ttname"><a href="class_xa_lib_base.html">XaLibBase</a></div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_base_8h_source.html#l00151">XaLibBase.h:151</a></div></div>
 <div class="ttc" id="class_xa_lib_curl_html"><div class="ttname"><a href="class_xa_lib_curl.html">XaLibCurl</a></div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_curl_8h_source.html#l00012">XaLibCurl.h:12</a></div></div>
 <div class="ttc" id="_xa_lib_log_8h_html"><div class="ttname"><a href="_xa_lib_log_8h.html">XaLibLog.h</a></div></div>
-<div class="ttc" id="_xa_lib_curl_8h_html_a4f7e146c4c04b3b3574c3d19fcdc0903"><div class="ttname"><a href="_xa_lib_curl_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903">LOG</a></div><div class="ttdeci">XaLibLog LOG</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_8cpp_source.html#l00004">XaLibController.cpp:4</a></div></div>
+<div class="ttc" id="class_xa_lib_curl_html_a91701bfd900b8ec1151fc2ad0dcd7eec"><div class="ttname"><a href="class_xa_lib_curl.html#a91701bfd900b8ec1151fc2ad0dcd7eec">XaLibCurl::Call</a></div><div class="ttdeci">string Call(const string &amp;url)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_curl_8cpp_source.html#l00014">XaLibCurl.cpp:14</a></div></div>
+<div class="ttc" id="_xa_lib_curl_8h_html_a4f7e146c4c04b3b3574c3d19fcdc0903"><div class="ttname"><a href="_xa_lib_curl_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903">LOG</a></div><div class="ttdeci">XaLibLog LOG</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_8cpp_source.html#l00006">XaLibController.cpp:6</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
@@ -117,7 +115,7 @@
 </div>
 </div>
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 15 2015 20:03:18 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
+Generated on Sun Sep 27 2015 15:37:10 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
 <!--img class="footer" src="doxygen.png" alt="doxygen"/-->
 </a> 1.8.10
 </small></address>

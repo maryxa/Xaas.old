@@ -79,6 +79,8 @@ Variables</h2></td></tr>
 <tr class="memitem:a4f7e146c4c04b3b3574c3d19fcdc0903"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_xa_lib_log.html">XaLibLog</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_xa_lib_token_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903">LOG</a></td></tr>
 <tr class="memdesc:a4f7e146c4c04b3b3574c3d19fcdc0903"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_xa_lib_rb_uart.html">XaLibRbUart</a> -&gt; XaLib Raspberry Uart class.  <a href="#a4f7e146c4c04b3b3574c3d19fcdc0903">More...</a><br /></td></tr>
 <tr class="separator:a4f7e146c4c04b3b3574c3d19fcdc0903"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affab3b1c2b6c119cba6c4fd57b963dbf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_xa_session.html">XaSession</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_xa_lib_token_8h.html#affab3b1c2b6c119cba6c4fd57b963dbf">SESSION</a></td></tr>
+<tr class="separator:affab3b1c2b6c119cba6c4fd57b963dbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c7b24211013afe66dbbe67ec070480b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_xa_lib_base_8h.html#a212dd71b13253d0f72d47593b3e96d5a">XaSettings</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_xa_lib_token_8h.html#a0c7b24211013afe66dbbe67ec070480b">SETTINGS</a></td></tr>
 <tr class="separator:a0c7b24211013afe66dbbe67ec070480b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -93,7 +95,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_controller_8cpp_source.html#l00007">7</a> of file <a class="el" href="_xa_lib_controller_8cpp_source.html">XaLibController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_controller_8cpp_source.html#l00008">8</a> of file <a class="el" href="_xa_lib_controller_8cpp_source.html">XaLibController.cpp</a>.</p>
 
 </div>
 </div>
@@ -108,21 +110,23 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="class_xa_lib_rb_uart.html">XaLibRbUart</a> -&gt; XaLib Raspberry Uart class. </p>
-<p>Implementation of Uart comunication with Raspberry</p>
-<p>Linux Operation: 1) sudo vi /boot/cmdline.txt replace-&gt; dwc_otg.lpm_enable=0 console=ttyAMA0,115200 kgdboc=ttyAMA0,115200 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline rootwait with -&gt; dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline rootwait</p>
-<p>2) sudo vi /etc/inittab comment -&gt; T0:23:respawn:/sbin/getty -L ttyAMA0 115200 vt100</p>
-<p>3) sudo shutdown -r now</p>
-<p>4) in rc.local sudo chmod a+rw /dev/ttyAMA0</p>
-<p>5) sudo chmod 666 /dev/ttyAMA0</p>
-<p>6) PIN CONFIGURATION</p>
-<p>pin 14 -&gt; UART0_TXD pin 15 -&gt; UART0_RXD</p>
-<p>OPTIONS O_RDONLY - Open for reading only. O_RDWR - Open for reading and writing. O_WRONLY - Open for writing only. O_NDELAY / O_NONBLOCK (same function) - Enables nonblocking mode. When set read requests on the file can return immediately with a failure status if there is no input immediately available (instead of blocking). Likewise, write requests can also return immediately with a failure status if the output can't be written immediately.</p>
-<p>O_NOCTTY - When set and path identifies a terminal device, open() shall not cause the terminal device to become the controlling terminal for the process.</p>
-<p>CONFIGURE THE UART</p>
-<p>The flags (defined in /usr/include/termios.h - see <a href="http://pubs.opengroup.org/onlinepubs/007908799/xsh/termios.h.html">http://pubs.opengroup.org/onlinepubs/007908799/xsh/termios.h.html</a>): Baud rate:- B1200, B2400, B4800, B9600, B19200, B38400, B57600, B115200, B230400, B460800, B500000, B576000, B921600, B1000000, B1152000, B1500000, B2000000, B2500000, B3000000, B3500000, B4000000 CSIZE:- CS5, CS6, CS7, CS8 CLOCAL - Ignore modem status lines CREAD - Enable receiver IGNPAR = Ignore characters with parity errors ICRNL - Map CR to NL on input PARENB - Parity enable PARODD - Odd parity (else even)</p>
-<p>TEST WITH MINICOM sudo apt-get install minicom minicom -b 9600 -o -D /dev/ttyAMA0 </p>
+<p>Super Global Variables </p>
 
-<p>Definition at line <a class="el" href="_xa_lib_controller_8cpp_source.html#l00004">4</a> of file <a class="el" href="_xa_lib_controller_8cpp_source.html">XaLibController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_controller_8cpp_source.html#l00006">6</a> of file <a class="el" href="_xa_lib_controller_8cpp_source.html">XaLibController.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="affab3b1c2b6c119cba6c4fd57b963dbf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_xa_session.html">XaSession</a> SESSION</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_xa_lib_controller_8cpp_source.html#l00019">19</a> of file <a class="el" href="_xa_lib_controller_8cpp_source.html">XaLibController.cpp</a>.</p>
 
 </div>
 </div>
@@ -136,7 +140,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_controller_8cpp_source.html#l00015">15</a> of file <a class="el" href="_xa_lib_controller_8cpp_source.html">XaLibController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_controller_8cpp_source.html#l00016">16</a> of file <a class="el" href="_xa_lib_controller_8cpp_source.html">XaLibController.cpp</a>.</p>
 
 </div>
 </div>
@@ -149,7 +153,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 15 2015 20:03:19 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
+Generated on Sun Sep 27 2015 15:37:11 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
 <!--img class="footer" src="doxygen.png" alt="doxygen"/-->
 </a> 1.8.10
 </small></address>
