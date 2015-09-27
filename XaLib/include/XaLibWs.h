@@ -29,9 +29,11 @@ class XaLibWs : protected XaLibBase {
 		string Encoding={""};
 		string Encryption={""};
 
-		
 		string ConsumerId={""};
+
+		/* 32B key*/
 		string ConsumerKey={""};
+
 		//string ConsumerName={""};
 	
 		string ResType={""};
@@ -39,6 +41,8 @@ class XaLibWs : protected XaLibBase {
 
 		string Username={""};
 		string Password={""};
+		
+		/* 32B Token*/
 		string Token={""};
 
 		string Object={""};

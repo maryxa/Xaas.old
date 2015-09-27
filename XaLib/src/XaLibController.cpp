@@ -1,20 +1,23 @@
 #include <XaLibController.h>
 
-//SUPERGLOBALS VARIABLES
+/**
+ *Super Global Variables
+*/
 XaLibLog LOG;
 XaLibHttp HTTP;
-
 XaLibDb DB_SESSION;
 XaLibDb DB_READ;
 XaLibDb DB_WRITE;
 XaLibDb DB_LOG;
 
-XaLibSession SESSION;
+//XaSession SESSION;
 unique_ptr<ofstream> MY_LOG_FILE;
 
 XaSettings SETTINGS;
 XaRequest REQUEST;
 XaResponse RESPONSE;
+XaSession SESSION;
+
 
 XaLibController::XaLibController() {
 };
@@ -94,7 +97,7 @@ void XaLibController::StartDb(){
 	}
 };
 
-void XaLibController::SendHeaders (string& HeadersType) const {
+void XaLibController::SendHeaders (const string& HeadersType) {
 
 	if (HeadersType=="html" || HeadersType=="xhtml") {
 
@@ -114,9 +117,15 @@ void XaLibController::SendHeaders (string& HeadersType) const {
 	}
 };
 
+void XaLibController::SendLocationHeaders(const string& Location){
+
+	cout<<"Location: ?"+Location<<endl;
+	cout<< "Content-Type: text/html; charset=utf-8\n\n";
+};
+
 void XaLibController::GetServerInfo(){
 
-	REQUEST.ServerIpAddress=HTTP.GetServerIpAddress();
+	SESSION.FrontEndIp=HTTP.GetServerIpAddress();
 };
 
 /*
@@ -564,12 +573,7 @@ void XaLibController::SendHeaders (string& HeadersType) const {
 
 };
 
-void XaLibController::SendLocationHeaders(string Location){
 
-	cout<<"Location: ?"+Location<<endl;
-	cout<< "Content-Type: text/html; charset=utf-8\n\n";
-
-};
 */
 XaLibController::~XaLibController() {
 };

@@ -47,10 +47,12 @@ void XaUser::Login (){
 
 			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"USER Valid With ID ->"+DbRes[0]["id"]);
 	
+			//controllare se ha gia un token
+			
 			XaLibToken LibToken;
-			string Token=LibToken.CreateToken(FromStringToInt(DbRes[0]["id"]));
-			RESPONSE.Content="<token>"+Token+"</token>";
-
+			
+			SESSION.Token=LibToken.CreateToken(FromStringToInt(DbRes[0]["id"]));
+			
 			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"USER Valid With ID ->"+DbRes[0]["id"]+"And Token  ->"+RESPONSE.Content);
 
 		} else {
@@ -69,7 +71,7 @@ void XaUser::Login (){
 
 void XaUser::Logout (){
 
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Destroying Session -> SessionID::"+REQUEST.XaSession_ID +" AND UserID::"+ XaLibBase::FromIntToString(REQUEST.XaUser_ID));
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Destroying Session -> SessionID::"+REQUEST.XaSession_ID +" AND UserID::"+ XaLibBase::FromIntToString(SESSION.XaUser_ID));
 
 	XaLibSql LibSql;
 	LibSql.LockTable(DB_SESSION,"XaSession");
@@ -85,7 +87,7 @@ void XaUser::Logout (){
 				
 		//DELETE SESSION
 		vector<string> VectorWhereSessionFields {"SessionID","XaUser_ID"};
-		vector<string> VectorWhereSessionValues {REQUEST.XaSession_ID,XaLibBase::FromIntToString(REQUEST.XaUser_ID)};
+		vector<string> VectorWhereSessionValues {REQUEST.XaSession_ID,XaLibBase::FromIntToString(SESSION.XaUser_ID)};
 
 		LibSql.Delete(DB_SESSION,"XaSession",VectorWhereSessionFields,VectorWhereSessionValues);
 		

@@ -18,7 +18,7 @@ void XaLibControllerBackEnd::OnStart(const string& ConfFile) {
 		GetServerInfo();
 	//	GetClientInfo();
 
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request IP -> "+REQUEST.ClientIpAddress);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request IP -> "+SESSION.ClientIp);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Read HttpString -> " + REQUEST.HeadersString);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request Language -> "+REQUEST.Language);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request Device -> "+REQUEST.Device);
@@ -64,7 +64,7 @@ void XaLibController::GetClientInfo(){
 };*/
 
 int XaLibControllerBackEnd::ProfileCalledObject(const string& CalledObject,const string& CalledEvent){
-
+/*
 	int ReturnStatus=0;
 
 	XaUserProfile UserProfile;
@@ -88,6 +88,7 @@ int XaLibControllerBackEnd::ProfileCalledObject(const string& CalledObject,const
 	}
 
 	return ReturnStatus;
+ */
 };
 
 void XaLibControllerBackEnd::SendResponse(){
@@ -95,7 +96,7 @@ void XaLibControllerBackEnd::SendResponse(){
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"RESPONSE="+RESPONSE.Content);
 
 		SendHeaders(RESPONSE.ResponseType);
-		cout<<"<WsData><Token>"+REQUEST.Token+"</Token>"+RESPONSE.Content+"</WsData>"<<endl;
+		cout<<"<WsData><token>"+SESSION.Token+"</token>"+RESPONSE.Content+"</WsData>"<<endl;
 };
 /*
 void XaLibControllerBackEnd::SendLocationHeaders(string Location){

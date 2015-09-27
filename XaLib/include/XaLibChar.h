@@ -20,7 +20,10 @@ class XaLibChar : protected XaLibBase {
 		string ClearXmlEntitiesBasic(string StringToClear);
 		string ClearXmlFrimm(string StringToClear);
 		string ClearSqlEntities(string StringToClear);
+
+		static void RemoveCarriageReturn(string& InputString);
 		string RemovePlus(string StringToDecode);
+		
 		string imgBase64RemPlus(string StringToDecode);
 		string UrlDecode(string StringToDecode);
 		string UrlEncode(string StringToEncode);

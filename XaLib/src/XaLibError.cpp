@@ -33,12 +33,11 @@ void XaLibError::Setup() {
 	/*
 	 * Security
 	 */
-	
 	XaErrors[51]={"TOKEN Error Inserting a new TOKEN into database"};
-	XaErrors[52]={""};
+	XaErrors[52]={"TOKEN is not valid"};
 	XaErrors[53]={""};
 	XaErrors[54]={""};
-	
+
 	/*
 	 * Web Services
 	 */
@@ -61,17 +60,24 @@ void XaLibError::Setup() {
 	XaErrors[116]={"WS Number of Parameters is 0"};
 	XaErrors[117]={"WS Object Is Not XaUser But Token is Empty"};
 	XaErrors[118]={"WS Event Is Not Login But Token is Empty"};
-	XaErrors[119]={""};
+	XaErrors[119]={"WS Called Object Does Not Exist"};
 	XaErrors[120]={""};
 	XaErrors[121]={""};
 	XaErrors[122]={""};
 	XaErrors[123]={""};
 
-	
-	
-	/*Fron End Errors*/
-	XaErrors[501]={"CURL Error Performing Request"};
-	
+	/*
+	 * Model
+	 */
+	XaErrors[201]={"BackEnd Call Type Is Not Supported"};
+
+	/*Front End Errors*/
+	XaErrors[611]={"Called Object Does Not Exist"};
+
+	XaErrors[621]={"Event Is empty"};
+
+	XaErrors[701]={"CURL Error Performing Request"};
+
 };
 
 XaLibError::~XaLibError(){

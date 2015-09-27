@@ -10,6 +10,7 @@ extern XaLibLog LOG;
 extern XaLibDb DB_SESSION;
 extern XaSettings SETTINGS;
 extern XaRequest REQUEST;
+extern XaSession SESSION;
 
 class XaLibSession : protected XaLibBase {
 

@@ -16,6 +16,7 @@
 #include <XaUser.h>
 #include <XaUserProfile.h>
 #include <XaLibWs.h>
+
 /**
  * @brief Base Class for Controllrs
  *
@@ -59,14 +60,8 @@ class XaLibController : protected XaLibBase {
 
 		void GetServerInfo();
 
-		void SendHeaders(string& HeadersType) const;	
-
-
-		
-		
-		
-		
-		
+		void SendHeaders(const string& HeadersType);	
+		void SendLocationHeaders(const string& Location);
 		
 		/*
 		int OnStartStatus=1;
@@ -86,7 +81,7 @@ class XaLibController : protected XaLibBase {
 		virtual void ExecuteCalledObject();
 
 		void SendHeaders(string& HeadersType) const;
-		void SendLocationHeaders(string Location);
+		
 */
 	public:
 /*

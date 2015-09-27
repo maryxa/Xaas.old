@@ -9,6 +9,8 @@
 extern XaLibLog LOG;
 extern XaLibDb DB_SESSION;
 extern XaSettings SETTINGS;
+extern XaSession SESSION;
+
 //extern XaRequest REQUEST;
 
 class XaLibToken : protected XaLibBase {
@@ -21,7 +23,24 @@ class XaLibToken : protected XaLibBase {
 
 	public:
 		
-		int ValidateToken (const string& Token);
+		static int ValidateToken (const string& Token);
+		
+		/**
+		* Check if the User already has valid Token and asks Log In\n
+		* During a Login this method check if the user already has a Valid Token\n
+		* If the User already has a Valid Token the old one will be overrided\n
+		* 
+		* @param XaUser_ID the correspondent user id for the account
+		* 
+		* @return int the corrisponding User Token table ID
+		*
+		* @code
+		* int TableId=CheckUserToken(XY);
+		* @endcode
+		*
+		*/
+		static int CheckUserToken(const int& XaUser_ID);
+
 		string CreateToken (const int& XaUser_ID);
 		
 		XaLibToken();

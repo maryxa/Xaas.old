@@ -6,9 +6,8 @@
 class XaPages : public XaLibAction {
 
 	private:
-
 		void XaMyPage();
-		void XaInfoPage();
+		void XaErrorPage();
 		void Dispatcher(const string &CalledEvent);
 
     protected:

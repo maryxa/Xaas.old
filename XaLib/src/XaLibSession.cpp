@@ -130,7 +130,7 @@ int XaLibSession::SessionValidate(const string& SessionId){
 		if (DbRes[0]["XaUser_ID"]=="") {
 
 			//ANONYMOUS USER
-			REQUEST.XaUser_ID=-1;
+			SESSION.XaUser_ID=-1;
 			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Session Validation -> SessionId Valid For Anonymous User");
 
 			return -1;
@@ -138,7 +138,7 @@ int XaLibSession::SessionValidate(const string& SessionId){
 		} else {
 
 			//LOGGED USER
-			REQUEST.XaUser_ID=FromStringToInt(DbRes[0]["XaUser_ID"]);
+			SESSION.XaUser_ID=FromStringToInt(DbRes[0]["XaUser_ID"]);
 			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Session Validation -> SessionId Valid For User Id -> " + DbRes[0]["XaUser_ID"]);
 
 			return 1;
@@ -171,7 +171,7 @@ int XaLibSession::GenerateSessionId(){
 
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Session -> Generated Mersenne Key ->"+ MtSring);
 
-	string SessionString=MtSring+REQUEST.ClientIpAddress;
+	string SessionString=MtSring+SESSION.ClientIp;
 
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Session -> Generated Browser Signature ->"+ SessionString);
 

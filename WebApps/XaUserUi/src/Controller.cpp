@@ -88,29 +88,36 @@ Controller::Controller(string ConfFile) {
 	LOG.Close();
 };
 
-
 void Controller::Dispatch () {
 	
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Dispatching Event");
 
-	//SE C"E" TOKEN MA NON OGGGETTI MANda IN DASHBOARD
-	REQUEST.Token=HTTP.GetHttpParam("token");
+	SESSION.Token=HTTP.GetHttpParam("token");
+	REQUEST.CalledObject=HTTP.GetHttpParam("obj");
+	REQUEST.CalledEvent=HTTP.GetHttpParam("evt");
 
-	//if (REQUEST.Token!="NoHttpParam") {
+	/*CASE LOGGED IN*/
+	if (REQUEST.CalledObject=="XaUserUi" && REQUEST.CalledEvent=="Login") {
+
+	} else if (SESSION.Token!="NoHttpParam") {
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Token is Valid");
+
+		if (REQUEST.CalledObject=="NoHttpParam" || REQUEST.CalledEvent=="NoHttpParam") {
 		
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Token is empty");
+			REQUEST.CalledObject=SETTINGS["DefaultObject"];
+			REQUEST.CalledEvent=SETTINGS["DefaultEvent"];
+		}
 
-		REQUEST.CalledObject=HTTP.GetHttpParam("obj");
-		REQUEST.CalledEvent=HTTP.GetHttpParam("evt");
+	/*CASE NOT LOGGED IN*/
+	} else {
 
-	//} else {
+		REQUEST.CalledObject="XaUserUi";
+		REQUEST.CalledEvent="LoginFrm";
 
-	//	REQUEST.CalledObject=SETTINGS["DefaultObject"];
-	//	REQUEST.CalledEvent=SETTINGS["DefaultEvent"];
-			
-	//	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Default Object -> "+SETTINGS["DefaultObject"]);
-	//	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Default Event -> "+SETTINGS["DefaultEvent"]);
-	//}
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Default Object -> "+SETTINGS["DefaultObject"]);
+		//	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Default Event -> "+SETTINGS["DefaultEvent"]);
+	}
 
 	ExecuteEvent();
 	SendResponse();
@@ -139,66 +146,20 @@ void Controller::ExecuteEvent() {
 		unique_ptr<XaUserUi> UserUi (new XaUserUi());
 		UserUi->Execute();
 
-	} /*else if(REQUEST.CalledObject=="XaOuType") {
+	} else if(REQUEST.CalledObject=="XaPages") {
 
-		unique_ptr<XaOuType> OuType (new XaOuType());
-		OuType->Execute();
-
-	} */else {
-
-	}
-	//SendResponse();
-};
-/*
-//void Controller::ExecuteCalledObject () {
-
-//	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Called Object With Event ->"+REQUEST.CalledObject+" :: "+REQUEST.CalledEvent +" :: Ws -> " +REQUEST.WsXml);
-/*
-	if(REQUEST.CalledObject=="test") {
-
-	} else if(REQUEST.CalledObject=="XaUser") {
-
-		unique_ptr<XaUser> User(new XaUser());
-
-		if (REQUEST.CalledEvent=="XaUserLogout") {
-
-			cout<<SESSION.SessionDestroy()<<endl;
-		}
-
-		User->GetResponse();
-		SendResponse();
-
-	} else if(REQUEST.CalledObject=="XaOuType") {
-
-		unique_ptr<XaOuType> OuType (new XaOuType());
-		OuType->GetResponse();
-		SendResponse();
-
-	} else if(REQUEST.CalledObject=="XaOu") {
-
-		unique_ptr<XaOu> Ou (new XaOu());
-		Ou->GetResponse();
-		SendResponse();
+//		unique_ptr<XaPages> Pages (new XaPages());
+//		Pages->Execute();
 
 	} else {
 
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Called Object Does not exist -> "+REQUEST.CalledObject);
-
-		if (REQUEST.WsData=="yes") {
-
-			RESPONSE.Content="<WsXmlData><error>CalledObjectDoesNotExist</error></WsXmlData>";
-			SendResponse();
-
-		} else {
-
-			REQUEST.CalledObject="XaPages";
-			REQUEST.CalledEvent="XaInfoPage";
-			REQUEST.HeadersStringCustom="&ErrorMessage=ObjectNotFound";
-			Dispatch();
-		}
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Called Object Doesn't Exist -> "+REQUEST.CalledObject);
+		
+		throw 611;
 	}
-	*/
-//};
+
+	//SendResponse();
+};
 
 Controller::~Controller(){
 };

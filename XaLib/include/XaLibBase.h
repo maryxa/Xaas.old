@@ -48,7 +48,20 @@
 
 using namespace std;
 
+struct XaSession {
+
+	string Token="";
+	int XaUser_ID=0;
+	int XaWsSession_ID;
+
+	string ClientIp;
+	string FrontEndIp;
+	string BackEndEndIp;
+};
+
 struct XaRequest {
+
+	
 
 	/*LEGACY*/
 	
@@ -92,9 +105,6 @@ struct XaRequest {
 	//string WsConsumerKey="";
 	
 	//string WsTokenId="";
-	string Token="";
-	int XaUser_ID=0;
-	int XaWsSession_ID;
 
 	//string CalledAction="";
 	string CalledObject="";
@@ -106,8 +116,8 @@ struct XaRequest {
 
 	string Language="";
 
-	string ClientIpAddress="";
-	string ServerIpAddress="";
+	//string ClientIpAddress="";
+	//string ServerIpAddress="";
 
 	//STATO DELLA CHIAMATA
 	//int RequestStatus=1;

@@ -11,7 +11,7 @@ void XaPages::Dispatcher (const string &CalledEvent) {
 
     } else if (CalledEvent=="XaInfoPage"){
 
-        this->XaInfoPage();
+        this->XaErrorPage();
 
     } else {
 
@@ -36,25 +36,8 @@ void XaPages::XaMyPage() {
 	RESPONSE.Content=LibXsl->GetXHtml();
 };
 
-void XaPages::XaInfoPage() {
+void XaPages::XaErrorPage() {
 
-	string ErrorMessage=HTTP.GetHttpParam("ErrorMessage");
-
-	if(ErrorMessage=="NoHttpParam") {
-
-		ErrorMessage="NoErrorMessage";
-	}
-
-	SetLayout("InfoPage");
-
-	xmlDocPtr XmlDomDoc=XaLibDom::DomFromStringAndFile(XmlFiles,XmlStrings,1);
-    xmlDocPtr XslDomDoc=XaLibDom::DomFromStringAndFile(XslFiles,XslStrings,2);
-
-	AddXslParamCommon();
-	AddXslParam("ErrorMessage",ErrorMessage);
-
-	unique_ptr<XaLibXsl> LibXsl (new XaLibXsl(XmlDomDoc,XslDomDoc,XslParams));
-    RESPONSE.Content=LibXsl->GetXHtml();
 };
 
 XaPages::~XaPages(){

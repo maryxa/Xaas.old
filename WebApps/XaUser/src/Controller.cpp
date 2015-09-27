@@ -92,27 +92,28 @@ Controller::Controller(string ConfFile) {
 
 void Controller::DispatchWs () {
 
-
 	XaLibWs Ws;
 	Ws.Setup();
 
 	REQUEST.CalledObject=Ws.GetObject();
 	REQUEST.CalledEvent=Ws.GetEvent();
-	REQUEST.Token=Ws.GetToken();
-
-	REQUEST.HeadersString.append("&username="+Ws.GetUsername()+"&password="+Ws.GetPassword());
+	SESSION.Token=Ws.GetToken();
 
 	RESPONSE.ResponseType=Ws.GetResType();
 
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Requested Object -> "+Ws.GetObject());
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Requested Event -> "+Ws.GetEvent());
+	
+	if (REQUEST.CalledObject=="XaUser" || REQUEST.CalledEvent=="Login") {
+	
+		/* In Case of Login I do not check the Token validity */
+		REQUEST.HeadersString.append("&username="+Ws.GetUsername()+"&password="+Ws.GetPassword());
 
-	//SET RESPONSE TYPE
+	} else {
+		/* Token Validation */
+		SESSION.XaUser_ID=XaLibToken::ValidateToken(SESSION.Token);
+	}
 
-	//PROFILARE
 	this->ExecuteWs(Ws);
 	this->SendResponse();
-
 };
 
 void Controller::ExecuteWs(XaLibWs& Ws){
@@ -129,58 +130,10 @@ void Controller::ExecuteWs(XaLibWs& Ws){
 
 	} else {
 
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"WS Called Object Doesn't Exist -> "+REQUEST.CalledObject);
+		throw 119;
 	}
-	//SendResponse();
 };
-//void Controller::ExecuteCalledObject () {
-
-//	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Called Object With Event ->"+REQUEST.CalledObject+" :: "+REQUEST.CalledEvent +" :: Ws -> " +REQUEST.WsXml);
-/*
-	if(REQUEST.CalledObject=="test") {
-
-	} else if(REQUEST.CalledObject=="XaUser") {
-
-		unique_ptr<XaUser> User(new XaUser());
-
-		if (REQUEST.CalledEvent=="XaUserLogout") {
-
-			cout<<SESSION.SessionDestroy()<<endl;
-		}
-
-		User->GetResponse();
-		SendResponse();
-
-	} else if(REQUEST.CalledObject=="XaOuType") {
-
-		unique_ptr<XaOuType> OuType (new XaOuType());
-		OuType->GetResponse();
-		SendResponse();
-
-	} else if(REQUEST.CalledObject=="XaOu") {
-
-		unique_ptr<XaOu> Ou (new XaOu());
-		Ou->GetResponse();
-		SendResponse();
-
-	} else {
-
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Called Object Does not exist -> "+REQUEST.CalledObject);
-
-		if (REQUEST.WsData=="yes") {
-
-			RESPONSE.Content="<WsXmlData><error>CalledObjectDoesNotExist</error></WsXmlData>";
-			SendResponse();
-
-		} else {
-
-			REQUEST.CalledObject="XaPages";
-			REQUEST.CalledEvent="XaInfoPage";
-			REQUEST.HeadersStringCustom="&ErrorMessage=ObjectNotFound";
-			Dispatch();
-		}
-	}
-	*/
-//};
 
 Controller::~Controller(){
 };

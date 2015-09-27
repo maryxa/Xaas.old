@@ -15,53 +15,46 @@ void XaLibWs::Setup() {
 	ResType=HTTP.GetHttpParam("ResType");
 	Data=HTTP.GetHttpParam("Data");
 
-	try {
+	CheckRequired();
 
-		CheckRequired();
+	/*
+	* Encrypted - Encoded
+	*/
+	if (Encryption=="yes") {
 
-		/*
-		* Encrypted - Encoded
-		*/
-		if (Encryption=="yes") {
+		LOG.Write("INF", __FILE__,__FUNCTION__,__LINE__,"WS Requested Encrypted");
 
-			LOG.Write("INF", __FILE__,__FUNCTION__,__LINE__,"WS Requested Encrypted");
+		if (Encoding=="no") {
 
-			if (Encoding=="no") {
+			LOG.Write("ERR", __FILE__,__FUNCTION__,__LINE__,"WS Requested Encrypted But No Encoded");
+			throw 107;
 
-				LOG.Write("ERR", __FILE__,__FUNCTION__,__LINE__,"WS Requested Encrypted But No Encoded");
-				throw 107;
+		} else {
 
-			} else {
-
-				LOG.Write("INF", __FILE__,__FUNCTION__,__LINE__,"WS Requested Encrypted And Encoded");
-				GetEncodedData();
-				GetConsumerKey();
-				GetDecryptedData();
-			}
-
-		/*
-		* No Encrypted - Encoded
-		*/
-		} else if(Encryption=="no" && Encoding=="yes") {
-
-			LOG.Write("INF", __FILE__,__FUNCTION__,__LINE__,"WS Requested No Encrypted And Encoded");
+			LOG.Write("INF", __FILE__,__FUNCTION__,__LINE__,"WS Requested Encrypted And Encoded");
 			GetEncodedData();
-
-		/*
-		* No Encrypted - No Encoded
-		*/
-		} else if (Encryption=="no" && Encoding=="no") {
-
-			LOG.Write("INF", __FILE__,__FUNCTION__,__LINE__,"WS Requested No Encrypted And No Encoded");	
+			GetConsumerKey();
+			GetDecryptedData();
 		}
 
-		ExtractData();
-	
-	} catch (int e) {
+	/*
+	* No Encrypted - Encoded
+	*/
+	} else if(Encryption=="no" && Encoding=="yes") {
 
-		throw;
+		LOG.Write("INF", __FILE__,__FUNCTION__,__LINE__,"WS Requested No Encrypted And Encoded");
+		GetEncodedData();
 
+	/*
+	* No Encrypted - No Encoded
+	*/
+	} else if (Encryption=="no" && Encoding=="no") {
+
+		LOG.Write("INF", __FILE__,__FUNCTION__,__LINE__,"WS Requested No Encrypted And No Encoded");	
 	}
+
+	ExtractData();
+
 };
 
 void XaLibWs::CheckRequired() {

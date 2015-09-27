@@ -14,7 +14,7 @@ void XaOu::Dispatcher (const string &CalledEvent) {
     } else {
 
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Event Does Not Exists -> "+CalledEvent);
-		ErrorPage ("EventNotFound");
+		//ErrorPage ("EventNotFound");
 	}
 };
 

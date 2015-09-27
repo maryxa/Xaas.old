@@ -1,89 +1,27 @@
 #include <XaUserUi.h>
-
 #include <XaLibAction.h>
-//#include <XaDomain.h>
 
-XaUserUi::XaUserUi(){
+XaUserUi::XaUserUi() {
 };
 
 void XaUserUi::Dispatcher (const string &CalledEvent) {
 
 	if (CalledEvent=="LoginFrm"){
 		this->LoginFrm();
+
 	} else if (CalledEvent=="Login"){
+
 		this->Login();
-    } else if (CalledEvent=="Logout"){
-      //  this->Logout();
-		/*
-    } else if (CalledEvent=="XaUserLoginAddFrm"){
-        this->XaUserLoginAddFrm();
-    } else if (CalledEvent=="XaUserLoginAdd"){
-        this->XaUserLoginAdd();
-    } else if (CalledEvent=="XaUserLoginModFrm"){
-        this->XaUserLoginModFrm();
-    } else if (CalledEvent=="XaUserLoginMod"){
-        this->XaUserLoginMod();
-    } else if (CalledEvent=="XaUserLoginView"){
-        this->XaUserLoginView();
-    } else if (CalledEvent=="XaUserLoginList"){
-        this->XaUserLoginList();
-    } else if (CalledEvent=="XaUserLoginRowMod"){
-        this->XaUserLoginRowMod();
-    } else if (CalledEvent=="XaUserPasswordModFrm"){
-        this->XaUserPasswordModFrm();
-    } else if (CalledEvent=="XaUserPasswordMod"){
-        this->XaUserPasswordMod();
-    } else if (CalledEvent=="XaUserCompanyAddFrm"){
-        this->XaUserCompanyAddFrm();
-    } else if (CalledEvent=="XaUserCompanyAdd"){
-        this->XaUserCompanyAdd();
-    } else if (CalledEvent=="XaUserCompanyModFrm"){
-        this->XaUserCompanyModFrm();
-    } else if (CalledEvent=="XaUserCompanyMod"){
-        this->XaUserCompanyMod();
-    } else if (CalledEvent=="XaUserCompanyList"){
-        this->XaUserCompanyList();
-    } else if (CalledEvent=="XaUserCompanyView"){
-        this->XaUserCompanyView();
-    } else if (CalledEvent=="XaUserDepartmentAddFrm"){
-        this->XaUserDepartmentAddFrm();
-    } else if (CalledEvent=="XaUserDepartmentAdd"){
-        this->XaUserDepartmentAdd();
-    } else if (CalledEvent=="XaUserDepartmentModFrm"){
-        this->XaUserDepartmentModFrm();
-    } else if (CalledEvent=="XaUserDepartmentMod"){
-        this->XaUserDepartmentMod();
-    } else if (CalledEvent=="XaUserDepartmentView"){
-        this->XaUserDepartmentView();
-    } else if (CalledEvent=="XaUserOrgChart"){
-        this->XaUserOrgChart();
-    } else if (CalledEvent=="XaUserOrgChartView"){
-        this->XaUserOrgChartView();
-	} else if (CalledEvent=="XaUserRegistrationFrm"){
-        this->XaUserRegistrationFrm();
-	} else if (CalledEvent=="XaUserRegistration"){
-        this->XaUserRegistration();
-    } else if (CalledEvent=="GetUsersAsOptions"){
-        this->GetUsersAsOptions();
-    } else if (CalledEvent=="XaUserXaDomainAddFrm"){
-        this->XaUserXaDomainAddFrm();
-    } else if (CalledEvent=="XaUserXaDomainAdd"){
-        this->XaUserXaDomainAdd();
-    } else if (CalledEvent=="XaUserGetXaDomainAsOptions"){
-        this->XaUserGetXaDomainAsOptions();
-    } else if (CalledEvent=="XaUserCheckIfExist"){
-        this->XaUserCheckIfExist();
-	*/
-    } else {
+
+	} else {
 
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Event Does Not Exists -> "+CalledEvent);
-		ErrorPage ("EventNotFound");
+		throw 42;
 	}
-
 };
 
-void XaUserUi::LoginFrm (){
-	
+void XaUserUi::LoginFrm () {
+
 	string StrError=HTTP.GetHttpParam("LoginStatus");
 
 	SetLayout("LoginFrm");
@@ -102,18 +40,19 @@ void XaUserUi::LoginFrm (){
 
 void XaUserUi::Login (){
 
+	//CHECK DATA
 	string StrUsername=HTTP.GetHttpParam("username");
 	string StrPassword=HTTP.GetHttpParam("password");
+
+	BuildBackEndCallLogin(StrUsername,StrPassword);
+
+	XaLibCurl LibCurl;
+    string content = LibCurl.Call(BuildBackEndCallLogin(StrUsername,StrPassword));
+
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Returned Back End Content -> "+content);
+	////ANALIZZO IL TOKEN ????
 	
-	//XaLibCurl LibCurl;
-	//LibCurl.MakeCall("http.google.com",0);
-	//string pippo=LibCurl.GetCurlResponse();
-	
-	
-	 XaLibCurl LibCurl;
-    string content = LibCurl.Call("https://stackoverflow.com");
-	
-	LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Event Does Not Exists -> "+content);
+	RESPONSE.Content=content;
 };
 
 /*

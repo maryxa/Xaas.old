@@ -79,6 +79,184 @@ void XaLibAction::AddXslParam(const string& ParamName, const string& ParamValue)
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslParam -> "+ParamName+"::"+ParamValue);
 };
 
+void XaLibAction::SetLayout(const string &LayoutType){
+
+	if (LayoutType=="Standalone" ) {
+
+		AddXslFile("XaGuiHead");
+		AddXslFile("XaGuiHeader");
+		AddXslFile("XaGuiFooter");
+		AddXslFile("XaGuiNav");
+		AddXslFile("templates");
+
+		//AddXslFile("manifest");
+		AddXmlFile("XaLabel-"+REQUEST.Language);
+		AddXmlFile("XaGuiNav");
+	
+	} else if (LayoutType=="Included") {
+
+		AddXslFile("templates");
+
+	} else if (LayoutType=="Standard" || LayoutType=="NoHttpParam") {
+
+		AddXslFile("XaGuiHead");
+		AddXslFile("XaGuiHeader");
+		AddXslFile("XaGuiFooter");
+		AddXslFile("XaGuiNav");
+		AddXslFile("templates");
+		AddXmlFile("XaLabel-"+REQUEST.Language);
+		AddXmlFile("XaGuiNav");
+
+	} else if (LayoutType=="InfoPage") {
+
+		AddXslFile("XaGuiHead");
+		AddXslFile("XaInfoPage");
+		AddXmlFile("XaInfoPage");
+
+	} else if (LayoutType=="Chart") {
+
+		AddXslFile("templates");
+		AddXmlFile("XaLabel-"+REQUEST.Language);
+
+	} else if (LayoutType=="ModalWindow") {
+
+		AddXslFile("XaGuiHead");
+		AddXslFile("templates");
+		AddXmlFile("XaLabel-"+REQUEST.Language);
+
+	} else if (LayoutType=="LoginFrm") {
+
+		AddXslFile("XaGuiHead");
+		AddXslFile("XaGuiHeaderInternet");
+		AddXslFile("XaGuiFooter");
+		AddXmlFile("XaLabel-"+REQUEST.Language);
+
+	} else if (LayoutType=="Search") {
+
+		AddXslFile("XaGuiHead");
+		AddXslFile("XaGuiHeader");
+		AddXslFile("XaGuiFooter");
+		AddXslFile("XaGuiNav");
+		AddXslFile("templates-search");
+		AddXmlFile("XaLabel-"+REQUEST.Language);
+
+	} else {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Layout does not exists -> "+LayoutType);
+	}
+
+    LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added Layout -> "+LayoutType);
+
+};
+
+string XaLibAction::BuildBackEndCallBase(){
+
+	if (SETTINGS["WsDefaultReqType"] =="xml") {
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"BackEnd Call Type -> "+SETTINGS["WsDefaultReqType"]);
+
+		string Call="";
+		Call.append(SETTINGS["WsDefaultBackEndUrl"]);
+
+		Call.append("?");
+		Call.append("ReqType=");
+		Call.append(SETTINGS["WsDefaultReqType"]);
+
+		Call.append("&");
+		Call.append("Encoding=");
+		Call.append(SETTINGS["WsDefaultEncoding"]);
+
+		Call.append("&");
+		Call.append("Encryption=");
+		Call.append(SETTINGS["WsDefaultEncryption"]);
+
+		Call.append("&");
+		Call.append("ResType=");
+		Call.append(SETTINGS["WsDefaultResType"]);
+
+		Call.append("&");
+		Call.append("ConsumerId=");
+		Call.append(SETTINGS["WsConsumerId"]);
+
+		Call.append("&");
+		Call.append("WsData=");
+
+		//FARE IL CASO CRITTOGRAFATO ED ENCODATO
+
+		//&Data=<WsData><login><username>alex@xallegro.com</username><password>ranokkio</password></login><operation><object>XaUser</object><event>Login</event></operation></WsData>
+		
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"BackEnd Call -> "+Call);
+		return Call;
+
+	} else {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"BackEnd Call Type Is Not Supported ->"+SETTINGS["WsDefaultReqType"]);
+		throw 201;
+	}
+};
+/*
+string XaLibAction::BuildBackEndCall(vector <string>& Params){
+
+		string Call=BuildBackEndCallBase();
+
+		Call.append("&");
+		Call.append("Data=");
+
+		//FARE IL CASO CRITTOGRAFATO ED ENCODATO		
+		
+		string SectionLogin="<WsData><login><username>"+Username+"</username><password>"+Password+"</password></login><operation><object>XaUser</object><event>Login</event></operation></WsData>";
+		Call.append(SectionLogin);
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"BackEnd Call -> "+Call);
+		return Call;
+
+};
+*/
+string XaLibAction::BuildBackEndCallLogin(const string& Username, const string& Password){
+
+		string Call=BuildBackEndCallBase();
+
+		Call.append("&");
+		Call.append("Data=");
+
+		//FARE IL CASO CRITTOGRAFATO ED ENCODATO		
+		
+		string SectionLogin="<WsData><login><username>"+Username+"</username><password>"+Password+"</password></login><operation><object>XaUser</object><event>Login</event></operation></WsData>";
+		Call.append(SectionLogin);
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"BackEnd Call -> "+Call);
+		return Call;
+
+};
+
+string XaLibAction::BuildBackEndCallSectionOperation(const string& Object, const string& Event){
+
+	string SectionOperation="<operation><object>"+Object+"</object><event>"+Event+"</event></operation>";
+	return SectionOperation;
+};
+
+/*
+string XaLibAction::BuildBackEndCallSectionParams(const vector<string>& Names, const vector<string>& Values){
+};
+*/
+
+/*
+void XaLibAction::GetResponse(){
+
+	//EXECUTE OBJECT DISPATCHER (CLASS DISPATCHER)
+	if (REQUEST.CalledObject!="" && REQUEST.CalledEvent!="") {
+
+		string Event=REQUEST.CalledEvent;
+		//this->ResetRequest();
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executing Object Event ->"+Event);
+		this->Dispatcher(Event);
+
+	} else {
+
+	}
+};*/
+/*
 void XaLibAction::ErrorPage (const string& ErrorType) {
 
 	LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Redirection to ErrorPage -> "+ErrorType);
@@ -563,75 +741,7 @@ string XaLibAction::DecryptParamId(string EncryptedValue) {
 	return DecryptedValueString;
 };
 
-void XaLibAction::SetLayout(const string &LayoutType){
 
-	if (LayoutType=="Standalone" ) {
-
-		AddXslFile("XaGuiHead");
-		AddXslFile("XaGuiHeader");
-		AddXslFile("XaGuiFooter");
-		AddXslFile("XaGuiNav");
-		AddXslFile("templates");
-
-		//AddXslFile("manifest");
-		AddXmlFile("XaLabel-"+REQUEST.Language);
-		AddXmlFile("XaGuiNav");
-	
-	} else if (LayoutType=="Included") {
-
-		AddXslFile("templates");
-
-	} else if (LayoutType=="Standard" || LayoutType=="NoHttpParam") {
-
-		AddXslFile("XaGuiHead");
-		AddXslFile("XaGuiHeader");
-		AddXslFile("XaGuiFooter");
-		AddXslFile("XaGuiNav");
-		AddXslFile("templates");
-		AddXmlFile("XaLabel-"+REQUEST.Language);
-		AddXmlFile("XaGuiNav");
-
-	} else if (LayoutType=="InfoPage") {
-
-		AddXslFile("XaGuiHead");
-		AddXslFile("XaInfoPage");
-		AddXmlFile("XaInfoPage");
-
-	} else if (LayoutType=="Chart") {
-
-		AddXslFile("templates");
-		AddXmlFile("XaLabel-"+REQUEST.Language);
-
-	} else if (LayoutType=="ModalWindow") {
-
-		AddXslFile("XaGuiHead");
-		AddXslFile("templates");
-		AddXmlFile("XaLabel-"+REQUEST.Language);
-
-	} else if (LayoutType=="LoginFrm") {
-
-		AddXslFile("XaGuiHead");
-		AddXslFile("XaGuiHeaderInternet");
-		AddXslFile("XaGuiFooter");
-		AddXmlFile("XaLabel-"+REQUEST.Language);
-
-	} else if (LayoutType=="Search") {
-
-		AddXslFile("XaGuiHead");
-		AddXslFile("XaGuiHeader");
-		AddXslFile("XaGuiFooter");
-		AddXslFile("XaGuiNav");
-		AddXslFile("templates-search");
-		AddXmlFile("XaLabel-"+REQUEST.Language);
-
-	} else {
-
-		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Layout does not exists -> "+LayoutType);
-	}
-
-    LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added Layout -> "+LayoutType);
-
-};
 
 void XaLibAction::UpdateSessionWsLog (const string &XaSessionWsLog_ID,const string &Query,const string &Response) {
 		
@@ -681,22 +791,8 @@ void XaLibAction::ResetRequest(){
 	REQUEST.CalledObject="";
 };
 
-void XaLibAction::GetResponse(){
 
-	//EXECUTE OBJECT DISPATCHER (CLASS DISPATCHER)
-	if (REQUEST.CalledObject!="" && REQUEST.CalledEvent!="") {
-	
-		string Event=REQUEST.CalledEvent;
-		this->ResetRequest();
-
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executing Object Event ->"+Event);
-		this->Dispatcher(Event);
-
-	} else {
-
-	}
-};
-
+*/
 void XaLibAction::Execute(){
 
 	//EXECUTE OBJECT DISPATCHER (CLASS DISPATCHER)
@@ -708,7 +804,7 @@ void XaLibAction::Execute(){
 	} else {
 
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Event Is empty");
-		throw 41;
+		throw 621;
 	}
 }
 void XaLibAction::Dispatcher (const string &CalledEvent){};

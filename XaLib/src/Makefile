@@ -51,6 +51,8 @@ endif
 ## MAC
 ## TESTED: 10.10.3
 ## TESTED: 10.10.4
+## TESTED: 10.10.5
+
 ifeq ($(UNAME_S),Darwin)
 
 
@@ -76,8 +78,8 @@ OBJ=$(OBJDIR)XaLibBase.o $(OBJDIR)XaLibAction.o $(OBJDIR)XaLibModel.o $(OBJDIR)X
     $(OBJDIR)XaLibSocket.o $(OBJDIR)XaLibWebSocket.o $(OBJDIR)XaLibLog.o \
     $(OBJDIR)XaLibTime.o $(OBJDIR)XaLibWs.o $(OBJDIR)XaLibGui.o $(OBJDIR)XaLibController.o $(OBJDIR)XaLibControllerBackEnd.o $(OBJDIR)XaLibControllerFrontEnd.o\
     $(OBJDIR)XaOuType.o $(OBJDIR)XaOuObj.o $(OBJDIR)XaOu.o \
-    $(OBJDIR)XaUser.o $(OBJDIR)XaUserUi.o $(OBJDIR)XaUserProfile.o $(OBJDIR)XaAddress.o $(OBJDIR)XaLabel.o $(OBJDIR)XaLanguage.o \
-    $(OBJDIR)XaUserRole.o $(OBJDIR)XaCurrency.o $(OBJDIR)XaDomain.o  \
+    $(OBJDIR)XaUser.o $(OBJDIR)XaUserUi.o $(OBJDIR)XaLanguage.o \
+    $(OBJDIR)XaUserRole.o \
     $(OBJDIR)XaLibMail.o $(OBJDIR)XaLibRbUart.o $(OBJDIR)XaLibRbGpIo.o
 
 #MACROS
@@ -173,20 +175,20 @@ $(OBJDIR)XaOuObj.o: XaOuObj.cpp
 $(OBJDIR)XaOu.o: XaOu.cpp 
 	$(CPP) -c XaOu.cpp -o $(OBJDIR)XaOu.o $(CPPFLAGS)
 
-$(OBJDIR)XaUserProfile.o: XaUserProfile.cpp 
-	$(CPP) -c XaUserProfile.cpp -o $(OBJDIR)XaUserProfile.o $(CPPFLAGS)
-$(OBJDIR)XaAddress.o: XaAddress.cpp 
-	$(CPP) -c XaAddress.cpp -o $(OBJDIR)XaAddress.o $(CPPFLAGS)
-$(OBJDIR)XaLabel.o: XaLabel.cpp 
-	$(CPP) -c XaLabel.cpp -o $(OBJDIR)XaLabel.o $(CPPFLAGS)
+#$(OBJDIR)XaUserProfile.o: XaUserProfile.cpp 
+#	$(CPP) -c XaUserProfile.cpp -o $(OBJDIR)XaUserProfile.o $(CPPFLAGS)
+#$(OBJDIR)XaAddress.o: XaAddress.cpp 
+#	$(CPP) -c XaAddress.cpp -o $(OBJDIR)XaAddress.o $(CPPFLAGS)
+#$(OBJDIR)XaLabel.o: XaLabel.cpp 
+#	$(CPP) -c XaLabel.cpp -o $(OBJDIR)XaLabel.o $(CPPFLAGS)
 $(OBJDIR)XaLanguage.o: XaLanguage.cpp 
 	$(CPP) -c XaLanguage.cpp -o $(OBJDIR)XaLanguage.o $(CPPFLAGS)
 $(OBJDIR)XaUserRole.o: XaUserRole.cpp 
 	$(CPP) -c XaUserRole.cpp -o $(OBJDIR)XaUserRole.o $(CPPFLAGS)
-$(OBJDIR)XaCurrency.o: XaCurrency.cpp 
-	$(CPP) -c XaCurrency.cpp -o $(OBJDIR)XaCurrency.o $(CPPFLAGS)
-$(OBJDIR)XaDomain.o: XaDomain.cpp 
-	$(CPP) -c XaDomain.cpp -o $(OBJDIR)XaDomain.o $(CPPFLAGS)
+#$(OBJDIR)XaCurrency.o: XaCurrency.cpp 
+#	$(CPP) -c XaCurrency.cpp -o $(OBJDIR)XaCurrency.o $(CPPFLAGS)
+#$(OBJDIR)XaDomain.o: XaDomain.cpp 
+#	$(CPP) -c XaDomain.cpp -o $(OBJDIR)XaDomain.o $(CPPFLAGS)
 $(OBJDIR)XaLibMail.o: XaLibMail.cpp 
 	$(CPP) -c XaLibMail.cpp -o $(OBJDIR)XaLibMail.o $(CPPFLAGS)
 $(OBJDIR)XaLibRbUart.o: XaLibRbUart.cpp 

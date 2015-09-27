@@ -87,7 +87,6 @@ class XaUserUi : public XaLibAction {
 	public:
 
 		XaUserUi();
-
 		//virtual int Authenticate(string StrEmail,string StrPassword);
 		virtual ~XaUserUi();
 	

@@ -51,11 +51,10 @@ class XaLibModel : protected XaLibBase {
 		void ResetPoperites ();
 
 		virtual void Dispatcher (const string &CalledEvent)=0;
+
 		string BuildXml(DbResMap& ResMap,const string& Container,const string& GroupBy);
 
     public:
-
-		
 
 		virtual int Create();
 		virtual XaLibBase::DbResMap Read();

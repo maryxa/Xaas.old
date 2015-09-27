@@ -65,7 +65,7 @@ class XaLibControllerBackEnd : protected XaLibController {
 
 		//virtual void ExecuteCalledObject();
 
-		void SendLocationHeaders(string Location);
+		//void SendLocationHeaders(string Location);
 
 	public:
 

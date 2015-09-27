@@ -3,8 +3,6 @@
 XaLibModel::XaLibModel(){
 };
 
-
-
 int XaLibModel::Create() {
 
 	int NextId=XaLibSql::Insert(DB_WRITE,DbTable,Fields,Values);

@@ -29,20 +29,20 @@ extern XaLibDb DB_READ;
 extern XaLibDb DB_WRITE;
 extern XaLibDb DB_LOG;
 
-extern XaLibSession SESSION;
+extern XaSession SESSION;
 extern XaRequest REQUEST;
 extern XaResponse RESPONSE;
 extern XaSettings SETTINGS;
 
 /**
- * @brief Parent Class for business actions
+ * @brief Parent Class for View actions
  *
- * @details Parent Class for business actions:
+ * @details Parent Class for View actions:
  * All action class inherit from this class
  *
  * @see XaLibBase
  * 
- * @see http://www.xallegro.com
+ * @see alex@xallegro.com
  * @author Alessandro Mariotti
 */
 
@@ -107,7 +107,7 @@ class XaLibAction : protected XaLibBase {
 		*
 		*/
 		void AddXmlString (const string& XmlString);
-		
+
 		/**
 		* Adds file to the vector<string> XslFiles\n
 		* All files in the vector will be added in the generated Dom Object.\n
@@ -126,7 +126,7 @@ class XaLibAction : protected XaLibBase {
 		*
 		*/
 		void AddXslFile   (const string& FilePath);
-		
+	
 		/**
 		* 
 		* Adds a well formed XSL string to the vector<string> XslStrings\n
@@ -172,7 +172,42 @@ class XaLibAction : protected XaLibBase {
 		*
 		*/
 		void AddXslParam (const string& ParamName, const string& ParamValue);
+
+		/**
+		* Dispatch Event in the object\n
+		* The Class Name is representing the Object and the Method name is representing the Event\n
+		* 
+		* @param CalledEvent the Called Event (class Method)
+		* 
+		* @return void
+		*
+		* @code
+		* Dispatcher("EventName");
+		* @endcode
+		*
+		*/
+		virtual void Dispatcher (const string &CalledEvent);
 		
+		/**
+		* Select the layout for the returned page\n
+		* A layout is a collection of Xsl file, based on passed layout are added different files\n
+		* 
+		* @param LayoutType the layout name
+		* 
+		* @return void
+		*
+		* @code
+		* SetLayout("Default");
+		* @endcode
+		*
+		*/
+		void SetLayout (const string &LayoutType);
+
+		string BuildBackEndCallBase();
+		string BuildBackEndCallLogin(const string& Username, const string& Password);
+		string BuildBackEndCallSectionOperation(const string& Object, const string& Event);
+		string BuildBackEndCallSectionParams(const vector<string>& Names, const vector<string>& Values);
+
 		/**
 		* Redirects to the InfoPage .\n
 		* To Use with classes that provide the Method GetResponse\n
@@ -184,8 +219,9 @@ class XaLibAction : protected XaLibBase {
 		* @endcode
 		*
 		*/
+		/*
 		void ErrorPage (const string& ErrorType);
-
+*/
 		/**
 		* Redirects to the InfoPage and return the control to the Controller.\n
 		* To Use with classes that don't provide the Method GetResponse\n
@@ -197,8 +233,7 @@ class XaLibAction : protected XaLibBase {
 		* @endcode
 		*
 		*/
-		
-		
+/*
 		void ErrorExit (const string& ErrorType);
 
 		void   AddOptionsByDb                      (XaLibDom* LibDom,xmlDocPtr XmlDomDoc,string TableName,string XPathExpr);
@@ -221,20 +256,31 @@ class XaLibAction : protected XaLibBase {
 		string DecryptParam(string EncryptedValue);
 		string DecryptParamId(string EncryptedValue);
 
-		void SetLayout (const string &LayoutType);
+		
 		void UpdateSessionWsLog (const string &XaSessionWsLog_ID,const string &LogData,const string &Response);
 
 		string ComposeSearchCondition(string Value,string Field,string Type);
 
-		virtual void Dispatcher (const string &CalledEvent);
+		
 
 		void ResetRequest();
-
+*/
     public:
 
+		/**
+		* Execute the Object Dispatcher\n
+		* Execute the Object Dispatcher passing the Event Name\n
+		* 
+		* @return void
+		*
+		* @code
+		* Execute("");
+		* @endcode
+		*
+		*/
 		void Execute();
 
-		void virtual GetResponse();
+		//void virtual GetResponse();
 
 		XaLibAction ();
 		virtual ~XaLibAction ();

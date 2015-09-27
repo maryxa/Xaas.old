@@ -5,8 +5,8 @@
 #include <XaLibDb.h>
 
 extern unique_ptr<ofstream> MY_LOG_FILE;
-extern XaRequest REQUEST;
 extern XaLibDb DB_LOG;
+extern XaSession SESSION;
 
 class XaLibLog : protected XaLibBase {
 

@@ -36,7 +36,7 @@ void XaLibLog::Write(const string& LogMessageLevel,const char* ClassName,const c
 			unique_ptr<XaLibTime> LibTimeLocal(new XaLibTime());
 			string LogTime=LibTimeLocal->GetDateTimeIsoComplete();
 
-			string MyLogString="["+SETTINGS["AppName"]+"]["+LogMessageLevel+"]["+REQUEST.ServerIpAddress+"]["+LogTime+"]["+REQUEST.ClientIpAddress+ "]["+FromIntToString(REQUEST.XaUser_ID)+"]["+ClassName +"]["+LineNumberString+"]["+MethodName+"]["+LogMessage+"]";
+			string MyLogString="["+SETTINGS["AppName"]+"]["+LogMessageLevel+"]["+SESSION.FrontEndIp+"]["+LogTime+"]["+SESSION.ClientIp+ "]["+FromIntToString(SESSION.XaUser_ID)+"]["+ClassName +"]["+LineNumberString+"]["+MethodName+"]["+LogMessage+"]";
 
 			WriteFile(MyLogString,LogMessageLevel);
 		}
@@ -48,7 +48,7 @@ void XaLibLog::Write(const string& LogMessageLevel,const char* ClassName,const c
 void XaLibLog::WriteDb (const string& LogMessageLevel,const char* ClassName,const char* MethodName,const string& LineNumber,const string& LogMessage){
 
 	vector<string> VectorFields ={"app_name","log_level","server_ip_address","ip_address","XaUser_ID","class_name","method_name","line_number","message"}; 
-	vector<string> VectorValues ={SETTINGS["AppName"],LogMessageLevel,REQUEST.ServerIpAddress,REQUEST.ClientIpAddress,FromIntToString(REQUEST.XaUser_ID),ClassName,MethodName,LineNumber,LogMessage};
+	vector<string> VectorValues ={SETTINGS["AppName"],LogMessageLevel,SESSION.FrontEndIp,SESSION.ClientIp,FromIntToString(SESSION.XaUser_ID),ClassName,MethodName,LineNumber,LogMessage};
 
 	if (SETTINGS["LogLevel"]=="1"){
 

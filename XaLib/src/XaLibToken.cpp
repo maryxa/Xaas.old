@@ -2,25 +2,32 @@
 #include <XaLibCrypto.h>
 
 XaLibToken::XaLibToken(){
-	/*
-	try {
-	
-		CreateToken();
-
-	} catch {
-	
-		throw;
-	}*/
 };
 
 int XaLibToken::ValidateToken(const string& Token) {
-	XaLibSql LibSql;
-	DbResMap DbRes=LibSql.FreeQuery(DB_SESSION,"SELECT XaUser_ID FROM XaUserToken WHERE token=\""+Token+"\"");
+
+	DbResMap DbRes=XaLibSql::FreeQuery(DB_SESSION,"SELECT XaUser_ID FROM XaUserToken WHERE token=\""+Token+"\"");
 
 	if (DbRes.size()!=0){
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"TOKEN Is valid for XaUser_ID-> "+ DbRes[0]["XaUser_ID"]);
-		return FromStringToInt(DbRes[0]["XaUser_ID"]);
+		return atoi(DbRes[0]["XaUser_ID"].c_str());
+
+	} else {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"TOKEN Is Not Valid");
+		throw 52;
+	}
+};
+
+int XaLibToken::CheckUserToken(const int& XaUser_ID) {
+
+	DbResMap DbRes=XaLibSql::FreeQuery(DB_SESSION,"SELECT id  FROM XaUserToken WHERE XaUser_ID=\""+to_string(XaUser_ID)+"\"");
+
+	if (DbRes.size()!=0){
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"TOKEN Is valid for XaUser_ID-> "+ DbRes[0]["XaUser_ID"]);
+		return DbRes[0]["XaUser_ID"];
 
 	} else {
 
@@ -79,7 +86,7 @@ string XaLibToken::GenerateToken(){
 
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"TOKEN Generated Mersenne Key ->"+ MtSring);
 
-	string SeedString=MtSring+REQUEST.ClientIpAddress;
+	string SeedString=MtSring+SESSION.ClientIp;
 
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"TOKEN Generated Browser Signature ->"+ SeedString);
 

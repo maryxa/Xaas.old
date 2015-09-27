@@ -475,6 +475,17 @@ string XaLibChar::imgBase64RemPlus(string StringToDecode) {
 	}
 };
 
+void XaLibChar::RemoveCarriageReturn(string& InputString) {
+
+	unsigned pos=InputString.find_first_of("\n");
+
+	while (pos!=-1){
+		InputString.replace(pos,1,"");
+		pos=InputString.find_first_of("\n",pos+1);
+	}
+
+};
+
 string XaLibChar::RemovePlus(string StringToDecode) {
 
 	unsigned pos=StringToDecode.find_first_of("+");

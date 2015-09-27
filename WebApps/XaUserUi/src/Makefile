@@ -62,6 +62,8 @@ endif
 
 ## MAC
 ## TESTED: 10.10.3
+## TESTED: 10.10.4
+## TESTED: 10.10.5
 ifeq ($(UNAME_S),Darwin)
 
     CPP      = g++

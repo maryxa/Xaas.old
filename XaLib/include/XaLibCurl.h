@@ -3,6 +3,7 @@
 
 #include <XaLibBase.h>
 #include <XaLibLog.h>
+#include <XaLibChar.h>
 
 #include <curl/curl.h>
 

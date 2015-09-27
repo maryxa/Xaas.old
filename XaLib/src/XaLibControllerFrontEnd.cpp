@@ -18,7 +18,7 @@ void XaLibControllerFrontEnd::OnStart(const string& ConfFile) {
 		GetServerInfo();
 	//	GetClientInfo();
 
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request IP -> "+REQUEST.ClientIpAddress);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request IP -> "+SESSION.ClientIp);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Read HttpString -> " + REQUEST.HeadersString);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request Language -> "+REQUEST.Language);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request Device -> "+REQUEST.Device);
