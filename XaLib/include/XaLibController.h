@@ -61,8 +61,8 @@ class XaLibController : protected XaLibBase {
 		void GetServerInfo();
 
 		void SendHeaders(const string& HeadersType);	
-		void SendLocationHeaders(const string& Location);
-		
+		//void SendHeadersLocation(const string& Location);
+
 		/*
 		int OnStartStatus=1;
 		void OnStart(const string& ConfFile);

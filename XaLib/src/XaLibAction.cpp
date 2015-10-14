@@ -67,6 +67,8 @@ void XaLibAction::AddXslParamCommon() {
 	XslParams.push_back(SETTINGS["AppName"]);
 	XslParams.push_back("GuiStyle");
 	XslParams.push_back(SETTINGS["GuiStyle"]);
+	XslParams.push_back("token");
+	XslParams.push_back(SESSION.Token);
 
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslParamCommon -> AppName::"+SETTINGS["AppName"]+" GuiStyle::"+SETTINGS["GuiStyle"]);
 };
@@ -92,7 +94,7 @@ void XaLibAction::SetLayout(const string &LayoutType){
 		//AddXslFile("manifest");
 		AddXmlFile("XaLabel-"+REQUEST.Language);
 		AddXmlFile("XaGuiNav");
-	
+
 	} else if (LayoutType=="Included") {
 
 		AddXslFile("templates");
@@ -149,6 +151,49 @@ void XaLibAction::SetLayout(const string &LayoutType){
 
 };
 
+string XaLibAction::BuildBackEndCall(const string& Object, const string& Event,const vector <string>& ParamName,const vector <string>& ParamValue){
+
+	string Call=BuildBackEndCallBase();
+
+	Call.append("&");
+	Call.append("Data=");
+
+	Call.append("<WsData>");
+	
+	//ADDING TOKEN
+	Call.append("<login><token>");
+	Call.append(SESSION.Token);
+	Call.append("</token></login>");
+	
+	//ADDING OPERATION
+	Call.append(BuildBackEndCallSectionOperation(Object,Event));
+	
+	//ADDINGPARAMS
+	Call.append(BuildBackEndCallSectionParams(ParamName,ParamValue));
+
+	Call.append("</WsData>");
+
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"BackEnd Call -> "+Call);
+	return Call;
+};
+
+string XaLibAction::BuildBackEndCallLogin(const string& Username, const string& Password){
+
+	string Call=BuildBackEndCallBase();
+
+	Call.append("&");
+	Call.append("Data=");
+
+	//FARE IL CASO CRITTOGRAFATO ED ENCODATO
+
+	string SectionLogin="<WsData><login><username>"+Username+"</username><password>"+Password+"</password></login><operation><object>XaUser</object><event>Login</event></operation></WsData>";
+	Call.append(SectionLogin);
+
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"BackEnd Call -> "+Call);
+	return Call;
+
+};
+
 string XaLibAction::BuildBackEndCallBase(){
 
 	if (SETTINGS["WsDefaultReqType"] =="xml") {
@@ -178,13 +223,14 @@ string XaLibAction::BuildBackEndCallBase(){
 		Call.append("ConsumerId=");
 		Call.append(SETTINGS["WsConsumerId"]);
 
-		Call.append("&");
-		Call.append("WsData=");
+		//Call.append("&");
+		//Call.append("WsData=");
 
+		
 		//FARE IL CASO CRITTOGRAFATO ED ENCODATO
 
 		//&Data=<WsData><login><username>alex@xallegro.com</username><password>ranokkio</password></login><operation><object>XaUser</object><event>Login</event></operation></WsData>
-		
+
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"BackEnd Call -> "+Call);
 		return Call;
 
@@ -194,39 +240,37 @@ string XaLibAction::BuildBackEndCallBase(){
 		throw 201;
 	}
 };
-/*
-string XaLibAction::BuildBackEndCall(vector <string>& Params){
 
-		string Call=BuildBackEndCallBase();
+string XaLibAction::BuildBackEndCallSectionParams(const vector <string>& ParamName,const vector <string>& ParamValue){
 
-		Call.append("&");
-		Call.append("Data=");
-
-		//FARE IL CASO CRITTOGRAFATO ED ENCODATO		
+	string ParamSection="<params>";
+	
+	if (ParamName.size()!=ParamValue.size()) {
 		
-		string SectionLogin="<WsData><login><username>"+Username+"</username><password>"+Password+"</password></login><operation><object>XaUser</object><event>Login</event></operation></WsData>";
-		Call.append(SectionLogin);
-
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"BackEnd Call -> "+Call);
-		return Call;
-
-};
-*/
-string XaLibAction::BuildBackEndCallLogin(const string& Username, const string& Password){
-
-		string Call=BuildBackEndCallBase();
-
-		Call.append("&");
-		Call.append("Data=");
-
-		//FARE IL CASO CRITTOGRAFATO ED ENCODATO		
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Parameters and Values Have Different Size");
+		throw 202;
+	
+	} else if(ParamName.size()==0){
 		
-		string SectionLogin="<WsData><login><username>"+Username+"</username><password>"+Password+"</password></login><operation><object>XaUser</object><event>Login</event></operation></WsData>";
-		Call.append(SectionLogin);
+		ParamSection.append("<p><n></n><v></v></p>");
 
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"BackEnd Call -> "+Call);
-		return Call;
+	} else {
+		
+		for (auto i=0; i<ParamName.size(); i++) {
 
+			ParamSection.append("<p><n>");
+
+			ParamSection.append(ParamName[i]);
+			ParamSection.append("</n><v>");
+
+			ParamSection.append(ParamValue[i]);
+			ParamSection.append("</v></p>");
+		}
+	}
+
+	ParamSection.append("</params>");
+
+	return ParamSection;
 };
 
 string XaLibAction::BuildBackEndCallSectionOperation(const string& Object, const string& Event){

@@ -10,7 +10,6 @@ class XaUser : public XaLibModel {
 
 		void Dispatcher(const string &CalledEvent);
 
-		
 		void Login();
 		void Logout();
 

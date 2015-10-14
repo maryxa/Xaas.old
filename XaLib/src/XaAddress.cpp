@@ -84,7 +84,7 @@ void XaAddress::XaAddressGeoAddFrm(){
     XaLibAction::AddXslFile("XaAddressGeoAddFrm");
 
     XaLibDom* LibDom=new XaLibDom();
-	
+
 	xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
 	XaLibAction::AddOptionsByDomain(LibDom,XmlDomDoc,XaDomainType,"//root/fieldset[@id='XaAddressGeo']/field[@name='XaDomainType_ID']/options");
 	xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
@@ -92,7 +92,7 @@ void XaAddress::XaAddressGeoAddFrm(){
 
 	string XaUser_ID=HTTP.GetHttpParam("XaUser_ID");
 	string XaTable=HTTP.GetHttpParam("XaTable");
-	
+
 	if (XaUser_ID!="NoHttpParam" && XaTable!="NoHttpParam"){
 	
 		const int MAXITEMS = 6;

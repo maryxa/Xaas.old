@@ -18,25 +18,25 @@ class XaLibSession : protected XaLibBase {
 
         //string GenerateSessionId(int SessionIdLength);
 
-		int GenerateSessionId();
+        int GenerateSessionId();
 		
-		int SessionStart();
+	int SessionStart();
         int SessionValidate(const string& SessionId);
-		string RemoveCookie();
+        string RemoveCookie();
 		
         int SetSessionDbEntry(const string &SessionId,const string &SessionKey) const;
-		void GenerateCookie();
+	void GenerateCookie();
 
 	protected:
 
 	public:
-		XaLibSession();
-		~XaLibSession();
+            XaLibSession();
+            ~XaLibSession();
 
-		int ManageSession(const string& SessionId);
-		string SessionDestroy();
+            int ManageSession(const string& SessionId);
+            string SessionDestroy();
 
-		int SetParameter(const string& SessionId, string ParamName, string ParamValue);
+            int SetParameter(const string& SessionId, string ParamName, string ParamValue);
 		string GetParameter(const string& SessionId, string ParamName);
 		//int GetSessionUserId(XaLibDb* LibDbSession,string SessionId);
 };

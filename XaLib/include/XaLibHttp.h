@@ -43,17 +43,18 @@ class XaLibHttp : private XaLibBase {
 	protected:
 
 	public:
-		XaLibHttp();
-		~XaLibHttp();
+            XaLibHttp();
+            ~XaLibHttp();
+            string RemoveCookie();
+            string SetCookie();
 
-		string GetHttpParam(string HttpParamName);
-		vector<string>  GetHttpParamArray(string HttpParamName);
-		vector<string>  GetHttpParamStruct(string HttpParamName,string StructType);
-		string GetHttpHeadersString();
-        string GetSessionId();
-		string GetClientIpAddress ();
-		string GetServerIpAddress ();
-		string GetSecWebSocketKey();
-
+            string GetHttpParam(string HttpParamName);
+            vector<string>  GetHttpParamArray(string HttpParamName);
+            vector<string>  GetHttpParamStruct(string HttpParamName,string StructType);
+            string GetHttpHeadersString();
+            string GetSessionId();
+            string GetClientIpAddress ();
+            string GetServerIpAddress ();
+            string GetSecWebSocketKey();
 };
 #endif

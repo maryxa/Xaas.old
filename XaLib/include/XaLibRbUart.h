@@ -1,5 +1,5 @@
-#ifndef XALIBRUART_H
-#define XALIBRUART_H
+#ifndef XALIBRBUART_H
+#define XALIBRBUART_H
 
 //! XaLibRbUart -> XaLib Raspberry Uart class.
 
@@ -71,8 +71,10 @@ class XaLibRbUart : public XaLibBase {
 	public:
 		XaLibRbUart();
 
-		string Send(const string &MsgString);
+		string SendReceive(const string &MsgString);
+		string Send();
 
+		
 		~XaLibRbUart();
 
 	protected:

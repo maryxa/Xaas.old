@@ -25,7 +25,7 @@
 //#include <XaOuType.h>
 //#include <XaOu.h>
 #include <XaUserUi.h>
-//#include <XaPages.h>
+#include <XaPages.h>
 
 //#include <XaAddress.h>
 //#include <XaLabel.h>
@@ -92,14 +92,17 @@ void Controller::Dispatch () {
 	
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Dispatching Event");
 
-	SESSION.Token=HTTP.GetHttpParam("token");
+	SESSION.Token=HTTP.GetSessionId();
+
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Token got from Session -> "+ SESSION.Token);
+	
 	REQUEST.CalledObject=HTTP.GetHttpParam("obj");
 	REQUEST.CalledEvent=HTTP.GetHttpParam("evt");
 
 	/*CASE LOGGED IN*/
 	if (REQUEST.CalledObject=="XaUserUi" && REQUEST.CalledEvent=="Login") {
 
-	} else if (SESSION.Token!="NoHttpParam") {
+	} else if (SESSION.Token!="") {
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Token is Valid");
 
@@ -120,6 +123,7 @@ void Controller::Dispatch () {
 	}
 
 	ExecuteEvent();
+	ManageSession();
 	SendResponse();
 		
 		//PROFILA COL BACK END
@@ -148,8 +152,8 @@ void Controller::ExecuteEvent() {
 
 	} else if(REQUEST.CalledObject=="XaPages") {
 
-//		unique_ptr<XaPages> Pages (new XaPages());
-//		Pages->Execute();
+		unique_ptr<XaPages> Pages (new XaPages());
+		Pages->Execute();
 
 	} else {
 

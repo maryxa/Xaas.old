@@ -6,7 +6,7 @@ XaLibToken::XaLibToken(){
 
 int XaLibToken::ValidateToken(const string& Token) {
 
-	DbResMap DbRes=XaLibSql::FreeQuery(DB_SESSION,"SELECT XaUser_ID FROM XaUserToken WHERE token=\""+Token+"\"");
+	DbResMap DbRes=XaLibSql::FreeQuery(DB_SESSION,"SELECT XaUser_ID FROM XaUserToken WHERE status=1 AND token=\""+Token+"\"");
 
 	if (DbRes.size()!=0){
 
@@ -20,19 +20,72 @@ int XaLibToken::ValidateToken(const string& Token) {
 	}
 };
 
+int XaLibToken::RetrieveUserFromToken(const string& Token) {
+
+	DbResMap DbRes=XaLibSql::FreeQuery(DB_SESSION,"SELECT XaUser_ID FROM XaUserToken WHERE status=1 AND token=\""+Token+"\"");
+
+	if (DbRes.size()==0){
+		/*Requested Logout for auser not logged in*/
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"TOKEN did not find any User_ID associated to this token->"+ Token);
+		return 0;
+
+	} else if (DbRes.size()==1){
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"TOKEN 1 User is associated to this token XaUser_ID-> "+ DbRes[0]["XaUser_ID"]);
+		return atoi(DbRes[0]["XaUser_ID"].c_str());
+
+	} else {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"TOKEN More tokens are associated to this User or more users have this token");
+		throw 54;
+	}
+};
+
 int XaLibToken::CheckUserToken(const int& XaUser_ID) {
 
-	DbResMap DbRes=XaLibSql::FreeQuery(DB_SESSION,"SELECT id  FROM XaUserToken WHERE XaUser_ID=\""+to_string(XaUser_ID)+"\"");
+	DbResMap DbRes=XaLibSql::FreeQuery(DB_SESSION,"SELECT id  FROM XaUserToken WHERE status=1 AND XaUser_ID=\""+to_string(XaUser_ID)+"\"");
 
 	if (DbRes.size()!=0){
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"TOKEN Is valid for XaUser_ID-> "+ DbRes[0]["XaUser_ID"]);
-		return DbRes[0]["XaUser_ID"];
+		//return atoi(DbRes[0]["XaUser_ID"].c_str());
+		return 1;
 
 	} else {
 
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"TOKEN Is Not Valid");
 		return 0;
+	}
+};
+
+void XaLibToken::DeactivateUserToken(const int& XaUser_ID) {
+
+	int Updated=XaLibSql::Update(DB_SESSION,"XaUserToken",{"status"},{"2"}, {"XaUser_ID"},{to_string(XaUser_ID)});
+	
+	if (Updated==1 ) {
+		
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Deactivated Token For User Id-> "+ to_string(XaUser_ID));
+
+	} else {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-55 Deactivating Token For User Id -> "+ to_string(XaUser_ID));
+		throw 55;
+	}
+};
+
+void XaLibToken::DeactivateUserToken(const string& Token) {
+
+	
+	int Updated=XaLibSql::Update(DB_SESSION,"XaUserToken",{"status"},{"2"}, {"token"},{Token});
+
+	if (Updated ==1 ) {
+		
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Deactivated Token -> "+ Token);
+
+	} else {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-53 Deactivating Token -> "+ Token);
+		throw 53;
 	}
 };
 

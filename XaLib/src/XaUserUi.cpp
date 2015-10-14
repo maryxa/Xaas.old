@@ -23,7 +23,6 @@ void XaUserUi::Dispatcher (const string &CalledEvent) {
 void XaUserUi::LoginFrm () {
 
 	string StrError=HTTP.GetHttpParam("LoginStatus");
-
 	SetLayout("LoginFrm");
 	AddXmlFile("LoginFrm");
 	AddXslFile("LoginFrm");
@@ -40,24 +39,31 @@ void XaUserUi::LoginFrm () {
 
 void XaUserUi::Login (){
 
-	//CHECK DATA
 	string StrUsername=HTTP.GetHttpParam("username");
 	string StrPassword=HTTP.GetHttpParam("password");
 
-	BuildBackEndCallLogin(StrUsername,StrPassword);
+	//BuildBackEndCallLogin(StrUsername,StrPassword);
 
 	XaLibCurl LibCurl;
     string content = LibCurl.Call(BuildBackEndCallLogin(StrUsername,StrPassword));
 
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Returned Back End Content -> "+content);
-	////ANALIZZO IL TOKEN ????
-	
+	xmlDocPtr XmlDomDoc=XaLibDom::DomFromString(content);
+	string token=XaLibDom::GetElementValueByXPath(XmlDomDoc,"/WsData/token");
+
+	SESSION.Token=token;
+	RESPONSE.ResponseType="location";
+	RESPONSE.Location="obj=XaPages&evt=XaMyPage";
 	RESPONSE.Content=content;
 };
 
-/*
-void XaUser::Logout (){
+void XaUserUi::Logout (){
 	
+	XaLibCurl LibCurl;
+
+	//xmlDocPtr XmlDomDoc=XaLibDom::DomFromString(content);
+	//string token=XaLibDom::GetElementValueByXPath(XmlDomDoc,"/WsData/token");
+
+	/*
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Destroying Session -> SessionID::"+REQUEST.XaSession_ID +" AND UserID::"+ XaLibBase::FromIntToString(REQUEST.XaUser_ID));
 
 	XaLibSql LibSql;
@@ -71,13 +77,13 @@ void XaUser::Logout (){
 
 		VectorWhereSessionDataFields.clear();
 		VectorWhereSessionDataValues.clear();
-				
+
 		//DELETE SESSION
 		vector<string> VectorWhereSessionFields {"SessionID","XaUser_ID"};
 		vector<string> VectorWhereSessionValues {REQUEST.XaSession_ID,XaLibBase::FromIntToString(REQUEST.XaUser_ID)};
 
 		LibSql.Delete(DB_SESSION,"XaSession",VectorWhereSessionFields,VectorWhereSessionValues);
-		
+
 		VectorWhereSessionFields.clear();
 		VectorWhereSessionValues.clear();
 
@@ -95,8 +101,13 @@ void XaUser::Logout (){
     unique_ptr<XaLibXsl> LibXsl (new XaLibXsl(XmlDomDoc,XslDomDoc,XslParams));
 
 	RESPONSE.Content=LibXsl->GetXHtml();
+	 */
+	//SESSION.Token=token;
+	//RESPONSE.ResponseType="location";
+	//RESPONSE.Location="obj=XaUserUi&evt=LogoutFrm";
+//	RESPONSE.Content=content;
 };
-*/
+
 /*
 int XaUser::Authenticate (string StrEmail,string StrPassword) {
 

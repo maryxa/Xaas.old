@@ -36,7 +36,18 @@ function JsWebAppLink() {
 
 };
 
+function FieldRequired() {
+
+	var fields=document.getElementsByClassName("FieldRequired");
+
+	for(var i=0 ;i<fields.length ; i++) {
+
+		fields[i].required=true;
+	};
+
+};
 
 JsWebAppLink();
+FieldRequired();
 
 });

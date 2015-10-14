@@ -24,6 +24,68 @@ function XaCheckUrlReload(link) {
 	}
 }
 
+function XaCallActionSimple(controller,url,method,FormId){
+
+	if(method===""){
+		method = DefaultMethod;
+	}
+
+	if (url!=="") {
+
+		url.replace("&amp;", "&");
+		var url = controller + "?" + url;
+
+		if (FormId!==""){
+			url= url + "&" +XaSerializeForm (FormId);
+		}
+
+		var xmlhttp;
+
+		if (window.XMLHttpRequest) {
+			xmlhttp = new XMLHttpRequest();
+		} else {
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		xmlhttp.onreadystatechange = function () {
+
+			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+
+				document.getElementById("html").innerHTML = xmlhttp.responseText;
+
+			} else if (xmlhttp.status === 500) {
+
+				FlowCheck=false;
+				alert("error sending async call: "+url);
+
+			} else {
+
+			}
+		};
+
+		if (FormId!==""){	
+			var FormValidity=document.getElementById(FormId).checkValidity();
+		}
+
+		if(FormValidity===true || FormId===''){
+
+			FlowCheck=true;
+			xmlhttp.open(method, url, async);
+			xmlhttp.send();
+
+		} else {
+
+			FlowCheck=false;
+			alert(AllRequiredFields);
+		}
+
+	} else {
+		FlowCheck=false;
+		//alert("url parameter is empty");
+	}
+
+
+};
 //Async:=true,false
 //Loader:=0,1
 //ResponseType:= StringText,StringHtml,StringHtmlToAppend

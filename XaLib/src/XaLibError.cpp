@@ -15,8 +15,6 @@ void XaLibError::Setup() {
 	/*
 	 * Log - http - 
 	 */
-	
-	
 	XaErrors[21]={"LOG Unable to open Log file"};
 	XaErrors[22]={"DB Unable to Connect SESSION DB"};
 	XaErrors[23]={"DB Unable to Connect WRITE DB"};
@@ -35,8 +33,11 @@ void XaLibError::Setup() {
 	 */
 	XaErrors[51]={"TOKEN Error Inserting a new TOKEN into database"};
 	XaErrors[52]={"TOKEN is not valid"};
-	XaErrors[53]={""};
-	XaErrors[54]={""};
+	XaErrors[53]={"TOKEN Error Deactivating Token For User Id"};
+	XaErrors[54]={"TOKEN More tokens are associated to this User or more users have this token"};
+	XaErrors[55]={"TOKEN Error Deactivating Token"};
+	XaErrors[56]={};
+	XaErrors[57]={};
 
 	/*
 	 * Web Services
@@ -67,17 +68,21 @@ void XaLibError::Setup() {
 	XaErrors[123]={""};
 
 	/*
-	 * Model
+	 * Action
 	 */
 	XaErrors[201]={"BackEnd Call Type Is Not Supported"};
+	XaErrors[202]={"Parameters and Values Have Different Size"};
 
+	
 	/*Front End Errors*/
-	XaErrors[611]={"Called Object Does Not Exist"};
+	XaErrors[611]={"Requested Object Does Not Exist"};
+	XaErrors[612]={"Requested Event Does Not Exist"};
 
+	
 	XaErrors[621]={"Event Is empty"};
 
 	XaErrors[701]={"CURL Error Performing Request"};
-
+	
 };
 
 XaLibError::~XaLibError(){

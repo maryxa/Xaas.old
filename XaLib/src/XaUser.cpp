@@ -15,7 +15,7 @@ void XaUser::Dispatcher (const string &CalledEvent) {
 
     } else {
 
-		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Event Does Not Exists -> "+CalledEvent);
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42 Requested Event Does Not Exists -> "+CalledEvent);
 		throw 42;
 	}
 
@@ -38,76 +38,49 @@ void XaUser::Login (){
 
 		int n=DbRes.size();
 
-		if (n==0){
+		if (n==0) {
 
-			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"USER Does Not Exist Or The Password Is Wrong -> " + StrUsername);
+			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-45 USER Does Not Exist Or The Password Is Wrong -> " + StrUsername);
 			throw 45;
 
 		} else if (n==1){
 
 			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"USER Valid With ID ->"+DbRes[0]["id"]);
-	
-			//controllare se ha gia un token
-			
+
 			XaLibToken LibToken;
-			
+
+			int TokenCheck=LibToken.CheckUserToken(atoi(DbRes[0]["id"].c_str()));
+
+			if (TokenCheck==1) {
+
+				LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"USER already has a Token to Deactivate");
+				LibToken.DeactivateUserToken (atoi(DbRes[0]["id"].c_str()));
+			}
+
 			SESSION.Token=LibToken.CreateToken(FromStringToInt(DbRes[0]["id"]));
-			
-			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"USER Valid With ID ->"+DbRes[0]["id"]+"And Token  ->"+RESPONSE.Content);
+
+			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"USER Valid With ID ->"+DbRes[0]["id"]+" And Token  ->"+RESPONSE.Content);
 
 		} else {
 
-			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"User Is Not Unique");
+			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-46 User Is Not Unique");
 			throw 46;
 		}
 
 	} else {
 
-		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Username Or Password Is Empty");
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-47 Username Or Password Is Empty");
 		throw 47;
 	}
 
 };
 
-void XaUser::Logout (){
+void XaUser::Logout () {
 
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Destroying Session -> SessionID::"+REQUEST.XaSession_ID +" AND UserID::"+ XaLibBase::FromIntToString(SESSION.XaUser_ID));
-
-	XaLibSql LibSql;
-	LibSql.LockTable(DB_SESSION,"XaSession");
-
-		//DELETE SESSION DATA
-		vector<string> VectorWhereSessionDataFields {"XaSession_ID"};
-		vector<string> VectorWhereSessionDataValues {REQUEST.XaSession_ID};
-
-		LibSql.Delete(DB_SESSION,"XaSessionData",VectorWhereSessionDataFields,VectorWhereSessionDataValues);
-
-		VectorWhereSessionDataFields.clear();
-		VectorWhereSessionDataValues.clear();
-				
-		//DELETE SESSION
-		vector<string> VectorWhereSessionFields {"SessionID","XaUser_ID"};
-		vector<string> VectorWhereSessionValues {REQUEST.XaSession_ID,XaLibBase::FromIntToString(SESSION.XaUser_ID)};
-
-		LibSql.Delete(DB_SESSION,"XaSession",VectorWhereSessionFields,VectorWhereSessionValues);
-		
-		VectorWhereSessionFields.clear();
-		VectorWhereSessionValues.clear();
-
-	LibSql.UnlockTable(DB_SESSION);
-
-//	SetLayout("LoginFrm");
-
-//	AddXmlFile("Logout");
-//	AddXslFile("Logout");
-//
-//	xmlDocPtr XmlDomDoc=XaLibDom::DomFromStringAndFile(XmlFiles,XmlStrings,1);
-//	xmlDocPtr XslDomDoc=XaLibDom::DomFromStringAndFile(XslFiles,XslStrings,2);
-
-//	AddXslParamCommon();
-  //  unique_ptr<XaLibXsl> LibXsl (new XaLibXsl(XmlDomDoc,XslDomDoc,XslParams));
-
-	//RESPONSE.Content=LibXsl->GetXHtml();
+	XaLibToken::DeactivateUserToken(SESSION.Token);
+	
+	SESSION.Token="0";
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Logout Affected");
 };
 
 XaUser::~XaUser(){

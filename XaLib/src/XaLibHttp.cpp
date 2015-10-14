@@ -352,15 +352,40 @@ string XaLibHttp::GetSessionId(){
 
 	unsigned ParamEnd=HttpCookieData.find("XaSessionId=");
 
-	if (ParamEnd!=-1){
+	if (ParamEnd!=-1) {
 
 		string SessionId = HttpCookieData.substr(ParamEnd+12,XaLibBase::FromStringToInt(SETTINGS["SessionIdLength"]));
 		return SessionId;
 
 	} else {
-		
+
 		return "";
 	}
+};
+
+string XaLibHttp::RemoveCookie() {
+
+	string cookie1="Set-Cookie:XaSessionId=deleted;";
+
+	string cookie2="path=/;";
+	string cookie3="expires=Thu, 01 Jan 1970 00:00:00 GMT;";
+
+	string cookie= cookie1+cookie2+cookie3;
+
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Generated Remove Cookie -> " +cookie);
+
+return cookie;
+};
+
+string XaLibHttp::SetCookie(){
+
+	string cookie1="Set-Cookie:XaSessionId=";
+	string cookie2=";path=/;HttpOnly;";
+	string cookie= cookie1+SESSION.Token+cookie2;
+	
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Generated Set Cookie -> " +cookie);
+
+return cookie;
 };
 
 string XaLibHttp::GetClientIpAddress (){

@@ -10,7 +10,7 @@ void XaLibControllerBackEnd::OnStart(const string& ConfFile) {
 		LoadXmlConfFile(ConfFile);
 		StartLog();
 
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"########################### STARTING ACTION LOG ############################");
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"########################### STARTING BACK END ACTION LOG ############################");
 
 		StartDb();
 		StartHttp();

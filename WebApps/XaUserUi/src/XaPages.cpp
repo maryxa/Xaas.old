@@ -22,6 +22,8 @@ void XaPages::Dispatcher (const string &CalledEvent) {
 
 void XaPages::XaMyPage() {
 
+	LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"XXXXXXXXXXXXXXXXXX");
+
 	AddXmlFile("XaMyPage");
 	SetLayout(REQUEST.CalledLayout);
 	AddXslFile("XaMyPage");

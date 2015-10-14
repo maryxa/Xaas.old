@@ -75,7 +75,7 @@ ifeq ($(UNAME_S),Darwin)
     XALLEGRO_DIR = /XAllegro/Xaas
     XALIB=$(XALLEGRO_DIR)/XaLib/bin/XaLib.so
 
-    CPPINCS  = -I../include -I/usr/include -I/usr/include/libxml2 -I/usr/local/mysql/include -I$(XALLEGRO_DIR)/XaLib/include
+    CPPINCS  = -I../include -I/usr/include -I/opt/local/include -I/usr/include/libxml2 -I/usr/local/mysql/include -I$(XALLEGRO_DIR)/XaLib/include
     CPPFLAGS = $(CPPINCS)  -std=c++0x -O3 -Wall
 
 endif

@@ -98,8 +98,16 @@ void XaLibController::StartDb(){
 };
 
 void XaLibController::SendHeaders (const string& HeadersType) {
+	
+	
+	//cout<<HTTP.SetCookie()<<endl;
 
-	if (HeadersType=="html" || HeadersType=="xhtml") {
+	if (HeadersType=="location" || HeadersType=="xhtml") {
+
+		cout<<"Location: ?"+RESPONSE.Location<<endl;
+		cout<< "Content-Type: text/html; charset=utf-8\n\n";
+	
+	} else if (HeadersType=="html" || HeadersType=="xhtml") {
 
 		cout<< "Content-Type: text/html; charset=utf-8\n\n";
 
@@ -116,12 +124,13 @@ void XaLibController::SendHeaders (const string& HeadersType) {
 		cout<< "Content-Type: text/html; charset=utf-8\n\n";
 	}
 };
-
-void XaLibController::SendLocationHeaders(const string& Location){
+/*
+void XaLibController::SendHeadersLocation(const string& Location){
 
 	cout<<"Location: ?"+Location<<endl;
 	cout<< "Content-Type: text/html; charset=utf-8\n\n";
 };
+*/
 
 void XaLibController::GetServerInfo(){
 

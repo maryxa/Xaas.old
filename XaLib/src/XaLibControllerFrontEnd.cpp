@@ -10,13 +10,14 @@ void XaLibControllerFrontEnd::OnStart(const string& ConfFile) {
 		LoadXmlConfFile(ConfFile);
 		StartLog();
 
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"########################### STARTING ACTION LOG ############################");
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"########################### STARTING FRONT END ACTION LOG ############################");
 
 		//StartDb();
 		StartHttp();
 
 		GetServerInfo();
 	//	GetClientInfo();
+		GetLayout();
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request IP -> "+SESSION.ClientIp);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Read HttpString -> " + REQUEST.HeadersString);
@@ -31,28 +32,32 @@ void XaLibControllerFrontEnd::OnStart(const string& ConfFile) {
 	}
 };
 
+void XaLibControllerFrontEnd::GetLayout(){
+
+	REQUEST.CalledLayout=HTTP.GetHttpParam("lay");
+};
+
+void XaLibControllerFrontEnd::ManageSession(){
+
+	if (REQUEST.CalledObject=="XaUserUi" && REQUEST.CalledEvent=="Login") {
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Setting Cookie");
+		cout<<HTTP.SetCookie()<<endl;
+
+	} else if (REQUEST.CalledObject=="XaUserUi" && REQUEST.CalledEvent=="Logout") {
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Removing Cookie");
+		cout<<HTTP.RemoveCookie()<<endl;
+	}
+};
+
 void XaLibControllerFrontEnd::SendResponse(){
 
-	//if (RESPONSE.Object!="" && RESPONSE.Event!="") {
-
-	//LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Calling PostObject ->"+RESPONSE.Object+ ":: With PostEvent ->"+RESPONSE.Event);
-	
-	//	REQUEST.CalledObject=RESPONSE.Object;
-	//	REQUEST.CalledEvent=RESPONSE.Event;
-	//	REQUEST.HeadersStringCustom=RESPONSE.Headers;
-
-	//	RESPONSE.Object="";
-	//	RESPONSE.Event="";
-
-	//	Dispatch();
-
-	//} else {
-
-		//LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Sending Page Content -> " +RESPONSE.Content);
-		SendHeaders(RESPONSE.ResponseType);
-		cout<<RESPONSE.Content<<endl;
-	//}
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Sending Response Page Content -> " +RESPONSE.Content);
+	SendHeaders(RESPONSE.ResponseType);
+	cout<<RESPONSE.Content<<endl;
 };
+
 /*
 void XaLibController::GetServerInfo(){
 
@@ -93,11 +98,6 @@ void XaLibController::GetCall(){
 
 	REQUEST.CalledObject=HTTP.GetHttpParam("obj");
 	REQUEST.CalledEvent=HTTP.GetHttpParam("evt");
-};
-
-void XaLibController::GetLayout(){
-
-	REQUEST.CalledLayout=HTTP.GetHttpParam("lay");
 };
 
 void XaLibController::GetWs(){

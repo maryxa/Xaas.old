@@ -57,6 +57,10 @@ class XaLibControllerFrontEnd : protected XaLibController {
 		*
 		*/
 		void OnStart(const string& ConfFile);
+		
+		//void SetCookie();
+                void ManageSession();
+
 		void SendResponse();
 		
 //		int OnStartStatus=1;
@@ -81,7 +85,7 @@ class XaLibControllerFrontEnd : protected XaLibController {
 	public:
 
 //		void GetCall();
-//		void GetLayout();
+		void GetLayout();
 //		void GetServerInfo();
 //		void GetClientInfo();
 //		void GetWs();

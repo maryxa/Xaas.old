@@ -63,7 +63,7 @@ ifeq ($(UNAME_S),Darwin)
     BIN      = $(CUR_DIR)/../bin/XaLib.so
 
     LIBS     = -lxml2 -lxslt -lexslt -lssl -lcrypto -L/usr/local/mysql/lib -lmysqlclient -lcurl 
-    CPPINCS  = -I../include -I/usr/include -I/usr/include/libxml2 -I/usr/local/mysql/include
+    CPPINCS  = -I../include -I/usr/include -I/opt/local/include -I/usr/include/libxml2 -I/usr/local/mysql/include
     LDFLAGS  = -dynamiclib -install_name
     CPPFLAGS = $(CPPINCS) -fPIC -std=c++0x -O3 -Wall
 

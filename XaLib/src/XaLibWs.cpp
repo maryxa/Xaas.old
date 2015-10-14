@@ -222,7 +222,7 @@ void XaLibWs::ExtractData(){
 		
 		//NEL CASO DI XML INSERIRE GLI IF PER JSON ECC
 		
-		int ParamsNum=LibDom->GetNumRowByXPathInt(XmlDomDoc,"/WsData/params/param");
+		int ParamsNum=LibDom->GetNumRowByXPathInt(XmlDomDoc,"/WsData/params/p");
 
 		if (ParamsNum==0){
 
@@ -236,8 +236,8 @@ void XaLibWs::ExtractData(){
 			/*Adding parameter to the request*/
 			for (int i=0;i<ParamsNum;i++) {
 
-				string ParamName =LibDom->GetElementValueByXPath(XmlDomDoc,"/WsData/params/param["+ XaLibBase::FromIntToString(i+1) + "]/name");
-				string ParamValue=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsData/params/param["+ XaLibBase::FromIntToString(i+1) + "]/value");
+				string ParamName =LibDom->GetElementValueByXPath(XmlDomDoc,"/WsData/params/p["+ XaLibBase::FromIntToString(i+1) + "]/n");
+				string ParamValue=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsData/params/p"+ XaLibBase::FromIntToString(i+1) + "]/v");
 
 				LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"WS Adding Parameter ->" +ParamName +" :: With Value -> "+ParamValue);
 

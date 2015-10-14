@@ -128,11 +128,11 @@ struct XaRequest {
 struct XaResponse {
 
 	/*LEGACY*/
-	string Object;
-	string Event;
-	string Headers;
+	//string Object;
+	//string Event;
+	//string Headers;
 	/*LEGACY END*/
-	
+	string Location;
 	string Content;
 	string ResponseType;
 };

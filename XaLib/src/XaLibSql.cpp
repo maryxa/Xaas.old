@@ -40,7 +40,8 @@ int XaLibSql::Insert(XaLibDb& LibDb,string TableName,const vector<string>& Vecto
 	     		SqlQry.append(VectorValues.at(n));
 	     		SqlQry.append("\"");
 
-	     	} else{
+	     	} else {
+
 	     		SqlQry.append("\"");
 	     		string ToAppend=LibChar->ClearSqlEntities(VectorValues.at(n));
 
@@ -194,9 +195,9 @@ int XaLibSql::Update(XaLibDb& LibDb,string TableName,const vector<string>& Vecto
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executing Query Update  -> " +SqlQry);
 
-		unsigned UpdatedId=LibDb.ExUpdate(SqlQry);
+		unsigned Updated=LibDb.ExUpdate(SqlQry);
 
-		if (UpdatedId==0){
+		if (Updated==0){
 
 			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error occurred updating Record in -> "+ TableName);
 
@@ -204,7 +205,7 @@ int XaLibSql::Update(XaLibDb& LibDb,string TableName,const vector<string>& Vecto
 
 		} else {
 
-			return UpdatedId;
+			return Updated;
 		}
 
 	} else {
