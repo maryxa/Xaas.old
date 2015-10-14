@@ -212,8 +212,8 @@ class XaLibAction : protected XaLibBase {
         *       <token>[TOKEN]</token>
         *   </login>
         *   <operation>
-        *       <object>XaUser</object>
-        *       <event>Logout</event>
+        *       <object>[OBJECT]</object>
+        *       <event>[EVENT]</event>
         *   </operation>
         *   <params>
         *       <p>

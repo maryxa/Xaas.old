@@ -89,8 +89,8 @@
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_xa_lib_controller.html#a28d7185991f306201ed1b2351157b6a8">GetServerInfo</a>();</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_xa_lib_controller.html#a5829e912ac07d40942a93dfb58ed2ac3">SendHeaders</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; HeadersType);    </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_xa_lib_controller.html#a576ad3a65371634cf050c36007608456">SendLocationHeaders</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; Location);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="comment">//void SendHeadersLocation(const string&amp; Location);</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="comment">/*</span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">        int OnStartStatus=1;</span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">        void OnStart(const string&amp; ConfFile);</span></div>
@@ -124,7 +124,6 @@
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    </div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;};</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="class_xa_lib_controller_html_a576ad3a65371634cf050c36007608456"><div class="ttname"><a href="class_xa_lib_controller.html#a576ad3a65371634cf050c36007608456">XaLibController::SendLocationHeaders</a></div><div class="ttdeci">void SendLocationHeaders(const string &amp;Location)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_8cpp_source.html#l00120">XaLibController.cpp:120</a></div></div>
 <div class="ttc" id="class_xa_lib_controller_html_a5829e912ac07d40942a93dfb58ed2ac3"><div class="ttname"><a href="class_xa_lib_controller.html#a5829e912ac07d40942a93dfb58ed2ac3">XaLibController::SendHeaders</a></div><div class="ttdeci">void SendHeaders(const string &amp;HeadersType)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_8cpp_source.html#l00100">XaLibController.cpp:100</a></div></div>
 <div class="ttc" id="_xa_lib_db_8h_html"><div class="ttname"><a href="_xa_lib_db_8h.html">XaLibDb.h</a></div></div>
 <div class="ttc" id="_xa_lib_ws_8h_html"><div class="ttname"><a href="_xa_lib_ws_8h.html">XaLibWs.h</a></div></div>
@@ -141,11 +140,11 @@
 <div class="ttc" id="_xa_lib_http_8h_html"><div class="ttname"><a href="_xa_lib_http_8h.html">XaLibHttp.h</a></div></div>
 <div class="ttc" id="_xa_lib_curl_8h_html"><div class="ttname"><a href="_xa_lib_curl_8h.html">XaLibCurl.h</a></div></div>
 <div class="ttc" id="_xa_user_8h_html"><div class="ttname"><a href="_xa_user_8h.html">XaUser.h</a></div></div>
-<div class="ttc" id="class_xa_lib_controller_html_a28d7185991f306201ed1b2351157b6a8"><div class="ttname"><a href="class_xa_lib_controller.html#a28d7185991f306201ed1b2351157b6a8">XaLibController::GetServerInfo</a></div><div class="ttdeci">void GetServerInfo()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_8cpp_source.html#l00126">XaLibController.cpp:126</a></div></div>
+<div class="ttc" id="class_xa_lib_controller_html_a28d7185991f306201ed1b2351157b6a8"><div class="ttname"><a href="class_xa_lib_controller.html#a28d7185991f306201ed1b2351157b6a8">XaLibController::GetServerInfo</a></div><div class="ttdeci">void GetServerInfo()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_8cpp_source.html#l00135">XaLibController.cpp:135</a></div></div>
 <div class="ttc" id="_xa_lib_crypto_8h_html"><div class="ttname"><a href="_xa_lib_crypto_8h.html">XaLibCrypto.h</a></div></div>
 <div class="ttc" id="_xa_lib_mail_8h_html"><div class="ttname"><a href="_xa_lib_mail_8h.html">XaLibMail.h</a></div></div>
 <div class="ttc" id="class_xa_lib_controller_html_a5668b4e00ad6bbd9c47886b864631b46"><div class="ttname"><a href="class_xa_lib_controller.html#a5668b4e00ad6bbd9c47886b864631b46">XaLibController::StartDb</a></div><div class="ttdeci">void StartDb()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_8cpp_source.html#l00055">XaLibController.cpp:55</a></div></div>
-<div class="ttc" id="class_xa_lib_controller_html_ae9f7c94e05235638c98e4c411e2e47d6"><div class="ttname"><a href="class_xa_lib_controller.html#ae9f7c94e05235638c98e4c411e2e47d6">XaLibController::~XaLibController</a></div><div class="ttdeci">virtual ~XaLibController()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_8cpp_source.html#l00578">XaLibController.cpp:578</a></div></div>
+<div class="ttc" id="class_xa_lib_controller_html_ae9f7c94e05235638c98e4c411e2e47d6"><div class="ttname"><a href="class_xa_lib_controller.html#ae9f7c94e05235638c98e4c411e2e47d6">XaLibController::~XaLibController</a></div><div class="ttdeci">virtual ~XaLibController()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_8cpp_source.html#l00587">XaLibController.cpp:587</a></div></div>
 <div class="ttc" id="_xa_lib_config_8h_html"><div class="ttname"><a href="_xa_lib_config_8h.html">XaLibConfig.h</a></div></div>
 <div class="ttc" id="class_xa_lib_base_html"><div class="ttname"><a href="class_xa_lib_base.html">XaLibBase</a></div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_base_8h_source.html#l00151">XaLibBase.h:151</a></div></div>
 <div class="ttc" id="_xa_lib_log_8h_html"><div class="ttname"><a href="_xa_lib_log_8h.html">XaLibLog.h</a></div></div>
@@ -159,7 +158,7 @@
 </div>
 </div>
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 27 2015 15:37:10 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
+Generated on Wed Oct 14 2015 23:09:39 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
 <!--img class="footer" src="doxygen.png" alt="doxygen"/-->
 </a> 1.8.10
 </small></address>

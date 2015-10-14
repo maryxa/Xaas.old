@@ -85,6 +85,12 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:add9b918dcff8574fdd8522175b83623f"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_token.html#add9b918dcff8574fdd8522175b83623f">CheckUserToken</a> (const int &amp;XaUser_ID)</td></tr>
 <tr class="separator:add9b918dcff8574fdd8522175b83623f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a4fb1875299453bc0ecf195dfd83e2e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_token.html#a9a4fb1875299453bc0ecf195dfd83e2e">DeactivateUserToken</a> (const int &amp;XaUser_ID)</td></tr>
+<tr class="separator:a9a4fb1875299453bc0ecf195dfd83e2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37fd5d7ef58b23964052b86662edbb17"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_token.html#a37fd5d7ef58b23964052b86662edbb17">DeactivateUserToken</a> (const string &amp;Token)</td></tr>
+<tr class="separator:a37fd5d7ef58b23964052b86662edbb17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96faedd09140f2daf86927dbdf9230f5"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_token.html#a96faedd09140f2daf86927dbdf9230f5">RetrieveUserFromToken</a> (const string &amp;Token)</td></tr>
+<tr class="separator:a96faedd09140f2daf86927dbdf9230f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ce87932dc5c494f9528c568b0050683"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_token.html#a5ce87932dc5c494f9528c568b0050683">ValidateToken</a> (const string &amp;Token)</td></tr>
 <tr class="separator:a5ce87932dc5c494f9528c568b0050683"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -132,7 +138,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="_xa_lib_token_8h_source.html#l00016">16</a> of file <a class="el" href="_xa_lib_token_8h_source.html">XaLibToken.h</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_token_8h_source.html#l00012">12</a> of file <a class="el" href="_xa_lib_token_8h_source.html">XaLibToken.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a73faddc9976e369ecd54c0b5ddabaace"></a>
 <div class="memitem">
@@ -164,7 +170,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_token_8cpp_source.html#l00096">96</a> of file <a class="el" href="_xa_lib_token_8cpp_source.html">XaLibToken.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_token_8cpp_source.html#l00149">149</a> of file <a class="el" href="_xa_lib_token_8cpp_source.html">XaLibToken.cpp</a>.</p>
 
 </div>
 </div>
@@ -199,10 +205,10 @@ If the User already has a Valid Token the old one will be overrided<br />
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int the corrisponding User Token table ID</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1=The user already has a Token - 0=The User does not have a Token</dd></dl>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> TableId=<a class="code" href="class_xa_lib_token.html#add9b918dcff8574fdd8522175b83623f">CheckUserToken</a>(XY);</div>
 </div><!-- fragment --> 
-<p>Definition at line <a class="el" href="_xa_lib_token_8cpp_source.html#l00023">23</a> of file <a class="el" href="_xa_lib_token_8cpp_source.html">XaLibToken.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_token_8cpp_source.html#l00044">44</a> of file <a class="el" href="_xa_lib_token_8cpp_source.html">XaLibToken.cpp</a>.</p>
 
 </div>
 </div>
@@ -220,7 +226,77 @@ If the User already has a Valid Token the old one will be overrided<br />
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_token_8cpp_source.html#l00040">40</a> of file <a class="el" href="_xa_lib_token_8cpp_source.html">XaLibToken.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_token_8cpp_source.html#l00093">93</a> of file <a class="el" href="_xa_lib_token_8cpp_source.html">XaLibToken.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9a4fb1875299453bc0ecf195dfd83e2e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void XaLibToken::DeactivateUserToken </td>
+          <td>(</td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>XaUser_ID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Deactivate every token associated to the User<br />
+Database table XaUserToken field status=2<br />
+</p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">XaUser_ID</td><td>the User_ID of the User</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line">DeleteUserToken(XaUser_ID);</div>
+</div><!-- fragment --> 
+<p>Definition at line <a class="el" href="_xa_lib_token_8cpp_source.html#l00061">61</a> of file <a class="el" href="_xa_lib_token_8cpp_source.html">XaLibToken.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a37fd5d7ef58b23964052b86662edbb17"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void XaLibToken::DeactivateUserToken </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>Token</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Deactivate a Token and any other token associated to the User an<br />
+Database table XaUserToken field status=2<br />
+</p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">XaUser_ID</td><td>the User_ID of the User</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line">DeleteUserToken(<span class="stringliteral">&quot;Token&quot;</span>);</div>
+</div><!-- fragment --> 
+<p>Definition at line <a class="el" href="_xa_lib_token_8cpp_source.html#l00076">76</a> of file <a class="el" href="_xa_lib_token_8cpp_source.html">XaLibToken.cpp</a>.</p>
 
 </div>
 </div>
@@ -245,7 +321,43 @@ If the User already has a Valid Token the old one will be overrided<br />
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_token_8cpp_source.html#l00082">82</a> of file <a class="el" href="_xa_lib_token_8cpp_source.html">XaLibToken.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_token_8cpp_source.html#l00135">135</a> of file <a class="el" href="_xa_lib_token_8cpp_source.html">XaLibToken.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a96faedd09140f2daf86927dbdf9230f5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int XaLibToken::RetrieveUserFromToken </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>Token</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Retrieve the User Id of a valid Token<br />
+During a Logout this method retrieve the User_ID in order to call the DeactivateUserToken<br />
+ </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">token</td><td>a valid Token</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0=any user is associated to this token, User_ID</dd></dl>
+<div class="fragment"><div class="line"><span class="keywordtype">int</span> UserId=<a class="code" href="class_xa_lib_token.html#a96faedd09140f2daf86927dbdf9230f5">RetrieveUserFromToken</a>(<span class="stringliteral">&quot;Token&quot;</span>);</div>
+</div><!-- fragment --> 
+<p>Definition at line <a class="el" href="_xa_lib_token_8cpp_source.html#l00023">23</a> of file <a class="el" href="_xa_lib_token_8cpp_source.html">XaLibToken.cpp</a>.</p>
 
 </div>
 </div>
@@ -288,7 +400,7 @@ If the User already has a Valid Token the old one will be overrided<br />
 </div>
 </div>
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 27 2015 15:37:11 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
+Generated on Wed Oct 14 2015 23:09:40 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
 <!--img class="footer" src="doxygen.png" alt="doxygen"/-->
 </a> 1.8.10
 </small></address>

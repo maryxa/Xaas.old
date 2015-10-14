@@ -411,42 +411,67 @@
 <div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;</div>
 <div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    <span class="keywordtype">unsigned</span> ParamEnd=HttpCookieData.find(<span class="stringliteral">&quot;XaSessionId=&quot;</span>);</div>
 <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <span class="keywordflow">if</span> (ParamEnd!=-1){</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <span class="keywordflow">if</span> (ParamEnd!=-1) {</div>
 <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;</div>
 <div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        <span class="keywordtype">string</span> SessionId = HttpCookieData.substr(ParamEnd+12,<a class="code" href="class_xa_lib_base.html#a007496cfd361e6f3e9d0d3782f181c08">XaLibBase::FromStringToInt</a>(<a class="code" href="_xa_lib_action_8h.html#a0c7b24211013afe66dbbe67ec070480b">SETTINGS</a>[<span class="stringliteral">&quot;SessionIdLength&quot;</span>]));</div>
 <div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        <span class="keywordflow">return</span> SessionId;</div>
 <div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;</div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;        </div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;</div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;        <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
 <div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    }</div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;};</div>
 <div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;</div>
-<div class="line"><a name="l00366"></a><span class="lineno"><a class="line" href="class_xa_lib_http.html#a36a6e7975b3c53fc6734e8d6108d539b">  366</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="class_xa_lib_http.html#a36a6e7975b3c53fc6734e8d6108d539b">XaLibHttp::GetClientIpAddress</a> (){</div>
+<div class="line"><a name="l00366"></a><span class="lineno"><a class="line" href="class_xa_lib_http.html#a525fe5711a26b0d846dea81553978843">  366</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="class_xa_lib_http.html#a525fe5711a26b0d846dea81553978843">XaLibHttp::RemoveCookie</a>() {</div>
 <div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <span class="keywordtype">string</span> IpAddress=<span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    </div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    <span class="comment">//LOAD BALANCING CASE</span></div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <span class="keywordflow">if</span> (this-&gt;<a class="code" href="class_xa_lib_http.html#addcfe069977176021f696acce0176ffe">HTTP_X_FORWARDED_FOR</a>!=<span class="stringliteral">&quot;&quot;</span>) {</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    </div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;        IpAddress=this-&gt;<a class="code" href="class_xa_lib_http.html#addcfe069977176021f696acce0176ffe">HTTP_X_FORWARDED_FOR</a>;</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <span class="keywordtype">string</span> cookie1=<span class="stringliteral">&quot;Set-Cookie:XaSessionId=deleted;&quot;</span>;</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    <span class="keywordtype">string</span> cookie2=<span class="stringliteral">&quot;path=/;&quot;</span>;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <span class="keywordtype">string</span> cookie3=<span class="stringliteral">&quot;expires=Thu, 01 Jan 1970 00:00:00 GMT;&quot;</span>;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    <span class="keywordtype">string</span> cookie= cookie1+cookie2+cookie3;</div>
 <div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    <a class="code" href="_xa_lib_action_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903">LOG</a>.<a class="code" href="class_xa_lib_log.html#a9c39f51761652b605da4fb35cfd96772">Write</a>(<span class="stringliteral">&quot;INF&quot;</span>, __FILE__, __FUNCTION__,__LINE__,<span class="stringliteral">&quot;Generated Remove Cookie -&gt; &quot;</span> +cookie);</div>
 <div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;        IpAddress=this-&gt;<a class="code" href="class_xa_lib_http.html#aa275895e252c68c0d329e5e60d99c316">HTTP_REMOTE_ADDR</a>;</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    </div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    }</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <span class="keywordflow">return</span> IpAddress;</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;};</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;</div>
-<div class="line"><a name="l00384"></a><span class="lineno"><a class="line" href="class_xa_lib_http.html#a8a4ef145f1d72c87ccc1b1f7c25deac2">  384</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="class_xa_lib_http.html#a8a4ef145f1d72c87ccc1b1f7c25deac2">XaLibHttp::GetServerIpAddress</a> (){</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="keywordflow">return</span> this-&gt;<a class="code" href="class_xa_lib_http.html#a41fb1397674db467e76b48f8017da597">HTTP_SERVER_ADDR</a>;</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;};</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;</div>
-<div class="line"><a name="l00389"></a><span class="lineno"><a class="line" href="class_xa_lib_http.html#afdf406aafddeae7c8f280fe6f8fc2330">  389</a></span>&#160;<a class="code" href="class_xa_lib_http.html#afdf406aafddeae7c8f280fe6f8fc2330">XaLibHttp::~XaLibHttp</a>(){</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;};</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;<span class="keywordflow">return</span> cookie;</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;};</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;</div>
+<div class="line"><a name="l00380"></a><span class="lineno"><a class="line" href="class_xa_lib_http.html#a35e96d9c63d4a1730314e2fa2ac653c7">  380</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="class_xa_lib_http.html#a35e96d9c63d4a1730314e2fa2ac653c7">XaLibHttp::SetCookie</a>(){</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    <span class="keywordtype">string</span> cookie1=<span class="stringliteral">&quot;Set-Cookie:XaSessionId=&quot;</span>;</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    <span class="keywordtype">string</span> cookie2=<span class="stringliteral">&quot;;path=/;HttpOnly;&quot;</span>;</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <span class="keywordtype">string</span> cookie= cookie1+<a class="code" href="_xa_lib_action_8h.html#affab3b1c2b6c119cba6c4fd57b963dbf">SESSION</a>.<a class="code" href="struct_xa_session.html#a76067819a8d7ec688023b3bcdf2033e3">Token</a>+cookie2;</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    </div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <a class="code" href="_xa_lib_action_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903">LOG</a>.<a class="code" href="class_xa_lib_log.html#a9c39f51761652b605da4fb35cfd96772">Write</a>(<span class="stringliteral">&quot;INF&quot;</span>, __FILE__, __FUNCTION__,__LINE__,<span class="stringliteral">&quot;Generated Set Cookie -&gt; &quot;</span> +cookie);</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;<span class="keywordflow">return</span> cookie;</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;};</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;</div>
+<div class="line"><a name="l00391"></a><span class="lineno"><a class="line" href="class_xa_lib_http.html#a36a6e7975b3c53fc6734e8d6108d539b">  391</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="class_xa_lib_http.html#a36a6e7975b3c53fc6734e8d6108d539b">XaLibHttp::GetClientIpAddress</a> (){</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <span class="keywordtype">string</span> IpAddress=<span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    </div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    <span class="comment">//LOAD BALANCING CASE</span></div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="keywordflow">if</span> (this-&gt;<a class="code" href="class_xa_lib_http.html#addcfe069977176021f696acce0176ffe">HTTP_X_FORWARDED_FOR</a>!=<span class="stringliteral">&quot;&quot;</span>) {</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    </div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;        IpAddress=this-&gt;<a class="code" href="class_xa_lib_http.html#addcfe069977176021f696acce0176ffe">HTTP_X_FORWARDED_FOR</a>;</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;        IpAddress=this-&gt;<a class="code" href="class_xa_lib_http.html#aa275895e252c68c0d329e5e60d99c316">HTTP_REMOTE_ADDR</a>;</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    </div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    }</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    <span class="keywordflow">return</span> IpAddress;</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;};</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;</div>
+<div class="line"><a name="l00409"></a><span class="lineno"><a class="line" href="class_xa_lib_http.html#a8a4ef145f1d72c87ccc1b1f7c25deac2">  409</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="class_xa_lib_http.html#a8a4ef145f1d72c87ccc1b1f7c25deac2">XaLibHttp::GetServerIpAddress</a> (){</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    <span class="keywordflow">return</span> this-&gt;<a class="code" href="class_xa_lib_http.html#a41fb1397674db467e76b48f8017da597">HTTP_SERVER_ADDR</a>;</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;};</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;</div>
+<div class="line"><a name="l00414"></a><span class="lineno"><a class="line" href="class_xa_lib_http.html#afdf406aafddeae7c8f280fe6f8fc2330">  414</a></span>&#160;<a class="code" href="class_xa_lib_http.html#afdf406aafddeae7c8f280fe6f8fc2330">XaLibHttp::~XaLibHttp</a>(){</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;};</div>
 <div class="ttc" id="class_xa_lib_http_html_a0598d2747ef37fff80f1ef0a707ba8c3"><div class="ttname"><a href="class_xa_lib_http.html#a0598d2747ef37fff80f1ef0a707ba8c3">XaLibHttp::HTTP_SERVER_PORT</a></div><div class="ttdeci">string HTTP_SERVER_PORT</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8h_source.html#l00034">XaLibHttp.h:34</a></div></div>
 <div class="ttc" id="class_xa_lib_http_html_adddb08a70df72209f73db01076729ef9"><div class="ttname"><a href="class_xa_lib_http.html#adddb08a70df72209f73db01076729ef9">XaLibHttp::HTTP_PATH</a></div><div class="ttdeci">string HTTP_PATH</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8h_source.html#l00022">XaLibHttp.h:22</a></div></div>
 <div class="ttc" id="class_xa_lib_http_html_a8dc83857196cf8db482a019874524aeb"><div class="ttname"><a href="class_xa_lib_http.html#a8dc83857196cf8db482a019874524aeb">XaLibHttp::HTTP_COMSPEC</a></div><div class="ttdeci">string HTTP_COMSPEC</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8h_source.html#l00013">XaLibHttp.h:13</a></div></div>
@@ -454,9 +479,10 @@
 <div class="ttc" id="_xa_lib_action_8h_html_a4f7e146c4c04b3b3574c3d19fcdc0903"><div class="ttname"><a href="_xa_lib_action_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903">LOG</a></div><div class="ttdeci">XaLibLog LOG</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_8cpp_source.html#l00006">XaLibController.cpp:6</a></div></div>
 <div class="ttc" id="class_xa_lib_http_html_a2c6164e251b5b5375741da720ff536c8"><div class="ttname"><a href="class_xa_lib_http.html#a2c6164e251b5b5375741da720ff536c8">XaLibHttp::HTTP_SERVER_PROTOCOL</a></div><div class="ttdeci">string HTTP_SERVER_PROTOCOL</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8h_source.html#l00035">XaLibHttp.h:35</a></div></div>
 <div class="ttc" id="class_xa_lib_http_html_addcfe069977176021f696acce0176ffe"><div class="ttname"><a href="class_xa_lib_http.html#addcfe069977176021f696acce0176ffe">XaLibHttp::HTTP_X_FORWARDED_FOR</a></div><div class="ttdeci">string HTTP_X_FORWARDED_FOR</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8h_source.html#l00038">XaLibHttp.h:38</a></div></div>
+<div class="ttc" id="struct_xa_session_html_a76067819a8d7ec688023b3bcdf2033e3"><div class="ttname"><a href="struct_xa_session.html#a76067819a8d7ec688023b3bcdf2033e3">XaSession::Token</a></div><div class="ttdeci">string Token</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_base_8h_source.html#l00053">XaLibBase.h:53</a></div></div>
 <div class="ttc" id="_xa_lib_char_8h_html"><div class="ttname"><a href="_xa_lib_char_8h.html">XaLibChar.h</a></div></div>
 <div class="ttc" id="class_xa_lib_http_html_a5ceebadbdcdc176478ea5a7e91e09977"><div class="ttname"><a href="class_xa_lib_http.html#a5ceebadbdcdc176478ea5a7e91e09977">XaLibHttp::HTTP_QUERY_STRING</a></div><div class="ttdeci">string HTTP_QUERY_STRING</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8h_source.html#l00023">XaLibHttp.h:23</a></div></div>
-<div class="ttc" id="class_xa_lib_http_html_a8a4ef145f1d72c87ccc1b1f7c25deac2"><div class="ttname"><a href="class_xa_lib_http.html#a8a4ef145f1d72c87ccc1b1f7c25deac2">XaLibHttp::GetServerIpAddress</a></div><div class="ttdeci">string GetServerIpAddress()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8cpp_source.html#l00384">XaLibHttp.cpp:384</a></div></div>
+<div class="ttc" id="class_xa_lib_http_html_a8a4ef145f1d72c87ccc1b1f7c25deac2"><div class="ttname"><a href="class_xa_lib_http.html#a8a4ef145f1d72c87ccc1b1f7c25deac2">XaLibHttp::GetServerIpAddress</a></div><div class="ttdeci">string GetServerIpAddress()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8cpp_source.html#l00409">XaLibHttp.cpp:409</a></div></div>
 <div class="ttc" id="struct_xa_request_html"><div class="ttname"><a href="struct_xa_request.html">XaRequest</a></div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_base_8h_source.html#l00062">XaLibBase.h:62</a></div></div>
 <div class="ttc" id="class_xa_lib_http_html_a9abcd934ae0e3e06c9f932bff71ab204"><div class="ttname"><a href="class_xa_lib_http.html#a9abcd934ae0e3e06c9f932bff71ab204">XaLibHttp::HTTP_ACCEPT_LANGUAGE</a></div><div class="ttdeci">string HTTP_ACCEPT_LANGUAGE</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8h_source.html#l00018">XaLibHttp.h:18</a></div></div>
 <div class="ttc" id="class_xa_lib_http_html_a6b11b7c5da7438410a804550126c3658"><div class="ttname"><a href="class_xa_lib_http.html#a6b11b7c5da7438410a804550126c3658">XaLibHttp::HTTP_SCRIPT_FILENAME</a></div><div class="ttdeci">string HTTP_SCRIPT_FILENAME</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8h_source.html#l00029">XaLibHttp.h:29</a></div></div>
@@ -466,9 +492,11 @@
 <div class="ttc" id="class_xa_lib_http_html_ade660290cde931c221d5a12568418ffa"><div class="ttname"><a href="class_xa_lib_http.html#ade660290cde931c221d5a12568418ffa">XaLibHttp::GetHttpHeadersString</a></div><div class="ttdeci">string GetHttpHeadersString()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8cpp_source.html#l00130">XaLibHttp.cpp:130</a></div></div>
 <div class="ttc" id="class_xa_lib_http_html_a41fb1397674db467e76b48f8017da597"><div class="ttname"><a href="class_xa_lib_http.html#a41fb1397674db467e76b48f8017da597">XaLibHttp::HTTP_SERVER_ADDR</a></div><div class="ttdeci">string HTTP_SERVER_ADDR</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8h_source.html#l00031">XaLibHttp.h:31</a></div></div>
 <div class="ttc" id="class_xa_lib_http_html_abfe35bd05d9a7dfa9e57c52c5106b7e6"><div class="ttname"><a href="class_xa_lib_http.html#abfe35bd05d9a7dfa9e57c52c5106b7e6">XaLibHttp::HTTP_ACCEPT_ENCODING</a></div><div class="ttdeci">string HTTP_ACCEPT_ENCODING</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8h_source.html#l00017">XaLibHttp.h:17</a></div></div>
-<div class="ttc" id="class_xa_lib_http_html_afdf406aafddeae7c8f280fe6f8fc2330"><div class="ttname"><a href="class_xa_lib_http.html#afdf406aafddeae7c8f280fe6f8fc2330">XaLibHttp::~XaLibHttp</a></div><div class="ttdeci">~XaLibHttp()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8cpp_source.html#l00389">XaLibHttp.cpp:389</a></div></div>
+<div class="ttc" id="class_xa_lib_http_html_a525fe5711a26b0d846dea81553978843"><div class="ttname"><a href="class_xa_lib_http.html#a525fe5711a26b0d846dea81553978843">XaLibHttp::RemoveCookie</a></div><div class="ttdeci">string RemoveCookie()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8cpp_source.html#l00366">XaLibHttp.cpp:366</a></div></div>
+<div class="ttc" id="class_xa_lib_http_html_afdf406aafddeae7c8f280fe6f8fc2330"><div class="ttname"><a href="class_xa_lib_http.html#afdf406aafddeae7c8f280fe6f8fc2330">XaLibHttp::~XaLibHttp</a></div><div class="ttdeci">~XaLibHttp()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8cpp_source.html#l00414">XaLibHttp.cpp:414</a></div></div>
 <div class="ttc" id="class_xa_lib_base_html_a007496cfd361e6f3e9d0d3782f181c08"><div class="ttname"><a href="class_xa_lib_base.html#a007496cfd361e6f3e9d0d3782f181c08">XaLibBase::FromStringToInt</a></div><div class="ttdeci">int FromStringToInt(const string &amp;StringValue)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_base_8cpp_source.html#l00047">XaLibBase.cpp:47</a></div></div>
 <div class="ttc" id="class_xa_lib_http_html_a61a95eeaf4919fa10734f3c9be816203"><div class="ttname"><a href="class_xa_lib_http.html#a61a95eeaf4919fa10734f3c9be816203">XaLibHttp::HTTP_USER_AGENT</a></div><div class="ttdeci">string HTTP_USER_AGENT</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8h_source.html#l00021">XaLibHttp.h:21</a></div></div>
+<div class="ttc" id="_xa_lib_action_8h_html_affab3b1c2b6c119cba6c4fd57b963dbf"><div class="ttname"><a href="_xa_lib_action_8h.html#affab3b1c2b6c119cba6c4fd57b963dbf">SESSION</a></div><div class="ttdeci">XaSession SESSION</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_8cpp_source.html#l00019">XaLibController.cpp:19</a></div></div>
 <div class="ttc" id="class_xa_lib_http_html_a414559322b616cae5a512a7b65736f4a"><div class="ttname"><a href="class_xa_lib_http.html#a414559322b616cae5a512a7b65736f4a">XaLibHttp::HTTP_HOST</a></div><div class="ttdeci">string HTTP_HOST</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8h_source.html#l00020">XaLibHttp.h:20</a></div></div>
 <div class="ttc" id="class_xa_lib_http_html_a7a41fdd13b4ed81271a06bbba8ed0857"><div class="ttname"><a href="class_xa_lib_http.html#a7a41fdd13b4ed81271a06bbba8ed0857">XaLibHttp::GetHttpParamArray</a></div><div class="ttdeci">vector&lt; string &gt; GetHttpParamArray(string HttpParamName)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8cpp_source.html#l00247">XaLibHttp.cpp:247</a></div></div>
 <div class="ttc" id="_xa_lib_http_8h_html"><div class="ttname"><a href="_xa_lib_http_8h.html">XaLibHttp.h</a></div></div>
@@ -476,8 +504,9 @@
 <div class="ttc" id="class_xa_lib_http_html_a52830ff194d28d39a6fa718419c2ce7e"><div class="ttname"><a href="class_xa_lib_http.html#a52830ff194d28d39a6fa718419c2ce7e">XaLibHttp::HTTP_SERVER_SOFTWARE</a></div><div class="ttdeci">string HTTP_SERVER_SOFTWARE</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8h_source.html#l00037">XaLibHttp.h:37</a></div></div>
 <div class="ttc" id="class_xa_lib_http_html_a08948d93e84718f5140d8ad88ccab7be"><div class="ttname"><a href="class_xa_lib_http.html#a08948d93e84718f5140d8ad88ccab7be">XaLibHttp::HTTP_COOKIE</a></div><div class="ttdeci">string HTTP_COOKIE</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8h_source.html#l00012">XaLibHttp.h:12</a></div></div>
 <div class="ttc" id="class_xa_lib_http_html_a096b0928aee99083189e0ca2cf605171"><div class="ttname"><a href="class_xa_lib_http.html#a096b0928aee99083189e0ca2cf605171">XaLibHttp::HTTP_DOCUMENT_ROOT</a></div><div class="ttdeci">string HTTP_DOCUMENT_ROOT</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8h_source.html#l00014">XaLibHttp.h:14</a></div></div>
+<div class="ttc" id="class_xa_lib_http_html_a35e96d9c63d4a1730314e2fa2ac653c7"><div class="ttname"><a href="class_xa_lib_http.html#a35e96d9c63d4a1730314e2fa2ac653c7">XaLibHttp::SetCookie</a></div><div class="ttdeci">string SetCookie()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8cpp_source.html#l00380">XaLibHttp.cpp:380</a></div></div>
 <div class="ttc" id="_xa_lib_action_8h_html_a0c7b24211013afe66dbbe67ec070480b"><div class="ttname"><a href="_xa_lib_action_8h.html#a0c7b24211013afe66dbbe67ec070480b">SETTINGS</a></div><div class="ttdeci">XaSettings SETTINGS</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_8cpp_source.html#l00016">XaLibController.cpp:16</a></div></div>
-<div class="ttc" id="class_xa_lib_http_html_a36a6e7975b3c53fc6734e8d6108d539b"><div class="ttname"><a href="class_xa_lib_http.html#a36a6e7975b3c53fc6734e8d6108d539b">XaLibHttp::GetClientIpAddress</a></div><div class="ttdeci">string GetClientIpAddress()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8cpp_source.html#l00366">XaLibHttp.cpp:366</a></div></div>
+<div class="ttc" id="class_xa_lib_http_html_a36a6e7975b3c53fc6734e8d6108d539b"><div class="ttname"><a href="class_xa_lib_http.html#a36a6e7975b3c53fc6734e8d6108d539b">XaLibHttp::GetClientIpAddress</a></div><div class="ttdeci">string GetClientIpAddress()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8cpp_source.html#l00391">XaLibHttp.cpp:391</a></div></div>
 <div class="ttc" id="_xa_lib_crypto_8h_html"><div class="ttname"><a href="_xa_lib_crypto_8h.html">XaLibCrypto.h</a></div></div>
 <div class="ttc" id="class_xa_lib_http_html_ac90500e12d8c47307041a18ee22e6631"><div class="ttname"><a href="class_xa_lib_http.html#ac90500e12d8c47307041a18ee22e6631">XaLibHttp::HTTP_ACCEPT</a></div><div class="ttdeci">string HTTP_ACCEPT</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_http_8h_source.html#l00016">XaLibHttp.h:16</a></div></div>
 <div class="ttc" id="class_xa_lib_char_html"><div class="ttname"><a href="class_xa_lib_char.html">XaLibChar</a></div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_char_8h_source.html#l00006">XaLibChar.h:6</a></div></div>
@@ -507,7 +536,7 @@
 </div>
 </div>
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 27 2015 15:37:10 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
+Generated on Wed Oct 14 2015 23:09:40 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
 <!--img class="footer" src="doxygen.png" alt="doxygen"/-->
 </a> 1.8.10
 </small></address>

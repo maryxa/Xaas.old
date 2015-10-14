@@ -74,77 +74,82 @@
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="comment">/*</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">     * Log - http - </span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[21]={<span class="stringliteral">&quot;LOG Unable to open Log file&quot;</span>};</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[22]={<span class="stringliteral">&quot;DB Unable to Connect SESSION DB&quot;</span>};</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[23]={<span class="stringliteral">&quot;DB Unable to Connect WRITE DB&quot;</span>};</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[24]={<span class="stringliteral">&quot;DB Unable to Connect READ DB&quot;</span>};</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[25]={<span class="stringliteral">&quot;DB Unable to Connect LOG DB&quot;</span>};</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[41]={<span class="stringliteral">&quot;Event Is empty&quot;</span>};</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[42]={<span class="stringliteral">&quot;EventNotFound&quot;</span>};</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[45]={<span class="stringliteral">&quot;User Does Not Exist Or Password Is Wrong&quot;</span>};</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[46]={<span class="stringliteral">&quot;User Is Not Unique&quot;</span>};</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[47]={<span class="stringliteral">&quot;Username Or Password Is Empty&quot;</span>};</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">     * Security</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[51]={<span class="stringliteral">&quot;TOKEN Error Inserting a new TOKEN into database&quot;</span>};</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[52]={<span class="stringliteral">&quot;TOKEN is not valid&quot;</span>};</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[53]={<span class="stringliteral">&quot;&quot;</span>};</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[54]={<span class="stringliteral">&quot;&quot;</span>};</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">     * Web Services</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[101]={<span class="stringliteral">&quot;WS Requested Without XmlData Parameter&quot;</span>};</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[102]={<span class="stringliteral">&quot;WS Requested Without ReqType Parameter&quot;</span>};</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[103]={<span class="stringliteral">&quot;WS Requested Without Encoding Parameter&quot;</span>};</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[104]={<span class="stringliteral">&quot;WS Requested Without Encryption Parameter&quot;</span>};</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[105]={<span class="stringliteral">&quot;WS Requested Without ConsumerId Parameter&quot;</span>};</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[106]={<span class="stringliteral">&quot;WS Requested Without ResType Parameter&quot;</span>};</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[107]={<span class="stringliteral">&quot;WS Requested Encrypted But No Encoded&quot;</span>};</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[108]={};<span class="comment">//GetEncodedData</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[109]={<span class="stringliteral">&quot;WS Requested Encoding Is Not Supported&quot;</span>};</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[110]={<span class="stringliteral">&quot;WS ConsumerId Is Invalid&quot;</span>};</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[111]={<span class="stringliteral">&quot;&quot;</span>};<span class="comment">//GetDecryptedData</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[112]={<span class="stringliteral">&quot;WS Username Is Empty&quot;</span>};</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[113]={<span class="stringliteral">&quot;WS Password Is Empty&quot;</span>};</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[114]={<span class="stringliteral">&quot;WS Object Is Empty&quot;</span>};</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[115]={<span class="stringliteral">&quot;WS Event Is Empty&quot;</span>};</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[116]={<span class="stringliteral">&quot;WS Number of Parameters is 0&quot;</span>};</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[117]={<span class="stringliteral">&quot;WS Object Is Not XaUser But Token is Empty&quot;</span>};</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[118]={<span class="stringliteral">&quot;WS Event Is Not Login But Token is Empty&quot;</span>};</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[119]={<span class="stringliteral">&quot;WS Called Object Does Not Exist&quot;</span>};</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[120]={<span class="stringliteral">&quot;&quot;</span>};</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[121]={<span class="stringliteral">&quot;&quot;</span>};</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[122]={<span class="stringliteral">&quot;&quot;</span>};</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[123]={<span class="stringliteral">&quot;&quot;</span>};</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">/*</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">     * Model</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[201]={<span class="stringliteral">&quot;BackEnd Call Type Is Not Supported&quot;</span>};</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment">/*Front End Errors*/</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[611]={<span class="stringliteral">&quot;Called Object Does Not Exist&quot;</span>};</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[621]={<span class="stringliteral">&quot;Event Is empty&quot;</span>};</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[701]={<span class="stringliteral">&quot;CURL Error Performing Request&quot;</span>};</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[21]={<span class="stringliteral">&quot;LOG Unable to open Log file&quot;</span>};</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[22]={<span class="stringliteral">&quot;DB Unable to Connect SESSION DB&quot;</span>};</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[23]={<span class="stringliteral">&quot;DB Unable to Connect WRITE DB&quot;</span>};</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[24]={<span class="stringliteral">&quot;DB Unable to Connect READ DB&quot;</span>};</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[25]={<span class="stringliteral">&quot;DB Unable to Connect LOG DB&quot;</span>};</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[41]={<span class="stringliteral">&quot;Event Is empty&quot;</span>};</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[42]={<span class="stringliteral">&quot;EventNotFound&quot;</span>};</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[45]={<span class="stringliteral">&quot;User Does Not Exist Or Password Is Wrong&quot;</span>};</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[46]={<span class="stringliteral">&quot;User Is Not Unique&quot;</span>};</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[47]={<span class="stringliteral">&quot;Username Or Password Is Empty&quot;</span>};</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">     * Security</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[51]={<span class="stringliteral">&quot;TOKEN Error Inserting a new TOKEN into database&quot;</span>};</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[52]={<span class="stringliteral">&quot;TOKEN is not valid&quot;</span>};</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[53]={<span class="stringliteral">&quot;TOKEN Error Deactivating Token For User Id&quot;</span>};</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[54]={<span class="stringliteral">&quot;TOKEN More tokens are associated to this User or more users have this token&quot;</span>};</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[55]={<span class="stringliteral">&quot;TOKEN Error Deactivating Token&quot;</span>};</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[56]={};</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[57]={};</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">     * Web Services</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[101]={<span class="stringliteral">&quot;WS Requested Without XmlData Parameter&quot;</span>};</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[102]={<span class="stringliteral">&quot;WS Requested Without ReqType Parameter&quot;</span>};</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[103]={<span class="stringliteral">&quot;WS Requested Without Encoding Parameter&quot;</span>};</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[104]={<span class="stringliteral">&quot;WS Requested Without Encryption Parameter&quot;</span>};</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[105]={<span class="stringliteral">&quot;WS Requested Without ConsumerId Parameter&quot;</span>};</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[106]={<span class="stringliteral">&quot;WS Requested Without ResType Parameter&quot;</span>};</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[107]={<span class="stringliteral">&quot;WS Requested Encrypted But No Encoded&quot;</span>};</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[108]={};<span class="comment">//GetEncodedData</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[109]={<span class="stringliteral">&quot;WS Requested Encoding Is Not Supported&quot;</span>};</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[110]={<span class="stringliteral">&quot;WS ConsumerId Is Invalid&quot;</span>};</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[111]={<span class="stringliteral">&quot;&quot;</span>};<span class="comment">//GetDecryptedData</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[112]={<span class="stringliteral">&quot;WS Username Is Empty&quot;</span>};</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[113]={<span class="stringliteral">&quot;WS Password Is Empty&quot;</span>};</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[114]={<span class="stringliteral">&quot;WS Object Is Empty&quot;</span>};</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[115]={<span class="stringliteral">&quot;WS Event Is Empty&quot;</span>};</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[116]={<span class="stringliteral">&quot;WS Number of Parameters is 0&quot;</span>};</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[117]={<span class="stringliteral">&quot;WS Object Is Not XaUser But Token is Empty&quot;</span>};</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[118]={<span class="stringliteral">&quot;WS Event Is Not Login But Token is Empty&quot;</span>};</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[119]={<span class="stringliteral">&quot;WS Called Object Does Not Exist&quot;</span>};</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[120]={<span class="stringliteral">&quot;&quot;</span>};</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[121]={<span class="stringliteral">&quot;&quot;</span>};</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[122]={<span class="stringliteral">&quot;&quot;</span>};</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[123]={<span class="stringliteral">&quot;&quot;</span>};</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">     * Action</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[201]={<span class="stringliteral">&quot;BackEnd Call Type Is Not Supported&quot;</span>};</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[202]={<span class="stringliteral">&quot;Parameters and Values Have Different Size&quot;</span>};</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">/*Front End Errors*/</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[611]={<span class="stringliteral">&quot;Requested Object Does Not Exist&quot;</span>};</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[612]={<span class="stringliteral">&quot;Requested Event Does Not Exist&quot;</span>};</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;};</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="class_xa_lib_error.html#a7c692674e7648900bdeb0e2be34c89c0">   83</a></span>&#160;<a class="code" href="class_xa_lib_error.html#a7c692674e7648900bdeb0e2be34c89c0">XaLibError::~XaLibError</a>(){</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;};</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[621]={<span class="stringliteral">&quot;Event Is empty&quot;</span>};</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaErrors</a>[701]={<span class="stringliteral">&quot;CURL Error Performing Request&quot;</span>};</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;};</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="class_xa_lib_error.html#a7c692674e7648900bdeb0e2be34c89c0">   88</a></span>&#160;<a class="code" href="class_xa_lib_error.html#a7c692674e7648900bdeb0e2be34c89c0">XaLibError::~XaLibError</a>(){</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;};</div>
 <div class="ttc" id="_xa_lib_error_8h_html"><div class="ttname"><a href="_xa_lib_error_8h.html">XaLibError.h</a></div></div>
 <div class="ttc" id="class_xa_lib_error_html_a4fea62a83c76adcde8d307a7cdda33d0"><div class="ttname"><a href="class_xa_lib_error.html#a4fea62a83c76adcde8d307a7cdda33d0">XaLibError::XaLibError</a></div><div class="ttdeci">XaLibError()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_error_8cpp_source.html#l00003">XaLibError.cpp:3</a></div></div>
 <div class="ttc" id="class_xa_lib_error_html_a933ae2384cdf4507a687367ab126ddd7"><div class="ttname"><a href="class_xa_lib_error.html#a933ae2384cdf4507a687367ab126ddd7">XaLibError::XaErrors</a></div><div class="ttdeci">map&lt; int, string &gt; XaErrors</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_error_8h_source.html#l00010">XaLibError.h:10</a></div></div>
-<div class="ttc" id="class_xa_lib_error_html_a7c692674e7648900bdeb0e2be34c89c0"><div class="ttname"><a href="class_xa_lib_error.html#a7c692674e7648900bdeb0e2be34c89c0">XaLibError::~XaLibError</a></div><div class="ttdeci">~XaLibError()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_error_8cpp_source.html#l00083">XaLibError.cpp:83</a></div></div>
+<div class="ttc" id="class_xa_lib_error_html_a7c692674e7648900bdeb0e2be34c89c0"><div class="ttname"><a href="class_xa_lib_error.html#a7c692674e7648900bdeb0e2be34c89c0">XaLibError::~XaLibError</a></div><div class="ttdeci">~XaLibError()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_error_8cpp_source.html#l00088">XaLibError.cpp:88</a></div></div>
 <div class="ttc" id="class_xa_lib_error_html_acdc4b3905e9ae1d33344739d1b3af2e3"><div class="ttname"><a href="class_xa_lib_error.html#acdc4b3905e9ae1d33344739d1b3af2e3">XaLibError::GetError</a></div><div class="ttdeci">string GetError(const int &amp;ErrorCode)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_error_8cpp_source.html#l00006">XaLibError.cpp:6</a></div></div>
 <div class="ttc" id="class_xa_lib_error_html_a0130f4d673e9c97ba4597e4e687eb9c7"><div class="ttname"><a href="class_xa_lib_error.html#a0130f4d673e9c97ba4597e4e687eb9c7">XaLibError::Setup</a></div><div class="ttdeci">void Setup()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_error_8cpp_source.html#l00012">XaLibError.cpp:12</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -156,7 +161,7 @@
 </div>
 </div>
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 27 2015 15:37:10 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
+Generated on Wed Oct 14 2015 23:09:40 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
 <!--img class="footer" src="doxygen.png" alt="doxygen"/-->
 </a> 1.8.10
 </small></address>

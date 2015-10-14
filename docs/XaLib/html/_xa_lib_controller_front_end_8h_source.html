@@ -68,45 +68,51 @@
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_xa_lib_controller_front_end.html#a8786d8aa193969373b7b5f06a115d1d4">OnStart</a>(<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; ConfFile);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_xa_lib_controller_front_end.html#a0a21fb62d709d2f28fa3e52071986df1">SendResponse</a>();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">//      int OnStartStatus=1;</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">//      void OnStart(const string&amp; ConfFile);</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">//      void LoadXmlConfFile(string ConfFile);</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">//      void StartLog();    </span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">//      void StartHttp();</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">//      void StartDb();</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">//      int  ProfileCalledObject(const string&amp; CalledObject,const string&amp; CalledEvent);</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">//      virtual void SendResponse();</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">//      virtual void DispatchWs();</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">//      void Dispatch();</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="comment">//void SetCookie();</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                <span class="keywordtype">void</span> <a class="code" href="class_xa_lib_controller_front_end.html#ac740a832caad8c929dd7d383d023905f">ManageSession</a>();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_xa_lib_controller_front_end.html#a0a21fb62d709d2f28fa3e52071986df1">SendResponse</a>();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">//      int OnStartStatus=1;</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">//      void OnStart(const string&amp; ConfFile);</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">//      void LoadXmlConfFile(string ConfFile);</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">//      void StartLog();    </span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">//      void StartHttp();</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">//      void StartDb();</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">//      int  ProfileCalledObject(const string&amp; CalledObject,const string&amp; CalledEvent);</span></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">//      virtual void ExecuteCalledObject();</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">//      void SendHeaders(string&amp; HeadersType) const;</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">//      void SendLocationHeaders(string Location);</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">//      void GetCall();</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">//      void GetLayout();</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">//      void GetServerInfo();</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">//      void GetClientInfo();</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">//      void GetWs();</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <a class="code" href="class_xa_lib_controller_front_end.html#a3a3cf941e8d1289e5f00feb1a1c36b42">XaLibControllerFrontEnd</a>();</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="class_xa_lib_controller_front_end.html#ab940f8cf5814c50c643611e4061e625c">~XaLibControllerFrontEnd</a>();</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;};</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">//      virtual void SendResponse();</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">//      virtual void DispatchWs();</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">//      void Dispatch();</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">//      virtual void ExecuteCalledObject();</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">//      void SendHeaders(string&amp; HeadersType) const;</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">//      void SendLocationHeaders(string Location);</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">//      void GetCall();</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_xa_lib_controller_front_end.html#af2a30d2d9bba601716672a3bfda98818">GetLayout</a>();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">//      void GetServerInfo();</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">//      void GetClientInfo();</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">//      void GetWs();</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <a class="code" href="class_xa_lib_controller_front_end.html#a3a3cf941e8d1289e5f00feb1a1c36b42">XaLibControllerFrontEnd</a>();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="class_xa_lib_controller_front_end.html#ab940f8cf5814c50c643611e4061e625c">~XaLibControllerFrontEnd</a>();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;};</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="class_xa_lib_controller_front_end_html_ac740a832caad8c929dd7d383d023905f"><div class="ttname"><a href="class_xa_lib_controller_front_end.html#ac740a832caad8c929dd7d383d023905f">XaLibControllerFrontEnd::ManageSession</a></div><div class="ttdeci">void ManageSession()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_front_end_8cpp_source.html#l00040">XaLibControllerFrontEnd.cpp:40</a></div></div>
 <div class="ttc" id="class_xa_lib_controller_front_end_html_ab940f8cf5814c50c643611e4061e625c"><div class="ttname"><a href="class_xa_lib_controller_front_end.html#ab940f8cf5814c50c643611e4061e625c">XaLibControllerFrontEnd::~XaLibControllerFrontEnd</a></div><div class="ttdeci">virtual ~XaLibControllerFrontEnd()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_front_end_8cpp_source.html#l00415">XaLibControllerFrontEnd.cpp:415</a></div></div>
-<div class="ttc" id="class_xa_lib_controller_front_end_html_a0a21fb62d709d2f28fa3e52071986df1"><div class="ttname"><a href="class_xa_lib_controller_front_end.html#a0a21fb62d709d2f28fa3e52071986df1">XaLibControllerFrontEnd::SendResponse</a></div><div class="ttdeci">void SendResponse()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_front_end_8cpp_source.html#l00034">XaLibControllerFrontEnd.cpp:34</a></div></div>
+<div class="ttc" id="class_xa_lib_controller_front_end_html_a0a21fb62d709d2f28fa3e52071986df1"><div class="ttname"><a href="class_xa_lib_controller_front_end.html#a0a21fb62d709d2f28fa3e52071986df1">XaLibControllerFrontEnd::SendResponse</a></div><div class="ttdeci">void SendResponse()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_front_end_8cpp_source.html#l00054">XaLibControllerFrontEnd.cpp:54</a></div></div>
 <div class="ttc" id="class_xa_lib_controller_front_end_html_a8786d8aa193969373b7b5f06a115d1d4"><div class="ttname"><a href="class_xa_lib_controller_front_end.html#a8786d8aa193969373b7b5f06a115d1d4">XaLibControllerFrontEnd::OnStart</a></div><div class="ttdeci">void OnStart(const string &amp;ConfFile)</div><div class="ttdoc">Environment initialization. </div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_front_end_8cpp_source.html#l00006">XaLibControllerFrontEnd.cpp:6</a></div></div>
 <div class="ttc" id="_xa_lib_controller_8h_html"><div class="ttname"><a href="_xa_lib_controller_8h.html">XaLibController.h</a></div></div>
 <div class="ttc" id="class_xa_lib_controller_html"><div class="ttname"><a href="class_xa_lib_controller.html">XaLibController</a></div><div class="ttdoc">Base Class for Controllrs. </div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_8h_source.html#l00030">XaLibController.h:30</a></div></div>
+<div class="ttc" id="class_xa_lib_controller_front_end_html_af2a30d2d9bba601716672a3bfda98818"><div class="ttname"><a href="class_xa_lib_controller_front_end.html#af2a30d2d9bba601716672a3bfda98818">XaLibControllerFrontEnd::GetLayout</a></div><div class="ttdeci">void GetLayout()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_front_end_8cpp_source.html#l00035">XaLibControllerFrontEnd.cpp:35</a></div></div>
 <div class="ttc" id="class_xa_lib_controller_front_end_html"><div class="ttname"><a href="class_xa_lib_controller_front_end.html">XaLibControllerFrontEnd</a></div><div class="ttdoc">Base Class for Front End Controllers. </div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_front_end_8h_source.html#l00016">XaLibControllerFrontEnd.h:16</a></div></div>
 <div class="ttc" id="class_xa_lib_controller_front_end_html_a3a3cf941e8d1289e5f00feb1a1c36b42"><div class="ttname"><a href="class_xa_lib_controller_front_end.html#a3a3cf941e8d1289e5f00feb1a1c36b42">XaLibControllerFrontEnd::XaLibControllerFrontEnd</a></div><div class="ttdeci">XaLibControllerFrontEnd()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_controller_front_end_8cpp_source.html#l00003">XaLibControllerFrontEnd.cpp:3</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -118,7 +124,7 @@
 </div>
 </div>
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 27 2015 15:37:10 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
+Generated on Wed Oct 14 2015 23:09:39 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
 <!--img class="footer" src="doxygen.png" alt="doxygen"/-->
 </a> 1.8.10
 </small></address>

@@ -281,7 +281,7 @@
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        </div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        <span class="comment">//NEL CASO DI XML INSERIRE GLI IF PER JSON ECC</span></div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        </div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <span class="keywordtype">int</span> ParamsNum=LibDom-&gt;GetNumRowByXPathInt(XmlDomDoc,<span class="stringliteral">&quot;/WsData/params/param&quot;</span>);</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <span class="keywordtype">int</span> ParamsNum=LibDom-&gt;GetNumRowByXPathInt(XmlDomDoc,<span class="stringliteral">&quot;/WsData/params/p&quot;</span>);</div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <span class="keywordflow">if</span> (ParamsNum==0){</div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;</div>
@@ -295,8 +295,8 @@
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            <span class="comment">/*Adding parameter to the request*/</span></div>
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i=0;i&lt;ParamsNum;i++) {</div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                <span class="keywordtype">string</span> ParamName =LibDom-&gt;GetElementValueByXPath(XmlDomDoc,<span class="stringliteral">&quot;/WsData/params/param[&quot;</span>+ <a class="code" href="class_xa_lib_base.html#aa06b3e7e05f1739ce7da2e79e6f74812">XaLibBase::FromIntToString</a>(i+1) + <span class="stringliteral">&quot;]/name&quot;</span>);</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;                <span class="keywordtype">string</span> ParamValue=LibDom-&gt;GetElementValueByXPath(XmlDomDoc,<span class="stringliteral">&quot;/WsData/params/param[&quot;</span>+ <a class="code" href="class_xa_lib_base.html#aa06b3e7e05f1739ce7da2e79e6f74812">XaLibBase::FromIntToString</a>(i+1) + <span class="stringliteral">&quot;]/value&quot;</span>);</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                <span class="keywordtype">string</span> ParamName =LibDom-&gt;GetElementValueByXPath(XmlDomDoc,<span class="stringliteral">&quot;/WsData/params/p[&quot;</span>+ <a class="code" href="class_xa_lib_base.html#aa06b3e7e05f1739ce7da2e79e6f74812">XaLibBase::FromIntToString</a>(i+1) + <span class="stringliteral">&quot;]/n&quot;</span>);</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;                <span class="keywordtype">string</span> ParamValue=LibDom-&gt;GetElementValueByXPath(XmlDomDoc,<span class="stringliteral">&quot;/WsData/params/p&quot;</span>+ <a class="code" href="class_xa_lib_base.html#aa06b3e7e05f1739ce7da2e79e6f74812">XaLibBase::FromIntToString</a>(i+1) + <span class="stringliteral">&quot;]/v&quot;</span>);</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                <a class="code" href="_xa_lib_action_8h.html#a4f7e146c4c04b3b3574c3d19fcdc0903">LOG</a>.<a class="code" href="class_xa_lib_log.html#a9c39f51761652b605da4fb35cfd96772">Write</a>(<span class="stringliteral">&quot;INF&quot;</span>,__FILE__,__FUNCTION__,__LINE__,<span class="stringliteral">&quot;WS Adding Parameter -&gt;&quot;</span> +ParamName +<span class="stringliteral">&quot; :: With Value -&gt; &quot;</span>+ParamValue);</div>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
@@ -490,7 +490,7 @@
 <div class="ttc" id="class_xa_lib_crypto_html"><div class="ttname"><a href="class_xa_lib_crypto.html">XaLibCrypto</a></div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_crypto_8h_source.html#l00017">XaLibCrypto.h:17</a></div></div>
 <div class="ttc" id="class_xa_lib_ws_html_ab4018fc4283067da92f5b48d099ce834"><div class="ttname"><a href="class_xa_lib_ws.html#ab4018fc4283067da92f5b48d099ce834">XaLibWs::ExtractData</a></div><div class="ttdeci">void ExtractData()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_ws_8cpp_source.html#l00146">XaLibWs.cpp:146</a></div></div>
 <div class="ttc" id="class_xa_lib_ws_html_ac6a9058b6f27902b14e97e98140a1a0b"><div class="ttname"><a href="class_xa_lib_ws.html#ac6a9058b6f27902b14e97e98140a1a0b">XaLibWs::Encoding</a></div><div class="ttdeci">string Encoding</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_ws_8h_source.html#l00029">XaLibWs.h:29</a></div></div>
-<div class="ttc" id="class_xa_lib_sql_html_a2e14bb733ceb80f0d4412cfd16176f0f"><div class="ttname"><a href="class_xa_lib_sql.html#a2e14bb733ceb80f0d4412cfd16176f0f">XaLibSql::FreeQuery</a></div><div class="ttdeci">static DbResMap FreeQuery(XaLibDb &amp;LibDb, string SqlQry)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_sql_8cpp_source.html#l00746">XaLibSql.cpp:746</a></div></div>
+<div class="ttc" id="class_xa_lib_sql_html_a2e14bb733ceb80f0d4412cfd16176f0f"><div class="ttname"><a href="class_xa_lib_sql.html#a2e14bb733ceb80f0d4412cfd16176f0f">XaLibSql::FreeQuery</a></div><div class="ttdeci">static DbResMap FreeQuery(XaLibDb &amp;LibDb, string SqlQry)</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_sql_8cpp_source.html#l00747">XaLibSql.cpp:747</a></div></div>
 <div class="ttc" id="_xa_lib_action_8h_html"><div class="ttname"><a href="_xa_lib_action_8h.html">XaLibAction.h</a></div></div>
 <div class="ttc" id="class_xa_lib_ws_html_afe5e01d4473dae4f1f010aac6310efe2"><div class="ttname"><a href="class_xa_lib_ws.html#afe5e01d4473dae4f1f010aac6310efe2">XaLibWs::GetPassword</a></div><div class="ttdeci">string GetPassword()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_ws_8cpp_source.html#l00376">XaLibWs.cpp:376</a></div></div>
 <div class="ttc" id="class_xa_lib_ws_html_a3147ec77e7dfafff50a2a8cfd0a8f9b6"><div class="ttname"><a href="class_xa_lib_ws.html#a3147ec77e7dfafff50a2a8cfd0a8f9b6">XaLibWs::GetConsumerKey</a></div><div class="ttdeci">void GetConsumerKey()</div><div class="ttdef"><b>Definition:</b> <a href="_xa_lib_ws_8cpp_source.html#l00118">XaLibWs.cpp:118</a></div></div>
@@ -509,7 +509,7 @@
 </div>
 </div>
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 27 2015 15:37:10 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
+Generated on Wed Oct 14 2015 23:09:40 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
 <!--img class="footer" src="doxygen.png" alt="doxygen"/-->
 </a> 1.8.10
 </small></address>

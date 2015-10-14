@@ -61,6 +61,8 @@
   <tr class="even"><td class="entry"><a class="el" href="class_xa_lib_token.html#add9b918dcff8574fdd8522175b83623f">CheckUserToken</a>(const int &amp;XaUser_ID)</td><td class="entry"><a class="el" href="class_xa_lib_token.html">XaLibToken</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_xa_lib_token.html#afabbc3b4ccbeb94d2dd3b80cabce1c50">CreateToken</a>(const int &amp;XaUser_ID)</td><td class="entry"><a class="el" href="class_xa_lib_token.html">XaLibToken</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_xa_lib_base.html#a9f5f4d0c8d82a28f6f54b6679ff60849">DbResMap</a> typedef</td><td class="entry"><a class="el" href="class_xa_lib_base.html">XaLibBase</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_xa_lib_token.html#a9a4fb1875299453bc0ecf195dfd83e2e">DeactivateUserToken</a>(const int &amp;XaUser_ID)</td><td class="entry"><a class="el" href="class_xa_lib_token.html">XaLibToken</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_xa_lib_token.html#a37fd5d7ef58b23964052b86662edbb17">DeactivateUserToken</a>(const string &amp;Token)</td><td class="entry"><a class="el" href="class_xa_lib_token.html">XaLibToken</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_xa_lib_base.html#af811d1491d93f6f152ef56e36b2c6cef">FromCharArrayToString</a>(char CharValue[])</td><td class="entry"><a class="el" href="class_xa_lib_base.html">XaLibBase</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_xa_lib_base.html#a6783e261844e140b84d46ed5278c3c81">FromCharToInt</a>(char CharValue)</td><td class="entry"><a class="el" href="class_xa_lib_base.html">XaLibBase</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_xa_lib_base.html#a280b13f8a9a7d96a72fe1b8068b1055b">FromCharToString</a>(char CharValue)</td><td class="entry"><a class="el" href="class_xa_lib_base.html">XaLibBase</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
@@ -74,12 +76,13 @@
   <tr><td class="entry"><a class="el" href="class_xa_lib_base.html#a4a81aebd47cd1a3dfb891c242ebecc7e">FromStringToHex</a>(const string &amp;StringValue, int CapitalCase)</td><td class="entry"><a class="el" href="class_xa_lib_base.html">XaLibBase</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_xa_lib_base.html#a007496cfd361e6f3e9d0d3782f181c08">FromStringToInt</a>(const string &amp;StringValue)</td><td class="entry"><a class="el" href="class_xa_lib_base.html">XaLibBase</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_xa_lib_token.html#a3ca087a1c802e9386a4e8fcd39ebec62">GenerateToken</a>()</td><td class="entry"><a class="el" href="class_xa_lib_token.html">XaLibToken</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_xa_lib_base.html#ae6c3f394914bf994c01e187e373cfccb">SendHtmlHeaders</a>()</td><td class="entry"><a class="el" href="class_xa_lib_base.html">XaLibBase</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_xa_lib_token.html#a5ce87932dc5c494f9528c568b0050683">ValidateToken</a>(const string &amp;Token)</td><td class="entry"><a class="el" href="class_xa_lib_token.html">XaLibToken</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_xa_lib_base.html#a03fcefc3c380f9e329dc343bdecec9e0">XaLibBase</a>()</td><td class="entry"><a class="el" href="class_xa_lib_base.html">XaLibBase</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_xa_lib_token.html#a73faddc9976e369ecd54c0b5ddabaace">XaLibToken</a>()</td><td class="entry"><a class="el" href="class_xa_lib_token.html">XaLibToken</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_xa_lib_base.html#a4887be89aa56d2f992871829c86549a1">~XaLibBase</a>()</td><td class="entry"><a class="el" href="class_xa_lib_base.html">XaLibBase</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_xa_lib_token.html#a7d9bfe5b0b067993b930552d8415d72f">~XaLibToken</a>()</td><td class="entry"><a class="el" href="class_xa_lib_token.html">XaLibToken</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_xa_lib_token.html#a96faedd09140f2daf86927dbdf9230f5">RetrieveUserFromToken</a>(const string &amp;Token)</td><td class="entry"><a class="el" href="class_xa_lib_token.html">XaLibToken</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_xa_lib_base.html#ae6c3f394914bf994c01e187e373cfccb">SendHtmlHeaders</a>()</td><td class="entry"><a class="el" href="class_xa_lib_base.html">XaLibBase</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_xa_lib_token.html#a5ce87932dc5c494f9528c568b0050683">ValidateToken</a>(const string &amp;Token)</td><td class="entry"><a class="el" href="class_xa_lib_token.html">XaLibToken</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_xa_lib_base.html#a03fcefc3c380f9e329dc343bdecec9e0">XaLibBase</a>()</td><td class="entry"><a class="el" href="class_xa_lib_base.html">XaLibBase</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_xa_lib_token.html#a73faddc9976e369ecd54c0b5ddabaace">XaLibToken</a>()</td><td class="entry"><a class="el" href="class_xa_lib_token.html">XaLibToken</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_xa_lib_base.html#a4887be89aa56d2f992871829c86549a1">~XaLibBase</a>()</td><td class="entry"><a class="el" href="class_xa_lib_base.html">XaLibBase</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_xa_lib_token.html#a7d9bfe5b0b067993b930552d8415d72f">~XaLibToken</a>()</td><td class="entry"><a class="el" href="class_xa_lib_token.html">XaLibToken</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.8-->
 <!-- start footer part -->
@@ -89,7 +92,7 @@
 </div>
 </div>
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 27 2015 15:37:11 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
+Generated on Wed Oct 14 2015 23:09:40 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
 <!--img class="footer" src="doxygen.png" alt="doxygen"/-->
 </a> 1.8.10
 </small></address>

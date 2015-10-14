@@ -116,6 +116,8 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a58399e2ee6934ffb3a6b4b2a76f2735e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96890954ed00761ca019fa3b4dc14a96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a96890954ed00761ca019fa3b4dc14a96">AddXslString</a> (const string &amp;XslString)</td></tr>
 <tr class="separator:a96890954ed00761ca019fa3b4dc14a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0fe02a56b35a9f6366c6054ec034cf4"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#ac0fe02a56b35a9f6366c6054ec034cf4">BuildBackEndCall</a> (const string &amp;Object, const string &amp;Event, const vector&lt; string &gt; &amp;ParamName, const vector&lt; string &gt; &amp;ParamValue)</td></tr>
+<tr class="separator:ac0fe02a56b35a9f6366c6054ec034cf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e876552ec29497ee4522fb50601d22c"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#a6e876552ec29497ee4522fb50601d22c">BuildBackEndCallBase</a> ()</td></tr>
 <tr class="separator:a6e876552ec29497ee4522fb50601d22c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2f0fa636a4c835e4efe80794ef0e630"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_xa_lib_action.html#aa2f0fa636a4c835e4efe80794ef0e630">BuildBackEndCallLogin</a> (const string &amp;Username, const string &amp;Password)</td></tr>
@@ -260,7 +262,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00812">812</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00856">856</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
 
 </div>
 </div>
@@ -426,7 +428,7 @@ Variables has set with name and value<br />
 <dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
 <div class="fragment"><div class="line"><a class="code" href="class_xa_lib_action.html#a4ff0b204e46bee2e3f89e311ba4f389a">AddXslParam</a>(<span class="stringliteral">&quot;name&quot;</span>, <span class="stringliteral">&quot;value&quot;</span>);</div>
 </div><!-- fragment --> 
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00074">74</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00076">76</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
 
 </div>
 </div>
@@ -496,6 +498,82 @@ All strings in the vector will be added in the generated Dom Object.<br />
 
 </div>
 </div>
+<a class="anchor" id="ac0fe02a56b35a9f6366c6054ec034cf4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string XaLibAction::BuildBackEndCall </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>Object</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>Event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ParamName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>ParamValue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Builds the XML for the Back End Call<br />
+The general structure is :<br />
+</p><div class="fragment"><div class="line">&lt;WsData&gt;</div>
+<div class="line">  &lt;login&gt;</div>
+<div class="line">      &lt;token&gt;[TOKEN]&lt;/token&gt;</div>
+<div class="line">  &lt;/login&gt;</div>
+<div class="line">  &lt;operation&gt;</div>
+<div class="line">      &lt;<span class="keywordtype">object</span>&gt;[OBJECT]&lt;/<span class="keywordtype">object</span>&gt;</div>
+<div class="line">      &lt;<span class="keyword">event</span>&gt;[EVENT]&lt;/<span class="keyword">event</span>&gt;</div>
+<div class="line">  &lt;/operation&gt;</div>
+<div class="line">  &lt;params&gt;</div>
+<div class="line">      &lt;p&gt;</div>
+<div class="line">          &lt;n&gt;&lt;/n&gt;</div>
+<div class="line">          &lt;v&gt;&lt;/v&gt;</div>
+<div class="line">      &lt;/p&gt;</div>
+<div class="line">  &lt;/params&gt;</div>
+<div class="line">&lt;/WsData&gt;</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Object</td><td>Back End Object to call </td></tr>
+    <tr><td class="paramname">Event</td><td>Back End Event to call </td></tr>
+    <tr><td class="paramname">ParamName</td><td>Parameter Names to send with the Call </td></tr>
+    <tr><td class="paramname">ParamValue</td><td>Parameter Values to send with the Call</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>string</dd></dl>
+<div class="fragment"><div class="line"><a class="code" href="class_xa_lib_action.html#ac0fe02a56b35a9f6366c6054ec034cf4">BuildBackEndCall</a>(<span class="stringliteral">&quot;XaUser&quot;</span>, <span class="stringliteral">&quot;Logout&quot;</span>,{},{};</div>
+</div><!-- fragment --> 
+<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00154">154</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a6e876552ec29497ee4522fb50601d22c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -517,7 +595,7 @@ All strings in the vector will be added in the generated Dom Object.<br />
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00152">152</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00197">197</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
 
 </div>
 </div>
@@ -553,7 +631,7 @@ All strings in the vector will be added in the generated Dom Object.<br />
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00215">215</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00180">180</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
 
 </div>
 </div>
@@ -589,7 +667,7 @@ All strings in the vector will be added in the generated Dom Object.<br />
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00232">232</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00276">276</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
 
 </div>
 </div>
@@ -624,6 +702,8 @@ All strings in the vector will be added in the generated Dom Object.<br />
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00244">244</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
 
 </div>
 </div>
@@ -661,7 +741,7 @@ The Class Name is representing the Object and the Method name is representing th
 </div><!-- fragment --> 
 <p>Reimplemented in <a class="el" href="class_xa_user_ui.html#acad09cfa02076f5c2e5e33113054f9b5">XaUserUi</a>, <a class="el" href="class_xa_domain.html#a9a12bc49acd2f6306d7c88fc95efaa78">XaDomain</a>, <a class="el" href="class_xa_user_profile.html#af2efdc12012130a07595a07e48d2ca06">XaUserProfile</a>, <a class="el" href="class_xa_address.html#a290da15febcdf934ea7eb18102f9ed47">XaAddress</a>, <a class="el" href="class_xa_currency.html#aa94746b7dd5b80a53d3af6013a8d32a5">XaCurrency</a>, <a class="el" href="class_xa_label.html#a34b69cf377d525b3d07cb6b3e6ed3854">XaLabel</a>, <a class="el" href="class_xa_language.html#a4984cbb0e4131c36d640b169b03406ae">XaLanguage</a>, <a class="el" href="class_xa_ou.html#a0480527f0d5e46a82a2b9cb96d898edd">XaOu</a>, and <a class="el" href="class_xa_user_role.html#a2fb9618562f2926f8af8ef3876189b64">XaUserRole</a>.</p>
 
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00810">810</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00854">854</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
 
 </div>
 </div>
@@ -702,7 +782,7 @@ Execute the Object Dispatcher passing the Event Name<br />
  </p><dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
 <div class="fragment"><div class="line"><a class="code" href="class_xa_lib_action.html#a2aa96013e54df9be7ddcf4121f3d5c07">Execute</a>(<span class="stringliteral">&quot;&quot;</span>);</div>
 </div><!-- fragment --> 
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00796">796</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00840">840</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
 
 </div>
 </div>
@@ -727,7 +807,7 @@ Execute the Object Dispatcher passing the Event Name<br />
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Select the layout for the returned page<br />
+<p>Selects the layout for the returned page<br />
 A layout is a collection of Xsl file, based on passed layout are added different files<br />
  </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -738,7 +818,7 @@ A layout is a collection of Xsl file, based on passed layout are added different
 <dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
 <div class="fragment"><div class="line"><a class="code" href="class_xa_lib_action.html#a315081c1b017faa5841317845589bb65">SetLayout</a>(<span class="stringliteral">&quot;Default&quot;</span>);</div>
 </div><!-- fragment --> 
-<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00082">82</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_xa_lib_action_8cpp_source.html#l00084">84</a> of file <a class="el" href="_xa_lib_action_8cpp_source.html">XaLibAction.cpp</a>.</p>
 
 </div>
 </div>
@@ -1042,7 +1122,7 @@ A layout is a collection of Xsl file, based on passed layout are added different
 </div>
 </div>
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 27 2015 15:37:11 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
+Generated on Wed Oct 14 2015 23:09:40 for XaaS by &#160;<a href="http://www.doxygen.org/index.html">DOXYGEN
 <!--img class="footer" src="doxygen.png" alt="doxygen"/-->
 </a> 1.8.10
 </small></address>
