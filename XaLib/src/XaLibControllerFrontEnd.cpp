@@ -15,14 +15,17 @@ void XaLibControllerFrontEnd::OnStart(const string& ConfFile) {
 		//StartDb();
 		StartHttp();
 
-		GetServerInfo();
-	//	GetClientInfo();
+		//GetServerInfo();
+		//GetClientInfo();
+		SESSION.FrontEndIp=HTTP.GetServerIpAddress();
+		SESSION.ClientIp=HTTP.GetClientIpAddress();
 		GetLayout();
 
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request IP -> "+SESSION.ClientIp);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"IP Address Client-> "+SESSION.ClientIp);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Ip Address Front End Server -> "+SESSION.FrontEndIp);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Read HttpString -> " + REQUEST.HeadersString);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request Language -> "+REQUEST.Language);
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request Device -> "+REQUEST.Device);
+//		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request Device -> "+REQUEST.Device);
 
 		//RESPONSE.ResponseType=REQUEST.ResponseType;
 
@@ -63,37 +66,8 @@ void XaLibController::GetServerInfo(){
 
 	REQUEST.ServerIpAddress=HTTP.GetServerIpAddress();
 };
-
-void XaLibController::GetClientInfo(){
-
-	REQUEST.ClientIpAddress=HTTP.GetClientIpAddress();
-
-	//LOG.SetIpAddress(REQUEST.ClientIpAddress);
-
-	string Language=HTTP.GetHttpParam("l");
-
-    if (Language=="NoHttpParam"){
-
-		REQUEST.Language=SETTINGS["DefaultLanguage"];
-
-    } else {
-
-		REQUEST.Language=Language;
-	}
-
-	string Device=HTTP.GetHttpParam("d");
-
-    if (Device=="NoHttpParam"){
-
-		REQUEST.Device=SETTINGS["DefaultDevice"];
-
-    } else {
-
-		REQUEST.Device=Device;
-	}
-
-};
-
+*/
+/*
 void XaLibController::GetCall(){
 
 	REQUEST.CalledObject=HTTP.GetHttpParam("obj");

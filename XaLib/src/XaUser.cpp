@@ -83,5 +83,15 @@ void XaUser::Logout () {
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Logout Affected");
 };
 
+void XaUser::Create (){
+};
+
+void XaUser::Read (){
+};
+
+void XaUser::Update (){
+};
+void XaUser::Delete (){
+};
 XaUser::~XaUser(){
 };

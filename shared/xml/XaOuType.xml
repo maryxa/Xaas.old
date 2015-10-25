@@ -1,0 +1,37 @@
+<XaOuType>
+    <fieldset id="XaOuType" name="XaOuType">
+        <legend>legend</legend>
+        <field id="name" name="name">
+            <id>name</id>
+            <name>name</name>
+            <type>input-text</type>
+            <label>name</label>
+            <options/>
+            <placeholder>name</placeholder>
+            <default></default>
+            <required>yes</required>
+
+            <read>yes</read>
+            <update>yes</update>
+            <search>yes</search>
+
+            <size></siez>
+        </field>
+        <field id="description" name="description">
+            <id>description</id>
+            <name>description</name>
+            <type>input-textarea</type>
+            <label>description</label>
+            <options/>
+            <placeholder>description</placeholder>
+            <default></default>
+            <required>no</required>
+
+            <read>yes</read>
+            <update>yes</update>
+            <search>yes</search>
+
+            <size></siez>
+        </field>
+    </fieldset>
+</XaOuType>

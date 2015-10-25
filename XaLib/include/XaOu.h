@@ -1,26 +1,26 @@
-#ifndef XAOUOBJ_H
-#define XAOUOBJ_H
+#ifndef XAOU_H
+#define XAOU_H
 
 #include <XaLibModel.h>
 
-class XaOuObj : public XaLibModel {
+class XaOu : public XaLibModel {
 
     private:		
 
-		vector<string> PropsName;
-		vector<string> PropsValue;
-		vector<string> PropsType;
+        vector<string> PropsName;
+        vector<string> PropsValue;
+        vector<string> PropsType;
 
-	protected:
+    protected:
 
-	public:
+    public:
 
-		int Create();
-		//int Read();
-		//int Update();
-		//int Delete();
+        void Create();
+        //int Read();
+        //int Update();
+        //int Delete();
 
-		XaOuObj();
-		~XaOuObj();
+        XaOu();
+        ~XaOu();
 };
 #endif

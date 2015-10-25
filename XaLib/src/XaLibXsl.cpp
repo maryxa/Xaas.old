@@ -305,7 +305,7 @@ string XaLibXsl::GetXHtml(){
 	} else {
 
 		string Form=FromCharArrayToString(XHtmlChr);
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Generated Xhtml -> "+Form);
+		//LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Generated Xhtml -> "+Form);
 		return Form;
 
 	}

@@ -102,6 +102,8 @@ void Controller::Dispatch () {
 	/*CASE LOGGED IN*/
 	if (REQUEST.CalledObject=="XaUserUi" && REQUEST.CalledEvent=="Login") {
 
+	} else if (REQUEST.CalledObject=="XaUserUi" && REQUEST.CalledEvent=="LogoutFrm") {
+	
 	} else if (SESSION.Token!="") {
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Token is Valid");

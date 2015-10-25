@@ -841,5 +841,13 @@ void XaLibSql::TransactionRollback(XaLibDb& LibDb){
 
 };
 
+vector<string> XaLibSql::ColumnsList (XaLibDb& LibDb, const string& TableName) {
+
+			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"XXXXXXXX 1 -> ");
+
+	
+	return LibDb.FetchFields(TableName);
+};
+
 XaLibSql::~XaLibSql(){
 };

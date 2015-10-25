@@ -1,11 +1,11 @@
-#include <XaOuObj.h>
+#include <XaOu.h>
 #include <XaLibModel.h>
 
 
-XaOuObj::XaOuObj(){
+XaOu::XaOu(){
 };
 
-int XaOuObj::Create(){
+void XaOu::Create(){
 
 };
 
@@ -22,5 +22,5 @@ XaOuModel::Delete(){
 XaOuModel::XaOuModel(){
 };
 */
-XaOuObj::~XaOuObj(){
+XaOu::~XaOu(){
 };

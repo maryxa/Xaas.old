@@ -101,9 +101,7 @@ void Controller::DispatchWs () {
 
 	RESPONSE.ResponseType=Ws.GetResType();
 
-	
 	if (REQUEST.CalledObject=="XaUser" || REQUEST.CalledEvent=="Login") {
-	
 		/* In Case of Login I do not check the Token validity */
 		REQUEST.HeadersString.append("&username="+Ws.GetUsername()+"&password="+Ws.GetPassword());
 
@@ -112,7 +110,10 @@ void Controller::DispatchWs () {
 		SESSION.XaUser_ID=XaLibToken::ValidateToken(SESSION.Token);
 	}
 
+	SESSION.ClientIp=Ws.GetClientIp();
+
 	this->ExecuteWs(Ws);
+	Ws.AddResponseLog();
 	this->SendResponse();
 };
 

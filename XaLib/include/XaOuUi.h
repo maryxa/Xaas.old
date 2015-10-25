@@ -1,21 +1,21 @@
-#ifndef XAOU_H
-#define XAOU_H
+#ifndef XAOUUI_H
+#define XAOUUI_H
 
 #include <XaLibAction.h>
 
-class XaOu : public XaLibAction {
+class XaOuUi : public XaLibAction {
 	
     private:
 
-		void Dispatcher(const string &CalledEvent);
-		void Tree();
-		void Explorer();
+        void Dispatcher(const string &CalledEvent);
+        void Tree();
+        void Explorer();
 
-	protected:
+    protected:
 
-	public:
+    public:
 
-		XaOu();
-		~XaOu();
+        XaOuUi();
+        ~XaOuUi();
 };
 #endif

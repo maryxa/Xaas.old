@@ -15,15 +15,11 @@ void XaLibControllerBackEnd::OnStart(const string& ConfFile) {
 		StartDb();
 		StartHttp();
 
-		GetServerInfo();
-	//	GetClientInfo();
+		SESSION.BackEndIp=HTTP.GetServerIpAddress();
+		SESSION.FrontEndIp=HTTP.GetClientIpAddress();
 
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request IP -> "+SESSION.ClientIp);
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Read HttpString -> " + REQUEST.HeadersString);
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request Language -> "+REQUEST.Language);
-		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Request Device -> "+REQUEST.Device);
-
-		//RESPONSE.ResponseType=REQUEST.ResponseType;
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"IP Address Back End Server -> "+SESSION.BackEndIp);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"IP Address Front End Server -> "+SESSION.FrontEndIp);
 
 	} catch (int e) {
 

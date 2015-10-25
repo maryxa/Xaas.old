@@ -72,12 +72,12 @@ endif
     UNAME_P := $(shell uname -p)
 
 #XAAS OBJ
-OBJ=$(OBJDIR)XaLibBase.o $(OBJDIR)XaLibAction.o $(OBJDIR)XaLibModel.o $(OBJDIR)XaLibHttp.o $(OBJDIR)XaLibSession.o $(OBJDIR)XaLibToken.o \
+OBJ=$(OBJDIR)XaLibBase.o $(OBJDIR)XaLibAction.o $(OBJDIR)XaLibModel.o $(OBJDIR)XaLibHttp.o $(OBJDIR)XaLibToken.o \
     $(OBJDIR)XaLibDb.o $(OBJDIR)XaLibSql.o $(OBJDIR)XaLibConfig.o $(OBJDIR)XaLibXsl.o $(OBJDIR)XaLibCrypto.o \
     $(OBJDIR)XaLibDom.o $(OBJDIR)XaLibChar.o $(OBJDIR)XaLibCurl.o $(OBJDIR)XaLibError.o \
     $(OBJDIR)XaLibSocket.o $(OBJDIR)XaLibWebSocket.o $(OBJDIR)XaLibLog.o \
     $(OBJDIR)XaLibTime.o $(OBJDIR)XaLibWs.o $(OBJDIR)XaLibGui.o $(OBJDIR)XaLibController.o $(OBJDIR)XaLibControllerBackEnd.o $(OBJDIR)XaLibControllerFrontEnd.o\
-    $(OBJDIR)XaOuType.o $(OBJDIR)XaOuObj.o $(OBJDIR)XaOu.o \
+    $(OBJDIR)XaOuType.o $(OBJDIR)XaOuTypeUi.o $(OBJDIR)XaOu.o $(OBJDIR)XaOuUi.o \
     $(OBJDIR)XaUser.o $(OBJDIR)XaUserUi.o $(OBJDIR)XaLanguage.o \
     $(OBJDIR)XaUserRole.o \
     $(OBJDIR)XaLibMail.o $(OBJDIR)XaLibRbUart.o $(OBJDIR)XaLibRbGpIo.o
@@ -128,8 +128,6 @@ $(OBJDIR)XaLibModel.o: XaLibModel.cpp
 	$(CPP) -c XaLibModel.cpp -o $(OBJDIR)XaLibModel.o $(CPPFLAGS)
 $(OBJDIR)XaLibHttp.o: XaLibHttp.cpp 
 	$(CPP) -c XaLibHttp.cpp -o $(OBJDIR)XaLibHttp.o $(CPPFLAGS)
-$(OBJDIR)XaLibSession.o: XaLibSession.cpp 
-	$(CPP) -c XaLibSession.cpp -o $(OBJDIR)XaLibSession.o $(CPPFLAGS)
 $(OBJDIR)XaLibToken.o: XaLibToken.cpp 
 	$(CPP) -c XaLibToken.cpp -o $(OBJDIR)XaLibToken.o $(CPPFLAGS)
 $(OBJDIR)XaLibDb.o: XaLibDb.cpp
@@ -169,11 +167,13 @@ $(OBJDIR)XaUserUi.o: XaUserUi.cpp
 
 $(OBJDIR)XaOuType.o: XaOuType.cpp 
 	$(CPP) -c XaOuType.cpp -o $(OBJDIR)XaOuType.o $(CPPFLAGS)
+$(OBJDIR)XaOuTypeUi.o: XaOuTypeUi.cpp 
+	$(CPP) -c XaOuTypeUi.cpp -o $(OBJDIR)XaOuTypeUi.o $(CPPFLAGS)
 
-$(OBJDIR)XaOuObj.o: XaOuObj.cpp 
-	$(CPP) -c XaOuObj.cpp -o $(OBJDIR)XaOuObj.o $(CPPFLAGS)
 $(OBJDIR)XaOu.o: XaOu.cpp 
 	$(CPP) -c XaOu.cpp -o $(OBJDIR)XaOu.o $(CPPFLAGS)
+$(OBJDIR)XaOuUi.o: XaOuUi.cpp 
+	$(CPP) -c XaOuUi.cpp -o $(OBJDIR)XaOuUi.o $(CPPFLAGS)
 
 #$(OBJDIR)XaUserProfile.o: XaUserProfile.cpp 
 #	$(CPP) -c XaUserProfile.cpp -o $(OBJDIR)XaUserProfile.o $(CPPFLAGS)

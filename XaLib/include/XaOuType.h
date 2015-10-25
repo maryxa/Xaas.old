@@ -5,19 +5,28 @@
 
 class XaOuType : public XaLibModel {
 
-    private:
-		
-		void GetList();
+    private:		
 
+        //vector<string> PropsName;
+        //vector<string> PropsValue;
+        //vector<string> PropsType;
+        
+        void Create();
+        void Read();
+        void Update();
+        void Delete();
 
-	protected:
-	
+    protected:
 
-	public:
+    public:
 
-		void Dispatcher (const string &CalledEvent);
+        void Dispatcher (const string &CalledEvent);
+      
+        //int Read();
+        //int Update();
+        //int Delete();
 
-		XaOuType();
-		~XaOuType();
+        XaOuType();
+        ~XaOuType();
 };
 #endif

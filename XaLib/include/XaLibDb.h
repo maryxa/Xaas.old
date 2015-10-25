@@ -8,31 +8,33 @@ extern XaSettings SETTINGS;
 
 class XaLibDb : private XaLibBase {
 
-	private:
+    private:
 
-		MYSQL* ConnWrite;
+        MYSQL* ConnWrite;
         MYSQL* ConnRead;
         MYSQL* ConnSession;
         MYSQL* ConnLog;
-		int ActiveConnection;
+        int ActiveConnection;
 
-	protected:
+    protected:
 
-	public:
+    public:
 
-		XaLibDb();
-		~XaLibDb();
+        XaLibDb();
+        ~XaLibDb();
 
-		int Connect(const int& DbType);
+        int Connect(const int& DbType);
 
-		int ExInsert(string SqlQry);
-		int ExUpdate(string SqlQry);
-		int ExDelete(string SqlQry);
-		DbResMap ExSelect(string SqlQry);
-		DbResMap RetrieveRows(MYSQL_RES *DbResult); 
+        int ExInsert(string SqlQry);
+        int ExUpdate(string SqlQry);
+        int ExDelete(string SqlQry);
+        DbResMap ExSelect(string SqlQry);
+        DbResMap RetrieveRows(MYSQL_RES *DbResult);
 
         int ExSystemQry(string SqlQry);
-		//DbResMap ExSelectSession(string SqlQry);
-		//int ExInsertSession(string SqlQry);
+        vector<string> FetchFields(const string& TableName);
+		
+        //DbResMap ExSelectSession(string SqlQry);
+	//int ExInsertSession(string SqlQry);
 };
 #endif

@@ -1,6 +1,11 @@
 #include <XaLibWs.h>
 #include <XaLibAction.h>
 
+/*
+ CNOTROLLARE SE NEI SETTINGS ABILITATI PLAIN
+ */
+
+
 XaLibWs::XaLibWs() {
 };
 
@@ -54,7 +59,11 @@ void XaLibWs::Setup() {
 	}
 
 	ExtractData();
+	
+	if (SETTINGS["WsEnableLog"]=="yes") {
 
+		AddRequestLog();
+	}
 };
 
 void XaLibWs::CheckRequired() {
@@ -122,13 +131,13 @@ void XaLibWs::GetConsumerKey() {
 
 	if (DbRes.size()==0) {
 
-		LOG.Write("ERR",__FILE__,__FUNCTION__,__LINE__,"Ws WsConsumerId Is Invalid -> "+ ConsumerId);
+		LOG.Write("ERR",__FILE__,__FUNCTION__,__LINE__,"Ws ConsumerId Is Invalid -> "+ ConsumerId);
 		ConsumerKey="";
 		throw 110;
 
 	} else {
 
-		LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"Ws WsConsumerId Is Valid -> "+ ConsumerId);
+		LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"Ws ConsumerId Is Valid -> "+ ConsumerId);
 		ConsumerKey=DbRes[0]["key"];
 	}
 };
@@ -141,6 +150,20 @@ void XaLibWs::GetDecryptedData() {
 	LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"Ws Data -> "+ Data);
 	//throw 111;
 	//ERRORE EXIT ECC
+};
+
+void XaLibWs::AddRequestLog() {
+
+	LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"WS Adding Log");
+	WsId=XaLibSql::Insert(DB_SESSION,"XaWsLog",{"back_end_ip","front_end_ip","client_ip","token","consumer_id","consumer_key","req_type","res_type","encoding","encryption","object","event","data"},
+												{SESSION.BackEndIp,SESSION.FrontEndIp,ClientIp,Token,ConsumerId,ConsumerKey,ReqType,ResType,Encoding,Encryption,Object,Event,Data});			
+};
+
+void XaLibWs::AddResponseLog() {
+
+	LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"WS Updating Log");
+	//UPDATE THE LOG WUTH THE RESPONSE
+	XaLibSql::Update(DB_SESSION,"XaWsLog",{"response"},{RESPONSE.Content},{"id"},{to_string(WsId)});
 };
 
 void XaLibWs::ExtractData(){
@@ -157,6 +180,9 @@ void XaLibWs::ExtractData(){
 	
 	Token=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsData/login/token");
 	LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"Ws Token -> "+ Token);
+	
+	ClientIp=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsData/login/client_ip");
+	LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"Ws ClientIp -> "+ ClientIp);
 
 	Object=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsData/operation/object");
 	LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"Ws Object -> "+ Object);
@@ -234,10 +260,10 @@ void XaLibWs::ExtractData(){
 			LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"WS Number of Parameters ->" + XaLibBase::FromIntToString(ParamsNum));
 
 			/*Adding parameter to the request*/
-			for (int i=0;i<ParamsNum;i++) {
+			for (auto i=0;i<ParamsNum;i++) {
 
 				string ParamName =LibDom->GetElementValueByXPath(XmlDomDoc,"/WsData/params/p["+ XaLibBase::FromIntToString(i+1) + "]/n");
-				string ParamValue=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsData/params/p"+ XaLibBase::FromIntToString(i+1) + "]/v");
+				string ParamValue=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsData/params/p["+ XaLibBase::FromIntToString(i+1) + "]/v");
 
 				LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"WS Adding Parameter ->" +ParamName +" :: With Value -> "+ParamValue);
 
@@ -312,7 +338,7 @@ void XaLibWs::ExtractData(){
 	delete(LibXsl);
 */
 //};
-
+/*
 int XaLibWs::CheckCaller(const string &CallerName,const string &CallerKey) {
 
 	int ReturnValue=0;
@@ -357,7 +383,7 @@ int XaLibWs::CheckCaller(const string &CallerName,const string &CallerKey) {
 
 	return ReturnValue;
 };
-
+*/
 string XaLibWs::GetObject() {
 
 	return Object;
@@ -383,9 +409,19 @@ string XaLibWs::GetToken() {
 	return Token;
 };
 
+string XaLibWs::GetClientIp() {
+
+	return ClientIp;
+};
+
 string XaLibWs::GetResType() {
 
 	return ResType;
+};
+
+int XaLibWs::GetWsId() {
+
+	return WsId;
 };
 
 map <int, map<string,string> > XaLibWs::GetParams() {

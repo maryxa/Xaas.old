@@ -132,11 +132,17 @@ void XaLibController::SendHeadersLocation(const string& Location){
 };
 */
 
-void XaLibController::GetServerInfo(){
+/*
+string XaLibController::GetServerInfo() {
 
 	SESSION.FrontEndIp=HTTP.GetServerIpAddress();
 };
 
+string XaLibController::GetClientInfo() {
+
+	SESSION.FrontEndIp=HTTP.GetServerIpAddress();
+};
+*/
 /*
 void XaLibController::OnStart(const string& ConfFile) {
 

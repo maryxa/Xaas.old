@@ -50,91 +50,88 @@ using namespace std;
 
 struct XaSession {
 
-	string Token="";
-	int XaUser_ID=0;
-	int XaWsSession_ID;
+    string Token="";
+    int XaUser_ID=0;
+    int XaWsSession_ID=0;
 
-	string ClientIp;
-	string FrontEndIp;
-	string BackEndEndIp;
+    string BackEndIp="";
+    string FrontEndIp="";
+    string ClientIp="";    
 };
 
 struct XaRequest {
 
-	
+    /*LEGACY*/
 
-	/*LEGACY*/
-	
-	string WsXml="";
-	string WsXmlData="";
-	string WsXmlDataEncoding="";
-	string WsXmlDataKey="";
-	string WsXmlDataIV="";
+    //string WsXml="";
+    //string WsXmlData="";
+    //string WsXmlDataEncoding="";
+    //string WsXmlDataKey="";
+    //string WsXmlDataIV="";
 
-	string WsCallerName="";
-	string WsCallerKey="";
+    //string WsCallerName="";
+    //string WsCallerKey="";
 
-	string ResponseType="";
-	string RedirectLocation="";
-	string WsXmlUsername="";
-	string WsXmlPassword="";
-	string XaSession_ID="";
-	string XaSession_KEY="";
-	string XaSession_COOKIE="";
+    //string ResponseType="";
+    //string RedirectLocation="";
+    //string WsXmlUsername="";
+    //string WsXmlPassword="";
+   // string XaSession_ID="";
+    //string XaSession_KEY="";
+    //string XaSession_COOKIE="";
 
-	string CalledLayout="";
+    string CalledLayout="";
 
-	string Brand="";
-	string Device="";
+    //string Brand="";
+    //string Device="";
 
-	bool FlowCheck=true;
-	/*LEGACY END*/
-	
-	//CARATTERISTICHE DEL WebService
-	//string WsReqType="";
-	//string WsData="";
-	//string WsEncoding="";
-	//string WsEncryption="";
-	//string WsResType="";
+    //bool FlowCheck=true;
+    /*LEGACY END*/
 
-	//CARATTERISTICHE DELLA CHIAMATA
-	//string WsXmlUsername="";
-	//string WsXmlPassword="";
-	//string WsConsumerId="";
-	//string WsConsumerName="";
-	//string WsConsumerKey="";
-	
-	//string WsTokenId="";
+    //CARATTERISTICHE DEL WebService
+    //string WsReqType="";
+    //string WsData="";
+    //string WsEncoding="";
+    //string WsEncryption="";
+    //string WsResType="";
 
-	//string CalledAction="";
-	string CalledObject="";
-	string CalledEvent="";
+    //CARATTERISTICHE DELLA CHIAMATA
+    //string WsXmlUsername="";
+    //string WsXmlPassword="";
+    //string WsConsumerId="";
+    //string WsConsumerName="";
+    //string WsConsumerKey="";
 
-	string HeadersString="";
-	string HeadersStringCustom="";
+    //string WsTokenId="";
 
+    //string CalledAction="";
+    string CalledObject="";
+    string CalledEvent="";
 
-	string Language="";
+    string HeadersString="";
+    string HeadersStringCustom="";
 
-	//string ClientIpAddress="";
-	//string ServerIpAddress="";
+    string Language="";
 
-	//STATO DELLA CHIAMATA
-	//int RequestStatus=1;
-	//string RequestErrorCode="";
-	//string RequestErrorMessage="";
+    //string ClientIpAddress="";
+    //string ServerIpAddress="";
+
+    //STATO DELLA CHIAMATA
+    //int RequestStatus=1;
+    //string RequestErrorCode="";
+    //string RequestErrorMessage="";
 };
 
 struct XaResponse {
 
-	/*LEGACY*/
-	//string Object;
-	//string Event;
-	//string Headers;
-	/*LEGACY END*/
-	string Location;
-	string Content;
-	string ResponseType;
+    /*LEGACY*/
+    //string Object;
+    //string Event;
+    //string Headers;
+    /*LEGACY END*/
+    string Location;
+    string Content;
+    string ResponseType;
 };
 
 typedef map<string, string> XaSettings;
@@ -154,29 +151,32 @@ class XaLibBase {
 
     protected:
 
-		typedef map<int, map<string,string> > DbResMap;
+        typedef map<int, map<string,string> > DbResMap;
+        typedef map<int, map<string,string> > FieldsMap;
+        
+        string FromIntToString(int IntValue);
+        int FromStringToInt(const string& StringValue);
+        unsigned int FromHexStringToUnsignedInt(string StringValue);
 
-		string FromIntToString(int IntValue);
-		int FromStringToInt(const string& StringValue);
-		unsigned int FromHexStringToUnsignedInt(string StringValue);
+        string FromFloatToString(float FloatValue);
+        float FromStringToFloat(string StringValue);
 
-		string FromFloatToString(float FloatValue);
-		float FromStringToFloat(string StringValue);
+        string FromDoubleToString(double DoubleValue);
+        double FromStringToDouble(string StringValue);
 
-		string FromDoubleToString(double DoubleValue);
-		double FromStringToDouble(string StringValue);
+        string FromCharToString(char CharValue);
+        string FromCharArrayToString(char CharValue[]);
+        char* FromStringToCharArray(string StringValue);
+        string FromStringToHex(const string& StringValue,int CapitalCase);
+        int FromCharToInt(char CharValue);
 
-		string FromCharToString(char CharValue);
-		string FromCharArrayToString(char CharValue[]);
-		char* FromStringToCharArray(string StringValue);
-		string FromStringToHex(const string& StringValue,int CapitalCase);
-		int FromCharToInt(char CharValue);
+        vector<string> FromCsvStringToVector(string& CsvString);
 
-		void SendHtmlHeaders();
+        void SendHtmlHeaders();
 
     public:
 
-		XaLibBase();
-		virtual ~XaLibBase();
+        XaLibBase();
+        virtual ~XaLibBase();
 };
 #endif

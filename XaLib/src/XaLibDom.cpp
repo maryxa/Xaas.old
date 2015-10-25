@@ -28,6 +28,55 @@ xmlDocPtr XaLibDom::DomFromString(string XmlString) {
 	return XmlDomDoc;
 };
 
+xmlDocPtr XaLibDom::DomFromFile(const vector<string> XmlFilesPath,const int& AddRootTag) {
+
+	xmlDocPtr XmlDomDoc;
+    string XmlStringTotal="";
+
+	if (AddRootTag==1){
+
+        XmlStringTotal.append("<root>");
+
+    }
+
+	//ADDING FILE
+    int XmlFilesSize=XmlFilesPath.size();
+
+    if(XmlFilesSize>0) {
+
+		unique_ptr<XaLibChar> LibChar (new XaLibChar());
+		   
+		for(auto i=0; i<XmlFilesSize; i++) {
+
+			string XmlFilePath=XmlFilesPath.at(i).c_str();
+            char* XmlFilePathChar=(char*)XmlFilePath.c_str();
+
+            ifstream MyFile;
+            MyFile.open(XmlFilePathChar);
+
+            if (MyFile.is_open()){
+ 
+                string TmpString;
+
+                while(getline(MyFile,TmpString) ) {
+
+                    string TmpStringCleared=LibChar->ClearReturn(TmpString);
+                    XmlStringTotal.append(TmpStringCleared);
+                }
+
+                MyFile.close();
+
+            }
+        } 
+    }
+	
+	const char *XmlChar = (char*)XmlStringTotal.c_str();
+	int XmlStringSize=XmlStringTotal.size();
+	XmlDomDoc = xmlRecoverMemory(XmlChar,XmlStringSize);
+
+	return XmlDomDoc;
+};
+
 xmlDocPtr XaLibDom::DomFromStringAndFile(const VectorXmlFilePath& XmlFiles,const VectorXmlString& XmlStrings,const int& AddRootTag) {
 
 	xmlDocPtr XmlDomDoc;

@@ -5,18 +5,17 @@
 
 class XaPages : public XaLibAction {
 
-	private:
+    private:
 
-		void XaMyPage();
-		void XaInfoPage();
-		void Dispatcher(const string &CalledEvent);
+        void XaMyPage();
+        void Dispatcher(const string &CalledEvent);
 
     protected:
 
-	public:
+    public:
 
-		XaPages();
-		~XaPages();
+        XaPages();
+        ~XaPages();
 
 };
 #endif

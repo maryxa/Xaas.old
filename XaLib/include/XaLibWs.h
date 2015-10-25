@@ -17,7 +17,7 @@
  * @see XaLibBase
  * @see XaLibControllerBackEnd
  * 
- * @see http://www.xallegro.com
+ * @see alex@xallegro.com
  * @author Alessandro Mariotti - alex@xallegro.com
 */
 
@@ -25,68 +25,78 @@ class XaLibWs : protected XaLibBase {
 
     private:
 
-		string ReqType={""};
-		string Encoding={""};
-		string Encryption={""};
+        string ReqType={""};
+        string Encoding={""};
+        string Encryption={""};
 
-		string ConsumerId={""};
+        string ConsumerId={""};
 
-		/* 32B key*/
-		string ConsumerKey={""};
+        /* 32B key*/
+        string ConsumerKey={""};
 
-		//string ConsumerName={""};
-	
-		string ResType={""};
-		string Data={""};
+        //string ConsumerName={""};
 
-		string Username={""};
-		string Password={""};
-		
-		/* 32B Token*/
-		string Token={""};
+        string ResType={""};
+        string Data={""};
 
-		string Object={""};
-		string Event={""};
+        string Username={""};
+        string Password={""};
 
-		map <int, map<string,string> > Params;
+        /* 32B Token*/
+        string Token={""};
 
-		/**
-		* Check the required parameter for a standard Web Service Call\n
-		* The required parameter for a standard Web Service Call are:\n
-		* Data
-		* ReqType
-		* Encoding
-		* Encryption
-		* ConsumerId
-		* ResType
-		*
-		* @return Void
-		*
-		*/
-		void CheckRequired();
-		void GetEncodedData();
-		void GetConsumerKey();
-		void GetDecryptedData();
+        string ClientIp={""};
 
-		void ExtractData();
+        string Object={""};
+        string Event={""};
 
-	protected:
+        int WsId;
 
-	public:
+        map <int, map<string,string> > Params;
 
-		void Setup();
-		
-		string GetObject();
-		string GetEvent();
-		string GetUsername();
-		string GetPassword();
-		string GetToken();
-		string GetResType();
+        /**
+        * Check the required parameter for a standard Web Service Call\n
+        * The required parameter for a standard Web Service Call are:\n
+        * Data
+        * ReqType
+        * Encoding
+        * Encryption
+        * ConsumerId
+        * ResType
+        *
+        * @return Void
+        *
+        */
+        void CheckRequired();
+        void GetEncodedData();
+        void GetConsumerKey();
+        void GetDecryptedData();
 
-		map <int, map<string,string> > GetParams();
+        void AddRequestLog();
 
-		int CheckCaller(const string &CallerName,const string &CallerKey);
-		XaLibWs();
-		~XaLibWs();
+        void ExtractData();
+        
+        map <int, map<string,string> > GetParams();
+
+    protected:
+
+    public:
+
+        void Setup();
+
+        string GetObject();
+        string GetEvent();
+        string GetUsername();
+        string GetPassword();
+        string GetToken();
+        string GetClientIp();
+        string GetResType();
+        int GetWsId();
+
+        void AddResponseLog();
+
+        //int CheckCaller(const string &CallerName,const string &CallerKey);
+        XaLibWs();
+        ~XaLibWs();
 };
 #endif

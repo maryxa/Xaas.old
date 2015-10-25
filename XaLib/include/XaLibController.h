@@ -29,70 +29,70 @@
 */
 class XaLibController : protected XaLibBase {
 
-	private:
-	protected:
+    private:
+    protected:
 
-		/**
-		* @brief Load Configuration File
-		* @details Load Configuration File and pushes values in \n
-		* a Super Global Variable map<string, string> XaSettings; 
-		* 
-		* @see XaLibBase
-		* @param ConFile Configuration File - Relative or absolute path
-		* @return Void
-		*
-		* Example Usage: in OnStart Method
-		*
-		* @code
-		*	void XaLibController::OnStart(const string& ConfFile) {
-		* 
-		*		LoadXmlConfFile(ConfFile);
-		*		...
-		* 
-		*	}
-		* @endcode
-		*
-		*/
-		void LoadXmlConfFile(string ConfFile);
-		void StartLog();
-		void StartHttp();
-		void StartDb();
+        /**
+        * @brief Load Configuration File
+        * @details Load Configuration File and pushes values in \n
+        * a Super Global Variable map<string, string> XaSettings; 
+        * 
+        * @see XaLibBase
+        * @param ConFile Configuration File - Relative or absolute path
+        * @return Void
+        *
+        * Example Usage: in OnStart Method
+        *
+        * @code
+        *	void XaLibController::OnStart(const string& ConfFile) {
+        * 
+        *		LoadXmlConfFile(ConfFile);
+        *		...
+        * 
+        *	}
+        * @endcode
+        *
+        */
+        void LoadXmlConfFile(string ConfFile);
+        void StartLog();
+        void StartHttp();
+        void StartDb();
 
-		void GetServerInfo();
+        //void GetServerInfo();
 
-		void SendHeaders(const string& HeadersType);	
-		//void SendHeadersLocation(const string& Location);
+        void SendHeaders(const string& HeadersType);	
+        //void SendHeadersLocation(const string& Location);
 
-		/*
-		int OnStartStatus=1;
-		void OnStart(const string& ConfFile);
+        /*
+        int OnStartStatus=1;
+        void OnStart(const string& ConfFile);
 
-		void LoadXmlConfFile(string ConfFile);
-		void StartLog();	
-		void StartHttp();
-		void StartDb();
+        void LoadXmlConfFile(string ConfFile);
+        void StartLog();	
+        void StartHttp();
+        void StartDb();
 
-		int  ProfileCalledObject(const string& CalledObject,const string& CalledEvent);
+        int  ProfileCalledObject(const string& CalledObject,const string& CalledEvent);
 
-		virtual void SendResponse();
-		virtual void DispatchWs();
-		void Dispatch();
+        virtual void SendResponse();
+        virtual void DispatchWs();
+        void Dispatch();
 
-		virtual void ExecuteCalledObject();
+        virtual void ExecuteCalledObject();
 
-		void SendHeaders(string& HeadersType) const;
-		
+        void SendHeaders(string& HeadersType) const;
+
 */
-	public:
+    public:
 /*
-		void GetCall();
-		void GetLayout();
-		void GetServerInfo();
-		void GetClientInfo();
-		void GetWs();
+        void GetCall();
+        void GetLayout();
+        void GetServerInfo();
+        void GetClientInfo();
+        void GetWs();
 */
-		XaLibController();
-		virtual ~XaLibController();
+        XaLibController();
+        virtual ~XaLibController();
 	
 };
 #endif

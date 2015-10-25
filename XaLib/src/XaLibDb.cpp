@@ -393,7 +393,7 @@ XaLibDb::DbResMap XaLibDb::RetrieveRows(MYSQL_RES *DbResult) {
 			j++;
 		}
 
-		return DbRes;
+	return DbRes;
 };
 
 int XaLibDb::ExSystemQry(string SqlQry) {
@@ -461,13 +461,57 @@ int XaLibDb::ExSystemQry(string SqlQry) {
 		} else {
 
 			XaLibBase::SendHtmlHeaders();
-			printf("Error %u: %s\n", mysql_errno(ConnLog), mysql_error(ConnLog));	
+			printf("Error %u: %s\n", mysql_errno(ConnLog), mysql_error(ConnLog));
 			return 0;
 		}
 	}
 
 	return 1;
 
+};
+
+vector<string> XaLibDb::FetchFields(const string& TableName) {
+
+	vector<string> FieldsList;	
+	const char *cstr = TableName.c_str();
+
+	MYSQL_RES *tbl_cols=nullptr;
+	int i;
+	
+	if (this->ActiveConnection==1){
+	
+		tbl_cols = mysql_list_fields(ConnWrite, cstr, NULL);
+
+	} else if(this->ActiveConnection==2){
+	
+		tbl_cols = mysql_list_fields(ConnRead, cstr, NULL);
+	
+	} else if(this->ActiveConnection==3){
+			
+		tbl_cols = mysql_list_fields(ConnSession, cstr, NULL);
+
+	} else if(this->ActiveConnection==4){
+
+		tbl_cols = mysql_list_fields(ConnLog, cstr, NULL);
+			
+	} else {
+
+		XaLibBase::SendHtmlHeaders();
+		printf("Error %u: %s\n", mysql_errno(ConnLog), mysql_error(ConnLog));
+		//THROwARE
+	}
+
+	unsigned int field_cnt = mysql_num_fields(tbl_cols);
+
+	for (i=0; i < field_cnt; ++i) {
+
+		MYSQL_FIELD *col = mysql_fetch_field_direct(tbl_cols, i);
+		FieldsList.push_back(col->name);
+	};
+
+	mysql_free_result(tbl_cols);
+
+	return FieldsList;
 };
 
 XaLibDb::~XaLibDb() {

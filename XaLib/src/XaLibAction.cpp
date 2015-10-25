@@ -163,7 +163,9 @@ string XaLibAction::BuildBackEndCall(const string& Object, const string& Event,c
 	//ADDING TOKEN
 	Call.append("<login><token>");
 	Call.append(SESSION.Token);
-	Call.append("</token></login>");
+	Call.append("</token><client_ip>");
+	Call.append(SESSION.ClientIp);
+	Call.append("</client_ip></login>");
 	
 	//ADDING OPERATION
 	Call.append(BuildBackEndCallSectionOperation(Object,Event));
@@ -834,9 +836,8 @@ void XaLibAction::ResetRequest(){
 	REQUEST.CalledEvent="";
 	REQUEST.CalledObject="";
 };
-
-
 */
+
 void XaLibAction::Execute(){
 
 	//EXECUTE OBJECT DISPATCHER (CLASS DISPATCHER)
@@ -850,7 +851,8 @@ void XaLibAction::Execute(){
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Event Is empty");
 		throw 621;
 	}
-}
+};
+
 void XaLibAction::Dispatcher (const string &CalledEvent){};
 
 XaLibAction::~XaLibAction(){

@@ -10,15 +10,6 @@
 #include <XaLibSql.h>
 #include <XaLibCrypto.h>
 
-//SUPERGLOBALS VARIABLES
-
-/*
- 0 = non disattivabile
- 1 = attivo
- 2 = disattivo
- 3 = eliminato
- */
-
 extern XaLibLog LOG;
 extern XaLibHttp HTTP;
 extern XaLibDb DB_SESSION;
@@ -26,42 +17,63 @@ extern XaLibDb DB_READ;
 extern XaLibDb DB_WRITE;
 extern XaLibDb DB_LOG;
 
+extern XaSession SESSION;
 extern XaRequest REQUEST;
 extern XaResponse RESPONSE;
 extern XaSettings SETTINGS;
 
 class XaLibModel : protected XaLibBase {
 
-	private:
+    private:
 
-	protected:
+    protected:
 
-		string DbTable;
-		vector <string> Fields;
-		vector <string> Values;
+        //vector<string> XmlModels;
 
-		vector<string> ReturnedFields;
-		vector<string> WhereFields;
-		vector<string> WhereValues;
-		vector<string> OrderByFields;
-		vector<string> GroupByFields;
+        //string DbTable;
+        //vector <string> Fields;
+        //vector <string> Values;
 
-		int Limit=0;
+        //vector<string> ReturnedFields;
+        //vector<string> WhereFields;
+        //vector<string> WhereValues;
+        //vector<string> OrderByFields;
+        //vector<string> GroupByFields;
 
-		void ResetPoperites ();
+        //int Limit=0;
 
-		virtual void Dispatcher (const string &CalledEvent)=0;
+        //void ResetPoperites ();
 
-		string BuildXml(DbResMap& ResMap,const string& Container,const string& GroupBy);
+        virtual void Dispatcher (const string &CalledEvent)=0;
+        vector<string> AddXmlFile(const vector<string>& FileName);
 
+        FieldsMap CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr);
+        int CreateExecute(const string& DbTable,XaLibBase::FieldsMap& LoadedFields);
+        string CreateResponse(const int& NextId);
+
+        vector<string> ReadPrepare(const vector<string>& XmlFiles,const string& XPathExpr);
+        XaLibBase::DbResMap ReadExecute(const string& DbTable,vector<string>& FieldsToRead,const string& RowId);
+        string ReadResponse(DbResMap& DbRes,vector<string>& FieldsToRead);
+
+        int BackupRecord(const string& DbTable,const int& RowId);
+        FieldsMap UpdatePrepare(const vector<string>& XmlFiles,const string& XPathExpr);
+        int UpdateExecute(const string& DbTable,XaLibBase::FieldsMap& LoadedFields);
+        string UpdateResponse(const int& UpdatedId);
+
+        int DeleteExecute(const string& DbTable,const string& RowId);
+        string DeleteResponse(const int& DeletedId);
+
+        string BuildXml(DbResMap& ResMap,const string& Container,const string& GroupBy);
+
+        virtual void Create()=0;
+        virtual void Read()=0;
+        virtual void Delete()=0;
+        virtual void Update()=0;
     public:
 
-		virtual int Create();
-		virtual XaLibBase::DbResMap Read();
+        void Execute();
 
-		void Execute();
-
-		XaLibModel ();
-		virtual ~XaLibModel ();
+        XaLibModel ();
+        virtual ~XaLibModel ();
 };
 #endif

@@ -8,16 +8,21 @@ class XaUser : public XaLibModel {
 	
     private:
 
-		void Dispatcher(const string &CalledEvent);
+        void Dispatcher(const string &CalledEvent);
 
-		void Login();
-		void Logout();
+        void Login();
+        void Logout();
 
-	protected:
+        void Create();
+        void Read();
+        void Update();
+        void Delete();
 
-	public:
+    protected:
 
-		XaUser();
-		virtual ~XaUser();
+    public:
+
+        XaUser();
+        virtual ~XaUser();
 };
 #endif

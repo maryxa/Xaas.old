@@ -1,10 +1,10 @@
-#include <XaOu.h>
+#include <XaOuUi.h>
 #include <XaLibAction.h>
 
-XaOu::XaOu(){
+XaOuUi::XaOuUi(){
 };
 
-void XaOu::Dispatcher (const string &CalledEvent) {
+void XaOuUi::Dispatcher (const string &CalledEvent) {
 
 	if (CalledEvent=="Explorer") {
 		this->Explorer();
@@ -18,7 +18,7 @@ void XaOu::Dispatcher (const string &CalledEvent) {
 	}
 };
 
-void XaOu::Tree () {
+void XaOuUi::Tree () {
 
 	SetLayout(REQUEST.CalledLayout);
 
@@ -137,7 +137,7 @@ void XaOu::Tree () {
 
 };
 
-void XaOu::Explorer () {
+void XaOuUi::Explorer () {
 
 	SetLayout(REQUEST.CalledLayout);
 	AddXslFile("XaOuExplorer");
@@ -146,5 +146,5 @@ void XaOu::Explorer () {
 	RESPONSE.Content=XaLibGui::CreateForm(XmlFiles,XmlStrings,XslFiles,XslStrings,XslParams);
 };
 
-XaOu::~XaOu(){
+XaOuUi::~XaOuUi(){
 };

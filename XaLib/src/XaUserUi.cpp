@@ -8,13 +8,13 @@ void XaUserUi::Dispatcher (const string &CalledEvent) {
 
 	if (CalledEvent=="LoginFrm"){
 		this->LoginFrm();
-
 	} else if (CalledEvent=="Login"){
-
 		this->Login();
-
+	} else if (CalledEvent=="Logout"){
+		this->Logout();
+	} else if (CalledEvent=="LogoutFrm"){
+		this->LogoutFrm();
 	} else {
-
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Event Does Not Exists -> "+CalledEvent);
 		throw 42;
 	}
@@ -42,70 +42,36 @@ void XaUserUi::Login (){
 	string StrUsername=HTTP.GetHttpParam("username");
 	string StrPassword=HTTP.GetHttpParam("password");
 
-	//BuildBackEndCallLogin(StrUsername,StrPassword);
-
 	XaLibCurl LibCurl;
-    string content = LibCurl.Call(BuildBackEndCallLogin(StrUsername,StrPassword));
+    string CallResponse = LibCurl.Call(BuildBackEndCallLogin(StrUsername,StrPassword));
 
-	xmlDocPtr XmlDomDoc=XaLibDom::DomFromString(content);
+	xmlDocPtr XmlDomDoc=XaLibDom::DomFromString(CallResponse);
 	string token=XaLibDom::GetElementValueByXPath(XmlDomDoc,"/WsData/token");
 
 	SESSION.Token=token;
 	RESPONSE.ResponseType="location";
 	RESPONSE.Location="obj=XaPages&evt=XaMyPage";
-	RESPONSE.Content=content;
+	RESPONSE.Content=CallResponse;
 };
 
 void XaUserUi::Logout (){
-	
+
 	XaLibCurl LibCurl;
+	string CallResponse= LibCurl.Call(BuildBackEndCall("XaUser","Logout",{},{}));
+	RESPONSE.ResponseType="location";
+	RESPONSE.Location="obj=XaUserUi&evt=LogoutFrm";
+	RESPONSE.Content="";
+};
 
-	//xmlDocPtr XmlDomDoc=XaLibDom::DomFromString(content);
-	//string token=XaLibDom::GetElementValueByXPath(XmlDomDoc,"/WsData/token");
-
-	/*
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Destroying Session -> SessionID::"+REQUEST.XaSession_ID +" AND UserID::"+ XaLibBase::FromIntToString(REQUEST.XaUser_ID));
-
-	XaLibSql LibSql;
-	LibSql.LockTable(DB_SESSION,"XaSession");
-
-		//DELETE SESSION DATA
-		vector<string> VectorWhereSessionDataFields {"XaSession_ID"};
-		vector<string> VectorWhereSessionDataValues {REQUEST.XaSession_ID};
-
-		LibSql.Delete(DB_SESSION,"XaSessionData",VectorWhereSessionDataFields,VectorWhereSessionDataValues);
-
-		VectorWhereSessionDataFields.clear();
-		VectorWhereSessionDataValues.clear();
-
-		//DELETE SESSION
-		vector<string> VectorWhereSessionFields {"SessionID","XaUser_ID"};
-		vector<string> VectorWhereSessionValues {REQUEST.XaSession_ID,XaLibBase::FromIntToString(REQUEST.XaUser_ID)};
-
-		LibSql.Delete(DB_SESSION,"XaSession",VectorWhereSessionFields,VectorWhereSessionValues);
-
-		VectorWhereSessionFields.clear();
-		VectorWhereSessionValues.clear();
-
-	LibSql.UnlockTable(DB_SESSION);
+void XaUserUi::LogoutFrm () {
 
 	SetLayout("LoginFrm");
-
-	AddXmlFile("Logout");
-	AddXslFile("Logout");
-
-	xmlDocPtr XmlDomDoc=XaLibDom::DomFromStringAndFile(XmlFiles,XmlStrings,1);
-	xmlDocPtr XslDomDoc=XaLibDom::DomFromStringAndFile(XslFiles,XslStrings,2);
+	AddXmlFile("LogoutFrm");
+	AddXslFile("LogoutFrm");
 
 	AddXslParamCommon();
-    unique_ptr<XaLibXsl> LibXsl (new XaLibXsl(XmlDomDoc,XslDomDoc,XslParams));
 
-	RESPONSE.Content=LibXsl->GetXHtml();
-	 */
-	//SESSION.Token=token;
-	//RESPONSE.ResponseType="location";
-	//RESPONSE.Location="obj=XaUserUi&evt=LogoutFrm";
-//	RESPONSE.Content=content;
+	RESPONSE.Content=XaLibGui::CreateForm(XmlFiles,XmlStrings,XslFiles,XslStrings,XslParams);
 };
 
 /*

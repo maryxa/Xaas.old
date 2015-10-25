@@ -141,7 +141,26 @@ int XaLibBase::FromCharToInt(char CharValue){
 	int IntValue= CharValue-48;
 
 	return IntValue;
-}
+};
+
+vector<string> XaLibBase::FromCsvStringToVector(string& CsvString){
+
+	//TODO:CHECK THE STRING: LOOP RISK
+	CsvString.append(",");
+
+	vector <string> Elements;
+ 
+	unsigned pos=CsvString.find_first_of(",");
+
+	while (pos!=-1) {
+
+		Elements.push_back(CsvString.substr(0,pos));
+		CsvString.erase(0,pos+1);
+		pos=CsvString.find_first_of(",");
+	}
+
+	return Elements;
+};
 
 void XaLibBase::SendHtmlHeaders(){
 
