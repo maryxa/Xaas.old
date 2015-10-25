@@ -1,21 +1,26 @@
-#ifndef XAOU_H
-#define XAOU_H
+#ifndef XAOUOBJ_H
+#define XAOUOBJ_H
 
-#include <XaLibAction.h>
+#include <XaLibModel.h>
 
-class XaOu : public XaLibAction {
-	
-    private:
+class XaOuObj : public XaLibModel {
 
-		void Dispatcher(const string &CalledEvent);
-		void Tree();
-		void Explorer();
+    private:		
+
+		vector<string> PropsName;
+		vector<string> PropsValue;
+		vector<string> PropsType;
 
 	protected:
 
 	public:
 
-		XaOu();
-		~XaOu();
+		int Create();
+		//int Read();
+		//int Update();
+		//int Delete();
+
+		XaOuObj();
+		~XaOuObj();
 };
 #endif
