@@ -55,7 +55,8 @@ class XaLibDom : protected XaLibBase {
 
         void ParseParamFromDom (xmlDocPtr doc, xmlNodePtr cur, VectorKey VectorKey,int counter);
 
-
+        static string HtmlFromStringAndFile(const vector<string>& HtmlFiles,const vector<string>& XmlStrings,const vector<string>& JsVarFiles,const vector<string>& JsVarStrings, int type);
+ 
 
         void UpdateElementValueByXPath(xmlDocPtr XmlDomDoc, VectorXPathExpr XPathExpr, VectorXPathValue XPathValue);
 

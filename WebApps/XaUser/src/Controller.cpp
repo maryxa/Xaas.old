@@ -73,12 +73,16 @@ Controller::Controller(string ConfFile) {
 		string ErrorDesc=Error.GetError(e);
 
 		SendHtmlHeaders();
-		cout<<"ERROR: "+FromIntToString(e) +" :: "+ErrorDesc<<endl;
+		//cout<<"ERROR: "+FromIntToString(e) +" :: "+ErrorDesc<<endl;
 
+		cout<<"<WsData><error><number>"+FromIntToString(e)+"</number><description>"+ErrorDesc+"</description></error></WsData>"<<endl;
+		
 	} catch (...) {
 
 		SendHtmlHeaders();
 		cout<<"Generic not handled Error"<<endl;
+		
+
 	}
 
 	auto diff = chrono::steady_clock::now() - start;

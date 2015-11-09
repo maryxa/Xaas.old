@@ -10,12 +10,10 @@
             <placeholder>name</placeholder>
             <default></default>
             <required>yes</required>
-
             <read>yes</read>
             <update>yes</update>
             <search>yes</search>
-
-            <size></siez>
+            <size></size>
         </field>
         <field id="description" name="description">
             <id>description</id>
@@ -26,12 +24,10 @@
             <placeholder>description</placeholder>
             <default></default>
             <required>no</required>
-
             <read>yes</read>
             <update>yes</update>
             <search>yes</search>
-
-            <size></siez>
+            <size></size>
         </field>
     </fieldset>
 </XaOuType>

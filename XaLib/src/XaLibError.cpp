@@ -13,7 +13,7 @@ void XaLibError::Setup() {
 
 	
 	/*
-	 * Log - http - 
+	 * Log - 
 	 */
 	XaErrors[21]={"LOG Unable to open Log file"};
 	XaErrors[22]={"DB Unable to Connect SESSION DB"};
@@ -87,7 +87,17 @@ void XaLibError::Setup() {
 	
 	XaErrors[621]={"Event Is empty"};
 
+	/*
+	 * CURL
+	 */
+	
 	XaErrors[701]={"CURL Error Performing Request"};
+	
+	
+	/*
+	 * Http Cookie Session
+	 */
+	XaErrors[801]={"Error Creating Cookie"};
 	
 };
 

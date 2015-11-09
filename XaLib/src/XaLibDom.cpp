@@ -544,6 +544,94 @@ void XaLibDom::ParseParamFromDom (xmlDocPtr doc, xmlNodePtr cur, VectorKey Vecto
 	
 };
 
+string XaLibDom::HtmlFromStringAndFile(const vector<string>& HtmlFiles,const vector<string>& XmlStrings,const vector<string>& JsVarFiles,const vector<string>& JsVarStrings,int type) {
+
+	string Html="<!DOCTYPE html><html id=\"html\">";
+	ifstream MyFile;
+
+	string HeadContent;
+	string BodyContent;
+
+	for ( auto i=0;i<HtmlFiles.size();i++) {
+
+		MyFile.open(HtmlFiles[i].c_str());
+
+		if (MyFile.is_open()) {
+
+			string TmpString;
+			string Content;
+
+			while(getline(MyFile,TmpString)) {
+
+				Content.append(XaLibChar::ClearReturn(TmpString));
+			}
+
+
+			if (i==0) {
+			//HEAD
+				HeadContent.append(Content);
+
+			} else {	
+			//OTHER HTMLs
+				BodyContent.append(Content);
+			};
+			
+			TmpString={""};
+			Content={""};
+
+		} else {
+
+			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Opening File -> "+HtmlFiles[i]);
+		}
+
+		MyFile.close();
+	};
+
+	string Js={};
+	
+	for (auto i=0;i<JsVarFiles.size();i=i+2) {
+
+		MyFile.open(JsVarFiles[i+1].c_str());
+
+		if (MyFile.is_open()) {
+
+			string TmpString={};
+			string Content="<script>"+JsVarFiles[i]+"=";
+
+
+			while(getline(MyFile,TmpString)) {
+
+				Content.append(XaLibChar::ClearReturn(TmpString));
+			}
+			
+			Content.append("</script>");
+			
+			Js.append(Content);
+
+			TmpString={""};
+			Content={""};
+
+		} else {
+
+			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Opening File -> "+JsVarFiles[i+1]);
+		};
+
+		MyFile.close();
+	};
+
+	for (auto i=0;i<JsVarStrings.size();i=i+2) {
+
+		Js.append("<script>"+JsVarStrings[i]+"="+JsVarStrings[i+1]+"</script>");
+
+	};
+
+	Html.append("<head>"+HeadContent+Js+"</head>");
+	Html.append("<body>"+BodyContent+"</body>");
+	Html.append("</html>");	
+
+	return Html;	
+};
+
 void XaLibDom::AddAddressElementByXPath(xmlDocPtr XmlDomDoc, string XPathExpr, string Id, string Type,string Value){
 
 	xmlNodePtr cur;

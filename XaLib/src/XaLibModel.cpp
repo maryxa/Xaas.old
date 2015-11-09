@@ -53,7 +53,7 @@ XaLibBase::FieldsMap XaLibModel::CreatePrepare(const vector<string>& XmlFiles,co
 	
 	for (auto i=0;i<FieldsNum;i++) {
 
-		for ( auto &j : Properties) {	
+		for ( auto &j : Properties) {
 
 			//LOADING PROPERTIES
 			Fields[i][j]=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/"+j);
@@ -117,7 +117,7 @@ vector<string> XaLibModel::ReadPrepare(const vector<string>& XmlFiles,const stri
 		};
 		
 	};
-	
+
 	//SE E" VUOTO
 	return FieldsToRead;
 };

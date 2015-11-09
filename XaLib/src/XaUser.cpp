@@ -91,7 +91,9 @@ void XaUser::Read (){
 
 void XaUser::Update (){
 };
+
 void XaUser::Delete (){
 };
+
 XaUser::~XaUser(){
 };

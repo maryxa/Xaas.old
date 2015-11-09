@@ -25,6 +25,8 @@
 //#include <XaOuType.h>
 //#include <XaOu.h>
 #include <XaUserUi.h>
+#include <XaOuTypeUi.h>
+
 #include <XaPages.h>
 
 //#include <XaAddress.h>
@@ -89,13 +91,13 @@ Controller::Controller(string ConfFile) {
 };
 
 void Controller::Dispatch () {
-	
+
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Dispatching Event");
 
-	SESSION.Token=HTTP.GetSessionId();
+	SESSION.Token=HTTP.GetSessionId();	
 
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Token got from Session -> "+ SESSION.Token);
-	
+
 	REQUEST.CalledObject=HTTP.GetHttpParam("obj");
 	REQUEST.CalledEvent=HTTP.GetHttpParam("evt");
 
@@ -103,13 +105,13 @@ void Controller::Dispatch () {
 	if (REQUEST.CalledObject=="XaUserUi" && REQUEST.CalledEvent=="Login") {
 
 	} else if (REQUEST.CalledObject=="XaUserUi" && REQUEST.CalledEvent=="LogoutFrm") {
-	
+
 	} else if (SESSION.Token!="") {
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Token is Valid");
 
 		if (REQUEST.CalledObject=="NoHttpParam" || REQUEST.CalledEvent=="NoHttpParam") {
-		
+
 			REQUEST.CalledObject=SETTINGS["DefaultObject"];
 			REQUEST.CalledEvent=SETTINGS["DefaultEvent"];
 		}
@@ -121,13 +123,12 @@ void Controller::Dispatch () {
 		REQUEST.CalledEvent="LoginFrm";
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Default Object -> "+SETTINGS["DefaultObject"]);
-		//	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Default Event -> "+SETTINGS["DefaultEvent"]);
 	}
 
 	ExecuteEvent();
 	ManageSession();
 	SendResponse();
-		
+
 		//PROFILA COL BACK END
 
 //		REQUEST.HeadersString.append("&username="+Ws.GetUsername()+"&password="+Ws.GetPassword());
@@ -151,6 +152,11 @@ void Controller::ExecuteEvent() {
 
 		unique_ptr<XaUserUi> UserUi (new XaUserUi());
 		UserUi->Execute();
+
+	} else if(REQUEST.CalledObject=="XaOuTypeUi") {
+
+		unique_ptr<XaOuTypeUi> OuTypeUi (new XaOuTypeUi());
+		OuTypeUi->Execute();
 
 	} else if(REQUEST.CalledObject=="XaPages") {
 

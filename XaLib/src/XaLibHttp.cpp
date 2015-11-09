@@ -349,7 +349,7 @@ vector<string> XaLibHttp::GetHttpParamStruct(string HttpParamName,string StructT
 string XaLibHttp::GetSessionId(){
 
 	string HttpCookieData=this->HTTP_COOKIE;
-
+	
 	unsigned ParamEnd=HttpCookieData.find("XaSessionId=");
 
 	if (ParamEnd!=-1) {
@@ -379,12 +379,23 @@ return cookie;
 
 string XaLibHttp::SetCookie(){
 
-	string cookie1="Set-Cookie:XaSessionId=";
-	string cookie2=";path=/;HttpOnly;";
-	string cookie= cookie1+SESSION.Token+cookie2;
-	
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Generated Set Cookie -> " +cookie);
+	string cookie="";
 
+	if (SESSION.Token.size()==FromStringToInt(SETTINGS["SessionIdLength"])){
+	
+		string cookie1="Set-Cookie:XaSessionId=";
+		string cookie2=";path=/;HttpOnly;";
+		cookie= cookie1+SESSION.Token+cookie2;
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Generated Set Cookie -> " +cookie);
+
+	} else {
+		
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error Creating Cookie -> " +cookie);
+
+		throw 801;
+	};
+	
 return cookie;
 };
 

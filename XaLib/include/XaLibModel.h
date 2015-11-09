@@ -69,6 +69,7 @@ class XaLibModel : protected XaLibBase {
         virtual void Read()=0;
         virtual void Delete()=0;
         virtual void Update()=0;
+
     public:
 
         void Execute();

@@ -44,20 +44,33 @@ void XaUserUi::Login (){
 
 	XaLibCurl LibCurl;
     string CallResponse = LibCurl.Call(BuildBackEndCallLogin(StrUsername,StrPassword));
-
+	CheckResponse(CallResponse);
+	
+	
 	xmlDocPtr XmlDomDoc=XaLibDom::DomFromString(CallResponse);
 	string token=XaLibDom::GetElementValueByXPath(XmlDomDoc,"/WsData/token");
 
-	SESSION.Token=token;
-	RESPONSE.ResponseType="location";
-	RESPONSE.Location="obj=XaPages&evt=XaMyPage";
-	RESPONSE.Content=CallResponse;
+	if ( token=="ELEMENT-NOT-DEFINED" || token=="" || token.size()<FromStringToInt(SETTINGS["SessionIdLength"])) {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Back End Login Action returned an error");
+
+		RESPONSE.ResponseType="location";
+		RESPONSE.Location="obj=XaUserUi&evt=LoginFrm";
+
+	} else {
+
+		SESSION.Token=token;
+		RESPONSE.ResponseType="location";
+		RESPONSE.Location="obj=XaPages&evt=XaMyPage";
+		RESPONSE.Content=CallResponse;	
+	}
 };
 
 void XaUserUi::Logout (){
 
 	XaLibCurl LibCurl;
 	string CallResponse= LibCurl.Call(BuildBackEndCall("XaUser","Logout",{},{}));
+
 	RESPONSE.ResponseType="location";
 	RESPONSE.Location="obj=XaUserUi&evt=LogoutFrm";
 	RESPONSE.Content="";

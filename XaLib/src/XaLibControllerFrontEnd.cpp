@@ -54,7 +54,7 @@ void XaLibControllerFrontEnd::ManageSession(){
 	}
 };
 
-void XaLibControllerFrontEnd::SendResponse(){
+void XaLibControllerFrontEnd::SendResponse() {
 
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Sending Response Page Content -> " +RESPONSE.Content);
 	SendHeaders(RESPONSE.ResponseType);

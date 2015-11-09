@@ -3,6 +3,69 @@
 XaLibAction::XaLibAction(){
 };
 
+void XaLibAction::AddHtmlFile(const string& FilePath){
+
+	string HtmlDefaultPath=SETTINGS["HtmlDir"]+FilePath+".html";
+	string HtmlSharedPath=SETTINGS["SharedDir"]+"html/"+FilePath+".html";
+
+	unique_ptr<FILE, int(*)(FILE*)> f1(fopen(HtmlDefaultPath.c_str(), "r"), fclose);
+	unique_ptr<FILE, int(*)(FILE*)> f2(fopen(HtmlSharedPath.c_str(), "r"), fclose);
+
+	if (f1) {
+		HtmlFiles.push_back(HtmlDefaultPath);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added HtmlFile Custom-> "+HtmlDefaultPath);
+
+	} else if (f2) {
+		HtmlFiles.push_back(HtmlSharedPath);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added HtmlFile Shared-> "+HtmlSharedPath);
+
+	} else {
+	
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Html File Does Not Exist-> "+FilePath);
+	}
+};
+
+void XaLibAction::AddHtmlString(const string& HtmlString){
+
+	//ToDo= Check if is valid Xml String
+	HtmlStrings.push_back(HtmlString);
+
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XmlString -> "+HtmlString);
+};
+
+void XaLibAction::AddJsVarFile(const string& VarName, const string& FilePath){
+
+	string DefaultPath=SETTINGS["XmlDir"]+FilePath+".xml";
+	string SharedPath=SETTINGS["SharedDir"]+"xml/"+FilePath+".xml";
+
+	unique_ptr<FILE, int(*)(FILE*)> f1(fopen(DefaultPath.c_str(), "r"), fclose);
+	unique_ptr<FILE, int(*)(FILE*)> f2(fopen(SharedPath.c_str(), "r"), fclose);
+
+	if (f1) {
+		JsVarFiles.push_back(VarName);
+		JsVarFiles.push_back(DefaultPath);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added Js Value From File Custom-> "+DefaultPath);
+
+	} else if (f2) {
+		JsVarFiles.push_back(VarName);
+		JsVarFiles.push_back(SharedPath);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added Js Value From File Shared-> "+SharedPath);
+
+	} else {
+	
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested  File Does Not Exist-> "+FilePath);
+	}
+};
+
+void XaLibAction::AddJsVarString(const string& VarName, const string& VarString){
+
+	JsVarStrings.push_back(VarName);
+	JsVarStrings.push_back(VarString);
+
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added JsString -> "+VarString);
+};
+
+
 void XaLibAction::AddXmlFile(const string& FilePath){
 
 	string XmlDefaultPath=SETTINGS["XmlDir"]+FilePath+".xml";
@@ -106,6 +169,7 @@ void XaLibAction::SetLayout(const string &LayoutType){
 		AddXslFile("XaGuiFooter");
 		AddXslFile("XaGuiNav");
 		AddXslFile("templates");
+
 		AddXmlFile("XaLabel-"+REQUEST.Language);
 		AddXmlFile("XaGuiNav");
 
@@ -170,7 +234,7 @@ string XaLibAction::BuildBackEndCall(const string& Object, const string& Event,c
 	//ADDING OPERATION
 	Call.append(BuildBackEndCallSectionOperation(Object,Event));
 	
-	//ADDINGPARAMS
+	//ADDING PARAMS
 	Call.append(BuildBackEndCallSectionParams(ParamName,ParamValue));
 
 	Call.append("</WsData>");
@@ -837,6 +901,21 @@ void XaLibAction::ResetRequest(){
 	REQUEST.CalledObject="";
 };
 */
+
+void XaLibAction::CheckResponse(const string& Response) {
+
+	xmlDocPtr XmlResponse=XaLibDom::DomFromString(Response);
+	string Error=XaLibDom::GetElementValueByXPath(XmlResponse,"//error/number");
+
+	if (Error!="ELEMENT-NOT-DEFINED") {
+
+		string Description=XaLibDom::GetElementValueByXPath(XmlResponse,"//error/description");
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"BackEnd Returned An Error-> Number "+Error+" :: Description "+Description);
+
+		throw FromStringToInt(Error);
+	}
+};
 
 void XaLibAction::Execute(){
 

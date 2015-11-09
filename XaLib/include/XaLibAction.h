@@ -54,6 +54,11 @@ class XaLibAction : protected XaLibBase {
         string NowTimeMysql;
 	string TodayMysql;
 
+        vector<string> HtmlFiles={};
+        vector<string> HtmlStrings={};
+        vector<string> JsVarFiles = {};
+	vector<string> JsVarStrings = {};
+
         vector<string> XmlFiles;
         vector<string> XmlStrings;
 
@@ -72,6 +77,44 @@ class XaLibAction : protected XaLibBase {
         typedef map<int, map<string,string> > ParamFromDomMap;
 
         /**
+        * Adds file to the vector<string> HtmlFiles\n
+        * All files in the vector will be added in the generated Html.\n
+        * The search order for the file:\n
+        * 1) Application Html Directory SETTINGS["HtmlDir"]\n
+        * 2) Common shared Directory SETTINGS["SharedDir"]+"/html/"\n
+        * The 2 parameters: SharedDir and XslDir are configurable in the configuration file\n
+        * 
+        * @param FilePath the name of the file
+        * 
+        * @return void
+        *
+        * @code
+        * AddHtmlFile("MyHtmlFile");
+        * @endcode
+        *
+        */
+        void AddHtmlFile   (const string& FilePath);
+
+        /**
+        * 
+        * Adds a well formed Html string to the vector<string> HtmlStrings\n
+        * All strings in the vector will be added in the generated Html Object.\n
+        * 
+        * @param HtmlString the HtmlString
+        * 
+        * @return void
+        *
+        * @code
+        * AddHtmlString("MyHtmlString");
+        * @endcode
+        *
+        */
+        void AddHtmlString (const string& HtmlString);
+        
+        void AddJsVarFile(const string& VarName, const string& FilePath);
+        void AddJsVarString(const string& VarName, const string& VarString);
+
+        /**
         * Adds file to vector<string> XmlFiles\n
         * All files in the vector will be added in the generated Dom Object.\n
         * The search order for the file:\n
@@ -84,7 +127,7 @@ class XaLibAction : protected XaLibBase {
         * @return void
         *
         * @code
-        * AddXmlFile("MyXml");
+        * AddXmlFile("MyXmlFile");
         * @endcode
         *
         */
@@ -121,7 +164,7 @@ class XaLibAction : protected XaLibBase {
         * @return void
         *
         * @code
-        * AddXslFile("MyXsl");
+        * AddXslFile("MyXslFile");
         * @endcode
         *
         */
@@ -137,6 +180,7 @@ class XaLibAction : protected XaLibBase {
         * @return void
         *
         * @code
+        * string xsl="MyXslString";
         * AddXmlString(xsl);
         * @endcode
         *
@@ -242,6 +286,9 @@ class XaLibAction : protected XaLibBase {
         string BuildBackEndCallSectionOperation(const string& Object, const string& Event);
         string BuildBackEndCallSectionParams(const vector<string>& Names, const vector<string>& Values);
 
+        //RETHROW the error from the backend
+        void CheckResponse(const string& Response);
+        
         /**
         * Redirects to the InfoPage .\n
         * To Use with classes that provide the Method GetResponse\n
