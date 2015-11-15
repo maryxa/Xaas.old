@@ -1,11 +1,12 @@
 /*
-	Project: XAAS
-	Alessandro Mariotti
-	alex@xallegro.com
+* Project: XAAS
+* Alessandro Mariotti
+* alex@xallegro.com
 */
 
 @import '_font_open_sans';
 @import '_variables';
+@import '_mixins';
 @import '_form';
 @import '_list';
 @import '_explorer';
@@ -19,217 +20,221 @@ small, strike, strong, sub, sup, tt, var,
 b, u, i, center,dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td {
-	background: transparent;
-	border: 0;
-	margin: 0 auto;
-	padding: 0;
-	vertical-align: baseline;
-	list-style-type: none;
+    background: transparent;
+    border: 0;
+    margin: 0 auto;
+    padding: 0;
+    vertical-align: baseline;
+    list-style-type: none;
 }
 
 html { 
-	background: url('XAllegroBackground.jpg') no-repeat center center fixed; 
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+    background: url('XAllegroBackground.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 /* GENERAL LAYOUT */
 html, body {
-	height: 100%;
-	width: 100%;
-	margin: 0;
-	padding: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-	font-family: 'MySans', sans-serif;
-	color:$FontColor;
+    /*font-family: 'MySans', sans-serif;*/
+    font-family: sans-serif;
+    color:$FontColor;
 }
 
 header {
-	max-width: 100vw;
-	height: $HeaderHeight;
-	background-color: $HeaderBackgroundColor;
-	opacity:$ForeGroundOpacity;
-	background: linear-gradient(to right, $HeaderBackgroundColor 0%,#333333 75%);
-	color: $HeaderFontColor;
-	font-size:$HeaderFontSize;
-	line-height:$HeaderLineHeight;
-	letter-spacing:0px;
+    max-width: 100vw;
+    height: $HeaderHeight;
+    background-color: $HeaderBackgroundColor;
+    opacity:$ForeGroundOpacity;
+    background: linear-gradient(to right, $HeaderBackgroundColor 0%,#333333 75%);
+    color: $HeaderFontColor;
+    font-size:$HeaderFontSize;
+    line-height:$HeaderLineHeight;
+    letter-spacing:0px;
 
-	.MenuIcon {
-		width: $HeaderHeight;
-		height: $HeaderHeight;
-		line-height: $MenuToggleHeight;
-		background-repeat:no-repeat;
-		background-position: center center;
-		margin-left: 4%;
-		background-size: auto 60%;
-	}
+    .MenuIcon {
+        width: $HeaderHeight;
+        height: $HeaderHeight;
+        line-height: $MenuToggleHeight;
+        background-repeat:no-repeat;
+        background-position: center center;
+        margin-left: 4%;
+        background-size: auto 60%;
+    }
 
-	.LeftToolbar {
+    .LeftToolbar {
 
-		width:$NavWidth;
-		height: $HeaderHeight;
-		float:left;
+        width:$NavWidth;
+        height: $HeaderHeight;
+        float:left;
 
-		.MenuToggle {
-			float:left;
-			background-image:url('IconMenu.svg');
-		}
+        .MenuToggle {
+                float:left;
+                background-image:url('IconMenu.svg');
+        }
 
-		.MenuMyPage {
-			float:left;
-			background-image:url('IconMyPage.svg');
-		}
+        .MenuMyPage {
+                float:left;
+                background-image:url('IconMyPage.svg');
+        }
+    }
 
-	}
+    .CenterToolbar {
+        float:left;
+        width: 65%;
 
-	.CenterToolbar {
-		float:left;
-		width: 65%;
+        @include reset-a();
+        
+        li {
+                display: inline-block;
+                margin-right:.5%;
+                margin-top: .1%;
 
-		li {
-			display: inline-block;
-			margin-right:.5%;
-			margin-top: .1%;
+                background-color: $HeaderToolbarLiBackgroundColor;
+                padding-left:1%;
+                padding-right:1%;
+        }
 
-			background-color: $HeaderToolbarLiBackgroundColor;
-			padding-left:1%;
-			padding-right:1%;
-		}
+        li:hover {
 
-		li:hover {
+                background-color:$HeaderToolbarLiBackgroundColorHover;
+                color:$HeaderToolbarLiFontColorHover;
+        }
 
-			background-color:$HeaderToolbarLiBackgroundColorHover;
-			color:$HeaderToolbarLiFontColorHover;
-		}
+        li:target {
 
-		li:target {
+                background-color:$HeaderToolbarLiBackgroundColorTarget;
+                color:$HeaderToolbarLiFontColorTarget;
+        }
+    }
 
-			background-color:$HeaderToolbarLiBackgroundColorTarget;
-			color:$HeaderToolbarLiFontColorTarget;
-		}
-	}
+    .RightToolbar {
+        float:right;
+        width:$NavWidth;
+        height: $HeaderHeight;
 
-	.RightToolbar {
-		float:right;
-		width:$NavWidth;
-		height: $HeaderHeight;
+        .MenuHelp {
+                float:right;
+                background-image:url('IconHelp.svg');
+        }
 
-		.MenuHelp {
-			float:right;
-			background-image:url('IconHelp.svg');
-		}
-
-		.MenuSettings {
-			float:right;
-			background-image:url('IconSettings.svg');
-		}
-	}
+        .MenuSettings {
+                float:right;
+                background-image:url('IconSettings.svg');
+        }
+    }
 
 }
 
 nav {
-	width: $NavWidth;
-	position: fixed;
-	top:$HeaderHeight;
-	bottom:0;
-	background-color: $NavBackgroundColor;
-	opacity:$ForeGroundOpacity;
-	color:$NavFontColor;
-	font-weight: 600;
-	font-size:$NavFontSize;
-	border-top:1px solid $ContainerBackgroundColor;
+    width: $NavWidth;
+    position: fixed;
+    top:$HeaderHeight;
+    bottom:0;
+    background-color: $NavBackgroundColor;
+    opacity:$ForeGroundOpacity;
+    color:$NavFontColor;
+    font-weight: 600;
+    font-size:$NavFontSize;
+    border-top:1px solid $ContainerBackgroundColor;
 
-	.nav {
-		height: 100%;
-		margin-top:$HeaderHeight;
+    .nav {
+        height: 100%;
+        margin-top:$HeaderHeight;
 
-		ul, li, a, span {
-			margin: 0;
-			padding: 0;
-			border: none;
-			outline: none;
-			letter-spacing:1px;
-		}
+        ul, li, a, span {
+            margin: 0;
+            padding: 0;
+            border: none;
+            outline: none;
+            letter-spacing:1px;
+        }
 
-		li {
-			list-style: none;
-			text-transform:uppercase;
-		}
+        li {
+            list-style: none;
+            text-transform:uppercase;
+        }
 
-		li > a {
-			display: block;
-			text-align: left;
-			position: relative;
-			padding: 0 10px 0 15px;
-			color: $NavFontColor;
-			line-height: 2.3em;
-			text-decoration: none;
-			border-bottom: 1px solid $ContainerBackgroundColor;
-			transition: all 0.25s;
+        li > a {
+            display: block;
+            text-align: left;
+            position: relative;
+            padding: 0 10px 0 15px;
+            color: $NavFontColor;
+            line-height: 2.3em;
+            text-decoration: none;
+            border-bottom: 1px solid $ContainerBackgroundColor;
+            transition: all 0.25s;
 
-		}
+        }
 
-		li:hover {
+        li:hover {
 
-			background-color:$NavColorOver;
-			color:$NavFontColorHover;
-			color:black;
+            background-color:$NavColorOver;
+            color:$NavFontColorHover;
+            color:black;
 
-			a:hover {
+            a:hover {
 
-				color:$NavFontColorHover;
-			}
+                    color:$NavFontColorHover;
+            }
 
-		}
+        }
 
-		li:target {
+        li:target {
 
-			background-color:$NavColorTarget;
+            background-color:$NavColorTarget;
 
-			a {
+            a {
 
-				color:$NavFontColorTarget;
-			}
-		}
-	}
+                    color:$NavFontColorTarget;
+            }
+        }
 
-	.Logo {
-		border-top: 1px solid $ContainerBackgroundColor;
-		position:fixed;
-		bottom:0;
-		width: $NavWidth;
-		height:$LogoHeight;
+        .Logo {
 
-		background-repeat:no-repeat;
-		background-position: center center;
-		background-image:url('XAllegroLogoW.svg');
-		background-size: auto 90%;
-	}
+            border-top: 1px solid $ContainerBackgroundColor;
+            position:fixed;
+            bottom:0;
+            width: $NavWidth;
+            height:$LogoHeight;
+
+            background-repeat:no-repeat;
+            background-position: center center;
+            background-image:url('XAllegroLogoW.svg');
+            background-size: auto 90%;
+        }
+    }
 }
 
 .container {
-	opacity:$ForeGroundOpacity;
-	position: fixed;
-	left: $NavWidth;
-	overflow: auto;
-	top: $HeaderHeight;
-	bottom: 0;
-	padding: 0.5%;
-	right: 0;
-	background-color: $ContainerBackgroundColor;
+    opacity:$ForeGroundOpacity;
+    position: fixed;
+    left: $NavWidth;
+    overflow: auto;
+    top: $HeaderHeight;
+    bottom: 0;
+    padding: 0.5%;
+    right: 0;
+    background-color: $ContainerBackgroundColor;
 }
 
 .LogHomePage {
-	
-	width: 96%;
-	img {
-		content:url('XAllegroLogo.svg');
-	}
+
+    width: 96%;
+
+    img {
+        content:url('XAllegroLogo.svg');
+    }
 }
 
 .ErrorMessage {
