@@ -34,9 +34,13 @@ class XaLibChar : protected XaLibBase {
 		
 		string B64Encode(char * CharToEncode, int size);
 
-		static string ClearReturn(string& StringToClear);
-		static string ClearSpace(string& StringToClear);
+		static void ClearReturn(string& StringToClear);
+		static void ClearSpace(string& StringToClear);
+                static void ClearSpaceXml(string& StringToClear);
+                static void EscapeForJs(string& StringToEscape);
+                
 
+                
 		string RemoveNewLine(string StringToDecode);
 		string RemoveNs(string StringToDecode);
 		string RemoveEmptyspace(string StringToDecode);

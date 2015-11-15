@@ -55,6 +55,11 @@ class XaLibModel : protected XaLibBase {
         XaLibBase::DbResMap ReadExecute(const string& DbTable,vector<string>& FieldsToRead,const string& RowId);
         string ReadResponse(DbResMap& DbRes,vector<string>& FieldsToRead);
 
+        vector<string> ListPrepare(const vector<string>& XmlFiles,const string& XPathExpr);
+        string ListResponse(DbResMap& DbRes,vector<string>& FieldsToRead);
+
+
+        
         int BackupRecord(const string& DbTable,const int& RowId);
         FieldsMap UpdatePrepare(const vector<string>& XmlFiles,const string& XPathExpr);
         int UpdateExecute(const string& DbTable,XaLibBase::FieldsMap& LoadedFields);
@@ -67,6 +72,7 @@ class XaLibModel : protected XaLibBase {
 
         virtual void Create()=0;
         virtual void Read()=0;
+        virtual void List()=0;
         virtual void Delete()=0;
         virtual void Update()=0;
 

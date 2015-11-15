@@ -18,7 +18,6 @@ XaRequest REQUEST;
 XaResponse RESPONSE;
 XaSession SESSION;
 
-
 XaLibController::XaLibController() {
 };
 

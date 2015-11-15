@@ -845,7 +845,7 @@ string XaLibChar::RemoveNs(string StringToDecode) {
 return StringToDecode;
 };
 	
-string XaLibChar::ClearReturn(string& StringToClear) {
+void XaLibChar::ClearReturn(string& StringToClear) {
 
 	int pos;
 
@@ -868,11 +868,9 @@ string XaLibChar::ClearReturn(string& StringToClear) {
 			pos=StringToClear.find_first_of("\r",pos+1);
 		}
 	}
-
-	return StringToClear;
 };
 
-string XaLibChar::ClearSpace(string& StringToClear) {
+void XaLibChar::ClearSpace(string& StringToClear) {
 
 	int pos;
 
@@ -882,13 +880,55 @@ string XaLibChar::ClearSpace(string& StringToClear) {
 	if (pos!=-1){
 		while(pos!=-1){
 			StringToClear.replace(pos,1,"");
-			pos=StringToClear.find_first_of(" ",pos+1);
+			pos=StringToClear.find_first_of(" ",pos);
 		}
 	}
- 
-	return StringToClear;
+ };
+
+void XaLibChar::ClearSpaceXml(string& StringToClear) {
+
+	//Remove before
+	int posb=StringToClear.find_first_of(" ");
+	int posb1=StringToClear.find_first_of("<");
+
+	if (posb!=-1){
+		while(posb!=-1 && posb<posb1){
+			StringToClear.replace(posb,1,"");
+			posb=StringToClear.find_first_of(" ",posb);
+			posb1=posb1-1;
+		}
+	}
+	
+	//Remove intermediate and after the last tag
+	int posi=StringToClear.find_first_of(">");
+	int posi1=StringToClear.find_first_of(" ",posi);
+	int posi2=StringToClear.find_first_of("<",posi);
+	
+	if (posi1!=-1){
+		while(posi1!=-1){
+			StringToClear.replace(posi+1,posi2-posi1,"");
+	
+			posi=StringToClear.find_first_of(">",posi+2);
+			posi1=StringToClear.find_first_of(" ",posi);
+			posi2=StringToClear.find_first_of("<",posi);
+		}
+	}
+
+	
 };
 
+void XaLibChar::EscapeForJs(string& StringToEscape) {
+
+	int pos=StringToEscape.find_first_of("\"");
+
+	if (pos!=-1){
+		while(pos!=-1){
+			StringToEscape.replace(pos,1,"\\\"");
+			pos=StringToEscape.find_first_of("\"",pos+2);
+		}
+	}
+};
+	
 int XaLibChar::CountCharOccurrences(string String, string Char) {
 	int pos=0;
 	int count=0;

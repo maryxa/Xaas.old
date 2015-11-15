@@ -145,7 +145,52 @@ string XaLibModel::ReadResponse(DbResMap& DbRes,vector<string>& FieldsToRead) {
 	};
 
 	Res.append("</read>");
+	return Res;	
+};
 
+vector<string> XaLibModel::ListPrepare(const vector<string>& XmlFiles,const string& XPathExpr) {
+
+	//LOAD XML FOR MODEL
+	xmlDocPtr XmlDomDoc=XaLibDom::DomFromFile(AddXmlFile(XmlFiles),0);
+
+	//GET NUMBER OF FILEDS
+	int FieldsNum=XaLibDom::GetNumRowByXPathInt(XmlDomDoc,XPathExpr);
+
+	vector<string> FieldsToRead;
+
+	for (auto i=0;i<FieldsNum;i++) {
+
+		if (XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/list")=="yes") {
+
+			FieldsToRead.push_back(XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/name"));
+		};
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Field to retrieve for the list ->"+FieldsToRead[i]);
+	};
+
+	return FieldsToRead;
+};
+
+string XaLibModel::ListResponse(DbResMap& DbRes,vector<string>& FieldsToRead) {
+
+	string Res="<list>";
+
+	for (auto j=0;j<DbRes.size();j++) {
+	
+		Res.append("<item>");
+		
+		for (auto &i: FieldsToRead) {
+		
+			Res.append("<"+i+">");
+			Res.append(DbRes[j][i]);
+			Res.append("</"+i+">");
+			
+		};
+		
+		Res.append("</item>");
+	};
+
+	Res.append("</list>");
 	return Res;	
 };
 
@@ -160,7 +205,7 @@ int XaLibModel::BackupRecord(const string& DbTable,const int& FieldId) {
 	
 		L'ultimo no virgola
 	}
-	
+
 	for (const auto &e : Columns) {
 	
 		List.append(e);
@@ -168,7 +213,6 @@ int XaLibModel::BackupRecord(const string& DbTable,const int& FieldId) {
 
 	};
 
-	
 	INSERT INTO table (col1, col2, col3, ...)
 	SELECT col1, col2, col3, ... FROM table
 	WHERE primarykey = 1

@@ -9,6 +9,8 @@ class XaOuTypeUi : public XaLibAction {
 
         void Dispatcher(const string &CalledEvent);
         void CreateFrm();
+        void Create();
+        void List();
 
     protected:
 

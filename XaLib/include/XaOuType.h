@@ -15,6 +15,7 @@ class XaOuType : public XaLibModel {
         void Read();
         void Update();
         void Delete();
+        void List();
 
     protected:
 

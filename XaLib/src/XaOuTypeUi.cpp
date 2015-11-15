@@ -7,12 +7,9 @@ XaOuTypeUi::XaOuTypeUi(){
 void XaOuTypeUi::Dispatcher (const string &CalledEvent) {
 
 	if (CalledEvent=="CreateFrm") {
-
 		this->CreateFrm();
-
-    } else if (CalledEvent=="View") {
-		//this->Tree();
-
+    } else if (CalledEvent=="Create") {
+		this->Create();
     } else {
 
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Event Does Not Exists -> "+CalledEvent);
@@ -22,53 +19,37 @@ void XaOuTypeUi::Dispatcher (const string &CalledEvent) {
 
 void XaOuTypeUi::CreateFrm() {
 
-	//SetLayout("Standard");
-	//AddXmlFile("XaOuType");
-	//AddXslFile("CreateFrm");
-
-	AddHtmlFile("XaGuiHead");
-	AddHtmlFile("XaGuiHeader");
-	AddHtmlFile("CreateFrm");
-
-	AddJsVarFile("XaOuType","XaOuType");
+	AddHtmlFiles({"XaGuiHead","XaGuiHeader","XaGuiCreateFrmWithList","XaGuiNav"});
+	
+	AddJsVarFile("XaModel","XaOuType");
 	AddJsVarString("XaGuiStyle","default");
+	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles({"XaGuiHead","XaGuiHeader","XaGuiCreateFrm","XaGuiNav"}),HtmlStrings,JsVarFiles,JsVarStrings,0);
+};
 
-	//vector<string> HtmlFiles = {};
-	//vector<string> HtmlStrings = {};
-	//vector<string> JsVarNames = {};
-	//vector<string> JsVarValues = {};
+void XaOuTypeUi::Create() {
 
-	
-	
-	string pippo= XaLibDom::HtmlFromStringAndFile(HtmlFiles,HtmlStrings,JsVarFiles,JsVarStrings,0);
+	CreatePrepare({"XaOuType"},"/XaOuType/fieldset/field","XaOuType");
+	BuildBackEndCall("XaOuType","Create",FieldsName,FieldsValue);
 
-			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"XXXXXXXXX "+pippo);
+	XaLibCurl LibCurl;
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaOuType","Create",FieldsName,FieldsValue));
+	CheckResponse(CallResponse);
 
-	RESPONSE.Content=pippo;
-	
+	RESPONSE.Content="OK";
+};
+
+void XaOuTypeUi::List() {
+
 	/*
+	CreatePrepare({"XaOuType"},"/XaOuType/fieldset/field","XaOuType");
+	BuildBackEndCall("XaOuType","Create",FieldsName,FieldsValue);
 	
-	
-	
-	
-	string XHtml="<!DOCTYPE html>";
-	XHtml.append("<html id=\"html\">");
-	
-	XHtml.append("<head>");
-	
-	
-		XHtml.append("</head>");
+	XaLibCurl LibCurl;
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaOuType","Create",FieldsName,FieldsValue));
+	CheckResponse(CallResponse);
 
-	
-	
-	XHtml.append("</html>");
-	
-	
-	
-	AddXslParamCommon();
-
-	RESPONSE.Content=XaLibGui::CreateForm(XmlFiles,XmlStrings,XslFiles,XslStrings,XslParams);
-	*/
+	RESPONSE.Content="OK";
+*/
 };
 
 XaOuTypeUi::~XaOuTypeUi() {

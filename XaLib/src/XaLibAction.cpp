@@ -3,6 +3,39 @@
 XaLibAction::XaLibAction(){
 };
 
+vector<string> XaLibAction::AddHtmlFiles(const vector<string>& FileName){
+
+	vector<string> HtmlFiles;
+
+	for (auto &i : FileName) {
+
+		//BUILDING THE PATH
+		string HtmlDefaultPath=SETTINGS["HtmlDir"]+i+".html";
+		string HtmlSharedPath=SETTINGS["SharedDir"]+"html/"+i+".html";
+
+		//TEST THE FILE
+		unique_ptr<FILE, int(*)(FILE*)> f1(fopen(HtmlDefaultPath.c_str(), "r"), fclose);
+		unique_ptr<FILE, int(*)(FILE*)> f2(fopen(HtmlSharedPath.c_str(), "r"), fclose);
+
+		//ADD THE FILE TO THE VECTOR
+		if (f1) {
+			HtmlFiles.push_back(HtmlDefaultPath);
+			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XmlFile Custom-> "+HtmlDefaultPath);
+
+		} else if (f2) {
+			HtmlFiles.push_back(HtmlSharedPath);
+			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XmlFile Shared-> "+HtmlSharedPath);
+
+		} else {
+
+			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Xml File Does Not Exist -> "+i);
+			throw 203;
+		}
+	}	
+
+	return HtmlFiles;
+};
+
 void XaLibAction::AddHtmlFile(const string& FilePath){
 
 	string HtmlDefaultPath=SETTINGS["HtmlDir"]+FilePath+".html";
@@ -86,6 +119,39 @@ void XaLibAction::AddXmlFile(const string& FilePath){
 	
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Xml File Does Not Exist-> "+FilePath);
 	}
+};
+
+vector<string> XaLibAction::AddXmlFile(const vector<string>& FileName){
+
+	vector<string> XmlFiles;
+
+	for (auto &i : FileName) {
+
+		//BUILDING THE PATH
+		string XmlDefaultPath=SETTINGS["XmlDir"]+i+".xml";
+		string XmlSharedPath=SETTINGS["SharedDir"]+"xml/"+i+".xml";
+
+		//TEST THE FILE
+		unique_ptr<FILE, int(*)(FILE*)> f1(fopen(XmlDefaultPath.c_str(), "r"), fclose);
+		unique_ptr<FILE, int(*)(FILE*)> f2(fopen(XmlSharedPath.c_str(), "r"), fclose);
+
+		//ADD THE FILE TO THE VECTOR
+		if (f1) {
+			XmlFiles.push_back(XmlDefaultPath);
+			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XmlFile Custom-> "+XmlDefaultPath);
+
+		} else if (f2) {
+			XmlFiles.push_back(XmlSharedPath);
+			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XmlFile Shared-> "+XmlSharedPath);
+
+		} else {
+
+			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Xml File Does Not Exist -> "+i);
+			throw 203;
+		}
+	}	
+
+	return XmlFiles;
 };
 
 void XaLibAction::AddXmlString(const string& XmlString){
@@ -212,6 +278,31 @@ void XaLibAction::SetLayout(const string &LayoutType){
 	}
 
     LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added Layout -> "+LayoutType);
+
+};
+
+void XaLibAction::CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,const string& ModelName) {
+
+	//TODO:GESTIONE ERRORI
+
+	//LOAD XML FOR MODEL
+	xmlDocPtr XmlDomDoc=XaLibDom::DomFromFile(AddXmlFile(XmlFiles),0);
+
+	//GET NUMBER OF FILEDS
+	int FieldsNum=XaLibDom::GetNumRowByXPathInt(XmlDomDoc,XPathExpr);
+
+	
+	for (auto i=0;i<FieldsNum;i++) {
+		//LOADING PROPERTIES
+
+		string FieldName=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/name");
+		string FieldValue=HTTP.GetHttpParam(ModelName+"-"+FieldName);
+		
+		FieldsName.push_back(FieldName);
+		FieldsValue.push_back(FieldValue);
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Loaded value for property ->" +FieldName +" :: " + FieldValue);			
+	};
 
 };
 

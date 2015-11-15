@@ -64,10 +64,18 @@ class XaLibAction : protected XaLibBase {
 
         vector<string> XslFiles;
         vector<string> XslStrings;
+        vector<string> XslParams;
 
+        //TO BUILD THE PARAM SECTION OF THE BACK END CALL
+        vector<string> FieldsName;
+        vector<string> FieldsValue;
+
+        //PER OPTION IN XML
         vector<string> XmlFields;
         vector<string> XmlValues;
-	vector<string> XslParams;
+	
+        
+        
 
         vector<string> OptionReturnedFields;
         vector<string> OptionWhereFields;
@@ -94,6 +102,8 @@ class XaLibAction : protected XaLibBase {
         *
         */
         void AddHtmlFile   (const string& FilePath);
+
+        vector<string> AddHtmlFiles(const vector<string>& FileName);
 
         /**
         * 
@@ -131,8 +141,8 @@ class XaLibAction : protected XaLibBase {
         * @endcode
         *
         */
-        void AddXmlFile   (const string& FilePath);
-
+        void AddXmlFile(const string& FilePath);
+        vector<string> AddXmlFile(const vector<string>& FileName);
         /**
         * 
         * Adds a well formed XML string to the vector<string> XmlStrings\n
@@ -246,6 +256,8 @@ class XaLibAction : protected XaLibBase {
         *
         */
         void SetLayout (const string &LayoutType);
+
+        void CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,const string& ModelName);
 
         /**
         * Builds the XML for the Back End Call\n

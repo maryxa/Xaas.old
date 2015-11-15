@@ -59,9 +59,10 @@ xmlDocPtr XaLibDom::DomFromFile(const vector<string> XmlFilesPath,const int& Add
                 string TmpString;
 
                 while(getline(MyFile,TmpString) ) {
-
-                    string TmpStringCleared=LibChar->ClearReturn(TmpString);
-                    XmlStringTotal.append(TmpStringCleared);
+					
+					XaLibChar::ClearReturn(TmpString);
+                    //string TmpStringCleared=LibChar->ClearReturn(TmpString);
+                    XmlStringTotal.append(TmpString);
                 }
 
                 MyFile.close();
@@ -114,8 +115,9 @@ xmlDocPtr XaLibDom::DomFromStringAndFile(const VectorXmlFilePath& XmlFiles,const
 
                 while(getline(MyFile,TmpString) ) {
 
-                    string TmpStringCleared=LibChar->ClearReturn(TmpString);
-                    XmlStringTotal.append(TmpStringCleared);
+					XaLibChar::ClearReturn(TmpString);
+                    //string TmpStringCleared=LibChar->ClearReturn(TmpString);
+                    XmlStringTotal.append(TmpString);
                 }
 
                 MyFile.close();
@@ -563,9 +565,9 @@ string XaLibDom::HtmlFromStringAndFile(const vector<string>& HtmlFiles,const vec
 
 			while(getline(MyFile,TmpString)) {
 
-				Content.append(XaLibChar::ClearReturn(TmpString));
+				XaLibChar::ClearReturn(TmpString);
+				Content.append(TmpString);
 			}
-
 
 			if (i==0) {
 			//HEAD
@@ -596,16 +598,20 @@ string XaLibDom::HtmlFromStringAndFile(const vector<string>& HtmlFiles,const vec
 		if (MyFile.is_open()) {
 
 			string TmpString={};
-			string Content="<script>"+JsVarFiles[i]+"=";
+			string Content="<script>"+JsVarFiles[i]+"=\"";
 
 
 			while(getline(MyFile,TmpString)) {
 
-				Content.append(XaLibChar::ClearReturn(TmpString));
+				XaLibChar::ClearReturn(TmpString);
+				XaLibChar::ClearSpaceXml(TmpString);
+				XaLibChar::EscapeForJs(TmpString);
+
+				Content.append(TmpString);
 			}
 			
-			Content.append("</script>");
-			
+			Content.append("\";</script>");
+
 			Js.append(Content);
 
 			TmpString={""};
@@ -621,7 +627,7 @@ string XaLibDom::HtmlFromStringAndFile(const vector<string>& HtmlFiles,const vec
 
 	for (auto i=0;i<JsVarStrings.size();i=i+2) {
 
-		Js.append("<script>"+JsVarStrings[i]+"="+JsVarStrings[i+1]+"</script>");
+		Js.append("<script>"+JsVarStrings[i]+"=\""+JsVarStrings[i+1]+"\";</script>");
 
 	};
 
@@ -629,6 +635,9 @@ string XaLibDom::HtmlFromStringAndFile(const vector<string>& HtmlFiles,const vec
 	Html.append("<body>"+BodyContent+"</body>");
 	Html.append("</html>");	
 
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Generated HTML Page -> "+Html);
+	
+	
 	return Html;	
 };
 

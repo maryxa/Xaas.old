@@ -737,6 +737,8 @@ XaLibBase::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,const vecto
 		SqlQry.append(to_string(Limit));
 	}
 
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executing  Select -> " +SqlQry);
+
 	DbRes=LibDb.ExSelect(SqlQry);
 
 	delete LibChar;
