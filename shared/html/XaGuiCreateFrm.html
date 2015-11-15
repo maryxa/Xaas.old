@@ -1,0 +1,188 @@
+<div class="container">
+
+    <script>
+        var Tpl=new XaFormTpl(XaModel);
+        document.write(Tpl.GetForm());
+    </script>
+
+<!--script>
+
+    var RootElement;
+    var Fields;
+    var FieldsNumber;
+
+    function GetModel(ModelName) {
+
+        var xml = ParseXml(ModelName);
+        RootElement=xml.documentElement.nodeName;
+        Fields=xml2array(xml);
+        FieldsNumber=Object.keys(Fields[RootElement]['fieldset']['field']).length;
+    };
+
+    function ApplyTemplateForm(ModelName) {
+
+        GetModel(ModelName);
+
+        var Content="<form class=\"form "+ Fields[RootElement]['form']['class'] +"\" id=\""+Fields[RootElement]['form']['id'] +"\""+ " name=\""+Fields[RootElement]['form']['name']+"\" enctype=\"multipart/form-data\" method=\""+Fields[RootElement]['form']['method']+"\""+ " action=\"javascript:XaCallAction('','obj="+Fields[RootElement]['form']['obj']+"&amp;evt="+Fields[RootElement]['form']['evt']+"','','"+Fields[RootElement]['form']['method']+"',"+Fields[RootElement]['form']['async']+",0,'','"+Fields[RootElement]['form']['id']+"','StringText','','yes','');\""+ ">";
+
+        Content+="<fieldset>";
+        Content+="<legend>"+Fields[RootElement]['fieldset']['legend']+"</legend>";
+        Content+="<ul>";
+
+        for(var i=0;i<FieldsNumber;i++) {         
+
+            Content+="<input id=\""+RootElement+"-"+Fields[RootElement]['fieldset']['field'][i]["id"]+ "\" name=\""+RootElement+"-"+Fields[RootElement]['fieldset']['field'][i]["name"]+"\" type=\"text\" placeholder=\"inserire il nome del canale di pubblicita'\" required=\"required\" autofocus=\"autofocus\" />";
+
+        }
+
+        Content+="</ul>";
+        Content+="</fieldset>";
+        /*" name="ChannelAddFrm" enctype="multipart/form-data" method="POST" action="javascript:XaCallAction('','obj=XaAdv&amp;evt=ChannelAdd','','POST',false,0,'','ChannelAddFrm','StringText','','yes','');">*/
+        
+        /*;*/
+
+        /*console.log(Fields);*/
+
+/*
+        Fields[RootElement]['form']['controller']
+          Fields[RootElement]['form']['id']
+           Fields[RootElement]['form']['name']
+            Fields[RootElement]['form']['obj']
+                        Fields[RootElement]['form']['evt']
+
+*/
+/*return Content;*/
+        
+
+        /*alert(FieldsNumber);*/
+
+        /*for (var i=0;i<FieldsNumber;i++) {
+            Content=Content+(Fields['fieldset']['field'][i]['id']);
+
+        };*/
+    return Content+="</form>";
+    };
+
+</script-->
+
+<!--script> alert(ApplyTemplateForm(XaModel));document.write(ApplyTemplateForm(XaModel));</script-->
+  
+
+    <!--form class="form form-1-column" id="ChannelAddFrm" name="ChannelAddFrm" enctype="multipart/form-data" method="POST" action="javascript:XaCallAction('','obj=XaAdv&amp;evt=ChannelAdd','','POST',false,0,'','ChannelAddFrm','StringText','','yes','');">
+
+        <fieldset>
+
+            <legend>Aggiungi </legend>
+
+		<ul>
+                    <li>
+			<label id="XaAdvChannel-Name-label" for="XaAdvChannel-Name">Nome</label>
+			<input id="XaAdvChannel-Name" name="XaAdvChannel-Name" type="text" placeholder="inserire il nome del canale di pubblicita'" required="required" autofocus="autofocus" />
+                    </li>
+
+                    <li>
+			<label id="XaAdvChannel-Description-label" for="XaAdvChannel-Description">Inserire una descrizione</label>
+                        <textarea id="XaAdvChannel-Description" name="XaAdvChannel-Description" placeholder="Please insert your description" required="required"></textarea>
+                    </li>
+			
+		</ul>
+        </fieldset>
+
+        <fieldset>
+                <button type="reset">Reset</button>
+                <button type="submit">Save</button>
+        </fieldset>
+    </form-->
+
+<!--div id="included"></div-->
+			<!--table class="list">
+				<tr class="title">
+					<td colspan="100%"><span>Titolo della tabella</span>
+
+						<ul class="RightToolbar">
+							<li class="FunctionIcon Refresh"></li>
+							<li class="FunctionIcon Expand"></li>
+						</ul>
+					</td>
+				</tr>
+				<tr class="header">
+					<th>titolo 1</th>
+					<th>titolo 2</th>
+					<th>titolo 3</th>
+					<th>titolo 4</th>
+				</tr>
+				<tr class="row">
+					<td>5</td>
+					<td>6</td>
+					<td>7</td>
+					<td>8</td>
+				</tr>
+				<tr class="row">
+					<td>9</td>
+					<td>10</td>
+					<td>11</td>
+					<td>12</td>
+				</tr>
+				<tr class="row">
+					<td>13</td>
+					<td>14</td>
+					<td>15</td>
+					<td>16</td>
+				</tr>
+				<tr class="row">
+					<td>17</td>
+					<td>18</td>
+					<td>19</td>
+					<td>20</td>
+				</tr>
+				<tr class="row">
+					<td>13</td>
+					<td>14</td>
+					<td>15</td>
+					<td>16</td>
+				</tr>
+				<tr class="row">
+					<td>17</td>
+					<td>18</td>
+					<td>19</td>
+					<td>20</td>
+				</tr>
+				<tr class="row">
+					<td>13</td>
+					<td>14</td>
+					<td>15</td>
+					<td>16</td>
+				</tr>
+				<tr class="row">
+					<td>17</td>
+					<td>18</td>
+					<td>19</td>
+					<td>20</td>
+				</tr>
+				<tr class="row">
+					<td>13</td>
+					<td>14</td>
+					<td>15</td>
+					<td>16</td>
+				</tr>
+				<tr class="row">
+					<td>17</td>
+					<td>18</td>
+					<td>19</td>
+					<td>20</td>
+				</tr>
+				<tr class="row">
+					<td>13</td>
+					<td>14</td>
+					<td>15</td>
+					<td>16</td>
+				</tr>
+				<tr class="row">
+					<td>17</td>
+					<td>18</td>
+					<td>19</td>
+					<td>20</td>
+				</tr>
+			</table-->
+
+</div>
