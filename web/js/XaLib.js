@@ -18,73 +18,71 @@ var AllRequiredFields="Please ensure that all required fields, those with an *(r
 
 function XaCheckUrlReload(link) {
 
-	if(location.href===link) {
-		location.reload(true); 
-		return false;
-	}
+    if(location.href===link) {
+        location.reload(true); 
+        return false;
+    }
 }
 
 function XaCallActionSimple(controller,url,method,FormId){
 
-	if(method===""){
-		method = DefaultMethod;
-	}
+    if(method===""){
+        method = DefaultMethod;
+    }
 
-	if (url!=="") {
+    if (url!=="") {
 
-		url.replace("&amp;", "&");
-		var url = controller + "?" + url;
+        url.replace("&amp;", "&");
+	var url = controller + "?" + url;
 
-		if (FormId!==""){
-			url= url + "&" +XaSerializeForm (FormId);
-		}
+        if (FormId!==""){
+            url= url + "&" +XaSerializeForm (FormId);
+        }
 
-		var xmlhttp;
+        var xmlhttp;
 
-		if (window.XMLHttpRequest) {
-			xmlhttp = new XMLHttpRequest();
-		} else {
-			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		}
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        
+        xmlhttp.onreadystatechange = function () {
 
-		xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 
-			if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                document.getElementById("html").innerHTML = xmlhttp.responseText;
 
-				document.getElementById("html").innerHTML = xmlhttp.responseText;
+            } else if (xmlhttp.status === 500) {
 
-			} else if (xmlhttp.status === 500) {
+                FlowCheck=false;
+                alert("error sending async call: "+url);
 
-				FlowCheck=false;
-				alert("error sending async call: "+url);
+            } else {
 
-			} else {
+            };
+        };
 
-			}
-		};
+        if (FormId!==""){	
+            var FormValidity=document.getElementById(FormId).checkValidity();
+        }
 
-		if (FormId!==""){	
-			var FormValidity=document.getElementById(FormId).checkValidity();
-		}
+        if(FormValidity===true || FormId===''){
 
-		if(FormValidity===true || FormId===''){
+            FlowCheck=true;
+            xmlhttp.open(method, url, async);
+            xmlhttp.send();
 
-			FlowCheck=true;
-			xmlhttp.open(method, url, async);
-			xmlhttp.send();
+        } else {
 
-		} else {
+            FlowCheck=false;
+            alert(AllRequiredFields);
+        }
 
-			FlowCheck=false;
-			alert(AllRequiredFields);
-		}
-
-	} else {
-		FlowCheck=false;
-		//alert("url parameter is empty");
-	}
-
-
+    } else {
+        FlowCheck=false;
+        //alert("url parameter is empty");
+    }
 };
 //Async:=true,false
 //Loader:=0,1
@@ -114,25 +112,15 @@ function XaCallActionSimple(controller,url,method,FormId){
  */
 function XaCallAction(controller,url,target,method,async,loader,LoaderTarget,FormId,ResponseType,JsEval,WithAlert,Alert){
 
-	if(controller===""){
-		controller = DefaultController;
-	}
-
-	if(method===""){
-		method = DefaultMethod;
-	}
-
-	if(async===""){
-		async = DefaultAsync;
-	}
+    if(controller==="") {controller = DefaultController;};
+    if(method==="") {method = DefaultMethod; };
+    if(async==="") {async = DefaultAsync;};
 
     if(loader===1 || loader==="yes"){
         document.getElementById(LoaderTarget).innerHTML = ('<div class="loader"></div>');
     }
 
-	if(JsEval===""){
-		JsEval = DefaultJsEval;
-	}
+    if(JsEval===""){ JsEval = DefaultJsEval; }
 
 	if(WithAlert===""){
 		WithAlert = DefaultWithAlert;
@@ -319,4 +307,4 @@ var FormElement = document.getElementById(FormId);
         }
 
 		return q.join("&");
-}
+};
