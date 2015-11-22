@@ -5,7 +5,7 @@
         <name>XaOuType</name>
         <obj>XaOuTypeUi</obj>
         <evt>Create</evt>
-        <async>false</async>
+        <async>true</async>
         <method>POST</method>
         <class>form-1-column</class>
     </form>

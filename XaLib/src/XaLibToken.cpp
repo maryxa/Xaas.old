@@ -6,7 +6,8 @@ XaLibToken::XaLibToken(){
 
 int XaLibToken::ValidateToken(const string& Token) {
 
-	DbResMap DbRes=XaLibSql::FreeQuery(DB_SESSION,"SELECT XaUser_ID FROM XaUserToken WHERE status=1 AND token=\""+Token+"\"");
+	string SqlQry="SELECT XaUser_ID FROM XaUserToken WHERE status=1 AND token=\""+Token+"\"";
+	DbResMap DbRes=XaLibSql::FreeQuerySelect(DB_SESSION,SqlQry);
 
 	if (DbRes.size()!=0){
 
@@ -22,7 +23,8 @@ int XaLibToken::ValidateToken(const string& Token) {
 
 int XaLibToken::RetrieveUserFromToken(const string& Token) {
 
-	DbResMap DbRes=XaLibSql::FreeQuery(DB_SESSION,"SELECT XaUser_ID FROM XaUserToken WHERE status=1 AND token=\""+Token+"\"");
+	string SqlQry="SELECT XaUser_ID FROM XaUserToken WHERE status=1 AND token=\""+Token+"\"";
+	DbResMap DbRes=XaLibSql::FreeQuerySelect(DB_SESSION,SqlQry);
 
 	if (DbRes.size()==0){
 		/*Requested Logout for auser not logged in*/
@@ -43,7 +45,8 @@ int XaLibToken::RetrieveUserFromToken(const string& Token) {
 
 int XaLibToken::CheckUserToken(const int& XaUser_ID) {
 
-	DbResMap DbRes=XaLibSql::FreeQuery(DB_SESSION,"SELECT id  FROM XaUserToken WHERE status=1 AND XaUser_ID=\""+to_string(XaUser_ID)+"\"");
+	string SqlQry="SELECT id  FROM XaUserToken WHERE status=1 AND XaUser_ID=\""+to_string(XaUser_ID)+"\"";
+	DbResMap DbRes=XaLibSql::FreeQuerySelect(DB_SESSION,SqlQry);
 
 	if (DbRes.size()!=0){
 
@@ -96,7 +99,9 @@ string XaLibToken::CreateToken(const int& XaUser_ID) {
 
 	XaLibSql LibSql;
 	LibSql.LockTable(DB_SESSION,"XaUserToken");
-	DbResMap DbRes=LibSql.FreeQuery(DB_SESSION,"SELECT id FROM XaUserToken WHERE token=\""+Token+"\"");
+	
+	string SqlQry="SELECT id FROM XaUserToken WHERE token=\""+Token+"\"";
+	DbResMap DbRes=LibSql.FreeQuerySelect(DB_SESSION,SqlQry);
 
 	//VERIFING DOES NOT EXIST IN THE DATABASE
 	if (DbRes.size()!=0){

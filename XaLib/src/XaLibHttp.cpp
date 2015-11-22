@@ -140,8 +140,8 @@ string XaLibHttp::GetHttpHeadersString(){
 	string HttpPostString;
 
 	//cin >> HttpPostString;
-	getline(cin, HttpPostString);
-
+	getline(cin, HttpPostString,'\n');
+/*
 	while (true) {
 		string HttpPostStringTemp;
 
@@ -154,7 +154,7 @@ string XaLibHttp::GetHttpHeadersString(){
 			HttpPostString.append(HttpPostStringTemp);
 		}
     }
-
+*/
 	string HttpString;
 
 	if (HttpPostString!=""){

@@ -75,7 +75,9 @@ class XaLibSql : protected XaLibBase {
         static DbResMap Select(XaLibDb& LibDb,string TableName,const vector<string>& ReturnedFields,const vector<string>& WhereFields, const vector<string>& WhereValues, const vector<string>& OrderByFields, const vector<string>& GroupByFields);
         static DbResMap Select(XaLibDb& LibDb,string TableName,const vector<string>& ReturnedFields,const vector<string>& WhereFields, const vector<string>& WhereValues, const vector<string>& OrderByFields,const vector<string>& GroupByFields,const int& Limit=0);
 
-        static DbResMap FreeQuery(XaLibDb& LibDb,string SqlQry);
+        static DbResMap FreeQuerySelect(XaLibDb& LibDb,string& SqlQry);
+        static int FreeQueryInsert(XaLibDb& LibDb,string& SqlQry);
+
         static void FreeQueryNoRes(XaLibDb& LibDb,string SqlQry);
 
         //LOCKING AND TRANSACTION

@@ -259,6 +259,8 @@ class XaLibAction : protected XaLibBase {
 
         void CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,const string& ModelName);
 
+        void ListResponse(const vector<string>& XmlFiles,const string& XPathExpr,const string& ModelName);
+
         /**
         * Builds the XML for the Back End Call\n
         * The general structure is :\n

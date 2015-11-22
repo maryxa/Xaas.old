@@ -3,6 +3,19 @@
 XaLibModel::XaLibModel() {
 };
 
+void XaLibModel::DumpDbResMap(DbResMap& ResMap) {
+
+	for (auto i=0;i<ResMap.size();i++) {
+	
+		for (const auto &k:ResMap[i]) {
+
+			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"YYYYYYYYYY -> "+k.first+" :: " +k.second);
+		};
+	
+	};
+
+};
+
 vector<string> XaLibModel::AddXmlFile(const vector<string>& FileName){
 
 	vector<string> XmlFiles;
@@ -117,20 +130,17 @@ vector<string> XaLibModel::ReadPrepare(const vector<string>& XmlFiles,const stri
 		};
 		
 	};
+	
+	auto it = FieldsToRead.begin();
+	it = FieldsToRead.insert ( it , "id" );
+
+	FieldsToRead.push_back("created");
+	FieldsToRead.push_back("updated");
+	FieldsToRead.push_back("status");
+	FieldsToRead.push_back("old_id");
 
 	//SE E" VUOTO
 	return FieldsToRead;
-};
-
-XaLibBase::DbResMap XaLibModel::ReadExecute(const string& DbTable,vector<string>& FieldsToRead,const string& FieldId) {
-
-	FieldsToRead.push_back("id");
-	FieldsToRead.push_back("created");
-	FieldsToRead.push_back("updated");
-
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Read From Table -> "+DbTable+" with id ->"+FieldId);
-
-	return XaLibSql::Select(DB_READ,DbTable,FieldsToRead,{"id"},{FieldId});;
 };
 
 string XaLibModel::ReadResponse(DbResMap& DbRes,vector<string>& FieldsToRead) {
@@ -168,6 +178,15 @@ vector<string> XaLibModel::ListPrepare(const vector<string>& XmlFiles,const stri
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Field to retrieve for the list ->"+FieldsToRead[i]);
 	};
 
+	
+	auto it = FieldsToRead.begin();
+	it = FieldsToRead.insert ( it , "id" );
+
+	FieldsToRead.push_back("created");
+	FieldsToRead.push_back("updated");
+	FieldsToRead.push_back("status");
+	FieldsToRead.push_back("old_id");
+
 	return FieldsToRead;
 };
 
@@ -178,15 +197,24 @@ string XaLibModel::ListResponse(DbResMap& DbRes,vector<string>& FieldsToRead) {
 	for (auto j=0;j<DbRes.size();j++) {
 	
 		Res.append("<item>");
-		
+
 		for (auto &i: FieldsToRead) {
-		
+
 			Res.append("<"+i+">");
-			Res.append(DbRes[j][i]);
+			
+			if (DbRes[j][i]=="") {
+				Res.append("null");
+
+			} else {
+			
+				Res.append(DbRes[j][i]);
+			}
+
+			//Res.append(DbRes[j][i]);
 			Res.append("</"+i+">");
 			
 		};
-		
+
 		Res.append("</item>");
 	};
 
@@ -195,28 +223,37 @@ string XaLibModel::ListResponse(DbResMap& DbRes,vector<string>& FieldsToRead) {
 };
 
 int XaLibModel::BackupRecord(const string& DbTable,const int& FieldId) {
-/*
-	vector<string> Columns=XaLibSql::ColumnsList(DB_READ,"XaOuType");
-	
-	string List="(";
-	
-	
-	for (auto i=0;i<Columns.size();i++) {
-	
-		L'ultimo no virgola
-	}
 
-	for (const auto &e : Columns) {
-	
-		List.append(e);
-		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"FIELD -> "+e);
+	vector<string> Columns=XaLibSql::ColumnsList(DB_READ,DbTable);
+	vector<string> ExcludeToList={"id","status","created","updated"};
 
+	//id,status,created,updated
+
+	string List={};
+
+	for(int i=0;i<Columns.size();i++) {
+
+		auto it = find (ExcludeToList.begin(), ExcludeToList.end(), Columns[i]);
+
+		if (it != ExcludeToList.end()) {
+
+			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Field Found In The Exclusion List -> "+Columns[i]);
+
+		} else {
+
+			List.append(Columns[i]+",");
+			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Field List Appending -> "+Columns[i]);
+		}
 	};
 
-	INSERT INTO table (col1, col2, col3, ...)
-	SELECT col1, col2, col3, ... FROM table
-	WHERE primarykey = 1
-*/	
+	//REMOVE LAST ","
+	string SqlList=List.substr(0, List.size()-1);
+
+	string SqlQry="INSERT INTO " + DbTable+" (" +SqlList + ") SELECT "+SqlList +" FROM "+DbTable+" WHERE id="+FromIntToString(FieldId); 
+	
+	unsigned NextId=XaLibSql::FreeQueryInsert(DB_WRITE,SqlQry);
+
+	unsigned UpdatedStatus=XaLibSql::Update(DB_WRITE,DbTable,{"old_id","status"},{FromIntToString(FieldId),"3"},{"id"},{FromIntToString(NextId)});
 };
 
 XaLibBase::FieldsMap XaLibModel::UpdatePrepare(const vector<string>& XmlFiles,const string& XPathExpr) {

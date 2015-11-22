@@ -18,6 +18,9 @@ function XaFormTpl (ModelName) {
     var EncType="multipart/form-data";
 
     function BuildAction(){
+    
+        /*function XaCallAction(controller,url,target,method,async,loader,LoaderTarget,FormId,ResponseType,JsEval,WithAlert,Alert){*/
+
 
         var Action="javascript:XaCallAction('','obj="+Obj+"&amp;evt="+Evt+"','','"+Method+"',"+Async+",0,'','"+Id+"','StringText','','yes','');";
         return Action;
@@ -88,7 +91,74 @@ function XaFormTpl (ModelName) {
 
 };
 
+/*LIST*/
+function XaListTpl (ModelName) {
 
+    var xml = ParseXml(ModelName);
+
+    //PRIVATE
+    var RootElement=xml.documentElement.nodeName;
+    var Fields=xml2array(xml);
+    var FieldsNumber=Object.keys(Fields[RootElement]['list']['item']).length;
+    var ElementsNumbers;
+
+    if (FieldsNumber>0) {
+        /*Number of element for each item*/
+        ElementsNumbers=Object.keys(Fields[RootElement]['list']['item'][0]).length;
+    }
+
+    function BuildHeader() { 
+    
+        var ListHeader="<tr class=\"header\">";
+
+        for(var key in Fields[RootElement]['list']['item'][0]) {
+
+            ListHeader+="<th>"+key+"</th>";
+        }
+
+        ListHeader+="</tr>";
+
+        return ListHeader;
+    };
+
+    function BuildRow (FieldId) {
+
+        var ListRow="<tr class=\"row\">";
+        
+        for(var key in Fields[RootElement]['list']['item'][FieldId]) { 
+
+           ListRow+="<td>"+Fields[RootElement]['list']['item'][FieldId][key]+"</td>";
+        }
+
+    return ListRow;
+    };
+
+    /*can access _privateProperty and call _privateMethod*/
+
+    this.GetList = function () {
+
+        //BuildHeader();
+        
+        var Content="<table class=\"list\">";
+       
+        var Title="Titolo Lista";
+ 
+        Content+="<tr class=\"title\"><td colspan=\"100%\"><span>"+Title+"</span><ul class=\"RightToolbar\"><li class=\"FunctionIcon Refresh\"></li><li class=\"FunctionIcon Expand\"></li></ul></td></tr>";
+        
+        
+
+        Content+=BuildHeader();
+        
+        for(var i=0;i<FieldsNumber;i++) {
+
+            Content+=BuildRow(i);
+        };        
+        Content+="</table>";
+
+        return Content;
+    };
+
+};
 /*
     this.publicProperty = 1;
 

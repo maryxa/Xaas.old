@@ -34,7 +34,9 @@ void XaUser::Login (){
 		string ShaPassword=XaLibCrypto::GetSha1(StrPassword);
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"USER Encrypted Password -> "+ShaPassword);
-		DbResMap DbRes=XaLibSql::FreeQuery(DB_SESSION,"SELECT id FROM XaUser WHERE username=\""+StrUsername+"\" AND password=\""+ShaPassword+"\" AND status in (0,1)");
+		
+		string SqlQry="SELECT id FROM XaUser WHERE username=\""+StrUsername+"\" AND password=\""+ShaPassword+"\" AND status in (0,1)";
+		DbResMap DbRes=XaLibSql::FreeQuerySelect(DB_SESSION,SqlQry);
 
 		int n=DbRes.size();
 

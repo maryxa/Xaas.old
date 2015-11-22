@@ -10,16 +10,15 @@ void XaOuTypeUi::Dispatcher (const string &CalledEvent) {
 		this->CreateFrm();
     } else if (CalledEvent=="Create") {
 		this->Create();
+    } else if (CalledEvent=="List") {
+		this->List();
     } else {
-
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Event Does Not Exists -> "+CalledEvent);
 		throw 42;
 	}
 };
 
 void XaOuTypeUi::CreateFrm() {
-
-	AddHtmlFiles({"XaGuiHead","XaGuiHeader","XaGuiCreateFrmWithList","XaGuiNav"});
 	
 	AddJsVarFile("XaModel","XaOuType");
 	AddJsVarString("XaGuiStyle","default");
@@ -40,16 +39,14 @@ void XaOuTypeUi::Create() {
 
 void XaOuTypeUi::List() {
 
-	/*
-	CreatePrepare({"XaOuType"},"/XaOuType/fieldset/field","XaOuType");
-	BuildBackEndCall("XaOuType","Create",FieldsName,FieldsValue);
-	
 	XaLibCurl LibCurl;
-    string CallResponse = LibCurl.Call(BuildBackEndCall("XaOuType","Create",FieldsName,FieldsValue));
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaOuType","List",{},{}));
 	CheckResponse(CallResponse);
 
-	RESPONSE.Content="OK";
-*/
+	AddJsVarString("XaGuiStyle","default");
+	AddJsVarString("WsData",CallResponse);
+
+	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles({"XaGuiHead","XaGuiHeader","XaGuiList","XaGuiNav"}),HtmlStrings,JsVarFiles,JsVarStrings,0);
 };
 
 XaOuTypeUi::~XaOuTypeUi() {

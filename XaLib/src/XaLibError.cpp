@@ -73,6 +73,7 @@ void XaLibError::Setup() {
 	XaErrors[201]={"BackEnd Call Type Is Not Supported"};
 	XaErrors[202]={"Parameters and Values Have Different Size"};
 	XaErrors[203]={"Requested XML File Does Not Exist"};
+	XaErrors[204]={"Requested HTML File Does Not Exist"};
 	
 	/*
 	 * Action Databases

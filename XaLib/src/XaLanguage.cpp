@@ -262,7 +262,7 @@ void XaLanguage::XaLanguageAdd (){
 	qry.append(LanguageId);
 	qry.append(") AND XaLabel_id=XaLabel.id GROUP BY XaLabel_ID");
 	
-	DbRes=LibSql1->FreeQuery(DB_READ,qry);
+	DbRes=LibSql1->FreeQuerySelect(DB_READ,qry);
 	
 	delete(LibSql1);
 	

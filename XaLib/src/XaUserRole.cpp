@@ -190,7 +190,7 @@ void XaUserRole::XaUserRoleList (){
 
 	string QryUser="SELECT id,name,description,active FROM XaUserRole WHERE deleted=0 AND id > 2";
 	
-	DbResMap DbResUser=LibSql->FreeQuery(DB_READ,QryUser);
+	DbResMap DbResUser=LibSql->FreeQuerySelect(DB_READ,QryUser);
 
 		for (int i=0;i<DbResUser.size();i++) {
 			

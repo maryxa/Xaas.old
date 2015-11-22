@@ -20,16 +20,16 @@ vector<string> XaLibAction::AddHtmlFiles(const vector<string>& FileName){
 		//ADD THE FILE TO THE VECTOR
 		if (f1) {
 			HtmlFiles.push_back(HtmlDefaultPath);
-			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XmlFile Custom-> "+HtmlDefaultPath);
+			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added HtmlFile Custom-> "+HtmlDefaultPath);
 
 		} else if (f2) {
 			HtmlFiles.push_back(HtmlSharedPath);
-			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XmlFile Shared-> "+HtmlSharedPath);
+			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added HtmlFile Shared-> "+HtmlSharedPath);
 
 		} else {
 
-			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Xml File Does Not Exist -> "+i);
-			throw 203;
+			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Html File Does Not Exist -> "+i);
+			throw 204;
 		}
 	}	
 
@@ -312,26 +312,42 @@ string XaLibAction::BuildBackEndCall(const string& Object, const string& Event,c
 
 	Call.append("&");
 	Call.append("Data=");
-
-	Call.append("<WsData>");
+	
+	string WsData={};
+	
+	WsData.append("<WsData>");
 	
 	//ADDING TOKEN
-	Call.append("<login><token>");
-	Call.append(SESSION.Token);
-	Call.append("</token><client_ip>");
-	Call.append(SESSION.ClientIp);
-	Call.append("</client_ip></login>");
+	WsData.append("<login><token>");
+	WsData.append(SESSION.Token);
+	WsData.append("</token><client_ip>");
+	WsData.append(SESSION.ClientIp);
+	WsData.append("</client_ip></login>");
 	
 	//ADDING OPERATION
-	Call.append(BuildBackEndCallSectionOperation(Object,Event));
+	WsData.append(BuildBackEndCallSectionOperation(Object,Event));
 	
 	//ADDING PARAMS
-	Call.append(BuildBackEndCallSectionParams(ParamName,ParamValue));
+	WsData.append(BuildBackEndCallSectionParams(ParamName,ParamValue));
 
-	Call.append("</WsData>");
+	WsData.append("</WsData>");
 
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"BackEnd Call -> "+Call);
-	return Call;
+
+	if (SETTINGS["WsDefaultEncoding"]=="no"){
+
+		XaLibChar LibChar;
+		return Call+LibChar.UrlEncode(WsData);
+
+	} else if (SETTINGS["WsDefaultEncoding"]=="B64") {
+
+		return Call+WsData;
+
+	} else {
+		
+		return Call+WsData;
+	
+	}
 };
 
 string XaLibAction::BuildBackEndCallLogin(const string& Username, const string& Password){

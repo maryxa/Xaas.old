@@ -24,66 +24,6 @@ function XaCheckUrlReload(link) {
     }
 }
 
-function XaCallActionSimple(controller,url,method,FormId){
-
-    if(method===""){
-        method = DefaultMethod;
-    }
-
-    if (url!=="") {
-
-        url.replace("&amp;", "&");
-	var url = controller + "?" + url;
-
-        if (FormId!==""){
-            url= url + "&" +XaSerializeForm (FormId);
-        }
-
-        var xmlhttp;
-
-        if (window.XMLHttpRequest) {
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        
-        xmlhttp.onreadystatechange = function () {
-
-            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-
-                document.getElementById("html").innerHTML = xmlhttp.responseText;
-
-            } else if (xmlhttp.status === 500) {
-
-                FlowCheck=false;
-                alert("error sending async call: "+url);
-
-            } else {
-
-            };
-        };
-
-        if (FormId!==""){	
-            var FormValidity=document.getElementById(FormId).checkValidity();
-        }
-
-        if(FormValidity===true || FormId===''){
-
-            FlowCheck=true;
-            xmlhttp.open(method, url, async);
-            xmlhttp.send();
-
-        } else {
-
-            FlowCheck=false;
-            alert(AllRequiredFields);
-        }
-
-    } else {
-        FlowCheck=false;
-        //alert("url parameter is empty");
-    }
-};
 //Async:=true,false
 //Loader:=0,1
 //ResponseType:= StringText,StringHtml,StringHtmlToAppend
@@ -99,7 +39,7 @@ function XaCallActionSimple(controller,url,method,FormId){
  * @param {string} Target - The inner tag for Async Calls with returns
  * @param {string} Method - POST or GET
  * @param {string} Async - "false" or "true"
- * @param {string} Loader - "yes" or "no" (or 0,1)
+ * @param {string} Loader - "yes" or "no" (or 1,0)
  * @param {string} LoaderTarget - Element Id to display the Loader
  * @param {string} FormId - Form Id to serialize and send
  * @param {string} ResponseType - StringText, StringHtml, StringHtmlToAppend
@@ -132,7 +72,7 @@ function XaCallAction(controller,url,target,method,async,loader,LoaderTarget,For
 		var url = controller + "?" + url;
 
 		if (FormId!==""){
-			url= url + "&" +XaSerializeForm (FormId);
+                    url= url + "&" +XaSerializeForm (FormId);
 		}
 
 		var xmlhttp;

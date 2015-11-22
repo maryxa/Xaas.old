@@ -33,7 +33,8 @@ void XaOuType::Create() {
 void XaOuType::Read() {
 
 	vector<string> FieldsToRead = XaLibModel::ReadPrepare({"XaOuType"},"/XaOuType/fieldset/field");
-	DbResMap DbRes = ReadExecute("XaOuType",FieldsToRead,HTTP.GetHttpParam("id"));
+	
+	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaOuType",FieldsToRead,{"id"},{HTTP.GetHttpParam("id")});
 	RESPONSE.Content= ReadResponse(DbRes,FieldsToRead);
 };
 
@@ -56,12 +57,6 @@ void XaOuType::List() {
 
 	vector<string> ReturnedFields=ListPrepare({"XaOuType"},"/XaOuType/fieldset/field");
 
-	ReturnedFields.push_back("id");
-	ReturnedFields.push_back("old_id");
-	ReturnedFields.push_back("created");
-	ReturnedFields.push_back("updated");
-	ReturnedFields.push_back("status");
-	
 	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaOuType",{ReturnedFields},{WhereFields}, {WhereValues}, {OrderByFields},{GroupByFields},Limit);
 	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);	
 	//Quali campi
@@ -73,13 +68,16 @@ void XaOuType::List() {
 	*/
 };
 
-void XaOuType::Update(){
+void XaOuType::Update() {
 
+	BackupRecord("XaOuType",50);
+
+	/*
 	XaLibBase::FieldsMap LoadedFields=UpdatePrepare({"XaOuType"},"/XaOuType/fieldset/field");
-	RESPONSE.Content=CreateResponse(UpdateExecute("XaOuType",LoadedFields));
+	RESPONSE.Content=CreateResponse(UpdateExecute("XaOuType",LoadedFields));*/
 };
 
-void XaOuType::Delete(){
+void XaOuType::Delete() {
 
 	int DeletedId=DeleteExecute("XaOuType",HTTP.GetHttpParam("id"));
 	RESPONSE.Content=DeleteResponse(DeletedId);

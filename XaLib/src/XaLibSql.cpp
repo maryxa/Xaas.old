@@ -746,7 +746,9 @@ XaLibBase::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,const vecto
 
 }
 
-XaLibBase::DbResMap XaLibSql::FreeQuery(XaLibDb& LibDb,string SqlQry){
+
+
+XaLibBase::DbResMap XaLibSql::FreeQuerySelect(XaLibDb& LibDb,string& SqlQry){
 	
 	DbResMap DbRes;
 	DbRes=LibDb.ExSelect(SqlQry);
@@ -754,6 +756,14 @@ XaLibBase::DbResMap XaLibSql::FreeQuery(XaLibDb& LibDb,string SqlQry){
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executed Free Query -> " +SqlQry);
 	
 	return DbRes;
+};
+
+int XaLibSql::FreeQueryInsert(XaLibDb& LibDb,string& SqlQry) {
+	
+	unsigned NextId=LibDb.ExInsert(SqlQry);	
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executed Free Query Insert-> " +SqlQry);
+
+	return NextId;
 };
 
 void XaLibSql::FreeQueryNoRes(XaLibDb& LibDb,string SqlQry){

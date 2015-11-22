@@ -45,6 +45,9 @@ class XaLibModel : protected XaLibBase {
         //void ResetPoperites ();
 
         virtual void Dispatcher (const string &CalledEvent)=0;
+
+        void DumpDbResMap(DbResMap& DbRes);
+        
         vector<string> AddXmlFile(const vector<string>& FileName);
 
         FieldsMap CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr);
@@ -52,15 +55,18 @@ class XaLibModel : protected XaLibBase {
         string CreateResponse(const int& NextId);
 
         vector<string> ReadPrepare(const vector<string>& XmlFiles,const string& XPathExpr);
-        XaLibBase::DbResMap ReadExecute(const string& DbTable,vector<string>& FieldsToRead,const string& RowId);
         string ReadResponse(DbResMap& DbRes,vector<string>& FieldsToRead);
 
         vector<string> ListPrepare(const vector<string>& XmlFiles,const string& XPathExpr);
         string ListResponse(DbResMap& DbRes,vector<string>& FieldsToRead);
 
-
-        
+        /*
+	INSERT INTO table (col1, col2, col3, ...)
+	SELECT col1, col2, col3, ... FROM table
+	WHERE PrimaryKey = 1
+        */
         int BackupRecord(const string& DbTable,const int& RowId);
+
         FieldsMap UpdatePrepare(const vector<string>& XmlFiles,const string& XPathExpr);
         int UpdateExecute(const string& DbTable,XaLibBase::FieldsMap& LoadedFields);
         string UpdateResponse(const int& UpdatedId);
@@ -72,7 +78,7 @@ class XaLibModel : protected XaLibBase {
 
         virtual void Create()=0;
         virtual void Read()=0;
-        virtual void List()=0;
+//        virtual void List()=0;
         virtual void Delete()=0;
         virtual void Update()=0;
 

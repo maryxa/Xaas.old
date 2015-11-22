@@ -126,8 +126,8 @@ void XaLibWs::GetEncodedData(){
 
 void XaLibWs::GetConsumerKey() {
 
-	string SqlQuery="SELECT key FROM XaWsConsumer WHERE id="+ConsumerId;
-	DbResMap DbRes=XaLibSql::FreeQuery(DB_SESSION,SqlQuery);
+	string SqlQry="SELECT key FROM XaWsConsumer WHERE id="+ConsumerId;
+	DbResMap DbRes=XaLibSql::FreeQuerySelect(DB_SESSION,SqlQry);
 
 	if (DbRes.size()==0) {
 

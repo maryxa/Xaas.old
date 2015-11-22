@@ -20,6 +20,7 @@ void XaLibControllerBackEnd::OnStart(const string& ConfFile) {
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"IP Address Back End Server -> "+SESSION.BackEndIp);
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"IP Address Front End Server -> "+SESSION.FrontEndIp);
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Read HttpString -> " + REQUEST.HeadersString);
 
 	} catch (int e) {
 

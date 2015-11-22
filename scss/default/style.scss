@@ -237,6 +237,17 @@ nav {
     }
 }
 
+.loader {
+    
+    width: 200px;
+    height:200px;
+
+    background-repeat:no-repeat;
+    background-position: center center;
+    background-image:url('XAllegroSpinner.png');
+    background-size: auto 90%;
+}
+
 .ErrorMessage {
 
 }

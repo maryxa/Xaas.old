@@ -22,10 +22,6 @@ class XaOuType : public XaLibModel {
     public:
 
         void Dispatcher (const string &CalledEvent);
-      
-        //int Read();
-        //int Update();
-        //int Delete();
 
         XaOuType();
         ~XaOuType();
