@@ -1,0 +1,77 @@
+<XaAddressMail>
+    <form>
+        <controller>XaUserUi</controller>
+        <id>XaAddressMail</id>
+        <name>XaAddressMail</name>
+        <obj>XaAddressMailUi</obj>
+        <evt>Create</evt>
+        <async>true</async>
+        <method>POST</method>
+        <class>form-1-column</class>
+    </form>
+    <fieldset id="XaAddressMail" name="XaAddressMail">
+        <legend>create&#32;a&#32;new&#32;address&#32;mail</legend>
+        <field id="XaTable" name="XaTable">
+            <id>XaTable</id>
+            <name>XaTable</name>
+            <type>input-text</type>
+            <label>XaTable</label>
+            <placeholder>XaTable</placeholder>
+            <default></default>
+            <required>yes</required>
+            <read>yes</read>
+            <list>yes</list>
+            <update>yes</update>
+            <search>yes</search>
+            <size></size>
+        </field>
+        <field id="XaField_ID" name="XaField_ID">
+            <id>XaField_ID</id>
+            <name>XaField_ID</name>
+            <type>input-number</type>
+            <label>XaField_ID</label>
+            <placeholder>XaField_ID</placeholder>
+            <default></default>
+            <required>yes</required>
+            <read>yes</read>
+            <list>yes</list>
+            <update>no</update>
+            <search>yes</search>
+            <size></size>
+        </field>
+		<field id="XaDomainType_ID" name="XaDomainType_ID">
+			<id>XaDomainType_ID</id>
+			<name>XaDomainType_ID</name>
+			<type>select</type>
+			<label>Email Type</label>
+			<options>
+				<!--option>
+					<label>Select an Email Type</label>
+					<value></value>
+				</option-->
+			</options>
+			<placeholder>XaUserAddressType_ID</placeholder>
+			<default></default>
+            <required>yes</required>
+            <read>yes</read>
+            <list>yes</list>
+            <update>yes</update>
+            <search>yes</search>
+            <size></size>
+		</field>
+		<field id="email" name="email">
+			<id>email</id>
+			<name>email</name>
+			<type>input-email</type>
+			<label>Email</label>
+			<placeholder>Insert Email address</placeholder>
+			<default></default>
+            <required>yes</required>
+            <read>yes</read>
+            <list>yes</list>
+            <update>yes</update>
+            <search>yes</search>
+            <size></size>
+		</field>
+    </fieldset>
+</XaAddressMail>
