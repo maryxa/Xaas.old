@@ -39,13 +39,13 @@
             <search>yes</search>
             <size></size>
         </field>
-		<field id="XaDomainType_ID" name="XaDomainType_ID">
-			<id>XaDomainType_ID</id>
-			<name>XaDomainType_ID</name>
+		<field id="XaAddressPhoneType_ID" name="XaAddressPhoneType_ID">
+			<id>XaAddressPhoneType_ID</id>
+			<name>XaAddressPhoneType_ID</name>
 			<type>select</type>
 			<label>Phone Type</label>
 			<options></options>
-			<placeholder>XaUserAddressType_ID</placeholder>
+			<placeholder>Phone Type</placeholder>
 			<default></default>
             <required>yes</required>
             <read>yes</read>
@@ -54,13 +54,13 @@
             <search>yes</search>
             <size></size>
 		</field>
-		<field id="XaDomainCode_ID" name="XaDomainCode_ID">
-			<id>XaDomainCode_ID</id>
-			<name>XaDomainCode_ID</name>
+		<field id="XaAddressPhoneCode_ID" name="XaAddressPhoneCode_ID">
+			<id>XaAddressPhoneCode_ID</id>
+			<name>XaAddressPhoneCode_ID</name>
 			<type>select</type>
 			<label>Phone Code</label>
 			<options></options>
-			<placeholder>XaUserAddressCode_ID</placeholder>
+			<placeholder>Phone Code</placeholder>
 			<default></default>
             <required>yes</required>
             <read>yes</read>
