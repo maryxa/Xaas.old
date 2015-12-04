@@ -13,10 +13,8 @@
 #include <XaLibMail.h>
 #include <XaLibTime.h>
 #include <XaLibCurl.h>
-#include <XaUser.h>
-#include <XaUserProfile.h>
 #include <XaLibWs.h>
-
+#include <XaUserLogin.h>
 /**
  * @brief Base Class for Controllrs
  *
