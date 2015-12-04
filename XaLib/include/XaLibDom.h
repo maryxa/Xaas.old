@@ -63,7 +63,10 @@ class XaLibDom : protected XaLibBase {
         void AddAddressElementByXPath(xmlDocPtr XmlDomDoc, string XPathExpr, string Id, string Type,string Value);
         void AddDeviceElementByXPath(xmlDocPtr XmlDomDoc, string XPathExpr, string Id, string Active);
         void AddDateElementByXPath(xmlDocPtr XmlDomDoc, string XPathExpr, string Value);
+        
         void AddOptionElementByXPath (xmlDocPtr XmlDomDoc, string XPathExpr, string OptionLabel, string OptionValue);
+        void AddOptionElementByXPath(xmlDocPtr XmlDomDoc, string& XPathExpr, vector<string>& OptionLabel, vector<string>& OptionValue);
+
         void AddValueElementByXPath(xmlDocPtr XmlDomDoc, string XPathExpr, string ValueValue);
         void AddOrgTreeOu(xmlDocPtr XmlDomDoc, string XPathExpr, string OuId, string OuName, string XaUserType_ID);
         void AddOrgTreeUser(xmlDocPtr XmlDomDoc, string XPathExpr, string OuId, string OuName);
