@@ -1,0 +1,87 @@
+<XaAddressPhone>
+    <form>
+        <controller>XaUserUi</controller>
+        <id>XaAddressPhone</id>
+        <name>XaAddressPhone</name>
+        <obj>XaAddressPhoneUi</obj>
+        <evt>Create</evt>
+        <async>true</async>
+        <method>POST</method>
+        <class>form-1-column</class>
+    </form>
+    <fieldset id="XaAddressPhone" name="XaAddressPhone">
+        <legend>create&#32;a&#32;new&#32;address&#32;phone</legend>
+        <field id="XaTable" name="XaTable">
+            <id>XaTable</id>
+            <name>XaTable</name>
+            <type>input-text</type>
+            <label>XaTable</label>
+            <placeholder>XaTable</placeholder>
+            <default></default>
+            <required>yes</required>
+            <read>yes</read>
+            <list>yes</list>
+            <update>yes</update>
+            <search>yes</search>
+            <size></size>
+        </field>
+        <field id="XaField_ID" name="XaField_ID">
+            <id>XaField_ID</id>
+            <name>XaField_ID</name>
+            <type>input-number</type>
+            <label>XaField_ID</label>
+            <placeholder>XaField_ID</placeholder>
+            <default></default>
+            <required>yes</required>
+            <read>yes</read>
+            <list>yes</list>
+            <update>no</update>
+            <search>yes</search>
+            <size></size>
+        </field>
+		<field id="XaAddressPhoneType_ID" name="XaAddressPhoneType_ID">
+			<id>XaAddressPhoneType_ID</id>
+			<name>XaAddressPhoneType_ID</name>
+			<type>select</type>
+			<label>Phone Type</label>
+			<options></options>
+			<placeholder>Phone Type</placeholder>
+			<default></default>
+            <required>yes</required>
+            <read>yes</read>
+            <list>yes</list>
+            <update>yes</update>
+            <search>yes</search>
+            <size></size>
+		</field>
+		<field id="XaAddressPhoneCode_ID" name="XaAddressPhoneCode_ID">
+			<id>XaAddressPhoneCode_ID</id>
+			<name>XaAddressPhoneCode_ID</name>
+			<type>select</type>
+			<label>Phone Code</label>
+			<options></options>
+			<placeholder>Phone Code</placeholder>
+			<default></default>
+            <required>yes</required>
+            <read>yes</read>
+            <list>yes</list>
+            <update>yes</update>
+            <search>yes</search>
+            <size></size>
+		</field>
+		<field id="number" name="number">
+			<id>number</id>
+			<name>number</name>
+			<type>input-number</type>
+			<label>Number</label>
+			<placeholder>Insert number address</placeholder>
+			<default></default>
+            <required>yes</required>
+            <read>yes</read>
+            <list>yes</list>
+            <update>yes</update>
+            <search>yes</search>
+            <size></size>
+		</field>
+    </fieldset>
+</XaAddressPhone>
