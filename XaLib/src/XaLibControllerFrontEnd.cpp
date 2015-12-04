@@ -42,12 +42,12 @@ void XaLibControllerFrontEnd::GetLayout(){
 
 void XaLibControllerFrontEnd::ManageSession(){
 
-	if (REQUEST.CalledObject=="XaUserUi" && REQUEST.CalledEvent=="Login") {
+	if (REQUEST.CalledObject=="XaUserLoginUi" && REQUEST.CalledEvent=="Login") {
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Setting Cookie");
 		cout<<HTTP.SetCookie()<<endl;
 
-	} else if (REQUEST.CalledObject=="XaUserUi" && REQUEST.CalledEvent=="Logout") {
+	} else if (REQUEST.CalledObject=="XaUserLoginUi" && REQUEST.CalledEvent=="Logout") {
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Removing Cookie");
 		cout<<HTTP.RemoveCookie()<<endl;
