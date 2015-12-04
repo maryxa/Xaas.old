@@ -207,9 +207,9 @@ void XaLibWs::ExtractData(){
 			throw 113;
 		}
 		
-		if (Object!="XaUser") {
+		if (Object!="XaUserLogin") {
 
-			LOG.Write("ERR",__FILE__,__FUNCTION__,__LINE__,"WS Object Is Not XaUser But Token is Empty");
+			LOG.Write("ERR",__FILE__,__FUNCTION__,__LINE__,"WS Object Is Not XaUserLogin But Token is Empty");
 			throw 117;
 		}
 		
