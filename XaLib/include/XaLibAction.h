@@ -300,9 +300,24 @@ class XaLibAction : protected XaLibBase {
         string BuildBackEndCallSectionOperation(const string& Object, const string& Event);
         string BuildBackEndCallSectionParams(const vector<string>& Names, const vector<string>& Values);
 
-        //RETHROW the error from the backend
+        //void AddOptionsToModel(const string& FileModelPath,const string& XmlOptions,const string XPathExpr);
+
+                
+        /**
+        * RE-Throw a back-end error\n
+        * Applying this method to the response an Error threw from the
+        * back-end will be showed from the front-end:\n
+        * 
+        * @return void
+        *
+        * @code
+        * CheckResponse("ResponseContent");
+        * @endcode
+        *
+        */
         void CheckResponse(const string& Response);
         
+
         /**
         * Redirects to the InfoPage .\n
         * To Use with classes that provide the Method GetResponse\n
