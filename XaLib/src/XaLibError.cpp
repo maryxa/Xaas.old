@@ -13,7 +13,7 @@ void XaLibError::Setup() {
 
 	
 	/*
-	 * Log - 
+	 *  DB
 	 */
 	XaErrors[21]={"LOG Unable to open Log file"};
 	XaErrors[22]={"DB Unable to Connect SESSION DB"};
@@ -21,6 +21,9 @@ void XaLibError::Setup() {
 	XaErrors[24]={"DB Unable to Connect READ DB"};
 	XaErrors[25]={"DB Unable to Connect LOG DB"};
 
+	
+	XaErrors[31]={"Number Of Labels Is different From Number Of Values"};
+	
 	XaErrors[41]={"Event Is empty"};
 	XaErrors[42]={"EventNotFound"};
 
@@ -39,6 +42,7 @@ void XaLibError::Setup() {
 	XaErrors[56]={};
 	XaErrors[57]={};
 
+	
 	/*
 	 * Web Services
 	 */
@@ -59,7 +63,7 @@ void XaLibError::Setup() {
 	XaErrors[114]={"WS Object Is Empty"};
 	XaErrors[115]={"WS Event Is Empty"};
 	XaErrors[116]={"WS Number of Parameters is 0"};
-	XaErrors[117]={"WS Object Is Not XaUser But Token is Empty"};
+	XaErrors[117]={"WS Object Is Not XaUserLogin But Token is Empty"};
 	XaErrors[118]={"WS Event Is Not Login But Token is Empty"};
 	XaErrors[119]={"WS Called Object Does Not Exist"};
 	XaErrors[120]={""};
