@@ -358,7 +358,8 @@ string SecWebSocketKey = Headers.substr(SecWebSocketKeyStart+19,24);
 
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Catted:" +SecWebSocketKey);
 
-return XaLibChar::ClearSpace(SecWebSocketKey);
+		XaLibChar::ClearSpace(SecWebSocketKey);
+return SecWebSocketKey;
 
 };
 
