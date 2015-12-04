@@ -712,7 +712,6 @@ void XaLibDom::AddDateElementByXPath(xmlDocPtr XmlDomDoc, string XPathExpr, stri
     
 };
 
-
 void XaLibDom::AddOptionElementByXPath(xmlDocPtr XmlDomDoc, string XPathExpr, string OptionLabel, string OptionValue){
 
 	xmlNodePtr cur;
@@ -725,9 +724,41 @@ void XaLibDom::AddOptionElementByXPath(xmlDocPtr XmlDomDoc, string XPathExpr, st
 
 	OptionsNode = xmlNewChild(cur, NULL, (const xmlChar *) "option",NULL);	
 
+	
 	xmlNewChild(OptionsNode, NULL, (xmlChar *) "label", (const xmlChar *)OptionLabel.c_str());
 	xmlNewChild(OptionsNode, NULL, (xmlChar *) "value", (const xmlChar *)OptionValue.c_str());
 
+	xmlXPathFreeObject(xpathObj);
+    xmlXPathFreeContext(xpathCtx);
+};
+
+void XaLibDom::AddOptionElementByXPath(xmlDocPtr XmlDomDoc, string& XPathExpr, vector<string>& OptionLabel, vector<string>& OptionValue){
+	
+	if (OptionLabel.size()!=OptionValue.size()) {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Error 31: Number Of Labels Is different From Number Of Values");
+		throw 31;	
+	};
+
+	xmlNodePtr cur;
+
+   	xmlNodePtr OptionsNode;
+
+	xpathCtx = xmlXPathNewContext(XmlDomDoc);
+    xpathObj = xmlXPathEvalExpression((const xmlChar *)XPathExpr.c_str(), xpathCtx);
+
+   	cur = xpathObj->nodesetval->nodeTab[0];
+	
+	
+	for (auto i=0;i<OptionLabel.size();i++) {
+	
+		OptionsNode = xmlNewChild(cur, NULL, (const xmlChar *) "option",NULL);
+
+		xmlNewChild(OptionsNode, NULL, (xmlChar *) "label", (const xmlChar *)OptionLabel[i].c_str());
+		xmlNewChild(OptionsNode, NULL, (xmlChar *) "value", (const xmlChar *)OptionValue[i].c_str());
+
+	};
+	
 	xmlXPathFreeObject(xpathObj);
     xmlXPathFreeContext(xpathCtx);
 };
