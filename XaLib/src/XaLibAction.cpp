@@ -291,7 +291,6 @@ void XaLibAction::CreatePrepare(const vector<string>& XmlFiles,const string& XPa
 	//GET NUMBER OF FILEDS
 	int FieldsNum=XaLibDom::GetNumRowByXPathInt(XmlDomDoc,XPathExpr);
 
-	
 	for (auto i=0;i<FieldsNum;i++) {
 		//LOADING PROPERTIES
 
@@ -359,7 +358,7 @@ string XaLibAction::BuildBackEndCallLogin(const string& Username, const string& 
 
 	//FARE IL CASO CRITTOGRAFATO ED ENCODATO
 
-	string SectionLogin="<WsData><login><username>"+Username+"</username><password>"+Password+"</password></login><operation><object>XaUser</object><event>Login</event></operation></WsData>";
+	string SectionLogin="<WsData><login><username>"+Username+"</username><password>"+Password+"</password></login><operation><object>XaUserLogin</object><event>Login</event></operation></WsData>";
 	Call.append(SectionLogin);
 
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"BackEnd Call -> "+Call);
@@ -1008,7 +1007,47 @@ void XaLibAction::ResetRequest(){
 	REQUEST.CalledObject="";
 };
 */
+/*
+void XaLibAction::AddOptionsToModel(const string& FileModelPath,const string& XmlOptions,const string XPathExpr) {
+	
+	xmlDocPtr DocModel=LibDom.DomFromFile(Model[0]);
 
+	//Retrieve Options for OuType
+	XaLibCurl LibCurl;
+	string CallResponse = LibCurl.Call(BuildBackEndCall("XaOuType","ListAsOptions",{},{}));
+	CheckResponse(CallResponse);
+
+	xmlDocPtr DocOptions=LibDom.DomFromString(CallResponse);
+
+	int ElementsNumber=LibDom.GetNumRowByXPathInt(DocOptions,"/WsData/list/item");
+
+	for (auto i=0;i<ElementsNumber;i++) {
+
+		//LOADING PROPERTIES
+		string FieldLabel=XaLibDom::GetElementValueByXPath(DocOptions,"/WsData/list/item["+ to_string(i+1) + "]/name");
+		string FieldValue=XaLibDom::GetElementValueByXPath(DocOptions,"/WsData/list/item["+ to_string(i+1) + "]/id");
+
+		OptionLabel.push_back(FieldLabel);
+		OptionValue.push_back(FieldValue);
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Loaded value for property ->" +FieldLabel +" :: " + FieldValue);
+	};
+	
+	
+	//LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"XXXXXXXXx -> "+CallResponse);
+
+	string XPathExpr="//XaOu/fieldset/field[@id='XaOuType_ID']/options";
+	
+	
+	
+	
+	LibDom.AddOptionElementByXPath(DocModel,XPathExpr,OptionLabel,OptionValue);
+
+
+	string pippo=LibDom.StringFromDom(DocModel);
+
+};
+*/
 void XaLibAction::CheckResponse(const string& Response) {
 
 	xmlDocPtr XmlResponse=XaLibDom::DomFromString(Response);
