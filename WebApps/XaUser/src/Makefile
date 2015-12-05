@@ -79,7 +79,7 @@ ifeq ($(UNAME_S),Darwin)
 endif
 
 #User OBJ
-OBJ=$(OBJDIR)Controller.o 
+OBJ=$(OBJDIR)Controller.o $(OBJDIR)XaOuType.o $(OBJDIR)XaOu.o $(OBJDIR)XaUserRole.o
 
 #MACROS
 .PHONY: all all-before all-after clean print-varialbes
@@ -103,3 +103,9 @@ print-varialbes:
 #COMPILE
 $(OBJDIR)Controller.o: Controller.cpp
 	$(CPP) -c Controller.cpp -o $(OBJDIR)Controller.o $(CPPFLAGS)
+$(OBJDIR)XaOuType.o: XaOuType.cpp
+	$(CPP) -c XaOuType.cpp -o $(OBJDIR)XaOuType.o $(CPPFLAGS)
+$(OBJDIR)XaOu.o: XaOu.cpp
+	$(CPP) -c XaOu.cpp -o $(OBJDIR)XaOu.o $(CPPFLAGS)
+$(OBJDIR)XaUserRole.o: XaUserRole.cpp
+	$(CPP) -c XaUserRole.cpp -o $(OBJDIR)XaUserRole.o $(CPPFLAGS)
