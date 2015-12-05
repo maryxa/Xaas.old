@@ -79,7 +79,10 @@ ifeq ($(UNAME_S),Darwin)
 endif
 
 #User OBJ
-OBJ=$(OBJDIR)Controller.o $(OBJDIR)XaOuType.o $(OBJDIR)XaOu.o $(OBJDIR)XaUserRole.o
+OBJ=$(OBJDIR)Controller.o $(OBJDIR)XaOuType.o $(OBJDIR)XaOu.o $(OBJDIR)XaUserRole.o \
+    $(OBJDIR)XaAddressGeo.o $(OBJDIR)XaAddressGeoType.o \
+    $(OBJDIR)XaAddressMail.o $(OBJDIR)XaAddressMailType.o \
+    $(OBJDIR)XaAddressPhone.o $(OBJDIR)XaAddressPhoneCode.o $(OBJDIR)XaAddressPhoneType.o
 
 #MACROS
 .PHONY: all all-before all-after clean print-varialbes
@@ -109,3 +112,17 @@ $(OBJDIR)XaOu.o: XaOu.cpp
 	$(CPP) -c XaOu.cpp -o $(OBJDIR)XaOu.o $(CPPFLAGS)
 $(OBJDIR)XaUserRole.o: XaUserRole.cpp
 	$(CPP) -c XaUserRole.cpp -o $(OBJDIR)XaUserRole.o $(CPPFLAGS)
+$(OBJDIR)XaAddressGeo.o: XaAddressGeo.cpp
+	$(CPP) -c XaAddressGeo.cpp -o $(OBJDIR)XaAddressGeo.o $(CPPFLAGS)
+$(OBJDIR)XaAddressGeoType.o: XaAddressGeoType.cpp
+	$(CPP) -c XaAddressGeoType.cpp -o $(OBJDIR)XaAddressGeoType.o $(CPPFLAGS)
+$(OBJDIR)XaAddressMail.o: XaAddressMail.cpp
+	$(CPP) -c XaAddressMail.cpp -o $(OBJDIR)XaAddressMail.o $(CPPFLAGS)
+$(OBJDIR)XaAddressMailType.o: XaAddressMailType.cpp
+	$(CPP) -c XaAddressMailType.cpp -o $(OBJDIR)XaAddressMailType.o $(CPPFLAGS)
+$(OBJDIR)XaAddressPhone.o: XaAddressPhone.cpp
+	$(CPP) -c XaAddressPhone.cpp -o $(OBJDIR)XaAddressPhone.o $(CPPFLAGS)
+$(OBJDIR)XaAddressPhoneCode.o: XaAddressPhoneCode.cpp
+	$(CPP) -c XaAddressPhoneCode.cpp -o $(OBJDIR)XaAddressPhoneCode.o $(CPPFLAGS)
+$(OBJDIR)XaAddressPhoneType.o: XaAddressPhoneType.cpp
+	$(CPP) -c XaAddressPhoneType.cpp -o $(OBJDIR)XaAddressPhoneType.o $(CPPFLAGS)
