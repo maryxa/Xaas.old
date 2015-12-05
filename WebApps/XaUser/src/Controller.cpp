@@ -26,7 +26,7 @@
 /**** APPLICATION ****/
 #include <XaOuType.h>
 #include <XaOu.h>
-#include <XaUser.h>
+#include <XaUserLogin.h>
 //#include <XaPages.h>
 
 #include <XaAddress.h>
@@ -123,10 +123,10 @@ void Controller::DispatchWs () {
 
 void Controller::ExecuteWs(XaLibWs& Ws){
 
-	if(REQUEST.CalledObject=="XaUser") {
+	if(REQUEST.CalledObject=="XaUserLogin") {
 
-		unique_ptr<XaUser> User (new XaUser());
-		User->Execute();
+		unique_ptr<XaUserLogin> UserLogin (new XaUserLogin());
+		UserLogin->Execute();
 
 	} else if(REQUEST.CalledObject=="XaOuType") {
 
