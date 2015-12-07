@@ -1,5 +1,6 @@
 #include <XaLanguage.h>
-#include <XaLibAction.h>
+//#include <XaLibAction.h>
+#include <XaLibModel.h>
 
 XaLanguage::XaLanguage(){
 
@@ -7,7 +8,7 @@ XaLanguage::XaLanguage(){
 
 void XaLanguage::Dispatcher(const string &CalledEvent) {
 
-	if (CalledEvent=="XaLanguageAddFrm"){
+    /*	if (CalledEvent=="XaLanguageAddFrm"){
         this->XaLanguageAddFrm();
 	} else if (CalledEvent=="XaLanguageAdd"){
         this->XaLanguageAdd();
@@ -18,8 +19,117 @@ void XaLanguage::Dispatcher(const string &CalledEvent) {
 	} else if (CalledEvent=="XaLanguageMod"){
         this->XaLanguageMod();
 	}
+    */
+    if (CalledEvent=="Create"){
+        this->Create();
+    } else if (CalledEvent=="Read"){
+        this->Read();
+    } else if (CalledEvent=="List"){
+	this->List();
+    } else if (CalledEvent=="Update"){
+	this->Update();
+    } else if (CalledEvent=="Delete"){
+	this->Delete();
+    } else {
+        LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42 Requested Event Does Not Exists -> "+CalledEvent);
+        throw 42;
+    }
+    
 };
 
+void XaLanguage::Create() {
+
+	XaLibBase::FieldsMap LoadedFields=CreatePrepare({"XaLanguage"},"/XaLanguage/fieldset/field");
+	
+        int NextId=CreateExecute("XaLanguage",LoadedFields);
+        
+        if (NextId!=0) {
+	
+            unique_ptr<XaLibSql> LibSql (new XaLibSql());
+
+            string qry="SELECT XaLabel_ID FROM XaLabelTranslation, XaLabel WHERE XaLanguage_ID NOT IN ("+FromIntToString(NextId)+") AND XaLabel_id=XaLabel.id GROUP BY XaLabel_ID";
+
+            DbResMap DbRes=LibSql->FreeQuerySelect(DB_READ,qry);
+
+            for(unsigned n=0; n<DbRes.size(); ++n){
+
+                    vector<string> VectorFields;
+                    VectorFields.push_back("XaLabel_ID");
+                    VectorFields.push_back("XaLanguage_ID");
+
+                    vector<string> VectorValues;
+                    VectorValues.push_back(DbRes[n]["XaLabel_ID"]);
+                    VectorValues.push_back(FromIntToString(NextId));
+
+                    LibSql->Insert(DB_WRITE,"XaLabelTranslation",VectorFields,VectorValues);
+                    
+                    VectorFields.clear();
+                    VectorValues.clear();
+
+            }
+
+            XaLanguageGen();
+            
+        }
+        
+        RESPONSE.Content=CreateResponse(NextId);
+};
+
+void XaLanguage::Read() {
+
+	vector<string> FieldsToRead = XaLibModel::ReadPrepare({"XaLanguage"},"/XaLanguage/fieldset/field");
+	
+	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaLanguage",FieldsToRead,{"id"},{HTTP.GetHttpParam("id")});
+	RESPONSE.Content= ReadResponse(DbRes,FieldsToRead);
+};
+
+void XaLanguage::List() {
+
+	vector<string> WhereFields={};
+	vector<string> WhereValues={};
+	vector<string> OrderByFields={};
+	vector<string> GroupByFields={};
+
+	string PassedLimit=HTTP.GetHttpParam("limit");
+	int Limit={0};
+
+	if (PassedLimit!="NoHttpParam") {
+		Limit=FromStringToInt(PassedLimit);
+	};
+
+	string OrderBy=HTTP.GetHttpParam("order_by");
+	string Status=HTTP.GetHttpParam("status");
+
+	vector<string> ReturnedFields=ListPrepare({"XaLanguage"},"/XaLanguage/fieldset/field");
+
+	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaLanguage",{ReturnedFields},{WhereFields}, {WhereValues}, {OrderByFields},{GroupByFields},Limit);
+	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);	
+	//Quali campi
+	//
+	/*
+	vector<string> FieldsToRead = XaLibModel::ReadPrepare({"XaLanguage"},"/XaLanguage/fieldset/field");
+	DbResMap DbRes = ReadExecute("XaLanguage",FieldsToRead,HTTP.GetHttpParam("id"));
+	RESPONSE.Content= ReadResponse(DbRes,FieldsToRead);
+	*/
+};
+
+void XaLanguage::Update() {
+
+	BackupRecord("XaLanguage",50);
+
+	/*
+	XaLibBase::FieldsMap LoadedFields=UpdatePrepare({"XaLanguage"},"/XaLanguage/fieldset/field");
+	RESPONSE.Content=CreateResponse(UpdateExecute("XaLanguage",LoadedFields));*/
+};
+
+void XaLanguage::Delete() {
+
+	int DeletedId=DeleteExecute("XaLanguage",HTTP.GetHttpParam("id"));
+	XaLanguageGen();
+        RESPONSE.Content=DeleteResponse(DeletedId);
+};
+
+/*
 void XaLanguage::XaLanguageMod (){
 
 	XaLibSql* LibSql=new XaLibSql();
@@ -285,29 +395,23 @@ void XaLanguage::XaLanguageAdd (){
 	this->XaLanguageGen();
 
 };
-
+*/
 void XaLanguage::XaLanguageGen (){
-
-	DbResMap DbRes;
 	
 	string XmlString;
 
-	XaLibSql* LibSql=new XaLibSql();
+	unique_ptr<XaLibSql> LibSql (new XaLibSql());
 
 	vector<string> ReturnedFields;
 	ReturnedFields.push_back("*");
 
 	vector<string> WhereFields;
-	WhereFields.push_back("domain");
-	WhereFields.push_back("active");
+	WhereFields.push_back("status");
 
 	vector<string> WhereValues;
-	WhereValues.push_back("XaLanguage");
 	WhereValues.push_back("1");
 
-	DbRes=LibSql->Select(DB_READ,"XaDomain",ReturnedFields,WhereFields,WhereValues);
-	
-	delete(LibSql);
+	DbResMap DbRes=LibSql->Select(DB_READ,"XaLanguage",ReturnedFields,WhereFields,WhereValues);
 	
 		XmlString="<languages>";
 	
@@ -333,8 +437,8 @@ void XaLanguage::XaLanguageGen (){
 		
 		XmlString.append("</languages>");
 		
-	string FileName="XaLanguage";
-	string FilePath=SETTINGS["XmlDir"]+FileName+".xml";
+	string FileName="XaLanguage-list";
+	string FilePath=SETTINGS["SharedDir"]+"xml/"+FileName+".xml";
 	
 	const char* FilePathChar = FilePath.c_str();
 	ofstream myfile;
