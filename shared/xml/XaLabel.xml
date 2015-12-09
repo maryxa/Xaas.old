@@ -1,0 +1,100 @@
+<XaLabel>
+    <form>
+        <controller>XaUserUi</controller>
+        <id>XaLabel</id>
+        <name>XaLabel</name>
+        <obj>XaLabelUi</obj>
+        <evt>Create</evt>
+        <async>true</async>
+        <method>POST</method>
+        <class>form-1-column</class>
+    </form>
+    <fieldset id="XaLabel" name="XaLabel">
+        <legend>create&#32;a&#32;new&#32;label</legend>
+		<field id="name" name="name">
+			<id>name</id>
+			<name>name</name>
+			<type>input-text</type>
+			<label>label name</label>
+			<placeholder>label name</placeholder>
+			<default></default>
+            <required>yes</required>
+            <read>yes</read>
+            <list>yes</list>
+            <update>yes</update>
+            <search>yes</search>
+            <size></size>
+		</field>
+		 <field id="description" name="description">
+            <id>description</id>
+            <name>description</name>
+            <type>input-textarea</type>
+            <label>label description</label>
+            <placeholder>label description</placeholder>
+            <default></default>
+            <required>yes</required>
+            <read>yes</read>
+            <list>yes</list>
+            <update>yes</update>
+            <search>yes</search>
+            <size></size>
+        </field>
+		<field id="XaLanguage_ID" name="XaLanguage_ID">
+			<id>XaLanguage_ID</id>
+			<name>XaLanguage_ID</name>
+			<type>select</type>
+			<label>Language ID</label>
+			<options></options>
+			<placeholder>Language ID</placeholder>
+			<default></default>
+            <required>yes</required>
+            <read>yes</read>
+            <list>yes</list>
+            <update>yes</update>
+            <search>yes</search>
+            <size></size>
+		</field>
+		<field id="text" name="text">
+			<id>text</id>
+			<name>text</name>
+			<type>input-text</type>
+			<label>label text</label>
+			<placeholder>label text</placeholder>
+			<default></default>
+            <required>yes</required>
+            <read>yes</read>
+            <list>yes</list>
+            <update>yes</update>
+            <search>yes</search>
+            <size></size>
+		</field>
+		<field id="help" name="help">
+			<id>help</id>
+			<name>help</name>
+			<type>input-text</type>
+			<label>label help</label>
+			<placeholder>label help</placeholder>
+			<default></default>
+            <required>no</required>
+            <read>yes</read>
+            <list>yes</list>
+            <update>yes</update>
+            <search>yes</search>
+            <size></size>
+		</field>
+		<field id="placeholder" name="placeholder">
+			<id>placeholder</id>
+			<name>placeholder</name>
+			<type>input-text</type>
+			<label>label placeholder</label>
+			<placeholder>label placeholder</placeholder>
+			<default></default>
+            <required>no</required>
+            <read>yes</read>
+            <list>yes</list>
+            <update>yes</update>
+            <search>yes</search>
+            <size></size>
+		</field>
+    </fieldset>
+</XaLabel>

@@ -1,9 +1,11 @@
 #ifndef XALABEL_H
 #define XALABEL_H
 
-#include <XaLibAction.h>
+//#include <XaLibAction.h>
+#include <XaLibModel.h>
 
-class XaLabel : public XaLibAction {
+//class XaLabel : public XaLibAction {
+class XaLabel : public XaLibModel {
 
     private:
 
@@ -16,7 +18,10 @@ class XaLabel : public XaLibAction {
 		void XaLabelGen();
 		
 		void XaLabelAddFrm();
-		void XaLabelAdd();
+		void Create();
+                void Read();
+                void Delete();
+                void Update();
 		
 		void XaLabelList();
 		
