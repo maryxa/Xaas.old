@@ -1,5 +1,6 @@
 #include <XaLabel.h>
-#include <XaLibAction.h>
+//#include <XaLibAction.h>
+#include <XaLibModel.h>
 
 XaLabel::XaLabel(){
 
@@ -8,30 +9,19 @@ XaLabel::XaLabel(){
 
 void XaLabel::Dispatcher(const string &CalledEvent) {
 
-	if (CalledEvent=="XaTranslationAddFrm"){
-        this->XaTranslationAddFrm();
-	} else if (CalledEvent=="XaTranslationAdd"){
-        this->XaTranslationAdd();
-	} else if (CalledEvent=="XaLabelGen"){
-        this->XaLabelGen();
-	} else if (CalledEvent=="XaLabelAddFrm"){
-        this->XaLabelAddFrm();
-	} else if (CalledEvent=="XaLabelAdd"){
-        this->XaLabelAdd();
-	} else if (CalledEvent=="XaLabelList"){
-        this->XaLabelList();
-	} else if (CalledEvent=="XaLabelMod"){
-        this->XaLabelMod();
-	} else if (CalledEvent=="XaLabelFromFileAddFrm"){
-        this->XaLabelFromFileAddFrm();
-	} else if (CalledEvent=="XaLabelFromFileAdd"){
-        this->XaLabelFromFileAdd();
-	} else if (CalledEvent=="XaLabelFromXaDomainGen"){
-        this->XaLabelFromXaDomainGen();
-	}
+	if (CalledEvent=="XaLabelGen"){
+            this->XaLabelGen();
+	} else if (CalledEvent=="Create"){
+            this->Create();
+	} else if (CalledEvent=="Delete"){
+            this->Delete();
+	} else {
+        LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42 Requested Event Does Not Exists -> "+CalledEvent);
+        throw 42;
+    }
 };
 
-
+/*
 void XaLabel::XaLabelFromXaDomainGen (){
 	
 	DbResMap DbRes;
@@ -571,97 +561,134 @@ void XaLabel::XaLabelAddFrm (){
 	delete(LibXsl);
 
 };
+*/
+void XaLabel::Create (){
+    
+    XaLibBase::FieldsMap LoadedFields=CreatePrepare({"XaLabel"},"/XaLabel/fieldset/field");
 
-void XaLabel::XaLabelAdd (){
-
-	string StrName=HTTP.GetHttpParam("XaLabel-Name");
-	string StrDescription=HTTP.GetHttpParam("XaLabel-Description");
-	string StrLanguage=HTTP.GetHttpParam("XaDomain-XaLanguage");
-	string StrText=HTTP.GetHttpParam("XaLabelTranslation-Text");
-	string StrHelp=HTTP.GetHttpParam("XaLabelTranslation-Help");
-	string StrPlaceholder=HTTP.GetHttpParam("XaLabelTranslation-Placeholder");
+	string StrName=HTTP.GetHttpParam("name");
+	string StrDescription=HTTP.GetHttpParam("description");
+	string StrLanguage=HTTP.GetHttpParam("XaLanguage_ID");
+	string StrText=HTTP.GetHttpParam("text");
+	string StrHelp=HTTP.GetHttpParam("help");
+	string StrPlaceholder=HTTP.GetHttpParam("placeholder");
 
 	vector<string> VectorFields;
 	VectorFields.push_back("name");
 	VectorFields.push_back("description");
+        VectorFields.push_back("status");
 
 	vector<string> VectorValues;
 	VectorValues.push_back(StrName);
 	VectorValues.push_back(StrDescription);
+        VectorValues.push_back("1");
 
-	XaLibSql* LibSql=new XaLibSql();
+	unique_ptr<XaLibSql> LibSql (new XaLibSql());
 	
 	int NextId=LibSql->Insert(DB_WRITE,"XaLabel",VectorFields,VectorValues);
 
-	string LabelId=XaLibBase::FromIntToString(NextId);
-	
-	DbResMap DbRes;
-	
-	XaLibSql* LibSql1=new XaLibSql();
-	
-	vector<string> ReturnedFields;
-	ReturnedFields.push_back("*");
+	VectorFields.clear();
+        VectorValues.clear();
+        
+        bool FlowCheck=true;
+        
+        if (NextId!=0) {
+        
+            string LabelId=XaLibBase::FromIntToString(NextId);
 
-	vector<string> WhereFields;
-	WhereFields.push_back("domain");
-	WhereFields.push_back("active");
+            vector<string> ReturnedFields;
+            ReturnedFields.push_back("*");
 
-	vector<string> WhereValues;
-	WhereValues.push_back("XaLanguage");
-	WhereValues.push_back("1");
-	
-	DbRes=LibSql1->Select(DB_READ,"XaDomain",ReturnedFields,WhereFields,WhereValues);
-	
-	delete(LibSql1);
-	
-	for(unsigned n=0; n<DbRes.size(); ++n){
-		
-		vector<string> VectorFields1;
-		vector<string> VectorValues1;
-		
-		if (StrLanguage==DbRes[n]["id"]){ 
+            vector<string> WhereFields;
+            WhereFields.push_back("status");
 
-			VectorFields1.push_back("XaLabel_ID");
-			VectorFields1.push_back("XaDomain_ID");
-			
-			VectorValues1.push_back(LabelId);
-			VectorValues1.push_back(DbRes[n]["id"]);
-			
-			if (StrText!=""){
-				VectorFields1.push_back("text");
-				VectorValues1.push_back(StrText);
-			}
-			if (StrHelp!=""){
-				VectorFields1.push_back("help");
-				VectorValues1.push_back(StrHelp);
-			}
-			if (StrPlaceholder!=""){
-				VectorFields1.push_back("placeholder");
-				VectorValues1.push_back(StrPlaceholder);
-			}
-			
-		} else {
-		
-			VectorFields1.push_back("XaLabel_ID");
-			VectorFields1.push_back("XaDomain_ID");
-	
-			VectorValues1.push_back(LabelId);
-			VectorValues1.push_back(DbRes[n]["id"]);
-		
-		}
-		
-		LibSql->Insert(DB_WRITE,"XaLabelTranslation",VectorFields1,VectorValues1);
+            vector<string> WhereValues;
+            WhereValues.push_back("1");
 
-	}
+            DbResMap DbRes=LibSql->Select(DB_READ,"XaLanguage",ReturnedFields,WhereFields,WhereValues);
+
+            ReturnedFields.clear();
+            WhereFields.clear();
+            WhereValues.clear();
+
+            for(unsigned n=0; n<DbRes.size(); ++n){
+
+                VectorFields.push_back("status");
+                VectorValues.push_back("1");
+                
+                if (StrLanguage==DbRes[n]["id"]){ 
+
+                    VectorFields.push_back("XaLabel_ID");
+                    VectorFields.push_back("XaLanguage_ID");
+
+                    VectorValues.push_back(LabelId);
+                    VectorValues.push_back(DbRes[n]["id"]);
+
+                    if (StrText!="" && StrText!="NoHttpParam"){
+                        VectorFields.push_back("text");
+                        VectorValues.push_back(StrText);
+                    }
+                    if (StrHelp!="" && StrHelp!="NoHttpParam"){
+                        VectorFields.push_back("help");
+                        VectorValues.push_back(StrHelp);
+                    }
+                    if (StrPlaceholder!="" && StrPlaceholder!="NoHttpParam"){
+                        VectorFields.push_back("placeholder");
+                        VectorValues.push_back(StrPlaceholder);
+                    }
+
+                } else {
+
+                    VectorFields.push_back("XaLabel_ID");
+                    VectorFields.push_back("XaLanguage_ID");
+
+                    VectorValues.push_back(LabelId);
+                    VectorValues.push_back(DbRes[n]["id"]);
+
+                }
+
+                int NextTranslationId=LibSql->Insert(DB_WRITE,"XaLabelTranslation",VectorFields,VectorValues);
+                
+                if (NextTranslationId==0) {
+                    FlowCheck=false;
+                }
+
+                VectorFields.clear();
+                VectorValues.clear();
+            }
+            
+        }
 	
-	delete(LibSql);
+	if (NextId!=0 && FlowCheck==true) {
+            this->XaLabelGen();
+        } else {
+            NextId=0;
+        }
 	
-	this->XaLabelGen();
-	
-	RESPONSE.Content="Inserted Label: "+StrName+" - ID: " +LabelId;
+	//RESPONSE.Content="Inserted Label: "+StrName+" - ID: " +LabelId;
+        RESPONSE.Content=CreateResponse(NextId);
 
 };
 
+void XaLabel::Read (){
+    
+};
+
+void XaLabel::Delete (){
+    string Id=HTTP.GetHttpParam("id");
+    // update XaLabel
+    int DeletedId=DeleteExecute("XaLabel",Id);
+    // update XaLabelTranslation
+    XaLibSql::Update(DB_WRITE,"XaLabelTranslation",{"status"},{"4"},{"XaLabel_ID"},{Id});
+    XaLabelGen();
+    RESPONSE.Content=DeleteResponse(DeletedId);
+};
+
+void XaLabel::Update (){
+    
+};
+
+/*
 void XaLabel::XaTranslationAddFrm (){
 	
 	DbResMap DbRes;
@@ -746,7 +773,7 @@ void XaLabel::XaTranslationAdd (){
 	
 	string qry="SELECT id,name FROM XaDomain WHERE domain = 'XaLanguage' AND active=1 ORDER BY id";
 	
-	DbRes=LibSql1->FreeQuery(DB_READ,qry);
+	DbRes=LibSql1->FreeQuerySelect(DB_READ,qry);
 	
 	delete(LibSql1);
 	
@@ -778,7 +805,7 @@ void XaLabel::XaTranslationAdd (){
 	
 	this->XaLabelGen();
 };
-
+*/
 void XaLabel::XaLabelGen (){
 
 	DbResMap DbRes;
@@ -786,29 +813,27 @@ void XaLabel::XaLabelGen (){
 
 	string XmlString;
 
-	XaLibSql* LibSql=new XaLibSql();
+	unique_ptr<XaLibSql> LibSql (new XaLibSql());
 	vector<string> ReturnedFields;
 	ReturnedFields.push_back("*");
 
 	vector<string> WhereFields;
-	WhereFields.push_back("domain");
-	WhereFields.push_back("active");
+	WhereFields.push_back("status");
 
 	vector<string> WhereValues;
-	WhereValues.push_back("XaLanguage");
 	WhereValues.push_back("1");
 
-	DbRes=LibSql->Select(DB_READ,"XaDomain",ReturnedFields,WhereFields,WhereValues);
+	DbRes=LibSql->Select(DB_READ,"XaLanguage",ReturnedFields,WhereFields,WhereValues);
 
 	for(unsigned n=0; n<DbRes.size(); ++n){
 		
 		string FileName="XaLabel-"+DbRes[n]["name"];
-		string FilePath=SETTINGS["XmlDir"]+FileName+".xml";
+		string FilePath=SETTINGS["SharedDir"]+"xml/"+FileName+".xml";
 		
-		string qry1="SELECT XaLabel_ID,XaDomain_ID,text,help,placeholder,name,description FROM XaLabelTranslation t,XaLabel l WHERE t.XaLabel_id=l.id AND XaDomain_ID=";
+		string qry1="SELECT XaLabel_ID,XaLanguage_ID,text,help,placeholder,name,description FROM XaLabelTranslation t,XaLabel l WHERE t.XaLabel_id=l.id AND l.status=1 AND XaLanguage_ID=";
 		qry1.append(DbRes[n]["id"]);
 
-		DbRes1=LibSql->FreeQuery(DB_READ,qry1);
+		DbRes1=LibSql->FreeQuerySelect(DB_READ,qry1);
 
 		XmlString="<labels>";
 
@@ -840,9 +865,7 @@ void XaLabel::XaLabelGen (){
 		myfile.close();
 	}
 	
-	delete(LibSql);
-	
-	RESPONSE.Content="ok";
+	RESPONSE.Content="<xml_label_gen>ok</xml_label_gen>";
 };
 
 
