@@ -30,6 +30,8 @@ void XaLanguage::Dispatcher(const string &CalledEvent) {
 	this->Update();
     } else if (CalledEvent=="Delete"){
 	this->Delete();
+    } else if (CalledEvent=="XaLanguageGen"){
+        this->XaLanguageGen();
     } else {
         LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42 Requested Event Does Not Exists -> "+CalledEvent);
         throw 42;
@@ -446,6 +448,7 @@ void XaLanguage::XaLanguageGen (){
 	myfile << XmlString;
 	myfile.close();
 	
+        RESPONSE.Content="<xml_language_gen>ok</xml_language_gen>";
 };
 
 XaLanguage::~XaLanguage(){
