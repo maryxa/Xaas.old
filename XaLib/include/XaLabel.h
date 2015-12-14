@@ -15,7 +15,7 @@ class XaLabel : public XaLibModel {
 		void XaTranslationAddFrm();
 		void XaTranslationAdd();
 
-		void XaLabelGen();
+		//void XaLabelGen();
 		
 		void XaLabelAddFrm();
 		void Create();
@@ -39,7 +39,8 @@ class XaLabel : public XaLibModel {
 	protected:
 
 	public:
-
+                void XaLabelGen();
+            
 		XaLabel();
 		~XaLabel();
 };

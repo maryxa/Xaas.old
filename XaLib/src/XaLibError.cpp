@@ -80,7 +80,9 @@ void XaLibError::Setup() {
 	 */
 	
 	XaErrors[301]={"Error inserting a new record into the database"};
-	
+	XaErrors[302]={"Requested record does not exist into database"};
+        XaErrors[303]={"Record already exists into database"};       
+        
 	/*Front End Errors*/
 	XaErrors[611]={"Requested Object Does Not Exist"};
 	XaErrors[612]={"Requested Event Does Not Exist"};
