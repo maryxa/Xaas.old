@@ -573,7 +573,14 @@ void XaLabel::Create (){
 	string StrHelp=HTTP.GetHttpParam("help");
 	string StrPlaceholder=HTTP.GetHttpParam("placeholder");
 
-	vector<string> VectorFields;
+	unique_ptr<XaLibSql> LibSql (new XaLibSql());
+        
+        // se non esiste la lingua
+        if (LibSql->CheckRow(DB_READ,"XaLanguage",StrLanguage,"1","")==0) {
+            throw 302;
+        }
+        
+        vector<string> VectorFields;
 	VectorFields.push_back("name");
 	VectorFields.push_back("description");
         VectorFields.push_back("status");
@@ -582,8 +589,6 @@ void XaLabel::Create (){
 	VectorValues.push_back(StrName);
 	VectorValues.push_back(StrDescription);
         VectorValues.push_back("1");
-
-	unique_ptr<XaLibSql> LibSql (new XaLibSql());
 	
 	int NextId=LibSql->Insert(DB_WRITE,"XaLabel",VectorFields,VectorValues);
 

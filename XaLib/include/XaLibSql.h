@@ -57,6 +57,8 @@ class XaLibSql : protected XaLibBase {
         * @endcode
         *
         */
+        static int CheckRow(XaLibDb& LibDb,string TableName,string RowId,string Status,string Condition);
+        
         static int Insert(XaLibDb& LibDb,string TableName,const vector<string>& VectorFields,const vector<string>& VectorValues);
         static int InsertMulti(XaLibDb& LibDb,string TableName,const vector<string>& VectorFields,vector<vector<string> > VectorValues);
         static int Update(XaLibDb& LibDb,string TableName,const vector<string>& VectorFields,const vector<string>& VectorValues,const vector<string>& WhereFields,const vector<string>& WhereValues);

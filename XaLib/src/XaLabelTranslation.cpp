@@ -8,21 +8,21 @@ XaLabelTranslation::XaLabelTranslation(){
 
 void XaLabelTranslation::Dispatcher (const string &CalledEvent) {
 
-	if (CalledEvent=="Create"){
+    if (CalledEvent=="Create"){
         this->Create();
     } else if (CalledEvent=="Read"){
-		 this->Read();
+        this->Read();
     } else if (CalledEvent=="List"){
-		 this->List();
+	this->List();
     } else if (CalledEvent=="Update"){
-		 this->Update();
+	this->Update();
     } else if (CalledEvent=="Delete"){
-		 this->Delete();
+	this->Delete();
     } else {
 
-		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42 Requested Event Does Not Exists -> "+CalledEvent);
-		throw 42;
-	}
+	LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42 Requested Event Does Not Exists -> "+CalledEvent);
+	throw 42;
+    }
 };
 
 void XaLabelTranslation::Create (){
@@ -40,31 +40,18 @@ void XaLabelTranslation::Create (){
     int DbResLabelTranslationSize=1;
     int TranslationId=0;
     
-    // controllo che esista e sia attiva la lingua, la label e che la traduzione non sia gia esistente
-    vector<string> ReturnedFields;
-    ReturnedFields.push_back("id");
+    // controllo che esista e sia attiva la lingua
+    int CheckLanguage=LibSql->CheckRow(DB_READ,"XaLanguage",StrLanguageId,"1","");
 
-    vector<string> WhereFields;
-    WhereFields.push_back("status");
-    WhereFields.push_back("id");
+    // controllo che esista e sia attiva la label
+    int CheckLabel=LibSql->CheckRow(DB_READ,"XaLabel",StrLabelId,"1","");
 
-    vector<string> WhereValues;
-    WhereValues.push_back("1");
-    WhereValues.push_back(StrLanguageId);
-
-    DbResMap DbResLanguage=LibSql->Select(DB_READ,"XaLanguage",ReturnedFields,WhereFields,WhereValues);
-
-    WhereValues.clear();
-
-    WhereValues.push_back("1");
-    WhereValues.push_back(StrLabelId);
-
-    DbResMap DbResLabel=LibSql->Select(DB_READ,"XaLabel",ReturnedFields,WhereFields,WhereValues);
-
-    ReturnedFields.clear();
-    WhereFields.clear();
-    WhereValues.clear();
-
+    // se non esiste la lingua o la label
+    if (CheckLanguage==0 || CheckLabel==0) {
+        throw 302;
+    }
+    
+    // controllo che la traduzione non sia gia esistente
     string qry1="SELECT id FROM XaLabelTranslation WHERE status=1 AND XaLabel_id="+StrLabelId+" AND XaLanguage_ID="+StrLanguageId;
     DbResMap DbResLabelTranslation1=LibSql->FreeQuerySelect(DB_READ,qry1);
 
@@ -78,11 +65,7 @@ void XaLabelTranslation::Create (){
         TranslationId=FromStringToInt(DbResLabelTranslation2[0]["id"]);
     }
 
-    // non esiste la lingua o la label
-    if (DbResLanguage.size()==0 || DbResLabel.size()==0) {
-        throw 302;
-    }
-    // traduzione gia esistente
+    // se traduzione gia esistente
     if (DbResLabelTranslationSize==0) {
         throw 303;
     }
