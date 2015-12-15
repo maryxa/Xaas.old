@@ -27,6 +27,23 @@ void XaAddressGeo::Dispatcher (const string &CalledEvent) {
 void XaAddressGeo::Create() {
 
 	XaLibBase::FieldsMap LoadedFields=CreatePrepare({"XaAddressGeo"},"/XaAddressGeo/fieldset/field");
+        
+        string XaTable=HTTP.GetHttpParam("XaTable");
+        string XaFieldId=HTTP.GetHttpParam("XaField_ID");
+        string XaAddressGeoTypeId=HTTP.GetHttpParam("XaAddressGeoType_ID");
+        
+        unique_ptr<XaLibSql> LibSql (new XaLibSql());
+        
+        if (LibSql->CheckRow(DB_READ,XaTable,XaFieldId,"1","")==0) {
+            LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Record ID -> "+XaFieldId+" does not exist into Table -> "+XaTable);
+            throw 302;
+        }
+        
+        if (LibSql->CheckRow(DB_READ,"XaAddressGeoType",XaAddressGeoTypeId,"1","")==0) {
+            LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Record ID -> "+XaAddressGeoTypeId+" does not exist into Table -> XaAddressGeoType");
+            throw 302;
+        }
+        
 	RESPONSE.Content=CreateResponse(CreateExecute("XaAddressGeo",LoadedFields));
 };
 

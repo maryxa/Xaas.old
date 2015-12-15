@@ -27,6 +27,29 @@ void XaAddressPhone::Dispatcher (const string &CalledEvent) {
 void XaAddressPhone::Create() {
 
 	XaLibBase::FieldsMap LoadedFields=CreatePrepare({"XaAddressPhone"},"/XaAddressPhone/fieldset/field");
+        
+        string XaTable=HTTP.GetHttpParam("XaTable");
+        string XaFieldId=HTTP.GetHttpParam("XaField_ID");
+        string XaAddressPhoneTypeId=HTTP.GetHttpParam("XaAddressPhoneType_ID");
+        string XaAddressPhoneCodeId=HTTP.GetHttpParam("XaAddressPhoneCode_ID");
+        
+        unique_ptr<XaLibSql> LibSql (new XaLibSql());
+        
+        if (LibSql->CheckRow(DB_READ,XaTable,XaFieldId,"1","")==0) {
+            LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Record ID -> "+XaFieldId+" does not exist into Table -> "+XaTable);
+            throw 302;
+        }
+        
+        if (LibSql->CheckRow(DB_READ,"XaAddressPhoneType",XaAddressPhoneTypeId,"1","")==0) {
+            LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Record ID -> "+XaAddressPhoneTypeId+" does not exist into Table -> XaAddressPhoneType");
+            throw 302;
+        }
+        
+        if (LibSql->CheckRow(DB_READ,"XaAddressPhoneCode",XaAddressPhoneCodeId,"1","")==0) {
+            LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Record ID -> "+XaAddressPhoneCodeId+" does not exist into Table -> XaAddressPhoneCode");
+            throw 302;
+        }
+        
 	RESPONSE.Content=CreateResponse(CreateExecute("XaAddressPhone",LoadedFields));
 };
 
