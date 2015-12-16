@@ -16,6 +16,7 @@ class XaAddressPhoneType : public XaLibModel {
         void Update();
         void Delete();
         void List();
+        void ListAsOptions();
 
     protected:
 
