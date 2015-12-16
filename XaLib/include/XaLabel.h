@@ -22,8 +22,9 @@ class XaLabel : public XaLibModel {
                 void Read();
                 void Delete();
                 void Update();
+		void ListAsOptions();
 		
-		void XaLabelList();
+                void XaLabelList();
 		
 		void XaLabelMod();
 		

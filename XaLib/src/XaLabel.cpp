@@ -9,13 +9,15 @@ XaLabel::XaLabel(){
 
 void XaLabel::Dispatcher(const string &CalledEvent) {
 
-	if (CalledEvent=="XaLabelGen"){
-            this->XaLabelGen();
-	} else if (CalledEvent=="Create"){
-            this->Create();
-	} else if (CalledEvent=="Delete"){
-            this->Delete();
-	} else {
+    if (CalledEvent=="XaLabelGen"){
+        this->XaLabelGen();
+    } else if (CalledEvent=="Create"){
+        this->Create();
+    } else if (CalledEvent=="ListAsOptions"){
+        this->ListAsOptions();
+    } else if (CalledEvent=="Delete"){
+        this->Delete();
+    } else {
         LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42 Requested Event Does Not Exists -> "+CalledEvent);
         throw 42;
     }
@@ -677,6 +679,44 @@ void XaLabel::Create (){
 
 void XaLabel::Read (){
     
+};
+
+void XaLabel::ListAsOptions() {
+
+	vector<string> WhereFields={};
+	vector<string> WhereValues={};
+	vector<string> OrderByFields={};
+	vector<string> GroupByFields={};
+
+	/*LIMIT*/
+	string PassedLimit=HTTP.GetHttpParam("limit");
+	int Limit={0};
+
+	if (PassedLimit!="NoHttpParam") {
+		Limit=FromStringToInt(PassedLimit);
+	};
+
+	/*ORDER BY*/
+	string PassedOrderBy=HTTP.GetHttpParam("order_by");
+	
+	if (PassedOrderBy!="NoHttpParam") {
+	
+		OrderByFields.push_back(PassedOrderBy);
+	};
+	
+	/*STATUS*/
+	string PassedStatus=HTTP.GetHttpParam("status");
+	
+	if (PassedStatus!="NoHttpParam") {
+
+		WhereFields.push_back("status");
+		WhereValues.push_back(PassedStatus);
+	};
+
+	vector<string> ReturnedFields={"id","name"};
+
+	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaLabel",{ReturnedFields},{WhereFields}, {WhereValues}, {OrderByFields},{GroupByFields},Limit);
+	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);
 };
 
 void XaLabel::Delete (){
