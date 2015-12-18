@@ -1,9 +1,9 @@
-#ifndef XAADDRESSGEOTYPE_H
-#define XAADDRESSGEOTYPE_H
+#ifndef XALABELTRANSLATION_H
+#define XALABELTRANSLATION_H
 
 #include <XaLibModel.h>
 
-class XaAddressGeoType : public XaLibModel {
+class XaLabelTranslation : public XaLibModel {
 
     private:		
 
@@ -16,7 +16,6 @@ class XaAddressGeoType : public XaLibModel {
         void Update();
         void Delete();
         void List();
-        void ListAsOptions();
 
     protected:
 
@@ -24,7 +23,7 @@ class XaAddressGeoType : public XaLibModel {
 
         void Dispatcher (const string &CalledEvent);
 
-        XaAddressGeoType();
-        ~XaAddressGeoType();
+        XaLabelTranslation();
+        ~XaLabelTranslation();
 };
 #endif

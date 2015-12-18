@@ -746,7 +746,15 @@ XaLibBase::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,const vecto
 
 }
 
-
+int XaLibSql::CheckRow(XaLibDb& LibDb,string TableName,string RowId,string Status,string Condition) {
+	
+        string SqlQry="SELECT id FROM "+TableName+" WHERE id="+RowId+" AND status="+Status+" "+Condition;
+	DbResMap DbRes=LibDb.ExSelect(SqlQry);
+	
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executed Check Row -> " +SqlQry);
+	
+	return DbRes.size();
+};
 
 XaLibBase::DbResMap XaLibSql::FreeQuerySelect(XaLibDb& LibDb,string& SqlQry){
 	

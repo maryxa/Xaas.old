@@ -15,15 +15,16 @@ class XaLabel : public XaLibModel {
 		void XaTranslationAddFrm();
 		void XaTranslationAdd();
 
-		void XaLabelGen();
+		//void XaLabelGen();
 		
 		void XaLabelAddFrm();
 		void Create();
                 void Read();
                 void Delete();
                 void Update();
+		void ListAsOptions();
 		
-		void XaLabelList();
+                void XaLabelList();
 		
 		void XaLabelMod();
 		
@@ -39,7 +40,8 @@ class XaLabel : public XaLibModel {
 	protected:
 
 	public:
-
+                void XaLabelGen();
+            
 		XaLabel();
 		~XaLabel();
 };

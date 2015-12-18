@@ -27,7 +27,24 @@ void XaAddressMail::Dispatcher (const string &CalledEvent) {
 void XaAddressMail::Create() {
 
 	XaLibBase::FieldsMap LoadedFields=CreatePrepare({"XaAddressMail"},"/XaAddressMail/fieldset/field");
-	RESPONSE.Content=CreateResponse(CreateExecute("XaAddressMail",LoadedFields));
+	
+        string XaTable=HTTP.GetHttpParam("XaTable");
+        string XaFieldId=HTTP.GetHttpParam("XaField_ID");
+        string XaAddressMailTypeId=HTTP.GetHttpParam("XaAddressMailType_ID");
+        
+        unique_ptr<XaLibSql> LibSql (new XaLibSql());
+        
+        if (LibSql->CheckRow(DB_READ,XaTable,XaFieldId,"1","")==0) {
+            LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Record ID -> "+XaFieldId+" does not exist into Table -> "+XaTable);
+            throw 302;
+        }
+        
+        if (LibSql->CheckRow(DB_READ,"XaAddressMailType",XaAddressMailTypeId,"1","")==0) {
+            LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Record ID -> "+XaAddressMailTypeId+" does not exist into Table -> XaAddressMailType");
+            throw 302;
+        }
+        
+        RESPONSE.Content=CreateResponse(CreateExecute("XaAddressMail",LoadedFields));
 };
 
 void XaAddressMail::Read() {

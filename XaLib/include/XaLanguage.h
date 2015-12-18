@@ -26,6 +26,7 @@ class XaLanguage : public XaLibModel {
         void Delete();
         void List();
         void XaLanguageGen();
+        void ListAsOptions();
 
     protected:
 

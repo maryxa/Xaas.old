@@ -26,10 +26,14 @@ void XaLanguage::Dispatcher(const string &CalledEvent) {
         this->Read();
     } else if (CalledEvent=="List"){
 	this->List();
+    } else if (CalledEvent=="ListAsOptions"){
+        this->ListAsOptions();
     } else if (CalledEvent=="Update"){
 	this->Update();
     } else if (CalledEvent=="Delete"){
 	this->Delete();
+    } else if (CalledEvent=="XaLanguageGen"){
+        this->XaLanguageGen();
     } else {
         LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42 Requested Event Does Not Exists -> "+CalledEvent);
         throw 42;
@@ -111,6 +115,44 @@ void XaLanguage::List() {
 	DbResMap DbRes = ReadExecute("XaLanguage",FieldsToRead,HTTP.GetHttpParam("id"));
 	RESPONSE.Content= ReadResponse(DbRes,FieldsToRead);
 	*/
+};
+
+void XaLanguage::ListAsOptions() {
+
+	vector<string> WhereFields={};
+	vector<string> WhereValues={};
+	vector<string> OrderByFields={};
+	vector<string> GroupByFields={};
+
+	/*LIMIT*/
+	string PassedLimit=HTTP.GetHttpParam("limit");
+	int Limit={0};
+
+	if (PassedLimit!="NoHttpParam") {
+		Limit=FromStringToInt(PassedLimit);
+	};
+
+	/*ORDER BY*/
+	string PassedOrderBy=HTTP.GetHttpParam("order_by");
+	
+	if (PassedOrderBy!="NoHttpParam") {
+	
+		OrderByFields.push_back(PassedOrderBy);
+	};
+	
+	/*STATUS*/
+	string PassedStatus=HTTP.GetHttpParam("status");
+	
+	if (PassedStatus!="NoHttpParam") {
+
+		WhereFields.push_back("status");
+		WhereValues.push_back(PassedStatus);
+	};
+
+	vector<string> ReturnedFields={"id","name"};
+
+	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaLanguage",{ReturnedFields},{WhereFields}, {WhereValues}, {OrderByFields},{GroupByFields},Limit);
+	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);
 };
 
 void XaLanguage::Update() {
@@ -446,6 +488,7 @@ void XaLanguage::XaLanguageGen (){
 	myfile << XmlString;
 	myfile.close();
 	
+        RESPONSE.Content="<xml_language_gen>ok</xml_language_gen>";
 };
 
 XaLanguage::~XaLanguage(){
