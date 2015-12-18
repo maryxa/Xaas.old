@@ -98,7 +98,6 @@ void XaLibAction::AddJsVarString(const string& VarName, const string& VarString)
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added JsString -> "+VarString);
 };
 
-
 void XaLibAction::AddXmlFile(const string& FilePath){
 
 	string XmlDefaultPath=SETTINGS["XmlDir"]+FilePath+".xml";
@@ -210,6 +209,26 @@ void XaLibAction::AddXslParam(const string& ParamName, const string& ParamValue)
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XslParam -> "+ParamName+"::"+ParamValue);
 };
 
+vector <string> XaLibAction::SetPageLayout (const string &LayoutType) {
+
+	vector<string> HtmlFiels={};
+	
+	if (LayoutType=="complete" || LayoutType=="NoHttpParam"){
+
+		HtmlFiels={"XaGuiHead","XaGuiHeader"};
+
+	} else if (LayoutType=="include") {
+		
+		/*nothing*/
+	
+	} else if (LayoutType=="modal") {
+
+		HtmlFiels={"XaGuiHead"};
+	}
+
+	return HtmlFiels;
+};
+		
 void XaLibAction::SetLayout(const string &LayoutType){
 
 	if (LayoutType=="Standalone" ) {
@@ -281,7 +300,7 @@ void XaLibAction::SetLayout(const string &LayoutType){
 
 };
 
-void XaLibAction::CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,const string& ModelName) {
+tuple<vector<string>,vector<string>> XaLibAction::CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,const string& ModelName) {
 
 	//TODO:GESTIONE ERRORI
 
@@ -291,17 +310,24 @@ void XaLibAction::CreatePrepare(const vector<string>& XmlFiles,const string& XPa
 	//GET NUMBER OF FILEDS
 	int FieldsNum=XaLibDom::GetNumRowByXPathInt(XmlDomDoc,XPathExpr);
 
+	tuple<vector<string>,vector<string>> Fields;
+
 	for (auto i=0;i<FieldsNum;i++) {
 		//LOADING PROPERTIES
 
 		string FieldName=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/name");
 		string FieldValue=HTTP.GetHttpParam(ModelName+"-"+FieldName);
-		
-		FieldsName.push_back(FieldName);
-		FieldsValue.push_back(FieldValue);
+
+		get<0>(Fields).push_back(FieldName);
+		get<1>(Fields).push_back(FieldValue);
+
+		//FieldsName.push_back(FieldName);
+		//FieldsValue.push_back(FieldValue);
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Loaded value for property ->" +FieldName +" :: " + FieldValue);			
 	};
+	
+	return Fields;
 
 };
 

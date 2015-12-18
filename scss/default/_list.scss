@@ -1,88 +1,87 @@
 /*
-	Project: XAAS
-	Alessandro Mariotti
-	alex@xallegro.com
+    Project: XAAS
+    Alessandro Mariotti
+    alex@xallegro.com
 */
 @import '_variables';
 
 .list {
-	width: 100%;
-	background-color: $ListBackgroundColor;
-	font-size: $ListFontSize;
-	border-radius:$BorderRadius;
+    width: 100%;
+    background-color: $ListBackgroundColor;
+    font-size: $ListFontSize;
+    border-radius:$BorderRadius;
 
-	.title {
+    .title {
 
-		color:$ListHeaderFontColor;
-		height: $ListTitleHeight;
-		
-		td {
-			background:$ListHeaderBackgroundColor;
-			border-radius:$BorderRadius;
-			height:$ListTitleHeight;
-			
-			span {
-				padding: 0.5%;
-				line-height: $ListTitleHeight;	
-			}
-			
-			.RightToolbar {
-				float:right;
-				width:10%;
-				height:100%;
+        color:$ListHeaderFontColor;
+        height: $ListTitleHeight;
 
-				li {
-					display: inline-block;
-				}
+        td {
+            background:$ListHeaderBackgroundColor;
+            border-radius:$BorderRadius;
+            height:$ListTitleHeight;
 
-				.FunctionIcon {
-					width: 45%;
-					height: 100%;
-					background-repeat:no-repeat;
-					background-position: center center;
-					margin-left: 4%;
-					background-size: auto 60%;
-				}
+            span {
+                padding: 0.5%;
+                line-height: $ListTitleHeight;
+            }
 
-				.Refresh {
-					float:right;
-					background-image:url('IconRefresh.svg');
-				}
+            .RightToolbar {
 
-				.Expand {
-					float:right;
-					background-image:url('IconExpand.svg');
-				}
-			}
-		}
-	}
+                float:right;
+                width:10%;
+                height:100%;
 
-	.header {
+                li {
+                    display: inline-block;
+                }
 
-		color:$ListFontColor;
-		
-		th {
-                    text-align: left;
-                    border-bottom:2px solid #DDDDDD;
-                    padding: 0.5%;
-                    text-transform: uppercase;
-		}
-	}
-	
-	.row {
+                .FunctionIcon {
+                    width: 45%;
+                    height: 100%;
+                    background-repeat:no-repeat;
+                    background-position: center center;
+                    margin-left: 4%;
+                    background-size: auto 60%;
+                }
 
-		color:$ListFontColor;
+                .Refresh {
+                    float:right;
+                    background-image:url('IconRefresh.svg');
+                }
 
-		td {
-                    border-bottom:1px solid #DDDDDD;
-                    padding: 0.5%;
-		}
+                .Expand {
+                    float:right;
+                    background-image:url('IconExpand.svg');
+                }
+            }
+        }
+    }
 
-		
-	}
-	
-	tr:hover td {
-		background-color: $ListRowBackgroundColorHover;
-		color:$ListRowFontColorHover;
-	}
+    .header {
+
+        color:$ListFontColor;
+
+        th {
+            text-align: left;
+            border-bottom:2px solid #DDDDDD;
+            padding: 0.5%;
+            text-transform: uppercase;
+        }
+    }
+
+    .row {
+
+        color:$ListFontColor;
+
+        td {
+            border-bottom:1px solid #DDDDDD;
+            padding: 0.5%;
+        }
+    }
+
+    tr:hover td {
+        background-color: $ListRowBackgroundColorHover;
+        color:$ListRowFontColorHover;
+    }
 }

@@ -50,8 +50,14 @@ class XaLibModel : protected XaLibBase {
         
         vector<string> AddXmlFile(const vector<string>& FileName);
 
+        [[deprecated]]
         FieldsMap CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr);
+        void CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,vector <string>& FieldName,vector <string>& FieldValue);        
+        
+        [[deprecated]]
         int CreateExecute(const string& DbTable,XaLibBase::FieldsMap& LoadedFields);
+        int CreateExecute(const string& DbTable,vector <string>& FieldName,vector <string>& FieldValue);
+
         string CreateResponse(const int& NextId);
 
         vector<string> ReadPrepare(const vector<string>& XmlFiles,const string& XPathExpr);
@@ -76,11 +82,11 @@ class XaLibModel : protected XaLibBase {
 
         string BuildXml(DbResMap& ResMap,const string& Container,const string& GroupBy);
 
-        virtual void Create()=0;
-        virtual void Read()=0;
+        //virtual void Create()=0;
+        //virtual void Read()=0;
 //        virtual void List()=0;
-        virtual void Delete()=0;
-        virtual void Update()=0;
+        //virtual void Delete()=0;
+        //virtual void Update()=0;
 
     public:
 

@@ -16,6 +16,61 @@ var DefaultWithAlert="no";
 
 var AllRequiredFields="Please ensure that all required fields, those with an *(red asterisk), have been completed and formatted correctly!";
 
+/*
+ * @function XaCallAsync
+ * Function to perform  async call
+ *
+ * @param {string} Controller - The controller to use to build the url if is other than the default 
+ * @param {string} Url - The URL to append to the Controller with pairs <param> and <value> the final construct will be: <Controller?param1=value1&param2=value2...>
+ * @param {function} Callback function 
+ *
+ * @return {Callback function}
+ * 
+ */
+function XaCallAsync (controller,url,cb) {
+
+    if(controller==="") {controller = DefaultController;};
+
+    if (url!=="") {
+    
+        url.replace("&amp;", "&");
+        var url = controller + "?" + url;
+
+        var xmlhttp;
+
+        if (window.XMLHttpRequest) {
+
+            xmlhttp = new XMLHttpRequest();
+
+        } else {
+
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        
+        xmlhttp.onreadystatechange = function () {
+
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+
+                cb(xmlhttp.responseText);
+
+            } else if (xmlhttp.status === 500) {
+
+                alert("error sending async call: "+url);
+                cb(0);
+            }
+
+        };
+
+        xmlhttp.open("POST", url, true);
+        xmlhttp.send(null);
+
+    } else {
+
+        alert("url parameter is empty");
+        cb(0);
+    }
+};
+
 function XaCheckUrlReload(link) {
 
     if(location.href===link) {
@@ -133,7 +188,6 @@ function XaCallAction(controller,url,target,method,async,loader,LoaderTarget,For
 					}
 				}
 
-
 			} else if (xmlhttp.status === 500) {
 
 				FlowCheck=false;
@@ -246,5 +300,5 @@ var FormElement = document.getElementById(FormId);
                 }
         }
 
-		return q.join("&");
+    return q.join("&");
 };

@@ -11,7 +11,7 @@
 		<!--header id="header"><xsl:call-template name="XaGuiHeaderInternet"/></header-->
 		
         <div class="container" style="left:0;top:0">
-            <form style="height:99%" class="form form-1-column" id="Login" name="Login" method="POST" action="?obj=XaUserUi&amp;evt=Login">
+            <form style="height:99%" class="form form-1-column" id="Login" name="Login" method="POST" action="?obj=XaUserLoginUi&amp;evt=Login">
 
                 <fieldset>
                     <legend class="LogHomePage" style="line-height:2em" ><img height="50vh" src="/{$GuiStyle}/XAllegroLogo.svg" /></legend>

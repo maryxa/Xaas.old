@@ -167,7 +167,7 @@
 	</li-->
 
 	<li id="MenuLogout">
-		<a href="?obj=XaUserUi&amp;evt=Logout">
+		<a href="?obj=XaUserLoginUi&amp;evt=Logout">
 			Logout
 		</a>
 	</li>

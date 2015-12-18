@@ -7,6 +7,7 @@
 @import '_font_open_sans';
 @import '_variables';
 @import '_mixins';
+@import '_dashboard';
 @import '_form';
 @import '_list';
 @import '_explorer';
@@ -76,6 +77,8 @@ header {
         width:$NavWidth;
         height: $HeaderHeight;
         float:left;
+        display: block;
+        @include reset-a();
 
         .MenuToggle {
                 float:left;
@@ -86,6 +89,11 @@ header {
                 float:left;
                 background-image:url('IconMyPage.svg');
         }
+
+        a {
+            display: block;
+            padding-bottom: 90%;
+        }        
     }
 
     .CenterToolbar {
@@ -121,15 +129,21 @@ header {
         float:right;
         width:$NavWidth;
         height: $HeaderHeight;
-
+        
+         @include reset-a();
+        
         .MenuHelp {
-                float:right;
-                background-image:url('IconHelp.svg');
+            float:right;
+            background-image:url('IconHelp.svg');
         }
 
         .MenuSettings {
-                float:right;
-                background-image:url('IconSettings.svg');
+            float:right;
+            background-image:url('IconSettings.svg');
+        }
+        .MenuLogout {
+            float:right;
+            padding-right: 30px;
         }
     }
 
@@ -217,15 +231,17 @@ nav {
 }
 
 .container {
+    /*margin:0.5%;*/
+    background-color: $ContainerBackgroundColor;
     opacity:$ForeGroundOpacity;
     position: fixed;
-    left: $NavWidth;
+    /*left: $NavWidth;*/
+    left:0;
     overflow: auto;
     top: $HeaderHeight;
     bottom: 0;
-    padding: 0.5%;
+    padding: 1%;
     right: 0;
-    background-color: $ContainerBackgroundColor;
 }
 
 .LogHomePage {

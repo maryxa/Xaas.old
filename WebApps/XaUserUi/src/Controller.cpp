@@ -24,8 +24,9 @@
 /**** APPLICATION ****/
 //#include <XaOuType.h>
 //#include <XaOu.h>
-#include <XaUserUi.h>
+#include <XaUserLoginUi.h>
 #include <XaOuTypeUi.h>
+#include <XaOuUi.h>
 
 #include <XaPages.h>
 
@@ -101,10 +102,11 @@ void Controller::Dispatch () {
 	REQUEST.CalledObject=HTTP.GetHttpParam("obj");
 	REQUEST.CalledEvent=HTTP.GetHttpParam("evt");
 
+	/*CHANGE WITH PROFILER*/
 	/*CASE LOGGED IN*/
-	if (REQUEST.CalledObject=="XaUserUi" && REQUEST.CalledEvent=="Login") {
+	if (REQUEST.CalledObject=="XaUserLoginUi" && REQUEST.CalledEvent=="Login") {
 
-	} else if (REQUEST.CalledObject=="XaUserUi" && REQUEST.CalledEvent=="LogoutFrm") {
+	} else if (REQUEST.CalledObject=="XaUserLoginUi" && REQUEST.CalledEvent=="LogoutFrm") {
 
 	} else if (SESSION.Token!="") {
 
@@ -119,7 +121,7 @@ void Controller::Dispatch () {
 	/*CASE NOT LOGGED IN*/
 	} else {
 
-		REQUEST.CalledObject="XaUserUi";
+		REQUEST.CalledObject="XaUserLoginUi";
 		REQUEST.CalledEvent="LoginFrm";
 
 		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Default Object -> "+SETTINGS["DefaultObject"]);
@@ -148,15 +150,20 @@ void Controller::Dispatch () {
 
 void Controller::ExecuteEvent() {
 
-	if(REQUEST.CalledObject=="XaUserUi") {
+	if(REQUEST.CalledObject=="XaUserLoginUi") {
 
-		unique_ptr<XaUserUi> UserUi (new XaUserUi());
-		UserUi->Execute();
+		unique_ptr<XaUserLoginUi> UserLoginUi (new XaUserLoginUi());
+		UserLoginUi->Execute();
 
 	} else if(REQUEST.CalledObject=="XaOuTypeUi") {
 
 		unique_ptr<XaOuTypeUi> OuTypeUi (new XaOuTypeUi());
 		OuTypeUi->Execute();
+
+	} else if(REQUEST.CalledObject=="XaOuUi") {
+
+		unique_ptr<XaOuUi> OuUi (new XaOuUi());
+		OuUi->Execute();
 
 	} else if(REQUEST.CalledObject=="XaPages") {
 
@@ -166,7 +173,6 @@ void Controller::ExecuteEvent() {
 	} else {
 
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Called Object Doesn't Exist -> "+REQUEST.CalledObject);
-		
 		throw 611;
 	}
 

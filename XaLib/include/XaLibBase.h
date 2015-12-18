@@ -22,6 +22,7 @@
 #include <memory>
 #include <random>
 #include <iomanip>
+#include <tuple>
 
 #ifdef _WIN32
 	#include <winsock2.h>

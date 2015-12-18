@@ -6,8 +6,13 @@
 class XaOuUi : public XaLibAction {
 	
     private:
-
         void Dispatcher(const string &CalledEvent);
+        void CreateFrm();
+        void Create();
+
+        void List();
+        void ListAsOptions();
+
         void Tree();
         void Explorer();
 

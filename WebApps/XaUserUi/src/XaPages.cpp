@@ -20,6 +20,13 @@ void XaPages::Dispatcher (const string &CalledEvent) {
 
 void XaPages::XaMyPage() {
 
+	/*AddJsVarFile("XaModel","XaOuType");*/
+	AddJsVarString("XaGuiStyle","default");
+	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles({"XaGuiHead","XaGuiHeader","XaMyPage"}),HtmlStrings,JsVarFiles,JsVarStrings,0);
+
+	/*
+	
+	
 	AddXmlFile("XaMyPage");
 	SetLayout(REQUEST.CalledLayout);
 	AddXslFile("XaMyPage");
@@ -32,6 +39,7 @@ void XaPages::XaMyPage() {
     unique_ptr<XaLibXsl> LibXsl (new XaLibXsl(XmlDomDoc,XslDomDoc,XslParams));
 
 	RESPONSE.Content=LibXsl->GetXHtml();
+	 */
 };
 
 XaPages::~XaPages(){

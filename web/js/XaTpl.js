@@ -21,7 +21,6 @@ function XaFormTpl (ModelName) {
     
         /*function XaCallAction(controller,url,target,method,async,loader,LoaderTarget,FormId,ResponseType,JsEval,WithAlert,Alert){*/
 
-
         var Action="javascript:XaCallAction('','obj="+Obj+"&amp;evt="+Evt+"','','"+Method+"',"+Async+",0,'','"+Id+"','StringText','','yes','');";
         return Action;
     };
@@ -39,7 +38,6 @@ function XaFormTpl (ModelName) {
 
         var FDefault=Fields[RootElement]['fieldset']['field'][FieldId]["default"];
 
-
         var FRequired=Fields[RootElement]['fieldset']['field'][FieldId]["required"];
         
         if (FRequired==="yes") {
@@ -47,20 +45,51 @@ function XaFormTpl (ModelName) {
         } else {
             FRequired="";
         };
-        
+
         var FRead=Fields[RootElement]['fieldset']['field'][FieldId]["read"];
         var FUpdate=Fields[RootElement]['fieldset']['field'][FieldId]["update"];
         var FSearch=Fields[RootElement]['fieldset']['field'][FieldId]["search"];
         var FSize=Fields[RootElement]['fieldset']['field'][FieldId]["size"];
 
-        var FieldId=RootElement+"-"+FId;
-        var FieldName=RootElement+"-"+FName;
+        var FieldExtId=RootElement+"-"+FId;
+        var FieldExtName=RootElement+"-"+FName;
 
         var LId=FieldId+"-label";
-        var LName=FieldName+"-label";
+        var LName=FieldExtName+"-label";
 
-        Field+="<label id=\""+ LId +"\" for=\""+FieldId +"\">"+FLabel+"</label>";
-        Field+="<input id=\""+FieldId+ "\" name=\""+FieldName+"\" type=\""+FType+"\" placeholder=\""+FPlaceholder+"\"" + FRequired+" autofocus=\"autofocus\" />";
+        if (FType==="input-text") {
+
+            Field+="<label id=\""+ LId +"\" for=\""+FieldExtId +"\">"+FLabel+"</label>";
+            Field+="<input id=\""+FieldExtId+ "\" name=\""+FieldExtName+"\" type=\""+FType+"\" placeholder=\""+FPlaceholder+"\"" + FRequired+" autofocus=\"autofocus\" ></input>";
+
+        } else if (FType==="input-textarea") {
+
+            Field+="<label id=\""+ LId +"\" for=\""+FieldExtId +"\">"+FLabel+"</label>";
+            Field+="<textarea id=\""+FieldExtId+ "\" name=\""+FieldExtName+"\" type=\""+FType+"\" placeholder=\""+FPlaceholder+"\"" + FRequired+" autofocus=\"autofocus\" ></textarea>";
+
+        } else if (FType==="select-single") {
+
+            Field+="<label id=\""+ LId +"\" for=\""+FieldExtId +"\">"+FLabel+"</label>";
+            Field+="<select id=\""+FieldExtId+ "\" name=\""+FieldExtName+"\" type=\""+FType+"\" placeholder=\""+FPlaceholder+"\"" + FRequired+" autofocus=\"autofocus\" ></select>";
+
+            var FObj=Fields[RootElement]['fieldset']['field'][FieldId]['options']['obj'];
+            var FEvt=Fields[RootElement]['fieldset']['field'][FieldId]['options']['evt'];
+
+            Field+="<script>XaCreateOptions('','obj="+FObj+"&evt="+FEvt+"','"+FieldExtId+"');</script>";
+
+        } else if (FType==="select-single-ou-tree") {
+
+            Field+="<label id=\""+ LId +"\" for=\""+FieldExtId +"\">"+FLabel+"</label>";
+            Field+="<select id=\""+FieldExtId+ "\" name=\""+FieldExtName+"\" type=\""+FType+"\" placeholder=\""+FPlaceholder+"\"" + FRequired+" autofocus=\"autofocus\" ></select>";
+
+            var FObj=Fields[RootElement]['fieldset']['field'][FieldId]['options']['obj'];
+            var FEvt=Fields[RootElement]['fieldset']['field'][FieldId]['options']['evt'];
+
+            Field+="<script>XaCreateOptionsOu('','obj="+FObj+"&evt="+FEvt+"','"+FieldExtId+"');</script>";
+
+        } else {
+            
+        }
 
     return Field;
     };
@@ -88,7 +117,6 @@ function XaFormTpl (ModelName) {
         console.log(Fields);
         return Content;
     };
-
 };
 
 /*LIST*/
@@ -157,7 +185,6 @@ function XaListTpl (ModelName) {
 
         return Content;
     };
-
 };
 /*
     this.publicProperty = 1;
@@ -168,3 +195,78 @@ function XaListTpl (ModelName) {
          only private methods and privileged methods can call this
     };
 */
+
+/*
+ * @function XaCreateOptions
+ * Function to Read Options From the Back End and Add them into a Select 
+ *
+ * @param {string} Controller - The controller to use to build the url if is other than the default 
+ * @param {string} Url - The URL to append to the Controller with pairs <param> and <value> the final construct will be: <Controller?param1=value1&param2=value2...>
+ *
+ * @returns {booblean} 
+ * 
+ */
+function XaCreateOptions(controller,url,SelectId){
+            
+    XaCallAsync(controller,url, function(responseText){
+
+        var xml = ParseXml(responseText);
+
+        var RootElement=xml.documentElement.nodeName;
+        var Fields=xml2array(xml);
+        var FieldsNumber=Object.keys(Fields[RootElement]['list']['item']).length;
+
+        var Select=document.getElementById(SelectId);
+
+        Select.options[Select.options.length] = new Option('... Select an option ...',"");
+
+        for (var i=0;i<FieldsNumber;i++) {
+
+            Select.options[Select.options.length] = new Option(Fields[RootElement]['list']['item'][i]['name'],Fields[RootElement]['list']['item'][i]['id']);
+        }
+    });
+};
+/*
+ * @function XaCreateOptions specialized for OU
+ * Function to Read Options OU From the Back End and Add them into a Select with indentation
+ *
+ * @param {string} Controller - The controller to use to build the url if is other than the default 
+ * @param {string} Url - The URL to append to the Controller with pairs <param> and <value> the final construct will be: <Controller?param1=value1&param2=value2...>
+ *
+ * @returns {booblean} 
+ * 
+ */
+function XaCreateOptionsOu(controller,url,SelectId){
+
+    XaCallAsync(controller,url, function(responseText){
+
+        var xml = ParseXml(responseText);
+
+        var RootElement=xml.documentElement.nodeName;
+        var Fields=xml2array(xml);
+
+        var FieldsNumber=Object.keys(Fields[RootElement]['list']['item']).length;
+
+        var Select=document.getElementById(SelectId);
+
+        Select.options[Select.options.length] = new Option('... Select an option ...',"");
+
+        for (var i=0;i<FieldsNumber;i++) {
+
+            var indent="";
+
+            var levels=Fields[RootElement]['list']['item'][i]['tree_level'];
+
+            for (var j=1;j<levels;j++) {
+                indent=indent+"--";
+
+                if (j===levels-1) {
+
+                    indent=indent+">";
+                }
+            }
+
+            Select.options[Select.options.length] = new Option(indent+Fields[RootElement]['list']['item'][i]['name'],Fields[RootElement]['list']['item'][i]['id']);
+        }
+    });
+};

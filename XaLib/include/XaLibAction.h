@@ -18,8 +18,6 @@
 #include <XaLibGui.h>
 //#include <XaLibWebSocket.h>
 
-
-
 //SUPERGLOBALS VARIABLES
 
 extern XaLibLog LOG;
@@ -67,8 +65,8 @@ class XaLibAction : protected XaLibBase {
         vector<string> XslParams;
 
         //TO BUILD THE PARAM SECTION OF THE BACK END CALL
-        vector<string> FieldsName;
-        vector<string> FieldsValue;
+        //vector<string> FieldsName;
+        //vector<string> FieldsValue;
 
         //PER OPTION IN XML
         vector<string> XmlFields;
@@ -242,6 +240,15 @@ class XaLibAction : protected XaLibBase {
         */
         virtual void Dispatcher (const string &CalledEvent);
 
+        /*COMMENT
+         complete,default: "XaGuiHead","XaGuiHeader"
+         * include:nothing
+         * modal: XaGuiHead
+         * 
+         
+         */
+        vector <string> SetPageLayout (const string &LayoutType);
+
         /**
         * Selects the layout for the returned page\n
         * A layout is a collection of Xsl file, based on passed layout are added different files\n
@@ -255,9 +262,10 @@ class XaLibAction : protected XaLibBase {
         * @endcode
         *
         */
+        [[deprecated]]
         void SetLayout (const string &LayoutType);
 
-        void CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,const string& ModelName);
+        tuple<vector<string>,vector<string>> CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,const string& ModelName);
 
         void ListResponse(const vector<string>& XmlFiles,const string& XPathExpr,const string& ModelName);
 

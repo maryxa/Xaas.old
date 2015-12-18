@@ -12,28 +12,31 @@ void XaOuTypeUi::Dispatcher (const string &CalledEvent) {
 		this->Create();
     } else if (CalledEvent=="List") {
 		this->List();
-    } else {
+    } else if (CalledEvent=="ListAsOptions") {
+		this->ListAsOptions();
+    }  else {
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Event Does Not Exists -> "+CalledEvent);
 		throw 42;
 	}
 };
 
 void XaOuTypeUi::CreateFrm() {
-	
+
 	AddJsVarFile("XaModel","XaOuType");
 	AddJsVarString("XaGuiStyle","default");
-	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles({"XaGuiHead","XaGuiHeader","XaGuiCreateFrm","XaGuiNav"}),HtmlStrings,JsVarFiles,JsVarStrings,0);
+
+	vector<string> Templates=SetPageLayout(REQUEST.CalledLayout);
+	Templates.push_back("XaGuiCreateFrm");
+
+	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles(Templates),HtmlStrings,JsVarFiles,JsVarStrings,0);
 };
 
 void XaOuTypeUi::Create() {
 
-	CreatePrepare({"XaOuType"},"/XaOuType/fieldset/field","XaOuType");
-	BuildBackEndCall("XaOuType","Create",FieldsName,FieldsValue);
-
+	auto Fields=CreatePrepare({"XaOuType"},"/XaOuType/fieldset/field","XaOuType");
 	XaLibCurl LibCurl;
-    string CallResponse = LibCurl.Call(BuildBackEndCall("XaOuType","Create",FieldsName,FieldsValue));
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaOuType","Create",get<0>(Fields),get<1>(Fields)));
 	CheckResponse(CallResponse);
-
 	RESPONSE.Content="OK";
 };
 
@@ -46,7 +49,16 @@ void XaOuTypeUi::List() {
 	AddJsVarString("XaGuiStyle","default");
 	AddJsVarString("WsData",CallResponse);
 
-	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles({"XaGuiHead","XaGuiHeader","XaGuiList","XaGuiNav"}),HtmlStrings,JsVarFiles,JsVarStrings,0);
+	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles({"XaGuiHead","XaGuiHeader","XaGuiList"}),HtmlStrings,JsVarFiles,JsVarStrings,0);
+};
+
+void XaOuTypeUi::ListAsOptions() {
+
+	XaLibCurl LibCurl;
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaOuType","ListAsOptions",{},{}));
+	CheckResponse(CallResponse);
+
+	RESPONSE.Content=CallResponse;
 };
 
 XaOuTypeUi::~XaOuTypeUi() {

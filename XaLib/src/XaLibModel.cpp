@@ -75,10 +75,68 @@ XaLibBase::FieldsMap XaLibModel::CreatePrepare(const vector<string>& XmlFiles,co
 		};
 
 		//LOADING PASSED VALUE
-		Fields[i]["value"]=HTTP.GetHttpParam(Fields[i]["name"]);	
+		Fields[i]["value"]=HTTP.GetHttpParam(Fields[i]["name"]);
 	};
 
 	return Fields;
+};
+
+void XaLibModel::CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,vector <string>& FieldName,vector <string>& FieldValue){
+
+	vector <string> Properties ={"name","db_type","size","create","required"};
+	
+	//LOAD XML FOR MODEL
+	xmlDocPtr XmlDomDoc=XaLibDom::DomFromFile(AddXmlFile(XmlFiles),0);
+
+	//GET NUMBER OF FILEDS
+	int FieldsNum=XaLibDom::GetNumRowByXPathInt(XmlDomDoc,XPathExpr);
+
+	/*For Each Field Check Properties and Load Value*/
+	for (auto i=0;i<FieldsNum;i++) {
+
+		string FName=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/name");
+		
+		string FDbType=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/db_type");
+		string FSize=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/size");
+		string FCreate=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/create");
+		string FRequired=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/required");
+
+		string FValue=HTTP.GetHttpParam(FName);
+
+		FieldName.push_back(FName);
+		FieldValue.push_back(FValue);
+	};
+};
+
+int XaLibModel::CreateExecute(const string& DbTable,vector <string>& FieldName,vector <string>& FieldValue) {
+
+	FieldName.push_back("status");
+	FieldName.push_back("old_id");
+	FieldValue.push_back("1");
+	FieldValue.push_back("0");
+	
+	
+	//CHECK FIELDS
+	//vector <string> Fields={"status","old_id"};
+	//vector <string> Values={"1","0"};
+/*
+	for (auto i=0;i<LoadedFields.size();i++) {
+
+		Fields.push_back(LoadedFields[i]["name"]);	
+		Values.push_back(LoadedFields[i]["value"]);
+	};
+*/
+	int NextId=XaLibSql::Insert(DB_WRITE,DbTable,FieldName,FieldValue);
+
+	if (NextId==0) {
+
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-301 Inserted a new record into table -> "+DbTable+" with id ->"+to_string(NextId));
+		throw 301;
+	}
+
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Inserted a new record into table -> "+DbTable+" with id ->"+to_string(NextId));
+
+	return NextId;
 };
 
 int XaLibModel::CreateExecute(const string& DbTable,XaLibBase::FieldsMap& LoadedFields) {

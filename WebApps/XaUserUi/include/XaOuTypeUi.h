@@ -11,6 +11,7 @@ class XaOuTypeUi : public XaLibAction {
         void CreateFrm();
         void Create();
         void List();
+        void ListAsOptions();
 
     protected:
 

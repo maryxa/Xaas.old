@@ -6,8 +6,17 @@ XaOuUi::XaOuUi(){
 
 void XaOuUi::Dispatcher (const string &CalledEvent) {
 
-	if (CalledEvent=="Explorer") {
-		this->Explorer();
+	if (CalledEvent=="CreateFrm") {
+		this->CreateFrm();
+
+    } else if (CalledEvent=="Create") {
+        this->Create();
+
+    } else if (CalledEvent=="ListAsOptions") {
+        this->ListAsOptions();
+
+    } else if (CalledEvent=="Explorer") {
+        this->Explorer();
 
     } else if (CalledEvent=="Tree") {
         this->Tree();
@@ -18,9 +27,38 @@ void XaOuUi::Dispatcher (const string &CalledEvent) {
 	}
 };
 
+void XaOuUi::CreateFrm() {
+
+	AddJsVarFile("XaModel","XaOu");
+	AddJsVarString("XaGuiStyle","default");
+
+	vector<string> Templates=SetPageLayout(REQUEST.CalledLayout);
+	Templates.push_back("XaGuiCreateFrm");
+
+	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles(Templates),HtmlStrings,JsVarFiles,JsVarStrings,0);
+};
+
+void XaOuUi::Create() {
+
+	auto Fields=CreatePrepare({"XaOu"},"/XaOu/fieldset/field","XaOu");
+	XaLibCurl LibCurl;
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaOu","Create",get<0>(Fields),get<1>(Fields)));
+	CheckResponse(CallResponse);
+	RESPONSE.Content="OK";
+};
+
+void XaOuUi::ListAsOptions() {
+
+	XaLibCurl LibCurl;
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaOu","ListAsOptions",{"order_by"},{"name"}));
+	CheckResponse(CallResponse);
+
+	RESPONSE.Content=CallResponse;
+};
+
 void XaOuUi::Tree () {
 
-	SetLayout(REQUEST.CalledLayout);
+//	SetLayout(REQUEST.CalledLayout);
 
 	AddXmlFile("XaOuTree");
 	AddXslFile("XaOuTree");
@@ -32,7 +70,7 @@ void XaOuUi::Tree () {
 	XaLibSql* LibSql=new XaLibSql();
 
 	string QryMaxTreeLevel="SELECT max(tree_level) AS tree_level FROM XaUser";
-	DbResMap DbResMaxTreeLevel=LibSql->FreeQuery(DB_READ,QryMaxTreeLevel);
+	DbResMap DbResMaxTreeLevel=LibSql->FreeQuerySelect(DB_READ,QryMaxTreeLevel);
 
 	int MaxTreeLevel=XaLibBase::FromStringToInt(DbResMaxTreeLevel[0]["tree_level"]);
 
@@ -57,7 +95,7 @@ void XaOuUi::Tree () {
 	}
 
 	//string QryOrg="SELECT id,surname,tree_path,tree_parent_ID,tree_level,leaf FROM XaUser WHERE deleted=0";
-	DbResMap DbResOrg=LibSql->FreeQuery(DB_READ,QryOrg);
+	DbResMap DbResOrg=LibSql->FreeQuerySelect(DB_READ,QryOrg);
 
 	for (int i=2;i<=MaxTreeLevel;i++) {
 
@@ -139,7 +177,7 @@ void XaOuUi::Tree () {
 
 void XaOuUi::Explorer () {
 
-	SetLayout(REQUEST.CalledLayout);
+//	SetLayout(REQUEST.CalledLayout);
 	AddXslFile("XaOuExplorer");
 	AddXslParamCommon();
 
