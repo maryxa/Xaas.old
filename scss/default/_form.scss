@@ -6,6 +6,8 @@
 @import '_variables';
 
 .form {
+        opacity:$ForeGroundOpacity;
+
     width: 100%;
     background-color: $FormBackgroundColor;
     font-size: $FormFontSize;

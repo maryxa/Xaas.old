@@ -34,10 +34,6 @@ void XaOu::Create() {
 	CreatePrepare({"XaOu"},"/XaOu/fieldset/field",FieldName,FieldValue);
 	int NextId=CreateExecute("XaOu",FieldName,FieldValue);
 
-	
-	
-	
-	
 	RESPONSE.Content=CreateResponse(NextId);
 };
 

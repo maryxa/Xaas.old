@@ -232,8 +232,11 @@ nav {
 
 .container {
     /*margin:0.5%;*/
-    background-color: $ContainerBackgroundColor;
-    opacity:$ForeGroundOpacity;
+   /* background-color:rgba(221,221,221,0.25);*/
+    
+    /*background-color: $ContainerBackgroundColor;
+    opacity:$ForeGroundOpacity;*/
+
     position: fixed;
     /*left: $NavWidth;*/
     left:0;

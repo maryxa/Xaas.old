@@ -24,8 +24,8 @@
 #include <iomanip>
 #include <tuple>
 
-#ifdef _WIN32
-	#include <winsock2.h>
+#if defined(__CYGWIN32__) ||  defined(__CYGWIN__) ||  defined(__MSYS__) || defined(_WIN32)
+    #include <winsock2.h>
     #include <windows.h>
 #endif
 
@@ -137,7 +137,7 @@ struct XaResponse {
 
 typedef map<string, string> XaSettings;
 	
-#ifdef _WIN32
+#if defined(__CYGWIN32__) ||  defined(__CYGWIN__) ||  defined(__MSYS__) || defined(_WIN32)
     template < typename T > std::string to_string( const T& n ) {
         std::ostringstream stm ;
         stm << n ;

@@ -76,12 +76,12 @@ ifeq ($(UNAME_S),Darwin)
     XALIB=$(XALLEGRO_DIR)/XaLib/bin/XaLib.so
 
     CPPINCS  = -I../include -I/usr/include -I/opt/local/include -I/usr/include/libxml2 -I/usr/local/mysql/include -I$(XALLEGRO_DIR)/XaLib/include
-    CPPFLAGS = $(CPPINCS)  -std=c++0x -O3 -Wall
+    CPPFLAGS = $(CPPINCS)  -std=c++14 -O3 -Wall
 
 endif
 
 #User OBJ
-OBJ=$(OBJDIR)Controller.o $(OBJDIR)XaPages.o 
+OBJ=$(OBJDIR)Controller.o $(OBJDIR)XaPages.o $(OBJDIR)XaOuTypeUi.o $(OBJDIR)XaOuUi.o
 
 #MACROS
 .PHONY: all all-before all-after clean print-varialbes
@@ -106,3 +106,7 @@ $(OBJDIR)Controller.o: Controller.cpp
 	$(CPP) -c Controller.cpp -o $(OBJDIR)Controller.o $(CPPFLAGS)
 $(OBJDIR)XaPages.o: XaPages.cpp
 	$(CPP) -c XaPages.cpp -o $(OBJDIR)XaPages.o $(CPPFLAGS)
+$(OBJDIR)XaOuTypeUi.o: XaOuTypeUi.cpp
+	$(CPP) -c XaOuTypeUi.cpp -o $(OBJDIR)XaOuTypeUi.o $(CPPFLAGS)
+$(OBJDIR)XaOuUi.o: XaOuUi.cpp
+	$(CPP) -c XaOuUi.cpp -o $(OBJDIR)XaOuUi.o $(CPPFLAGS)

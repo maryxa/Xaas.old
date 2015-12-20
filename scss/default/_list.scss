@@ -8,6 +8,7 @@
 .list {
     width: 100%;
     background-color: $ListBackgroundColor;
+    opacity:$ForeGroundOpacity;
     font-size: $ListFontSize;
     border-radius:$BorderRadius;
 

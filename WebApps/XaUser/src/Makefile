@@ -86,14 +86,14 @@ OBJ=$(OBJDIR)Controller.o $(OBJDIR)XaOuType.o $(OBJDIR)XaOu.o $(OBJDIR)XaUserRol
 
 #MACROS
 .PHONY: all all-before all-after clean print-varialbes
-all:print-varialbes $(BIN) all-after
+all:print-varialbes $(BIN) #all-after
 
 clean:
 	${RM} $(OBJ) print-varialbes $(BIN)
 all-before:
 	${RM} $(OBJ)
 all-after:
-	${RM} $(OBJ)
+	$(OBJ)
 
 print-varialbes:
 	@echo "I am compiling on : " $(UNAME_P) $(UNAME_S) $(OS) $(PROCESSOR_ARCHITECTURE) $(CASE)
