@@ -339,7 +339,9 @@ XaLibBase::DbResMap XaLibSql::SelectOne(XaLibDb& LibDb,string TableName, int Row
 	SqlQry.append(TableName);
 	SqlQry.append(" WHERE ID=");
 	SqlQry.append(to_string(RowId));
-	
+
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executing  Select -> " +SqlQry);
+
 	DbRes=LibDb.ExSelect(SqlQry);
 
 	return DbRes;
@@ -359,7 +361,9 @@ XaLibBase::DbResMap XaLibSql::SelectOne(XaLibDb& LibDb,string TableName, int Row
 	SqlQry.append(" AND deleted=");
 	SqlQry.append(to_string(Deleted));
 
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executing  Select -> " +SqlQry);
 	DbRes=LibDb.ExSelect(SqlQry);
+	
 
 	return DbRes;
 };
@@ -393,6 +397,8 @@ XaLibBase::DbResMap XaLibSql::Select(XaLibDb& LibDb,const string& TableName,cons
 
 	SqlQry.append(" FROM ");
 	SqlQry.append(TableName);
+	
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executing  Select -> " +SqlQry);
 
 	DbRes=LibDb.ExSelect(SqlQry);
 
@@ -455,6 +461,8 @@ XaLibBase::DbResMap XaLibSql::Select(XaLibDb& LibDb,const string& TableName,cons
 		//NUMERO VALORI E CAMPI DIVERSO
 	}
 
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executing  Select -> " +SqlQry);
+		
 	DbRes=LibDb.ExSelect(SqlQry);
 
 	delete LibChar;
@@ -534,6 +542,8 @@ XaLibBase::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,const vecto
 
 	}
 
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executing  Select -> " +SqlQry);
+	
 	DbRes=LibDb.ExSelect(SqlQry);
 
 	delete LibChar;
@@ -632,6 +642,8 @@ XaLibBase::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,const vecto
 	    }
 
 	}
+
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executing  Select -> " +SqlQry);
 
 	DbRes=LibDb.ExSelect(SqlQry);
 
