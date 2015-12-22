@@ -79,6 +79,7 @@ void XaLibError::Setup() {
 	XaErrors[203]={"Requested XML File Does Not Exist"};
 	XaErrors[204]={"Requested HTML File Does Not Exist"};
 	XaErrors[205]={"Required Parameter is missing"};
+	XaErrors[206]={"Searched Element Is Not Present in The Vector"};
 	
 	
 	
@@ -88,8 +89,9 @@ void XaLibError::Setup() {
 	
 	XaErrors[301]={"Error inserting a new record into the database"};
 	XaErrors[302]={"Requested record does not exist into database"};
-        XaErrors[303]={"Record already exists into database"};       
-        
+	XaErrors[303]={"Record already exists into database"};
+	XaErrors[304]={"Record is not unique"};
+
 	/*Front End Errors*/
 	XaErrors[611]={"Requested Object Does Not Exist"};
 	XaErrors[612]={"Requested Event Does Not Exist"};

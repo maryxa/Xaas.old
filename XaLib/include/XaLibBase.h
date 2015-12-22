@@ -154,7 +154,8 @@ class XaLibBase {
 
         typedef map<int, map<string,string> > DbResMap;
         typedef map<int, map<string,string> > FieldsMap;
-        
+
+        int PositionInVector(vector<string>& SearchOn,const string& SearchFor);
         string FromIntToString(int IntValue);
         int FromStringToInt(const string& StringValue);
         unsigned int FromHexStringToUnsignedInt(string StringValue);
