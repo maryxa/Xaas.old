@@ -39,6 +39,17 @@ XaLibBase::XaLibBase(){
 
 };
 
+int XaLibBase::PositionInVector(vector<string>& SearchOn,const string& SearchFor) {
+
+	int pos = find(SearchOn.begin(), SearchOn.end(), SearchFor) - SearchOn.begin();
+	
+	if(pos >= SearchOn.size()) {
+		pos=-1;
+	}
+
+	return pos;
+}; 
+
 string XaLibBase::FromIntToString(int IntValue){
 
 	return to_string(IntValue);
