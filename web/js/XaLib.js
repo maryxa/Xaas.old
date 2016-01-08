@@ -27,7 +27,7 @@ var AllRequiredFields="Please ensure that all required fields, those with an *(r
  * @return {Callback function}
  * 
  */
-function XaCallAsync (controller,url,cb) {
+function XaCallAsync (controller,url,type,cb) {
 
     if(controller==="") {controller = DefaultController;};
 
@@ -35,6 +35,11 @@ function XaCallAsync (controller,url,cb) {
     
         url.replace("&amp;", "&");
         var url = controller + "?" + url;
+
+        if (type==="xml") {
+ 
+            url=url+"&ResType=xml";
+        }
 
         var xmlhttp;
 
@@ -51,7 +56,15 @@ function XaCallAsync (controller,url,cb) {
 
             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
 
-                cb(xmlhttp.responseText);
+                if (type==="" || type==="text") {
+                    
+                    cb(xmlhttp.responseText);
+
+                } else if (type==="xml") {
+
+                    //console.log(xmlhttp.responseXML);
+                    cb(xmlhttp.responseXML);
+                }
 
             } else if (xmlhttp.status === 500) {
 
@@ -77,7 +90,114 @@ function XaCheckUrlReload(link) {
         location.reload(true); 
         return false;
     }
-}
+};
+
+/*XML MANIPULATION*/
+function XaParseXml (XmlStr) {
+
+    if (typeof window.DOMParser !== "undefined") {
+        
+        var parser = new DOMParser();
+        var XmlDoc = parser.parseFromString (XmlStr, "text/xml");
+        return XmlDoc;
+
+    } else if (typeof window.ActiveXObject !== "undefined" && new window.ActiveXObject("Microsoft.XMLDOM")) {
+
+        var XmlDoc = new window.ActiveXObject("Microsoft.XMLDOM");
+        XmlDoc.async = "false";
+        XmlDoc.loadXML(XmlStr);
+        return XmlDoc;
+
+    } else {
+        //console.log("No XML parser found");
+        throw new Error("No XML parser found");
+    };
+
+};
+
+function XaXmlGetElementByXpath (XmlDoc,XPathExpr) {
+
+    var Element= XmlDoc.evaluate(XPathExpr, XmlDoc, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+
+    return Element;
+};
+
+function XaXmlGetElementValueByXpath (XmlDoc,XPathExpr) {
+
+    var ElementValue= XmlDoc.evaluate(XPathExpr, XmlDoc, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.textContent;
+
+    return ElementValue;
+};
+
+function XaXmlCountElementByXpath (XmlDoc,XPathExpr) {
+    
+    var ElementNum = XmlDoc.evaluate( 'count('+XPathExpr+')', XmlDoc, null, XPathResult.ANY_TYPE, null ).numberValue;
+
+    return ElementNum;
+};
+
+function XaXmlGetTagNameByXpath (XmlDoc,XPathExpr) {
+
+    var TagName = new Array();
+
+    var Element= XmlDoc.evaluate(XPathExpr, XmlDoc, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+    var nodesSnapshot = XmlDoc.evaluate('*', Element, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null );
+
+    for ( var i=0 ; i < nodesSnapshot.snapshotLength; i++ ) {
+        TagName.push(nodesSnapshot.snapshotItem(i).nodeName);
+        //console.log(nodesSnapshot.snapshotItem(i).nodeName );
+    };
+
+    return TagName;
+};
+
+/*HTML ELEMENTS MANIPULATION*/
+function XaElSetHrefById(Id,Value,IsJs) {
+
+    if (IsJs==="yes") {
+        
+        Value="javascript:"+Value;
+    };
+
+    var a = document.getElementById(Id);
+    a.href = Value;
+};
+
+function XaElRemoveChildByParentId (ParentId,Child) {
+    
+    var Parent = document.getElementById(ParentId);
+    var Child=Parent.getElementsByTagName("ul")[0];
+
+    Parent.removeChild(Child);
+};
+
+/*STYLE MANIPULATION*/
+function XaStyleSetCssClassById (Id,ClassName) {
+
+    var d = document.getElementById(Id).className=ClassName;
+};
+
+function XaStyleAddCssClassById (Id,ClassName) {
+    var d = document.getElementById(Id);
+    d.className = d.className + " "+ClassName;
+};
+
+function XaStyleSetCssClassByIdArray (IdArray,ClassName) {
+
+    for(var i = 0; i < IdArray.length; i++){
+
+	document.getElementById(IdArray[i]).className = ClassName;
+    };
+};
+
+function XaStyleCheckClass(Id,ClassName) {
+    
+    var element = document.getElementById(Id);
+    var HasClass = element.classList.contains(ClassName);
+    
+    //HasHasClass is boolean
+    return HasClass;
+};
 
 //Async:=true,false
 //Loader:=0,1

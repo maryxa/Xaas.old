@@ -551,7 +551,7 @@ XaLibBase::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,const vecto
 
 }
 
-
+/*
 XaLibBase::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,const vector<string>& ReturnedFields,const vector<string>& WhereFields, const vector<string>& WhereValues, const vector<string>& OrderByFields,const vector<string>& GroupByFields) {
 
 	DbResMap DbRes;
@@ -651,7 +651,7 @@ XaLibBase::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,const vecto
 	return DbRes;
 
 }
-
+*/
 XaLibBase::DbResMap XaLibSql::Select(XaLibDb& LibDb,string TableName,const vector<string>& ReturnedFields,const vector<string>& WhereFields, const vector<string>& WhereValues, const vector<string>& OrderByFields,const vector<string>& GroupByFields,const int& Limit) {
 
 	DbResMap DbRes;

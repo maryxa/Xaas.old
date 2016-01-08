@@ -264,6 +264,10 @@ void XaLibWs::ExtractData(){
 
 				string ParamName =LibDom->GetElementValueByXPath(XmlDomDoc,"/WsData/params/p["+ XaLibBase::FromIntToString(i+1) + "]/n");
 				string ParamValue=LibDom->GetElementValueByXPath(XmlDomDoc,"/WsData/params/p["+ XaLibBase::FromIntToString(i+1) + "]/v");
+				
+				if (ParamValue=="ELEMENT-NOT-DEFINED") {
+					ParamValue="NoHttpParam";
+				};
 
 				LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"WS Adding Parameter ->" +ParamName +" :: With Value -> "+ParamValue);
 

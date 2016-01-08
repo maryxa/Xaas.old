@@ -101,12 +101,12 @@ void XaLibController::SendHeaders (const string& HeadersType) {
 	
 	//cout<<HTTP.SetCookie()<<endl;
 
-	if (HeadersType=="location" || HeadersType=="xhtml") {
+	if (HeadersType=="location") {
 
 		cout<<"Location: ?"+RESPONSE.Location<<endl;
 		cout<< "Content-Type: text/html; charset=utf-8\n\n";
 	
-	} else if (HeadersType=="html" || HeadersType=="xhtml") {
+	} else if (HeadersType=="html" || HeadersType=="xhtml" || HeadersType=="NoHttpParam") {
 
 		cout<< "Content-Type: text/html; charset=utf-8\n\n";
 

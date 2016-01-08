@@ -15,8 +15,8 @@ void XaOu::Dispatcher (const string &CalledEvent) {
 	//	 this->List();
     } else if (CalledEvent=="ListAsOptions"){
 		 this->ListAsOptions();
-    //} else if (CalledEvent=="Update"){
-		 //this->Update();
+    } else if (CalledEvent=="Tree"){
+		 this->Tree();
     //} else if (CalledEvent=="Delete"){
 		 //this->Delete();
     } else {
@@ -68,6 +68,7 @@ void XaOu::Create() {
 	XaLibSql::Update(DB_WRITE,"XaOu",{"tree_path"},{TreePath},{"id"},{FromIntToString(NextId)});
 	RESPONSE.Content=CreateResponse(NextId);
 };
+
 
 /*
 void XaOu::Create() {
@@ -125,6 +126,79 @@ void XaOu::ListAsOptions() {
 	vector<string> ReturnedFields={"id","name","tree_level"};
 
 	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaOu",{ReturnedFields},{WhereFields}, {WhereValues}, {OrderByFields},{GroupByFields},Limit);
+	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);
+};
+
+void XaOu::Tree() {
+
+	vector<string> WhereFields={};
+	vector<string> WhereValues={};
+	vector<string> OrderByFields={};
+	vector<string> GroupByFields={};
+	vector<string> ReturnedFields={"id","name","tree_level","tree_parent_ID"};
+
+	/*GET LEVEL*/
+	string TreeLevel=HTTP.GetHttpParam("tree_level");
+	WhereFields.push_back("tree_level");
+
+	if (TreeLevel!="NoHttpParam") {
+
+		WhereValues.push_back(TreeLevel);
+
+	} else {
+
+		/*DEFAULT CASE FIRST LEVEL*/
+		WhereValues.push_back("1");
+	};
+
+	/*GET PARENT*/
+	string ParentId=HTTP.GetHttpParam("tree_parent_ID");
+	WhereFields.push_back("tree_parent_ID");
+
+	if (ParentId!="NoHttpParam") {
+
+		WhereValues.push_back(ParentId);
+
+	} else {
+
+		/*DEFAULT CASE PARENT 0*/
+		WhereValues.push_back("0");
+	};
+
+	/*GET TYPE*/
+	string XaOuTypeID=HTTP.GetHttpParam("XaOuType_ID");
+	
+	if (XaOuTypeID!="NoHttpParam") {
+
+		WhereFields.push_back("XaOuType_ID");
+		WhereValues.push_back(XaOuTypeID);
+	};
+
+	/*GET ORDER BY*/
+	string OrderBy=HTTP.GetHttpParam("order_by");
+	
+	if (OrderBy!="NoHttpParam") {
+		
+		OrderByFields.push_back(OrderBy);
+		
+	} else {
+
+		OrderByFields.push_back("name");
+	};
+	
+	/*GET ORDER BY*/
+	string Status=HTTP.GetHttpParam("status");
+	WhereFields.push_back("status");
+	
+	if (Status!="NoHttpParam") {
+		
+		WhereValues.push_back(Status);
+	} else {
+
+		WhereValues.push_back("1");
+	};
+
+	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaOu",{ReturnedFields},{WhereFields}, {WhereValues}, {OrderByFields},{GroupByFields});
 	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);
 };
 

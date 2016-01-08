@@ -4,7 +4,8 @@
 * alex@xallegro.com
 */
 
-@import '_font_open_sans';
+/*@import '_font_open_sans';*/
+@import '_font_awesome';
 @import '_variables';
 @import '_mixins';
 @import '_dashboard';
@@ -12,22 +13,7 @@
 @import '_list';
 @import '_explorer';
 
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-    background: transparent;
-    border: 0;
-    margin: 0 auto;
-    padding: 0;
-    vertical-align: baseline;
-    list-style-type: none;
-}
+@include reset-all();
 
 html { 
     background: url('XAllegroBackground.jpg') no-repeat center center fixed; 
@@ -263,7 +249,7 @@ nav {
 
     background-repeat:no-repeat;
     background-position: center center;
-    background-image:url('XAllegroSpinner.png');
+    background-image:url('XAllegroSpinner.gif');
     background-size: auto 90%;
 }
 

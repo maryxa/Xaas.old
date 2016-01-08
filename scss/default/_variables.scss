@@ -6,6 +6,24 @@
     ff7f2a
 */
 
+/*
+$PhoneLandscape: "(max-width: 1023px) and (orientation: landscape)";
+$PhonePortait: "(min-width: 768px) and (max-width: 1023px) and (orientation: portrait)";
+
+$TabletLandscape: "(min-width: 768px) and (max-width: 1023px) and (orientation: landscape)";
+$TabletPortait: "(min-width: 768px) and (max-width: 1023px) and (orientation: portrait)";
+
+$desktop: "(min-width: 1024px)";
+
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+}
+*/
+
 $FontSize:100%;
 $ForeGroundOpacity:0.95;
 $FontColor:#222222;
@@ -64,7 +82,7 @@ $ListRowBackgroundColorHover:#FF9900;
 $ListRowFontColorHover:#FEFEFE;
 
 
-$ExplorerTreeWidth:14vw;
-$ExplorerTreeBackgroundColor:#fefefe;
-
-$ExplorerDetailBackgroundColor:#fefefe;
+$EplorerTreeFontSize:$FontSize/100*99; //90%
+$EplorerTreeCircleColor:#FF9900;
+$EplorerTreeCircleColorHover:#77B710;
+$EplorerTreeCircleColorOpen:#77B710;

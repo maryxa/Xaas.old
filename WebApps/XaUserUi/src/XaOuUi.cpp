@@ -22,8 +22,8 @@ void XaOuUi::Dispatcher (const string &CalledEvent) {
         this->Tree();
     } else {
 
-		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Event Does Not Exists -> "+CalledEvent);
-		//ErrorPage ("EventNotFound");
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42:: Requested Event Does Not Exists -> "+CalledEvent);
+		throw 42;
 	}
 };
 
@@ -58,13 +58,41 @@ void XaOuUi::ListAsOptions() {
 
 void XaOuUi::Tree () {
 
-//	SetLayout(REQUEST.CalledLayout);
+	vector <string> FieldsValues ={};
+	
+	FieldsValues.push_back(HTTP.GetHttpParam("tree_level"));	
+	FieldsValues.push_back(HTTP.GetHttpParam("tree_parent_ID"));
+	FieldsValues.push_back(HTTP.GetHttpParam("XaOuType_ID"));
+	FieldsValues.push_back(HTTP.GetHttpParam("status"));
+	
+	XaLibCurl LibCurl;
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaOu","Tree",{"tree_level","tree_parent_ID","XaOuType_ID","status"},{FieldsValues}));
+	CheckResponse(CallResponse);
+
+	//AddJsVarString("XaGuiStyle","default");
+	//AddJsVarString("WsData",CallResponse);
+
+	//RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles({"XaGuiHead","XaGuiHeader","XaGuiList"}),HtmlStrings,JsVarFiles,JsVarStrings,0);
+
+	RESPONSE.Content=CallResponse;
+	
+	
+	/*
+	
+	
+	AddJsVarFile("XaModel","XaOu");
+	//Stile deve diventare dinamico
+	AddJsVarString("XaGuiStyle","default");
+
+	vector<string> Templates=SetPageLayout(REQUEST.CalledLayout);
+	Templates.push_back("XaTree");
+
+	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles(Templates),HtmlStrings,JsVarFiles,JsVarStrings,0);
 
 	AddXmlFile("XaOuTree");
 	AddXslFile("XaOuTree");
 
 	XaLibDom* LibDom=new XaLibDom();
-//	xmlDocPtr XmlDomDocTree=LibDom->DomFromFile(SETTINGS["XmlDir"]+"XaOuTree.xml");
 	xmlDocPtr XmlDomDocTree=LibDom->DomFromFile(SETTINGS["SharedDir"]+"xml/XaOuTree.xml");
 
 	XaLibSql* LibSql=new XaLibSql();
@@ -94,7 +122,6 @@ void XaOuUi::Tree () {
 		QryOrg+=" ORDER BY surname ";
 	}
 
-	//string QryOrg="SELECT id,surname,tree_path,tree_parent_ID,tree_level,leaf FROM XaUser WHERE deleted=0";
 	DbResMap DbResOrg=LibSql->FreeQuerySelect(DB_READ,QryOrg);
 
 	for (int i=2;i<=MaxTreeLevel;i++) {
@@ -108,7 +135,6 @@ void XaOuUi::Tree () {
 
 			if (XaLibBase::FromStringToInt(DbResOrg[j]["tree_level"])==i) {
 
-				//DbData[k]["id"]=XaLibAction::EncryptParam(DbResOrg[j]["id"]);
 				DbData[k]["id"]=DbResOrg[j]["id"];
 				DbData[k]["tree_level"]=DbResOrg[j]["tree_level"];
 				DbData[k]["surname"]=DbResOrg[j]["surname"];
@@ -134,7 +160,6 @@ void XaOuUi::Tree () {
 
 			} else {
 
-				//XPathExpr="//ou[@id='"+XaLibAction::EncryptParam(DbData[z]["tree_parent_ID"])+"']";
 				XPathExpr="//ou[@id='"+DbData[z]["tree_parent_ID"]+"']";
 				
 			}
@@ -172,16 +197,27 @@ void XaOuUi::Tree () {
 	AddXslParam("TplType",TplType);
 
 	RESPONSE.Content=XaLibGui::CreateForm(XmlFiles,XmlStrings,XslFiles,XslStrings,XslParams);
-
+*/
 };
 
 void XaOuUi::Explorer () {
 
 //	SetLayout(REQUEST.CalledLayout);
-	AddXslFile("XaOuExplorer");
-	AddXslParamCommon();
+//	AddXslFile("XaOuExplorer");
+//	AddXslParamCommon();
 
-	RESPONSE.Content=XaLibGui::CreateForm(XmlFiles,XmlStrings,XslFiles,XslStrings,XslParams);
+//	RESPONSE.Content=XaLibGui::CreateForm(XmlFiles,XmlStrings,XslFiles,XslStrings,XslParams);
+	
+	
+	//AddJsVarFile("XaModel","XaOu");
+	//Stile deve diventare dinamico
+	AddJsVarString("XaGuiStyle","default");
+
+	vector<string> Templates=SetPageLayout(REQUEST.CalledLayout);
+	Templates.push_back("XaOuExplorer");
+
+	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles(Templates),HtmlStrings,JsVarFiles,JsVarStrings,0);
+	
 };
 
 XaOuUi::~XaOuUi(){

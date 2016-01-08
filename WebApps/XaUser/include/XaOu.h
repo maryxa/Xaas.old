@@ -13,8 +13,8 @@ class XaOu : public XaLibModel {
 
         void Create();
         void ListAsOptions();
-        
-        
+        void Tree();
+ 
         //int Read();
         //int Update();
         //int Delete();

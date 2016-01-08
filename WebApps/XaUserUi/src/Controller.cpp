@@ -2,7 +2,6 @@
 
 /*
 * General System Post or Get Parameters 
-* @param do=action
 * @param obj=object
 * @param evt=event
 * @param lay=layout
@@ -101,6 +100,7 @@ void Controller::Dispatch () {
 
 	REQUEST.CalledObject=HTTP.GetHttpParam("obj");
 	REQUEST.CalledEvent=HTTP.GetHttpParam("evt");
+	RESPONSE.ResponseType=HTTP.GetHttpParam("ResType");
 
 	/*CHANGE WITH PROFILER*/
 	/*CASE LOGGED IN*/
