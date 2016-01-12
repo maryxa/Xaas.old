@@ -7,11 +7,11 @@ BIN_NAME=XaUser.cgi
 
 ## WINDOWS MINGW32_NT
 ## TESTED: MINGW32_NT-6.2
-ifeq ($(filter MINGW32_NT-%.%,$(UNAME_S)),)
+ifeq ($(filter CYGWIN_NT-%.%,$(UNAME_S)),)
 
     XALLEGRO_DIR = C:\XAllegro\Xaas
-    MINGW_DIR = C:\MinGW\mingw32
-    MYSQL_DIR =C:\Program\ Files\ \(x86\)\MySQL\MySQL\ Server\ 5.1
+
+    CYGWIN_LIB_DIR=C:\XAllegro\cygwin\usr\include
 
     XALIB_DIR = $(XALLEGRO_DIR)\XaLib
     XALIB=$(XALLEGRO_DIR)\XaLib\bin\XaLib.a
@@ -21,16 +21,14 @@ ifeq ($(filter MINGW32_NT-%.%,$(UNAME_S)),)
     RM       = rm -f -r 
     CUR_DIR  = $(cmd %cd%)
 
-    LIBS     = C:\XAllegro\libs\libxml2\bin\libxml2.dll C:\XAllegro\libs\libxslt\bin\libxslt.dll C:\XAllegro\libs\libxslt\bin\libexslt.dll \
-		C:\XAllegro\libs\openssl\bin\libeay32.dll C:\XAllegro\libs\curl\bin\libcurl.dll $(MYSQL_DIR)\lib\libmysql.dll
+    LIBS     = -L$(CYGWIN_LIB_DIR)\lib -L$(CYGWIN_LIB_DIR)\bin \
+		-lcurl.dll -lcrypto -lxml2.dll -lxslt.dll -lexslt.dll -lmysqlclient\
 
-    CPPINCS  = -I$(XALIB_DIR)\include  -I..\include -I$(MINGW_DIR)\include \
-		-I$(MYSQL_DIR)\include -I$(XALLEGRO_DIR)\libs\libxml2\include \
-		-I$(XALLEGRO_DIR)\libs\libxslt\include -I$(XALLEGRO_DIR)\libs\openssl\include \
-		-I$(XALLEGRO_DIR)\libs\curl\include
+    CPPINCS  = -I$(XALIB_DIR)\include -I$(XALLEGRO_DIR)\WebApps\XaUser\include \
+		-I$(CYGWIN_LIB_DIR) -I$(CYGWIN_LIB_DIR)\libxml2 -I$(CYGWIN_LIB_DIR)\mysql  
 
     LDFLAGS  =
-    CPPFLAGS = $(CPPINCS) -std=c++0x -Wall
+    CPPFLAGS = $(CPPINCS) -std=c++14 -Wall
 
     BIN      = $(XALLEGRO_DIR)\web\$(BIN_NAME)
 
@@ -74,44 +72,44 @@ ifeq ($(UNAME_S),Darwin)
     XALIB=$(XALLEGRO_DIR)/XaLib/bin/XaLib.so
 
     CPPINCS  = -I../include -I/usr/include -I/opt/local/include -I/usr/include/libxml2 -I/usr/local/mysql/include -I$(XALLEGRO_DIR)/XaLib/include
-    CPPFLAGS = $(CPPINCS)  -std=c++0x -O3 -Wall
+    CPPFLAGS = $(CPPINCS)  -std=c++14 -O3 -Wall
 
 endif
 
 #User OBJ
-OBJ=$(OBJDIR)Controller.o $(OBJDIR)XaOuType.o $(OBJDIR)XaOu.o $(OBJDIR)XaUserRole.o \
+OBJ=$(OBJDIR)Controller.o $(OBJDIR)XaUserRole.o \
+    $(OBJDIR)XaOu.o $(OBJDIR)XaOuType.o \
     $(OBJDIR)XaAddressGeo.o $(OBJDIR)XaAddressGeoType.o \
     $(OBJDIR)XaAddressMail.o $(OBJDIR)XaAddressMailType.o \
     $(OBJDIR)XaAddressPhone.o $(OBJDIR)XaAddressPhoneCode.o $(OBJDIR)XaAddressPhoneType.o
 
 #MACROS
 .PHONY: all all-before all-after clean print-varialbes
-all:print-varialbes $(BIN) #all-after
+all:print-varialbes $(BIN) all-after
 
 clean:
 	${RM} $(OBJ) print-varialbes $(BIN)
 all-before:
 	${RM} $(OBJ)
 all-after:
-	$(OBJ)
+	${RM} $(OBJ)
 
 print-varialbes:
 	@echo "I am compiling on : " $(UNAME_P) $(UNAME_S) $(OS) $(PROCESSOR_ARCHITECTURE) $(CASE)
 
 #LINK
     $(BIN): $(OBJ)
-	$(CPP) $(OBJ) -v -o $(BIN) $(LIBS) $(LDFLAGS) $(XALIB)
-
+	$(CPP) $(OBJ) -v -o $(BIN) $(XALIB) $(LIBS)
 
 #COMPILE
 $(OBJDIR)Controller.o: Controller.cpp
 	$(CPP) -c Controller.cpp -o $(OBJDIR)Controller.o $(CPPFLAGS)
+$(OBJDIR)XaUserRole.o: XaUserRole.cpp
+	$(CPP) -c XaUserRole.cpp -o $(OBJDIR)XaUserRole.o $(CPPFLAGS)
 $(OBJDIR)XaOuType.o: XaOuType.cpp
 	$(CPP) -c XaOuType.cpp -o $(OBJDIR)XaOuType.o $(CPPFLAGS)
 $(OBJDIR)XaOu.o: XaOu.cpp
 	$(CPP) -c XaOu.cpp -o $(OBJDIR)XaOu.o $(CPPFLAGS)
-$(OBJDIR)XaUserRole.o: XaUserRole.cpp
-	$(CPP) -c XaUserRole.cpp -o $(OBJDIR)XaUserRole.o $(CPPFLAGS)
 $(OBJDIR)XaAddressGeo.o: XaAddressGeo.cpp
 	$(CPP) -c XaAddressGeo.cpp -o $(OBJDIR)XaAddressGeo.o $(CPPFLAGS)
 $(OBJDIR)XaAddressGeoType.o: XaAddressGeoType.cpp
