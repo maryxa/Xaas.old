@@ -24,8 +24,8 @@
 #include <iomanip>
 #include <tuple>
 
-#if defined(__CYGWIN32__) ||  defined(__CYGWIN__) ||  defined(__MSYS__) || defined(_WIN32)
-    #include <winsock2.h>
+#ifdef _WIN32
+	#include <winsock2.h>
     #include <windows.h>
 #endif
 
@@ -33,6 +33,7 @@
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
 #include <libxml/xpathInternals.h>
+#include <libxml/globals.h>
 
 #include <libxslt/xsltInternals.h>
 #include <libxslt/transform.h>
@@ -137,7 +138,14 @@ struct XaResponse {
 
 typedef map<string, string> XaSettings;
 
-#if defined(__CYGWIN32__) ||  defined(__CYGWIN__) ||  defined(__MSYS__) || defined(_WIN32)
+//#if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__) || defined(Windows_NT)
+
+
+//#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) || defined(__WIN32__) || defined(WIN64) || defined(_WIN64) || defined(__WIN64) || defined(__WIN64__) || defined(WINNT) || defined(__WINNT) || defined(__WINNT__)
+
+//#ifdef WIN32 || _WIN32 || __WIN32__
+
+#if defined(__CYGWIN32__) ||  defined(__CYGWIN__) ||  defined(__MSYS__)
     template < typename T > std::string to_string( const T& n ) {
         std::ostringstream stm ;
         stm << n ;
