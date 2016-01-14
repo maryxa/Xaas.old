@@ -3,8 +3,7 @@
 ##  Alessandro Mariotti
 ##  alex@xallegro.com
 
-## WINDOWS MINGW32_NT
-## TESTED: MINGW32_NT-6.2
+## WINDOWS CYGWIN
 ## TESTED WIN7 - WIN10
 ## ASSUMING XAAS INSTALLED UNDER C:/XAllegro
 

@@ -5,30 +5,18 @@
 
 UNAME_S := $(shell uname -s)
 
-##WINDOWS
-#ifeq ($(filter CYGWIN_NT-%.%,$(UNAME_S)),)
-
+##WINDOWS CYGWIN
+ifeq ($(filter CYGWIN_NT-%.%,$(UNAME_S)),)
     include Makefile_Win.mk
-
-#endif
-
-##WINDOWS
-#ifeq ($(filter MINGW32_NT-%.%,$(UNAME_S)),)
-
-#    include Makefile_Win.mk
-
-#endif
+endif
 
 ifeq ($(findstring NT,$(UNAME_S)),NT)
-
     include Makefile_Win.mk
 endif
 
 ## LINUX
 ifeq ($(UNAME_S),Linux)
-
    include Makefile_Linux.mk
-
 endif
 
 ##DARWIN
@@ -40,22 +28,13 @@ endif
 
     UNAME_P := $(shell uname -p)
 
-#XAAS OBJ
-#OBJ=$(OBJDIR)XaLibBase.o $(OBJDIR)XaLibAction.o $(OBJDIR)XaLibModel.o $(OBJDIR)XaLibHttp.o $(OBJDIR)XaLibToken.o \
-#    $(OBJDIR)XaLibDb.o $(OBJDIR)XaLibSql.o $(OBJDIR)XaLibConfig.o $(OBJDIR)XaLibXsl.o $(OBJDIR)XaLibCrypto.o \
-#    $(OBJDIR)XaLibDom.o $(OBJDIR)XaLibChar.o $(OBJDIR)XaLibCurl.o $(OBJDIR)XaLibError.o \
-#    $(OBJDIR)XaLibSocket.o $(OBJDIR)XaLibWebSocket.o $(OBJDIR)XaLibLog.o \
-#    $(OBJDIR)XaLibTime.o $(OBJDIR)XaLibWs.o $(OBJDIR)XaLibGui.o $(OBJDIR)XaLibController.o $(OBJDIR)XaLibControllerBackEnd.o $(OBJDIR)XaLibControllerFrontEnd.o\
-#    $(OBJDIR)XaUserLogin.o $(OBJDIR)XaUserLoginUi.o $(OBJDIR)XaLanguage.o \
-#    $(OBJDIR)XaLibMail.o $(OBJDIR)XaLibRbUart.o $(OBJDIR)XaLibRbGpIo.o
-
 OBJ=$(OBJDIR)XaLibBase.o $(OBJDIR)XaLibAction.o $(OBJDIR)XaLibModel.o $(OBJDIR)XaLibHttp.o $(OBJDIR)XaLibToken.o \
     $(OBJDIR)XaLibDb.o $(OBJDIR)XaLibSql.o $(OBJDIR)XaLibConfig.o $(OBJDIR)XaLibXsl.o $(OBJDIR)XaLibCrypto.o \
     $(OBJDIR)XaLibDom.o $(OBJDIR)XaLibChar.o $(OBJDIR)XaLibCurl.o $(OBJDIR)XaLibError.o \
     $(OBJDIR)XaLibLog.o \
     $(OBJDIR)XaLibTime.o $(OBJDIR)XaLibWs.o $(OBJDIR)XaLibGui.o $(OBJDIR)XaLibController.o $(OBJDIR)XaLibControllerBackEnd.o $(OBJDIR)XaLibControllerFrontEnd.o\
     $(OBJDIR)XaUserLogin.o $(OBJDIR)XaUserLoginUi.o $(OBJDIR)XaLanguage.o \
-    $(OBJDIR)XaLibMail.o $(OBJDIR)XaLibRbUart.o $(OBJDIR)XaLibRbGpIo.o
+    $(OBJDIR)XaLibRbUart.o
 
 #MACROS
 .PHONY: all all-before all-after clean print-varialbes
@@ -72,11 +51,11 @@ print-varialbes:
 	@echo "I am compiling on : " $(UNAME_P) $(UNAME_S) $(OS)
 
 #LINK
-#ifeq ($(findstring CYGWIN_NT,$(UNAME_S)),CYGWIN_NT_NT)
+ifeq ($(findstring CYGWIN_NT,$(UNAME_S)),CYGWIN_NT_NT)
     $(BIN): $(OBJ)
 	ar r $(BIN) $(OBJ)
 	ranlib $(BIN) $(LDFLAGS)
-#endif
+endif
 
 ifeq ($(findstring MINGW32_NT,$(UNAME_S)),MINGW32_NT)
     $(BIN): $(OBJ)
