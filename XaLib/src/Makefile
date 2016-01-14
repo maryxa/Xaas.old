@@ -37,17 +37,17 @@ OBJ=$(OBJDIR)XaLibBase.o $(OBJDIR)XaLibAction.o $(OBJDIR)XaLibModel.o $(OBJDIR)X
     $(OBJDIR)XaLibRbUart.o
 
 #MACROS
-.PHONY: all all-before all-after clean print-varialbes
-all:print-varialbes $(BIN) #all-after
+.PHONY: all all-before all-after clean print-variables
+all:print-variables $(BIN) #all-after
 
 clean:
-	${RM} $(OBJ) print-varialbes $(BIN)
+	${RM} $(OBJ) print-variables $(BIN)
 all-before:
 	${RM} $(OBJ)
 all-after:
 	$(OBJ)
 
-print-varialbes:
+print-variables:
 	@echo "I am compiling on : " $(UNAME_P) $(UNAME_S) $(OS)
 
 #LINK
