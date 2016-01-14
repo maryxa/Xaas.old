@@ -11,8 +11,7 @@ ifeq ($(filter CYGWIN_NT-%.%,$(UNAME_S)),)
 
     XALLEGRO_DIR = C:\XAllegro\Xaas
 
-    MYSQL_LIB = C:\XAllegro\libs\mysql64
-    MINGW_LIB_DIR=C:\XAllegro\cygwin\usr\include
+    CYGWIN_LIB_DIR=C:\XAllegro\cygwin\usr\include
 
     XALIB_DIR = $(XALLEGRO_DIR)\XaLib
     XALIB=$(XALLEGRO_DIR)\XaLib\bin\XaLib.a
@@ -22,11 +21,11 @@ ifeq ($(filter CYGWIN_NT-%.%,$(UNAME_S)),)
     RM       = rm -f -r 
     CUR_DIR  = $(cmd %cd%)
 
-    LIBS     = -L$(MINGW_LIB_DIR)\lib -L$(MINGW_LIB_DIR)\bin \
+    LIBS     = -L$(CYGWIN_LIB_DIR)\lib -L$(CYGWIN_LIB_DIR)\bin \
 		-lcurl.dll -lcrypto -lxml2.dll -lxslt.dll -lexslt.dll -lmysqlclient\
 
     CPPINCS  = -I$(XALIB_DIR)\include -I..\include \
-		-I$(MINGW_LIB_DIR) -I$(MINGW_LIB_DIR)\libxml2 -I$(MINGW_LIB_DIR)\mysql  
+		-I$(CYGWIN_LIB_DIR) -I$(CYGWIN_LIB_DIR)\libxml2 -I$(CYGWIN_LIB_DIR)\mysql
 
     LDFLAGS  =
     CPPFLAGS = $(CPPINCS) -std=c++14 -Wall

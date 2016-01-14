@@ -3,20 +3,21 @@
 ##  Alessandro Mariotti
 ##  alex@xallegro.com
 
-## ASSUMING XAAS INSTALLED UNDER c:/XAllegro
-	
-##    MYSQL_LIB = C:\XAllegro\libs\mysql-connector-c-6.1.6-winx64
-    MINGW_LIB_DIR=C:\XAllegro\cygwin\usr\include
+## WINDOWS MINGW32_NT
+## TESTED: MINGW32_NT-6.2
+## TESTED WIN7 - WIN10
+## ASSUMING XAAS INSTALLED UNDER C:/XAllegro
+
+    CYGWIN_LIB_DIR = C:\XAllegro\cygwin\usr\include
 
     CPP      = g++
     OBJDIR   = ..\objects\\
     RM       = rm -f -r
     CUR_DIR  = $(cmd %cd%)
 
-##    LIBS     = -static -L$(MYSQL_LIB)\lib 
-    CPPINCS  = -I..\include -I$(MINGW_LIB_DIR) \
-		-I$(MINGW_LIB_DIR)\libxml2 -I$(MINGW_LIB_DIR)\mysql
-##		-I$(MYSQL_LIB)\include  -I$(MINGW_LIB_DIR)\libxml2 -I$(MINGW_LIB_DIR)\mysql
+    LIBS     = -static
+    CPPINCS  = -I..\include -I$(CYGWIN_LIB_DIR) \
+		-I$(CYGWIN_LIB_DIR)\libxml2 -I$(CYGWIN_LIB_DIR)\mysql
 
     CPPFLAGS = $(CPPINCS) -std=c++14 -O3
 
