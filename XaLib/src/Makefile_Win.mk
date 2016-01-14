@@ -18,7 +18,7 @@
     CPPINCS  = -I..\include -I$(CYGWIN_LIB_DIR) \
 		-I$(CYGWIN_LIB_DIR)\libxml2 -I$(CYGWIN_LIB_DIR)\mysql
 
-    CPPFLAGS = $(CPPINCS) -std=c++14 -O3
+    CPPFLAGS = $(CPPINCS) -std=c++14 -O3 -Wall
 
     BIN      = ..\bin\XaLib.a
 

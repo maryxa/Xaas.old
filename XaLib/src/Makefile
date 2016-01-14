@@ -51,7 +51,7 @@ print-varialbes:
 	@echo "I am compiling on : " $(UNAME_P) $(UNAME_S) $(OS)
 
 #LINK
-ifeq ($(findstring CYGWIN_NT,$(UNAME_S)),CYGWIN_NT_NT)
+ifeq ($(findstring CYGWIN_NT,$(UNAME_S)),CYGWIN_NT)
     $(BIN): $(OBJ)
 	ar r $(BIN) $(OBJ)
 	ranlib $(BIN) $(LDFLAGS)
