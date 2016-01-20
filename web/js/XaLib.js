@@ -129,6 +129,14 @@ function XaXmlGetElementValueByXpath (XmlDoc,XPathExpr) {
     return ElementValue;
 };
 
+function XaXmlGetElementNameByXpath (XmlDoc,XPathExpr) {
+
+    var ElementName= XmlDoc.evaluate(XPathExpr, XmlDoc, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.nodeName;
+
+    return ElementName;
+};
+
+
 function XaXmlCountElementByXpath (XmlDoc,XPathExpr) {
     
     var ElementNum = XmlDoc.evaluate( 'count('+XPathExpr+')', XmlDoc, null, XPathResult.ANY_TYPE, null ).numberValue;

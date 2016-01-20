@@ -85,6 +85,24 @@ function XaFormTpl (ModelName) {
 
             Field+="<script>XaCreateOptionsOu('','obj="+FObj+"&evt="+FEvt+"','"+FieldExtId+"');</script>";
 
+        } else if (FType==="select-single-static") {
+
+	    var OptionsNumber=XaXmlCountElementByXpath(XmlDoc,"//fieldset/field["+FieldId+"]/options/option");
+	    var DefaultValue =XaXmlGetElementValueByXpath(XmlDoc,"//fieldset/field["+FieldId+"]/default");
+
+            Field+="<label id=\""+ LId +"\" for=\""+FieldExtId +"\">"+FLabel+"</label>";
+            Field+="<select id=\""+FieldExtId+ "\" name=\""+FieldExtName+"\" type=\""+FType+"\" placeholder=\""+FPlaceholder+"\"" + FRequired+" autofocus=\"autofocus\" >";
+            Field+="<option value=\"\">... Select an option ...</option>";
+            for(var i=0;i<OptionsNumber;i++) {
+		var j=i+1;
+		var OptValue=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/option["+j+"]/value");
+		var OptText =XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/option["+j+"]/label");
+		Field+="<option value=\""+OptValue+"\">"+OptText+"</option>";
+            }
+            Field+="</select>";
+
+            Field+="<script>XaSelectOptions('"+FieldExtId+"','"+DefaultValue+"');</script>";
+
         } else {
             
         }
@@ -318,9 +336,10 @@ function XaTreeBranchRead(controller,url,TargetId) {
                 var tree_level=parseInt(XaXmlGetElementValueByXpath (XmlDoc,"/WsData/list/item["+i+"]/tree_level"))+1;
                 var name=XaXmlGetElementValueByXpath (XmlDoc,"/WsData/list/item["+i+"]/name");
                 var id=XaXmlGetElementValueByXpath (XmlDoc,"/WsData/list/item["+i+"]/id");
-                var url="obj=XaOuUi&evt=Tree&tree_parent_ID="+id+"&tree_level="+tree_level;
-                //var BranchCall='XaTreeBranchRead("","'+url+'","'+id+'");XaStyleSetCssClassById("a-'+id+'","open");XaElSetHrefById("a-'+id+'","XaTreeBranchClose('+id+')","yes");';
-                var BranchCall='XaTreeBranchRead("","'+url+'","'+id+'");';
+                var BranchCallUrl="obj=XaOuUi&evt=Tree&tree_parent_ID="+id+"&tree_level="+tree_level;
+                var BranchCall='XaTreeBranchRead("","'+BranchCallUrl+'","'+id+'");';
+
+                var ReadCallUrl="?obj=XaOuUi&evt=Read&id="+id;
 
                 var Element='<li id="'+id+'">'+
 
@@ -328,10 +347,10 @@ function XaTreeBranchRead(controller,url,TargetId) {
                     '<a id="a-'+id+ '" class="close" href=\'javascript:'+BranchCall+';\'></a>'+
 
                     /*LIST ELEMENT BRANCH*/
-                    '<a class="name" href="javascript:alert(\'pluto\');">'+name+'</a>'+
+                    '<a class="name" href=\''+ReadCallUrl+'\'>'+name+'</a>'+
 
                     /*READ THE OU WITH EDIT*/
-                    '<a class="edit" href="javascript:alert(\'pippo\');"></a>'+
+                    '<a class="edit" href="javascript:alert(\'pluto\');"></a>'+
                     '</li>';
 
                 Elements+=Element;
@@ -356,4 +375,115 @@ function XaTreeBranchClose(Id) {
 
     XaStyleSetCssClassById("a-"+Id,"close");
     XaElRemoveChildByParentId (Id,"ul");
+};
+
+/*READ*/
+function XaReadTpl (ModelName,DataName) {
+
+//alert(ModelName);
+//alert(DataName);
+
+    var XmlDoc=XaParseXml(ModelName);
+    var XmlDataDoc=XaParseXml(DataName);
+
+    var RootElement=XmlDoc.documentElement.nodeName;
+
+    var DataRowNumber=XaXmlCountElementByXpath(XmlDataDoc,"//list/item");
+
+    function BuildField (FieldId) {
+
+	var Field="";
+
+	var FName =XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/name");
+	var FLabel=XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/label");
+	var FType =XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/type");
+        var value =XaXmlGetElementValueByXpath(XmlDataDoc,"//list/item/"+FName);
+
+        if (FType==="input-text") {
+
+            Field+="<label>"+FLabel+"</label>: ";
+            Field+=value;
+
+        } else if (FType==="input-textarea") {
+
+            Field+="<label>"+FLabel+"</label>: ";
+            Field+=value;
+
+        } else if (FType==="select-single") {
+
+            Field+="<label>"+FLabel+"</label>: ";
+            Field+=value;
+
+        } else if (FType==="select-single-ou-tree") {
+
+            Field+="<label>"+FLabel+"</label>: ";
+            Field+=value;
+
+        } else if (FType==="select-single-static") {
+
+            var OptionsNumber=XaXmlCountElementByXpath(XmlDoc,"//field["+FieldId+"]/options");
+
+            var OptionLabel="";
+            for (var i=1; i<=OptionsNumber; i++) {
+		if (value===XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/options/option["+i+"]/value")) {
+		    OptionLabel=XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/options/option["+i+"]/label");
+		}
+            }
+
+            Field+="<label>"+FLabel+"</label>: ";
+            Field+=OptionLabel;
+
+        } else {
+            
+        }
+
+    return Field;
+    };
+
+    /*can access _privateProperty and call _privateMethod*/
+    this.GetRead = function () {
+
+        var Content="<div class=\"form form-1-column\">";
+
+        if (DataRowNumber>0) {
+            var FieldsNumber=XaXmlCountElementByXpath(XmlDoc,"//field");
+
+            Content+="<ul>";
+            for (var j=1; j<=FieldsNumber; j++) {
+                var name =XaXmlGetElementNameByXpath(XmlDoc,"//field["+j+"]");
+                Content+="<li>"+BuildField(j)+"</li>";
+            };
+            Content+="</ul>";
+        } else {
+               Content+="<center>No data to show</center>";
+        }
+
+        Content+="</div>";
+
+        /*console.log(Content);*/
+        //console.log(Fields);
+        return Content;
+    };
+};
+
+
+/*
+ * @function XaSelectOptions
+ * Function to set options to selected state
+ *
+ * This function applies to both <select> and <select type="multiple"> elements
+ *
+ * @param {string} SelectId - The id of the select element
+ * @param {string} DefaultValue - The default value for the select element
+ *
+ */
+function XaSelectOptions(SelectId,DefaultValue) {
+
+	var Select=document.getElementById(SelectId);
+
+	for(var i=0;i<Select.options.length;i++) {
+		if (Select.options[i].value===DefaultValue) {
+			Select.options[i].selected=1;
+		}
+	}
 };

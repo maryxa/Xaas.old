@@ -16,6 +16,8 @@ class XaOuUi : public XaLibAction {
         void Tree();
         void Explorer();
 
+		void Read();
+
     protected:
 
     public:

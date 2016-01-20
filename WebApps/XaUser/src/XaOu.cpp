@@ -9,14 +9,14 @@ void XaOu::Dispatcher (const string &CalledEvent) {
 
 	if (CalledEvent=="Create"){
 		this->Create();
-//    } else if (CalledEvent=="Read"){
-//		 this->Read();
   //  } else if (CalledEvent=="List"){
 	//	 this->List();
     } else if (CalledEvent=="ListAsOptions"){
 		 this->ListAsOptions();
     } else if (CalledEvent=="Tree"){
 		 this->Tree();
+    } else if (CalledEvent=="Read"){
+		 this->Read();
     //} else if (CalledEvent=="Delete"){
 		 //this->Delete();
     } else {
@@ -71,14 +71,6 @@ void XaOu::Create() {
 
 
 /*
-void XaOu::Create() {
-
-};
-*/
-/*
-XaOuModel::Read(){
-};
-
 XaOuModel::Update(){
 };
 
@@ -199,6 +191,22 @@ void XaOu::Tree() {
 	};
 
 	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaOu",{ReturnedFields},{WhereFields}, {WhereValues}, {OrderByFields},{GroupByFields});
+	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);
+};
+
+void XaOu::Read() {
+
+	string Id=HTTP.GetHttpParam("id");
+
+	vector<string> ReturnedFields={"id","name","description","tree_parent_ID","XaOuType_ID"};
+
+	string Qry="SELECT X1.id, X1.name, X1.description, XaOuType.name AS XaOuType_ID, X2.name AS tree_parent_ID FROM XaOu X1";
+	Qry+=" LEFT JOIN XaOuType ON X1.XaOuType_ID=XaOuType.id";
+	Qry+=" LEFT JOIN XaOu X2 ON X1.tree_parent_ID=X2.id";
+	Qry+=" WHERE X1.id="+Id;
+	
+	DbResMap DbRes=XaLibSql::FreeQuerySelect(DB_READ,Qry);
+
 	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);
 };
 

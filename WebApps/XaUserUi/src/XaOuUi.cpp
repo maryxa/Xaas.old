@@ -20,6 +20,10 @@ void XaOuUi::Dispatcher (const string &CalledEvent) {
 
     } else if (CalledEvent=="Tree") {
         this->Tree();
+
+    } else if (CalledEvent=="Read") {
+        this->Read();
+
     } else {
 
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42:: Requested Event Does Not Exists -> "+CalledEvent);
@@ -218,6 +222,29 @@ void XaOuUi::Explorer () {
 
 	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles(Templates),HtmlStrings,JsVarFiles,JsVarStrings,0);
 	
+};
+
+void XaOuUi::Read() {
+
+	AddJsVarFile("XaModel","XaOu");
+	AddJsVarString("XaGuiStyle","default");
+
+	/* data */
+
+	vector <string> FieldsValues ={};
+	FieldsValues.push_back(HTTP.GetHttpParam("id"));
+
+	XaLibCurl LibCurl;
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaOu","Read",{"id"},{FieldsValues}));
+	CheckResponse(CallResponse);
+	
+	AddJsVarString("XaData",CallResponse);
+
+	
+	vector<string> Templates=SetPageLayout(REQUEST.CalledLayout);
+	Templates.push_back("XaGuiRead");
+
+	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles(Templates),HtmlStrings,JsVarFiles,JsVarStrings,0);
 };
 
 XaOuUi::~XaOuUi(){
