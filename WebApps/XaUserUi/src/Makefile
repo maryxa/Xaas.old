@@ -6,7 +6,7 @@
 UNAME_S := $(shell uname -s)
 UNAME_P := $(shell uname -p)
 
-BIN_NAME=XaUser.cgi
+BIN_NAME=XaUserUi.cgi
 
 ##WINDOWS CYGWIN
 ifeq ($(filter CYGWIN_NT-%.%,$(UNAME_S)),)

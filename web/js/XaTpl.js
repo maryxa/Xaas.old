@@ -166,13 +166,13 @@ function XaListTpl (ModelName) {
         return ListHeader;
     };
 
-    function BuildRow (FieldId) {
+    function BuildRow (FieldIdx) {
 
         var ListRow="<tr class=\"row\">";
         
         for(key in TagsNames) {
 
-            var TagValue=XaXmlGetElementValueByXpath (XmlDoc,"/WsData/list/item["+FieldId+"]/"+TagsNames[key]);
+            var TagValue=XaXmlGetElementValueByXpath (XmlDoc,"/WsData/list/item["+FieldIdx+"]/"+TagsNames[key]);
             ListRow+="<td>"+TagValue+"</td>"; 
         }
 
@@ -479,11 +479,11 @@ function XaReadTpl (ModelName,DataName) {
  */
 function XaSelectOptions(SelectId,DefaultValue) {
 
-	var Select=document.getElementById(SelectId);
+    var Select=document.getElementById(SelectId);
 
-	for(var i=0;i<Select.options.length;i++) {
-		if (Select.options[i].value===DefaultValue) {
-			Select.options[i].selected=1;
-		}
-	}
+    for(var i=0;i<Select.options.length;i++) {
+        if (Select.options[i].value===DefaultValue) {
+                Select.options[i].selected=1;
+        }
+    }
 };
