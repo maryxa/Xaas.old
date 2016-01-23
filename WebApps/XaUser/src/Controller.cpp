@@ -3,24 +3,13 @@
 #include <XaLibError.h>
 
 /*
-* General System Post or Get Parameters 
-* @param do=action
-* @param obj=object
-* @param evt=event
-* @param lay=layout
-* @param l=language
-* @param b=brand
-* @param d=device type - pc tablet smartphone
-*/
-
-/*
 &ReqType=xml
 &Encoding=B64, no
 &Encryption=yes;
 &Data=;
 &ResType=xml;
 &ConsumerId=3;
-&token=9879879
+&Lang=it 
 */
 
 /**** APPLICATION ****/
@@ -80,15 +69,13 @@ Controller::Controller(string ConfFile) {
 		string ErrorDesc=Error.GetError(e);
 
 		SendHtmlHeaders();
-		//cout<<"ERROR: "+FromIntToString(e) +" :: "+ErrorDesc<<endl;
 
 		cout<<"<WsData><error><number>"+FromIntToString(e)+"</number><description>"+ErrorDesc+"</description></error></WsData>"<<endl;
-		
+
 	} catch (...) {
 
 		SendHtmlHeaders();
 		cout<<"Generic not handled Error"<<endl;
-		
 
 	}
 
@@ -111,6 +98,7 @@ void Controller::DispatchWs () {
 	SESSION.Token=Ws.GetToken();
 
 	RESPONSE.ResponseType=Ws.GetResType();
+	RESPONSE.ResponseLang=Ws.GetResLang();
 
 	if (REQUEST.CalledObject=="XaUser" || REQUEST.CalledEvent=="Login") {
 		/* In Case of Login I do not check the Token validity */
@@ -131,20 +119,14 @@ void Controller::DispatchWs () {
 void Controller::ExecuteWs(XaLibWs& Ws){
 
 	if(REQUEST.CalledObject=="XaUserLogin") {
-
 		unique_ptr<XaUserLogin> UserLogin (new XaUserLogin());
 		UserLogin->Execute();
-
 	} else if(REQUEST.CalledObject=="XaOuType") {
-
 		unique_ptr<XaOuType> OuType (new XaOuType());
 		OuType->Execute();
-
 	} else if(REQUEST.CalledObject=="XaOu") {
-
 		unique_ptr<XaOu> Ou (new XaOu());
 		Ou->Execute();
-
 	} else if(REQUEST.CalledObject=="XaAddressPhone") {
 		unique_ptr<XaAddressPhone> AddressPhone (new XaAddressPhone());
 		AddressPhone->Execute();
@@ -167,7 +149,6 @@ void Controller::ExecuteWs(XaLibWs& Ws){
 		unique_ptr<XaAddressGeoType> AddressGeoType (new XaAddressGeoType());
 		AddressGeoType->Execute();
 	} else {
-
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"WS Called Object Doesn't Exist -> "+REQUEST.CalledObject);
 		throw 119;
 	}

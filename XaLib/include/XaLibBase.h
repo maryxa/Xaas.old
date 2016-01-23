@@ -55,7 +55,6 @@ struct XaSession {
     string Token="";
     int XaUser_ID=0;
     int XaWsSession_ID=0;
-
     string BackEndIp="";
     string FrontEndIp="";
     string ClientIp="";    
@@ -63,77 +62,20 @@ struct XaSession {
 
 struct XaRequest {
 
-    /*LEGACY*/
-
-    //string WsXml="";
-    //string WsXmlData="";
-    //string WsXmlDataEncoding="";
-    //string WsXmlDataKey="";
-    //string WsXmlDataIV="";
-
-    //string WsCallerName="";
-    //string WsCallerKey="";
-
-    //string ResponseType="";
-    //string RedirectLocation="";
-    //string WsXmlUsername="";
-    //string WsXmlPassword="";
-   // string XaSession_ID="";
-    //string XaSession_KEY="";
-    //string XaSession_COOKIE="";
-
     string CalledLayout="";
-
-    //string Brand="";
-    //string Device="";
-
-    //bool FlowCheck=true;
-    /*LEGACY END*/
-
-    //CARATTERISTICHE DEL WebService
-    //string WsReqType="";
-    //string WsData="";
-    //string WsEncoding="";
-    //string WsEncryption="";
-    //string WsResType="";
-
-    //CARATTERISTICHE DELLA CHIAMATA
-    //string WsXmlUsername="";
-    //string WsXmlPassword="";
-    //string WsConsumerId="";
-    //string WsConsumerName="";
-    //string WsConsumerKey="";
-
-    //string WsTokenId="";
-
-    //string CalledAction="";
     string CalledObject="";
     string CalledEvent="";
-
     string HeadersString="";
     string HeadersStringCustom="";
-
     string Language="";
-
-    //string ClientIpAddress="";
-    //string ServerIpAddress="";
-
-    //STATO DELLA CHIAMATA
-    //int RequestStatus=1;
-    //string RequestErrorCode="";
-    //string RequestErrorMessage="";
 };
 
 struct XaResponse {
 
-    /*LEGACY*/
-    //string Object;
-    //string Event;
-    //string Headers;
-    /*LEGACY END*/
     string Location;
     string Content;
     string ResponseType;
+    string ResponseLang;
 };
 
 typedef map<string, string> XaSettings;

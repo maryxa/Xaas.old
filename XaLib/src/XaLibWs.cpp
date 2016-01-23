@@ -18,6 +18,7 @@ void XaLibWs::Setup() {
 	Encryption=HTTP.GetHttpParam("Encryption");
 	ConsumerId=HTTP.GetHttpParam("ConsumerId");
 	ResType=HTTP.GetHttpParam("ResType");
+	ResLang=HTTP.GetHttpParam("ResLang");
 	Data=HTTP.GetHttpParam("Data");
 
 	CheckRequired();
@@ -38,24 +39,26 @@ void XaLibWs::Setup() {
 
 			LOG.Write("INF", __FILE__,__FUNCTION__,__LINE__,"WS Requested Encrypted And Encoded");
 			GetEncodedData();
-			GetConsumerKey();
+			GetConsumer();
 			GetDecryptedData();
 		}
 
 	/*
 	* No Encrypted - Encoded
 	*/
-	} else if(Encryption=="no" && Encoding=="yes") {
+	} else if(Encryption=="no" && Encoding=="B64") {
 
 		LOG.Write("INF", __FILE__,__FUNCTION__,__LINE__,"WS Requested No Encrypted And Encoded");
 		GetEncodedData();
+		GetConsumer();
 
 	/*
 	* No Encrypted - No Encoded
 	*/
 	} else if (Encryption=="no" && Encoding=="no") {
 
-		LOG.Write("INF", __FILE__,__FUNCTION__,__LINE__,"WS Requested No Encrypted And No Encoded");	
+		LOG.Write("INF", __FILE__,__FUNCTION__,__LINE__,"WS Requested No Encrypted And No Encoded");
+		GetConsumer();
 	}
 
 	ExtractData();
@@ -103,6 +106,11 @@ void XaLibWs::CheckRequired() {
 		LOG.Write("ERR",__FILE__,__FUNCTION__,__LINE__,"WS Requested Without ResType Parameter");
 		throw 106;
 	}
+	
+	if (ResLang=="NoHttpParam" || ResLang=="") {
+	
+		ResLang=SETTINGS["DefaultLanguage"];
+	};
 };
 
 void XaLibWs::GetEncodedData(){
@@ -124,9 +132,9 @@ void XaLibWs::GetEncodedData(){
 	}
 };
 
-void XaLibWs::GetConsumerKey() {
+void XaLibWs::GetConsumer() {
 
-	string SqlQry="SELECT key FROM XaWsConsumer WHERE id="+ConsumerId;
+	string SqlQry="SELECT ekey,hostname,ip FROM XaWsConsumer WHERE status=1 and id="+ConsumerId;
 	DbResMap DbRes=XaLibSql::FreeQuerySelect(DB_SESSION,SqlQry);
 
 	if (DbRes.size()==0) {
@@ -138,7 +146,24 @@ void XaLibWs::GetConsumerKey() {
 	} else {
 
 		LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"Ws ConsumerId Is Valid -> "+ ConsumerId);
-		ConsumerKey=DbRes[0]["key"];
+
+		ConsumerKey=DbRes[0]["ekey"];
+
+		//check ip and domain name 
+		ConsumerIp=DbRes[0]["ip"];
+		ConsumerHostname=DbRes[0]["hostname"];
+
+		/* TODO
+
+			MULTIPLE CASES IP* and HOSTNAME !=* ETC
+
+		*/
+		if (ConsumerHostname!="*" || ConsumerIp!="*") {
+			
+			//chech domain name and Client IP
+			LOG.Write("ERR",__FILE__,__FUNCTION__,__LINE__,"WS Consumer IP or Consumer Host Name are not valid"+ ConsumerIp+" :: "+ ConsumerHostname);
+			throw 120;
+		}
 	}
 };
 
@@ -146,7 +171,7 @@ void XaLibWs::GetDecryptedData() {
 
 	XaLibCrypto* LibCrypto=new XaLibCrypto();
 	Data=LibCrypto->AesDecrypt(Data,ConsumerKey);
-	
+
 	LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"Ws Data -> "+ Data);
 	//throw 111;
 	//ERRORE EXIT ECC
@@ -193,7 +218,7 @@ void XaLibWs::ExtractData(){
 	/*CASE LOGIN*/
 	if (Token=="ELEMENT-NOT-DEFINED"){
 
-		LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"WS Token Is -> "+ Token);
+		LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"WS Token Is Empty");
 
 		if (Username=="ELEMENT-NOT-DEFINED") {
 
@@ -206,13 +231,13 @@ void XaLibWs::ExtractData(){
 			LOG.Write("ERR",__FILE__,__FUNCTION__,__LINE__,"WS Password Is Empty");
 			throw 113;
 		}
-		
+
 		if (Object!="XaUserLogin") {
 
 			LOG.Write("ERR",__FILE__,__FUNCTION__,__LINE__,"WS Object Is Not XaUserLogin But Token is Empty");
 			throw 117;
 		}
-		
+
 		if (Event!="Login") {
 
 			LOG.Write("ERR",__FILE__,__FUNCTION__,__LINE__,"WS Event Is Not Login But Token is Empty");
@@ -246,8 +271,6 @@ void XaLibWs::ExtractData(){
 		LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"WS Requested Object ->" + Object);
 		LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"WS Requested Event ->" + Event);
 		
-		//NEL CASO DI XML INSERIRE GLI IF PER JSON ECC
-		
 		int ParamsNum=LibDom->GetNumRowByXPathInt(XmlDomDoc,"/WsData/params/p");
 
 		if (ParamsNum==0){
@@ -278,116 +301,6 @@ void XaLibWs::ExtractData(){
 	}
 };
 
-//void XaLibWs::List (){
-/*
-	XaLibAction::SetLayout("Standard");
-    XaLibAction::AddXslFile("XaWsList");
-
-    XaLibAction::AddXmlFile("XaWsListStruct");
-
-	XaLibDom* LibDom=new XaLibDom();
-	xmlDocPtr XmlDomDocData=LibDom->DomFromFile(SETTINGS["XmlDir"]+"XaWsListData.xml");
-
-	string Project=HTTP.GetHttpParam("project");
-        
-        unique_ptr<XaLibSql> LibSql(new XaLibSql());
-
-	string XaWsList{};
-        
-        if (Project=="MlsClick") {
-            XaWsList="SELECT id,XaUser_ID,caller,object,event,request,response,log_data,request_time,response_time FROM XaSessionWsLog WHERE object='MlsClick' ORDER BY request_time DESC LIMIT 100";
-        } else {
-            XaWsList="SELECT id,XaUser_ID,caller,object,event,request,response,log_data,request_time,response_time FROM XaSessionWsLog WHERE object!='MlsClick' ORDER BY request_time DESC LIMIT 100";
-        }
-
-	DbResMap DbResXaWsList=LibSql->FreeQuery(DB_SESSION,XaWsList);
-
-		for (int i=0;i<DbResXaWsList.size();i++) {
-			
-			xmlDocPtr XmlDomDocDataTemp=xmlCopyDoc(XmlDomDocData,1);
-
-			string XPB="//XaWsList/data/ws/";
-
-			vector<string> XPathExpr {XPB+"XaWs-Id",XPB+"XaWs-XaUser_ID",XPB+"XaWs-Caller",
-			                           XPB+"XaWs-Object",XPB+"XaWs-Event",
-									   XPB+"XaWs-Request",XPB+"XaWs-Response",
-									   XPB+"XaWs-LogData",
-									   XPB+"XaWs-Request_Time",XPB+"XaWs-Response_Time"};
-
-			vector<string> XPathValue {DbResXaWsList[i]["id"],DbResXaWsList[i]["XaUser_ID"],DbResXaWsList[i]["caller"],
-			                            DbResXaWsList[i]["object"],DbResXaWsList[i]["event"],
-										DbResXaWsList[i]["request"],DbResXaWsList[i]["response"],
-										DbResXaWsList[i]["log_data"],
-										DbResXaWsList[i]["request_time"],DbResXaWsList[i]["response_time"],};
-
-			LibDom->UpdateElementValueByXPath(XmlDomDocDataTemp, XPathExpr, XPathValue);
-
-			XPathExpr.clear();
-			XPathValue.clear();
-
-			XaLibAction::AddXmlString(LibDom->StringFromDom(XmlDomDocDataTemp));
-		}
-
-	
-		xmlDocPtr XmlDomDoc=LibDom->DomFromStringAndFile(XmlFiles,XmlStrings,1);
-		xmlDocPtr XslDomDoc=LibDom->DomFromStringAndFile(XslFiles,XslStrings,2);
-	delete(LibDom);
-
-    const int MAXITEMS = 2;
-    string XslParams[MAXITEMS] = {"a","b"};
-    XaLibXsl *LibXsl=new XaLibXsl(XmlDomDoc,XslDomDoc,XslParams,MAXITEMS);
-
-	RESPONSE.Content=LibXsl->GetXHtml();
-	//RESPONSE.Content=LibXsl->GetXHtml();
-	delete(LibXsl);
-*/
-//};
-/*
-int XaLibWs::CheckCaller(const string &CallerName,const string &CallerKey) {
-
-	int ReturnValue=0;
-
-	if (CallerName!="" && CallerKey!="") {
-
-		LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"WS -> Caller Name:"+CallerName +":: Caller Key:"+CallerKey);
-
-		XaLibSql LibSql;
-		DbResMap DbRes=LibSql.FreeQuery(DB_SESSION,"SELECT id,name,caller_key,active,deleted FROM XaWsCaller WHERE name=\""+CallerName +"\" AND caller_key=\""+CallerKey+"\"");
-
-		if (DbRes.size()==1) {
-
-			if(FromStringToInt(DbRes[0]["active"])==1) {
-
-				if(FromStringToInt(DbRes[0]["deleted"])==0) {
-
-					ReturnValue=1;
-					LOG.Write("INF",__FILE__,__FUNCTION__,__LINE__,"WS Caller Is Authorized -> Caller Name:"+CallerName +":: Caller Key:"+CallerKey);
-
-				} else {
-
-					LOG.Write("ERR",__FILE__,__FUNCTION__,__LINE__,"WS Caller Is Deleted -> Caller Name:"+CallerName +":: Caller Key:"+CallerKey);
-				} 
-
-			} else {
-
-				LOG.Write("ERR",__FILE__,__FUNCTION__,__LINE__,"WS Caller Is Not Active -> Caller Name:"+CallerName +":: Caller Key:"+CallerKey);
-
-			}
-
-		} else {
-
-			LOG.Write("ERR",__FILE__,__FUNCTION__,__LINE__,"WS Caller Does Not Exist Or Is Not Unique -> Caller Name:"+CallerName +":: Caller Key:"+CallerKey);
-		}
-		
-		
-	} else {
-
-		LOG.Write("ERR",__FILE__,__FUNCTION__,__LINE__,"WS Caller Name Or Caller Key are Missing");
-	}
-
-	return ReturnValue;
-};
-*/
 string XaLibWs::GetObject() {
 
 	return Object;
@@ -421,6 +334,11 @@ string XaLibWs::GetClientIp() {
 string XaLibWs::GetResType() {
 
 	return ResType;
+};
+
+string XaLibWs::GetResLang() {
+
+	return ResLang;
 };
 
 int XaLibWs::GetWsId() {

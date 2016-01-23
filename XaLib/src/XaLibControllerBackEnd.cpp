@@ -95,14 +95,6 @@ void XaLibControllerBackEnd::SendResponse(){
 		SendHeaders(RESPONSE.ResponseType);
 		cout<<"<WsData><token>"+SESSION.Token+"</token>"+RESPONSE.Content+"</WsData>"<<endl;
 };
-/*
-void XaLibControllerBackEnd::SendLocationHeaders(string Location){
-
-	cout<<"Location: ?"+Location<<endl;
-	cout<< "Content-Type: text/html; charset=utf-8\n\n";
-};
-*/
-
 
 XaLibControllerBackEnd::~XaLibControllerBackEnd() {
 };

@@ -5,18 +5,16 @@
 #include <XaLibWs.h>
 class Controller : private XaLibControllerBackEnd {
 
-	private:
+    private:
 
-		void DispatchWs();
-		void ExecuteWs(XaLibWs& Ws);
-		//void ExecuteCalledObject();
-		//int  ProfileCalledObject(string CalledObject,string CalledEvent);
+        void DispatchWs();
+        void ExecuteWs(XaLibWs& Ws);
 
-	protected:
+    protected:
 
-	public:
+    public:
 
-		Controller(string ConfFile);
-		~Controller();
+        Controller(string ConfFile);
+        ~Controller();
 };
 #endif

@@ -30,13 +30,14 @@ class XaLibWs : protected XaLibBase {
         string Encryption={""};
 
         string ConsumerId={""};
+        string ConsumerIp={""};
+        string ConsumerHostname={""};
 
         /* 32B key*/
         string ConsumerKey={""};
 
-        //string ConsumerName={""};
-
         string ResType={""};
+        string ResLang={""};
         string Data={""};
 
         string Username={""};
@@ -69,7 +70,7 @@ class XaLibWs : protected XaLibBase {
         */
         void CheckRequired();
         void GetEncodedData();
-        void GetConsumerKey();
+        void GetConsumer();
         void GetDecryptedData();
 
         void AddRequestLog();
@@ -91,6 +92,8 @@ class XaLibWs : protected XaLibBase {
         string GetToken();
         string GetClientIp();
         string GetResType();
+        string GetResLang();
+
         int GetWsId();
 
         void AddResponseLog();

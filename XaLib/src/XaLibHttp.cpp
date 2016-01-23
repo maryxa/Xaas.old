@@ -402,16 +402,16 @@ return cookie;
 string XaLibHttp::GetClientIpAddress (){
 
 	string IpAddress="";
-	
+
 	//LOAD BALANCING CASE
 	if (this->HTTP_X_FORWARDED_FOR!="") {
-	
+
 		IpAddress=this->HTTP_X_FORWARDED_FOR;
 
 	} else {
 
 		IpAddress=this->HTTP_REMOTE_ADDR;
-	
+
 	}
 
 	return IpAddress;

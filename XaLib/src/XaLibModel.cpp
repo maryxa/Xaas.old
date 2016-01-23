@@ -3,17 +3,18 @@
 XaLibModel::XaLibModel() {
 };
 
+/*TO REMOVE*/
 void XaLibModel::DumpDbResMap(DbResMap& ResMap) {
-
+/*
 	for (auto i=0;i<ResMap.size();i++) {
 	
 		for (const auto &k:ResMap[i]) {
 
-			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"YYYYYYYYYY -> "+k.first+" :: " +k.second);
+			//LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"YYYYYYYYYY -> "+k.first+" :: " +k.second);
 		};
 	
 	};
-
+*/
 };
 
 vector<string> XaLibModel::AddXmlFile(const vector<string>& FileName){

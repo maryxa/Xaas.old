@@ -15,7 +15,7 @@ void XaUserLogin::Dispatcher (const string &CalledEvent) {
 
     } else {
 
-		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42 Requested Event Does Not Exists -> "+CalledEvent);
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42: Requested Event Does Not Exists -> "+CalledEvent);
 		throw 42;
 	}
 
@@ -42,7 +42,7 @@ void XaUserLogin::Login (){
 
 		if (n==0) {
 
-			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-45 USER Does Not Exist Or The Password Is Wrong -> " + StrUsername);
+			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-45: USER Does Not Exist Or The Password Is Wrong -> " + StrUsername);
 			throw 45;
 
 		} else if (n==1){
@@ -65,13 +65,13 @@ void XaUserLogin::Login (){
 
 		} else {
 
-			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-46 User Is Not Unique");
+			LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-46: User Is Not Unique");
 			throw 46;
 		}
 
 	} else {
 
-		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-47 Username Or Password Is Empty");
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-47: Username Or Password Is Empty");
 		throw 47;
 	}
 
@@ -83,18 +83,6 @@ void XaUserLogin::Logout () {
 	
 	SESSION.Token="0";
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Logout Affected");
-};
-
-void XaUserLogin::Create (){
-};
-
-void XaUserLogin::Read (){
-};
-
-void XaUserLogin::Update (){
-};
-
-void XaUserLogin::Delete (){
 };
 
 XaUserLogin::~XaUserLogin(){

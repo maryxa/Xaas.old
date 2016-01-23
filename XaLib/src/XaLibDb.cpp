@@ -289,6 +289,7 @@ XaLibDb::DbResMap XaLibDb::ExSelect(string SqlQry) {
 				cout<< "Error occurred during execution Query-> " + log<<endl;
 
 				DbRes.clear();
+				throw 28;
 				return DbRes;
 
 			} else {
@@ -313,6 +314,7 @@ XaLibDb::DbResMap XaLibDb::ExSelect(string SqlQry) {
 				cout<< "Error occurred during execution Query-> " + log<<endl;
 
 				DbRes.clear();
+				throw 28;
 				return DbRes;
 
 			} else {
@@ -337,6 +339,7 @@ XaLibDb::DbResMap XaLibDb::ExSelect(string SqlQry) {
 				cout<< "Error occurred during execution Query-> " + log<<endl;
 
 				DbRes.clear();
+				throw 28;
 				return DbRes;
 
 			} else {

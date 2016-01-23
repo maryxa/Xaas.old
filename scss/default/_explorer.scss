@@ -7,9 +7,11 @@
 
     .tree {
         @include reset-a();
-
+        
+        resize:horizontal;
         margin-right: 0.5%;
         width: 20%;
+        max-width: 80%;
         background-color: $ListBackgroundColor;
         opacity:$ForeGroundOpacity;
         border-radius:$BorderRadius;

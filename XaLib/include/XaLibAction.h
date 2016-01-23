@@ -84,9 +84,9 @@ class XaLibAction : protected XaLibBase {
 
         /**
         * Adds file to the vector<string> HtmlFiles\n
-        * All files in the vector will be added in the generated Html.\n
+        * All files in the vector will be added in the generated HTML.\n
         * The search order for the file:\n
-        * 1) Application Html Directory SETTINGS["HtmlDir"]\n
+        * 1) Application HTML Directory SETTINGS["HtmlDir"]\n
         * 2) Common shared Directory SETTINGS["SharedDir"]+"/html/"\n
         * The 2 parameters: SharedDir and XslDir are configurable in the configuration file\n
         * 
@@ -119,7 +119,38 @@ class XaLibAction : protected XaLibBase {
         */
         void AddHtmlString (const string& HtmlString);
         
-        void AddJsVarFile(const string& VarName, const string& FilePath);
+        /**
+        * 
+        * Adds a file content as a JS variable in the generate HTML\n
+        * All file content is added as value of a JS variable\n
+        * 
+        * @param VarName the name of the JS variable
+        * @param The FileName
+        * 
+        * @return void
+        *
+        * @code
+        * AddJsVarFile("VarName","FileName");
+        * @endcode
+        *
+        */
+        void AddJsVarFile(const string& VarName, const string& FileName);
+        
+        /**
+        * 
+        * Adds a string content as a JS variable in the generate HTML\n
+        * All string content is added as value of a JS variable\n
+        * 
+        * @param VarName the name of the JS variable
+        * @param The String
+        * 
+        * @return void
+        *
+        * @code
+        * AddJsVarString("VarName","String");
+        * @endcode
+        *
+        */
         void AddJsVarString(const string& VarName, const string& VarString);
 
         /**
@@ -244,8 +275,7 @@ class XaLibAction : protected XaLibBase {
          complete,default: "XaGuiHead","XaGuiHeader"
          * include:nothing
          * modal: XaGuiHead
-         * 
-         
+         *
          */
         vector <string> SetPageLayout (const string &LayoutType);
 
@@ -310,7 +340,7 @@ class XaLibAction : protected XaLibBase {
 
         //void AddOptionsToModel(const string& FileModelPath,const string& XmlOptions,const string XPathExpr);
 
-                
+
         /**
         * RE-Throw a back-end error\n
         * Applying this method to the response an Error threw from the
@@ -324,7 +354,6 @@ class XaLibAction : protected XaLibBase {
         *
         */
         void CheckResponse(const string& Response);
-        
 
         /**
         * Redirects to the InfoPage .\n
@@ -385,23 +414,22 @@ int    SelectDomainItemIdFromName          (string domain, string name);
 */
     public:
 
-		/**
-		* Execute the Object Dispatcher\n
-		* Execute the Object Dispatcher passing the Event Name\n
-		* 
-		* @return void
-		*
-		* @code
-		* Execute("");
-		* @endcode
-		*
-		*/
-		void Execute();
+        /**
+        * Execute the Object Dispatcher\n
+        * Execute the Object Dispatcher passing the Event Name\n
+        * 
+        * @return void
+        *
+        * @code
+        * Execute("");
+        * @endcode
+        *
+        */
+        void Execute();
 
-		//void virtual GetResponse();
+        //void virtual GetResponse();
 
-		XaLibAction ();
-		virtual ~XaLibAction ();
-
+        XaLibAction ();
+        virtual ~XaLibAction ();
 };
 #endif

@@ -45,7 +45,7 @@ int XaLibToken::RetrieveUserFromToken(const string& Token) {
 
 int XaLibToken::CheckUserToken(const int& XaUser_ID) {
 
-	string SqlQry="SELECT id  FROM XaUserToken WHERE status=1 AND XaUser_ID=\""+to_string(XaUser_ID)+"\"";
+	string SqlQry="SELECT id FROM XaUserToken WHERE status=1 AND XaUser_ID=\""+to_string(XaUser_ID)+"\"";
 	DbResMap DbRes=XaLibSql::FreeQuerySelect(DB_SESSION,SqlQry);
 
 	if (DbRes.size()!=0){

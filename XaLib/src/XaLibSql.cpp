@@ -772,7 +772,7 @@ XaLibBase::DbResMap XaLibSql::FreeQuerySelect(XaLibDb& LibDb,string& SqlQry){
 	
 	DbResMap DbRes;
 	DbRes=LibDb.ExSelect(SqlQry);
-	
+
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Executed Free Query -> " +SqlQry);
 	
 	return DbRes;

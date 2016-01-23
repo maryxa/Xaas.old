@@ -21,23 +21,10 @@
 */
 
 /**** APPLICATION ****/
-//#include <XaOuType.h>
-//#include <XaOu.h>
 #include <XaUserLoginUi.h>
 #include <XaOuTypeUi.h>
 #include <XaOuUi.h>
-
 #include <XaPages.h>
-
-//#include <XaAddress.h>
-//#include <XaLabel.h>
-//#include <XaLanguage.h>
-//#include <XaDomain.h>
-//#include <XaCurrency.h>
-//#include <XaUserRole.h>
-//#include <XaUserProfile.h>
-//#include <XaLibRbGpIo.h>
-//#include <XaLibWs.h>
 
 int main (void) {
 
@@ -176,7 +163,6 @@ void Controller::ExecuteEvent() {
 		throw 611;
 	}
 
-	//SendResponse();
 };
 
 Controller::~Controller(){

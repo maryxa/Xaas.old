@@ -20,6 +20,8 @@ void XaLibError::Setup() {
 	XaErrors[23]={"DB Unable to Connect WRITE DB"};
 	XaErrors[24]={"DB Unable to Connect READ DB"};
 	XaErrors[25]={"DB Unable to Connect LOG DB"};
+	
+	XaErrors[28]={"DB Error Executing QRY"};
 
 	
 	XaErrors[31]={"Number Of Labels Is different From Number Of Values"};
@@ -66,7 +68,7 @@ void XaLibError::Setup() {
 	XaErrors[117]={"WS Object Is Not XaUserLogin But Token is Empty"};
 	XaErrors[118]={"WS Event Is Not Login But Token is Empty"};
 	XaErrors[119]={"WS Called Object Does Not Exist"};
-	XaErrors[120]={""};
+	XaErrors[120]={"WS Consumer IP or Consumer Host Name are not valid"};
 	XaErrors[121]={""};
 	XaErrors[122]={""};
 	XaErrors[123]={""};

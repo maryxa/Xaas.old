@@ -66,10 +66,10 @@ void XaLibAction::AddHtmlString(const string& HtmlString){
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added XmlString -> "+HtmlString);
 };
 
-void XaLibAction::AddJsVarFile(const string& VarName, const string& FilePath){
+void XaLibAction::AddJsVarFile(const string& VarName, const string& FileName){
 
-	string DefaultPath=SETTINGS["XmlDir"]+FilePath+".xml";
-	string SharedPath=SETTINGS["SharedDir"]+"xml/"+FilePath+".xml";
+	string DefaultPath=SETTINGS["XmlDir"]+FileName+".xml";
+	string SharedPath=SETTINGS["SharedDir"]+"xml/"+FileName+".xml";
 
 	unique_ptr<FILE, int(*)(FILE*)> f1(fopen(DefaultPath.c_str(), "r"), fclose);
 	unique_ptr<FILE, int(*)(FILE*)> f2(fopen(SharedPath.c_str(), "r"), fclose);
@@ -86,7 +86,7 @@ void XaLibAction::AddJsVarFile(const string& VarName, const string& FilePath){
 
 	} else {
 	
-		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested  File Does Not Exist-> "+FilePath);
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested  File Does Not Exist-> "+FileName);
 	}
 };
 
