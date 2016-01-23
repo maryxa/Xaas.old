@@ -4,13 +4,10 @@
 ##  alex@xallegro.com
 
 UNAME_S := $(shell uname -s)
+UNAME_P := $(shell uname -p)
 
 ##WINDOWS CYGWIN
 ifeq ($(filter CYGWIN_NT-%.%,$(UNAME_S)),)
-    include Makefile_Win.mk
-endif
-
-ifeq ($(findstring NT,$(UNAME_S)),NT)
     include Makefile_Win.mk
 endif
 
@@ -21,12 +18,8 @@ endif
 
 ##DARWIN
 ifeq ($(UNAME_S),Darwin)
-
     include Makefile_Mac.mk
-
 endif
-
-    UNAME_P := $(shell uname -p)
 
 OBJ=$(OBJDIR)XaLibBase.o $(OBJDIR)XaLibAction.o $(OBJDIR)XaLibModel.o $(OBJDIR)XaLibHttp.o $(OBJDIR)XaLibToken.o \
     $(OBJDIR)XaLibDb.o $(OBJDIR)XaLibSql.o $(OBJDIR)XaLibConfig.o $(OBJDIR)XaLibXsl.o $(OBJDIR)XaLibCrypto.o \
@@ -57,17 +50,17 @@ ifeq ($(findstring CYGWIN_NT,$(UNAME_S)),CYGWIN_NT)
 	ranlib $(BIN) $(LDFLAGS)
 endif
 
-ifeq ($(findstring MINGW32_NT,$(UNAME_S)),MINGW32_NT)
-    $(BIN): $(OBJ)
-	ar r $(BIN) $(OBJ)
-	ranlib $(BIN) $(LDFLAGS)
-endif
+#ifeq ($(findstring MINGW32_NT,$(UNAME_S)),MINGW32_NT)
+#    $(BIN): $(OBJ)
+#	ar r $(BIN) $(OBJ)
+#	ranlib $(BIN) $(LDFLAGS)
+#endif
 
-ifeq ($(findstring MSYS_NT,$(UNAME_S)),MSYS_NT)
-    $(BIN): $(OBJ)
-	ar r $(BIN) $(OBJ)
-	ranlib $(BIN) $(LDFLAGS)
-endif
+#ifeq ($(findstring MSYS_NT,$(UNAME_S)),MSYS_NT)
+#    $(BIN): $(OBJ)
+#	ar r $(BIN) $(OBJ)
+#	ranlib $(BIN) $(LDFLAGS)
+#endif
 
 ifeq ($(UNAME_S),Linux)
     $(BIN): $(OBJ)
