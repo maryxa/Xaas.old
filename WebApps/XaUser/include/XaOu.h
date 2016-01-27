@@ -15,11 +15,9 @@ class XaOu : public XaLibModel {
         void ListAsOptions();
         void Tree();
 		void Read();
+		void UpdateFrm();
+		void Update();
  
-        //int Read();
-        //int Update();
-        //int Delete();
-
     protected:
 
     public:

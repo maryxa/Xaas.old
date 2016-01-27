@@ -208,7 +208,7 @@ function XaListTpl (ModelName) {
  * @returns {booblean} 
  * 
  */
-function XaCreateOptions(controller,url,SelectId){
+function XaCreateOptions(controller,url,SelectId,DefaultValue=''){
             
     XaCallAsync(controller,url,"xml", function(XmlDoc){
 
@@ -224,6 +224,10 @@ function XaCreateOptions(controller,url,SelectId){
             var id=XaXmlGetElementValueByXpath (XmlDoc,"/WsData/list/item["+i+"]/id");
 
             Select.options[Select.options.length] = new Option(name,id);
+            if (DefaultValue===id) {
+		// now the length has been updated, thus last option is length-1
+                Select.options[Select.options.length -1].selected=1;
+            }
         }
     });
 };
@@ -271,7 +275,7 @@ function XaCreateOptionsWithOnChangeFunction(controller,url,SelectId,OnChangeFun
  * @returns {booblean} 
  * 
  */
-function XaCreateOptionsOu(controller,url,SelectId){
+function XaCreateOptionsOu(controller,url,SelectId,DefaultValue=''){
 
     XaCallAsync(controller,url,"xml", function(XmlDoc){
 
@@ -298,6 +302,11 @@ function XaCreateOptionsOu(controller,url,SelectId){
             }
 
             Select.options[Select.options.length] = new Option(indent+name,id);
+            if (DefaultValue===id) {
+		// now the length has been updated, thus last option is length-1
+                Select.options[Select.options.length -1].selected=1;
+            }
+
         }
     });
 };
@@ -340,6 +349,7 @@ function XaTreeBranchRead(controller,url,TargetId) {
                 var BranchCall='XaTreeBranchRead("","'+BranchCallUrl+'","'+id+'");';
 
                 var ReadCallUrl="?obj=XaOuUi&evt=Read&id="+id;
+                var UpdateCallUrl="?obj=XaOuUi&evt=UpdateFrm&id="+id;
 
                 var Element='<li id="'+id+'">'+
 
@@ -350,7 +360,7 @@ function XaTreeBranchRead(controller,url,TargetId) {
                     '<a class="name" href=\''+ReadCallUrl+'\'>'+name+'</a>'+
 
                     /*READ THE OU WITH EDIT*/
-                    '<a class="edit" href="javascript:alert(\'pluto\');"></a>'+
+                    '<a class="edit" href=\''+UpdateCallUrl+'\'></a>'+
                     '</li>';
 
                 Elements+=Element;
@@ -380,9 +390,6 @@ function XaTreeBranchClose(Id) {
 /*READ*/
 function XaReadTpl (ModelName,DataName) {
 
-//alert(ModelName);
-//alert(DataName);
-
     var XmlDoc=XaParseXml(ModelName);
     var XmlDataDoc=XaParseXml(DataName);
 
@@ -397,27 +404,27 @@ function XaReadTpl (ModelName,DataName) {
 	var FName =XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/name");
 	var FLabel=XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/label");
 	var FType =XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/type");
-        var value =XaXmlGetElementValueByXpath(XmlDataDoc,"//list/item/"+FName);
+        var Fvalue=XaXmlGetElementValueByXpath(XmlDataDoc,"//list/item/"+FName);
 
         if (FType==="input-text") {
 
             Field+="<label>"+FLabel+"</label>: ";
-            Field+=value;
+            Field+=Fvalue;
 
         } else if (FType==="input-textarea") {
 
             Field+="<label>"+FLabel+"</label>: ";
-            Field+=value;
+            Field+=Fvalue;
 
         } else if (FType==="select-single") {
 
             Field+="<label>"+FLabel+"</label>: ";
-            Field+=value;
+            Field+=Fvalue;
 
         } else if (FType==="select-single-ou-tree") {
 
             Field+="<label>"+FLabel+"</label>: ";
-            Field+=value;
+            Field+=Fvalue;
 
         } else if (FType==="select-single-static") {
 
@@ -425,7 +432,7 @@ function XaReadTpl (ModelName,DataName) {
 
             var OptionLabel="";
             for (var i=1; i<=OptionsNumber; i++) {
-		if (value===XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/options/option["+i+"]/value")) {
+		if (Fvalue===XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/options/option["+i+"]/value")) {
 		    OptionLabel=XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/options/option["+i+"]/label");
 		}
             }
@@ -479,11 +486,151 @@ function XaReadTpl (ModelName,DataName) {
  */
 function XaSelectOptions(SelectId,DefaultValue) {
 
-    var Select=document.getElementById(SelectId);
+	var Select=document.getElementById(SelectId);
 
-    for(var i=0;i<Select.options.length;i++) {
-        if (Select.options[i].value===DefaultValue) {
-                Select.options[i].selected=1;
+	for(var i=0;i<Select.options.length;i++) {
+		if (Select.options[i].value===DefaultValue) {
+			Select.options[i].selected=1;
+		}
+	}
+};
+
+
+/* UPDATE FORM */
+function XaUpdateFormTpl (ModelName,DataName) {
+
+    var XmlDoc=XaParseXml(ModelName);
+    var XmlDataDoc=XaParseXml(DataName);
+
+    var RootElement=XmlDoc.documentElement.nodeName;
+
+    var FieldsNumber=XaXmlCountElementByXpath(XmlDoc,"//fieldset/field");
+
+    var Controller=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/update_form/controller");    
+    var Id=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/update_form/id");
+    var Name=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/update_form/name");
+    var Obj=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/update_form/obj");
+    var Evt=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/update_form/evt");
+    var Async=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/update_form/async");
+    var Method=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/update_form/method");
+    var Class=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/update_form/class");
+    var EncType="multipart/form-data";
+
+    function BuildAction(){
+
+        var Action="javascript:XaCallAction('','obj="+Obj+"&amp;evt="+Evt+"','','"+Method+"',"+Async+",0,'','"+Id+"','StringText','','yes','');";
+        return Action;
+    };
+
+    function BuildField (FieldId) {
+
+        var Field="";
+
+        var FId=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/id");
+
+        //var FId=Fields[RootElement]['fieldset']['field'][FieldId]["id"];
+        var FName=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/name");
+        var FType=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/type");
+        var FLabel=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/label");
+        var FPlaceholder=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/placeholder");
+        var FDefault=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/default");
+        var FRequired=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/required");
+        
+        if (FRequired==="yes") {
+            FRequired=" required=\"required\" ";
+        } else {
+            FRequired="";
+        };
+
+        var FRead=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/read");
+        var FUpdate=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/update");
+        var FSearch=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/search");
+        var FSize=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/size");
+
+        var FieldExtId=RootElement+"-"+FId;
+        var FieldExtName=RootElement+"-"+FName;
+
+        var LId=FieldId+"-label";
+        var LName=FieldExtName+"-label";
+
+        var Fvalue =XaXmlGetElementValueByXpath(XmlDataDoc,"//list/item/"+FName);
+
+        if (FType==="input-text") {
+
+            Field+="<label id=\""+ LId +"\" for=\""+FieldExtId +"\">"+FLabel+"</label>";
+            Field+="<input id=\""+FieldExtId+ "\" name=\""+FieldExtName+"\" type=\""+FType+"\" placeholder=\""+FPlaceholder+"\"" + FRequired+" autofocus=\"autofocus\" value=\""+Fvalue+"\"></input>";
+
+        } else if (FType==="input-textarea") {
+
+            Field+="<label id=\""+ LId +"\" for=\""+FieldExtId +"\">"+FLabel+"</label>";
+            Field+="<textarea id=\""+FieldExtId+ "\" name=\""+FieldExtName+"\" type=\""+FType+"\" placeholder=\""+FPlaceholder+"\"" + FRequired+" autofocus=\"autofocus\">"+Fvalue+"</textarea>";
+
+        } else if (FType==="select-single") {
+
+            Field+="<label id=\""+ LId +"\" for=\""+FieldExtId +"\">"+FLabel+"</label>";
+            Field+="<select id=\""+FieldExtId+ "\" name=\""+FieldExtName+"\" type=\""+FType+"\" placeholder=\""+FPlaceholder+"\"" + FRequired+" autofocus=\"autofocus\" ></select>";
+
+            var FObj=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/obj");
+            var FEvt=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/evt");
+
+            Field+="<script>XaCreateOptions('','obj="+FObj+"&evt="+FEvt+"','"+FieldExtId+"','"+Fvalue+"');</script>";
+
+        } else if (FType==="select-single-ou-tree") {
+
+            Field+="<label id=\""+ LId +"\" for=\""+FieldExtId +"\">"+FLabel+"</label>";
+            Field+="<select id=\""+FieldExtId+ "\" name=\""+FieldExtName+"\" type=\""+FType+"\" placeholder=\""+FPlaceholder+"\"" + FRequired+" autofocus=\"autofocus\" ></select>";
+
+            var FObj=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/obj");
+            var FEvt=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/evt");
+
+            Field+="<script>XaCreateOptionsOu('','obj="+FObj+"&evt="+FEvt+"','"+FieldExtId+"','"+Fvalue+"');</script>";
+
+        } else if (FType==="select-single-static") {
+
+	    var OptionsNumber=XaXmlCountElementByXpath(XmlDoc,"//fieldset/field["+FieldId+"]/options/option");
+	    var DefaultValue =XaXmlGetElementValueByXpath(XmlDoc,"//fieldset/field["+FieldId+"]/default");
+
+            Field+="<label id=\""+ LId +"\" for=\""+FieldExtId +"\">"+FLabel+"</label>";
+            Field+="<select id=\""+FieldExtId+ "\" name=\""+FieldExtName+"\" type=\""+FType+"\" placeholder=\""+FPlaceholder+"\"" + FRequired+" autofocus=\"autofocus\" >";
+            Field+="<option value=\"\">... Select an option ...</option>";
+            for(var i=0;i<OptionsNumber;i++) {
+		var j=i+1;
+		var OptValue=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/option["+j+"]/value");
+		var OptText =XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/option["+j+"]/label");
+		Field+="<option value=\""+OptValue+"\">"+OptText+"</option>";
+            }
+            Field+="</select>";
+
+            Field+="<script>XaSelectOptions('"+FieldExtId+"','"+Fvalue+"');</script>";
+
+        } else {
+            
         }
-    }
+
+    return Field;
+    };
+
+    /*can access _privateProperty and call _privateMethod*/
+    this.GetForm = function () {
+
+        var Content="<form class=\"form "+Class+"\" id=\""+Id+"\""+ " name=\""+Name+"\" enctype=\""+EncType+ "\" method=\""+Method+"\""+ " action=\""+BuildAction()+ "\">";
+
+        Content+="<fieldset>";
+        Content+="<legend>"+ XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/legend")+"</legend>";
+        Content+="<ul>";
+
+        for(var i=0;i<FieldsNumber;i++) {
+            var j=i+1;
+            Content+="<li>"+BuildField(j)+"</li>";
+        };
+
+        Content+="</ul>";
+        Content+="</fieldset>";
+        Content+="<fieldset><button type=\"reset\">Reset</button><button type=\"submit\">Save</button></fieldset>";
+        Content+="</form>";
+
+        /*console.log(Content);*/
+        //console.log(Fields);
+        return Content;
+    };
 };

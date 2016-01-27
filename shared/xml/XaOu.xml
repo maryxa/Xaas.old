@@ -9,6 +9,16 @@
         <method>POST</method>
         <class>form-1-column</class>
     </form>
+    <update_form>
+        <controller>XaUserUi</controller>
+        <id>XaOu</id>
+        <name>XaOu</name>
+        <obj>XaOuUi</obj>
+        <evt>Update</evt>
+        <async>true</async>
+        <method>POST</method>
+        <class>form-1-column</class>
+    </update_form>
     <fieldset id="XaOu" name="XaOu">
         <legend>create&#32;a&#32;new&#32;organization&#32;unit</legend>
         <field id="name" name="name">

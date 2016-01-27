@@ -24,6 +24,9 @@ void XaOuUi::Dispatcher (const string &CalledEvent) {
     } else if (CalledEvent=="Read") {
         this->Read();
 
+    } else if (CalledEvent=="UpdateFrm") {
+        this->UpdateFrm();
+
     } else {
 
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42:: Requested Event Does Not Exists -> "+CalledEvent);
@@ -240,9 +243,34 @@ void XaOuUi::Read() {
 	
 	AddJsVarString("XaData",CallResponse);
 
-	
+	/* end of data */
+
 	vector<string> Templates=SetPageLayout(REQUEST.CalledLayout);
 	Templates.push_back("XaGuiRead");
+
+	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles(Templates),HtmlStrings,JsVarFiles,JsVarStrings,0);
+};
+
+void XaOuUi::UpdateFrm() {
+
+	AddJsVarFile("XaModel","XaOu");
+	AddJsVarString("XaGuiStyle","default");
+
+	/* data */
+
+	vector <string> FieldsValues ={};
+	FieldsValues.push_back(HTTP.GetHttpParam("id"));
+
+	XaLibCurl LibCurl;
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaOu","UpdateFrm",{"id"},{FieldsValues}));
+	CheckResponse(CallResponse);
+
+	AddJsVarString("XaData",CallResponse);
+
+	/* end of data */
+
+	vector<string> Templates=SetPageLayout(REQUEST.CalledLayout);
+	Templates.push_back("XaGuiUpdateFrm");
 
 	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles(Templates),HtmlStrings,JsVarFiles,JsVarStrings,0);
 };
