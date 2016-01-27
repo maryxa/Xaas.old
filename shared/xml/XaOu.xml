@@ -21,6 +21,7 @@
     </update_form>
     <fieldset id="XaOu" name="XaOu">
         <legend>create&#32;a&#32;new&#32;organization&#32;unit</legend>
+	<update_legend>update&#32;an&#32;organization&#32;unit</update_legend>
         <field id="name" name="name">
             <id>name</id>
             <name>name</name>

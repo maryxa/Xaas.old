@@ -218,9 +218,9 @@ void XaOu::UpdateFrm() {
 
 	string Id=HTTP.GetHttpParam("id");
 
-	vector<string> ReturnedFields={"id","name","description","tree_parent_ID","XaOuType_ID","test"};
+	vector<string> ReturnedFields={"id","name","description","tree_parent_ID","XaOuType_ID"};
 
-	string Qry="SELECT id, name, description, XaOuType_ID, tree_parent_ID, test FROM XaOu";
+	string Qry="SELECT id, name, description, XaOuType_ID, tree_parent_ID FROM XaOu";
 	Qry+=" WHERE id="+Id;
 	
 	DbResMap DbRes=XaLibSql::FreeQuerySelect(DB_READ,Qry);
