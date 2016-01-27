@@ -73,7 +73,7 @@ function XaFormTpl (ModelName) {
             var FObj=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/obj");
             var FEvt=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/evt");
 
-            Field+="<script>XaCreateOptions('','obj="+FObj+"&evt="+FEvt+"','"+FieldExtId+"');</script>";
+            Field+="<script>XaCreateOptions('','obj="+FObj+"&evt="+FEvt+"','"+FieldExtId+"','');</script>";
 
         } else if (FType==="select-single-ou-tree") {
 
@@ -83,7 +83,7 @@ function XaFormTpl (ModelName) {
             var FObj=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/obj");
             var FEvt=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/evt");
 
-            Field+="<script>XaCreateOptionsOu('','obj="+FObj+"&evt="+FEvt+"','"+FieldExtId+"');</script>";
+            Field+="<script>XaCreateOptionsOu('','obj="+FObj+"&evt="+FEvt+"','"+FieldExtId+"','');</script>";
 
         } else if (FType==="select-single-static") {
 
@@ -208,7 +208,7 @@ function XaListTpl (ModelName) {
  * @returns {booblean} 
  * 
  */
-function XaCreateOptions(controller,url,SelectId,DefaultValue=''){
+function XaCreateOptions(controller,url,SelectId,DefaultValue){
             
     XaCallAsync(controller,url,"xml", function(XmlDoc){
 
@@ -275,7 +275,7 @@ function XaCreateOptionsWithOnChangeFunction(controller,url,SelectId,OnChangeFun
  * @returns {booblean} 
  * 
  */
-function XaCreateOptionsOu(controller,url,SelectId,DefaultValue=''){
+function XaCreateOptionsOu(controller,url,SelectId,DefaultValue){
 
     XaCallAsync(controller,url,"xml", function(XmlDoc){
 
