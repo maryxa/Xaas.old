@@ -8,25 +8,20 @@ void XaOuUi::Dispatcher (const string &CalledEvent) {
 
 	if (CalledEvent=="CreateFrm") {
 		this->CreateFrm();
-
     } else if (CalledEvent=="Create") {
         this->Create();
-
     } else if (CalledEvent=="ListAsOptions") {
         this->ListAsOptions();
-
     } else if (CalledEvent=="Explorer") {
         this->Explorer();
-
     } else if (CalledEvent=="Tree") {
         this->Tree();
-
     } else if (CalledEvent=="Read") {
         this->Read();
-
     } else if (CalledEvent=="UpdateFrm") {
         this->UpdateFrm();
-
+    } else if (CalledEvent=="Update") {
+        this->Update();
     } else {
 
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42:: Requested Event Does Not Exists -> "+CalledEvent);
@@ -273,6 +268,15 @@ void XaOuUi::UpdateFrm() {
 	Templates.push_back("XaGuiUpdateFrm");
 
 	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles(Templates),HtmlStrings,JsVarFiles,JsVarStrings,0);
+};
+
+void XaOuUi::Update() {
+
+	auto Fields=UpdatePrepare({"XaOu"},"/XaOu/fieldset/field","XaOu");
+	XaLibCurl LibCurl;
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaOu","Update",get<0>(Fields),get<1>(Fields)));
+	CheckResponse(CallResponse);
+	RESPONSE.Content="OK";
 };
 
 XaOuUi::~XaOuUi(){

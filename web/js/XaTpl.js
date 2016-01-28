@@ -615,8 +615,14 @@ function XaUpdateFormTpl (ModelName,DataName) {
 
         var Content="<form class=\"form "+Class+"\" id=\""+Id+"\""+ " name=\""+Name+"\" enctype=\""+EncType+ "\" method=\""+Method+"\""+ " action=\""+BuildAction()+ "\">";
 
+	var RowId =XaXmlGetElementValueByXpath(XmlDataDoc,"//list/item/id");
+        var FieldExtName=RootElement+"-id";
+
         Content+="<fieldset>";
         Content+="<legend>"+ XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/update_legend")+"</legend>";
+
+        Content+="<input type=\"hidden\" name=\""+FieldExtName+"\" value=\""+RowId+"\" />";
+
         Content+="<ul>";
 
         for(var i=0;i<FieldsNumber;i++) {

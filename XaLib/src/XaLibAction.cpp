@@ -331,6 +331,46 @@ tuple<vector<string>,vector<string>> XaLibAction::CreatePrepare(const vector<str
 
 };
 
+tuple<vector<string>,vector<string>> XaLibAction::UpdatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,const string& ModelName) {
+
+	//TODO:GESTIONE ERRORI
+
+	//LOAD XML FOR MODEL
+	xmlDocPtr XmlDomDoc=XaLibDom::DomFromFile(AddXmlFile(XmlFiles),0);
+
+	//GET NUMBER OF FILEDS
+	int FieldsNum=XaLibDom::GetNumRowByXPathInt(XmlDomDoc,XPathExpr);
+
+	tuple<vector<string>,vector<string>> Fields;
+
+	for (auto i=0;i<FieldsNum;i++) {
+		//LOADING PROPERTIES
+
+		string FieldName=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/name");
+		string FieldValue=HTTP.GetHttpParam(ModelName+"-"+FieldName);
+
+		get<0>(Fields).push_back(FieldName);
+		get<1>(Fields).push_back(FieldValue);
+
+		//FieldsName.push_back(FieldName);
+		//FieldsValue.push_back(FieldValue);
+
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Loaded value for property ->" +FieldName +" :: " + FieldValue);
+	};
+
+	// ADD id To FIELD LIST
+
+	string FieldName="id";
+	string FieldValue=HTTP.GetHttpParam(ModelName+"-"+FieldName);
+	get<0>(Fields).push_back(FieldName);
+	get<1>(Fields).push_back(FieldValue);
+
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Loaded value for property ->" +FieldName +" :: " + FieldValue);
+
+	return Fields;
+
+};
+
 string XaLibAction::BuildBackEndCall(const string& Object, const string& Event,const vector <string>& ParamName,const vector <string>& ParamValue){
 
 	string Call=BuildBackEndCallBase();
