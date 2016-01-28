@@ -347,6 +347,33 @@ XaLibBase::FieldsMap XaLibModel::UpdatePrepare(const vector<string>& XmlFiles,co
 	return Fields;
 };
 
+void XaLibModel::UpdatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,vector <string>& FieldName,vector <string>& FieldValue){
+
+	vector <string> Properties ={"name","db_type","size","create","required"};
+	
+	//LOAD XML FOR MODEL
+	xmlDocPtr XmlDomDoc=XaLibDom::DomFromFile(AddXmlFile(XmlFiles),0);
+
+	//GET NUMBER OF FILEDS
+	int FieldsNum=XaLibDom::GetNumRowByXPathInt(XmlDomDoc,XPathExpr);
+
+	/*For Each Field Check Properties and Load Value*/
+	for (auto i=0;i<FieldsNum;i++) {
+
+		string FName=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/name");
+		
+		string FDbType=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/db_type");
+		string FSize=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/size");
+		string FCreate=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/create");
+		string FRequired=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/required");
+
+		string FValue=HTTP.GetHttpParam(FName);
+
+		FieldName.push_back(FName);
+		FieldValue.push_back(FValue);
+	};
+};
+
 int XaLibModel::UpdateExecute(const string& DbTable,XaLibBase::FieldsMap& LoadedFields) {
 
 	//CHECK FIELDS
@@ -377,12 +404,19 @@ int XaLibModel::UpdateExecute(const string& DbTable,XaLibBase::FieldsMap& Loaded
 	}
 };
 
+void XaLibModel::UpdateExecute(const string& DbTable,vector <string>& FieldName,vector <string>& FieldValue, const int& Id) {
+
+	BackupRecord(DbTable,Id);
+	XaLibSql::Update(DB_WRITE,DbTable,{FieldName},{FieldValue},{"id"},{XaLibBase::FromIntToString(Id)});
+
+	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Updated a record into table -> "+DbTable+" with id ->"+to_string(Id));
+
+};
+
 string XaLibModel::UpdateResponse(const int& UpdatedId) {
 
 	return "<update>"+to_string(UpdatedId)+"</update>";
 };
-
-
 
 int XaLibModel::DeleteExecute(const string& DbTable,const string& FieldId) {
 

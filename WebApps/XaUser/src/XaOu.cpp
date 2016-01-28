@@ -226,11 +226,12 @@ void XaOu::UpdateFrm() {
 void XaOu::Update() {
 
 	string Id=HTTP.GetHttpParam("id");
+	int UpdateId=XaLibBase::FromStringToInt(Id);
 
 	vector<string> FieldName;	
 	vector<string> FieldValue;
 
-	CreatePrepare({"XaOu"},"/XaOu/fieldset/field",FieldName,FieldValue);
+	UpdatePrepare({"XaOu"},"/XaOu/fieldset/field",FieldName,FieldValue);
 
 	/*Get parent level*/
 	int pos=PositionInVector(FieldName,"tree_parent_ID");
@@ -259,15 +260,13 @@ void XaOu::Update() {
 	FieldName.push_back("tree_level");
 	FieldValue.push_back(TreeLevel);
 
-	/*UPDATE DB*/
-	BackupRecord("XaOu",XaLibBase::FromStringToInt(Id));
-	XaLibSql::Update(DB_WRITE,"XaOu",{FieldName},{FieldValue},{"id"},{Id});
-
+	UpdateExecute("XaOu",FieldName,FieldValue,UpdateId);	
+	
 	/*CALCULATING TREE PATH*/
 	string TreePath=Parent[0]["tree_path"]+Id+"|";
 
 	XaLibSql::Update(DB_WRITE,"XaOu",{"tree_path"},{TreePath},{"id"},{Id});
-	RESPONSE.Content=CreateResponse(XaLibBase::FromStringToInt(Id));
+	RESPONSE.Content=UpdateResponse(UpdateId);
 
 };
 

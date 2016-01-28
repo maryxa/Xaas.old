@@ -52,7 +52,7 @@ class XaLibModel : protected XaLibBase {
 
         [[deprecated]]
         FieldsMap CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr);
-        void CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,vector <string>& FieldName,vector <string>& FieldValue);        
+        void CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,vector <string>& FieldName,vector <string>& FieldValue);
         
         [[deprecated]]
         int CreateExecute(const string& DbTable,XaLibBase::FieldsMap& LoadedFields);
@@ -73,8 +73,13 @@ class XaLibModel : protected XaLibBase {
         */
         int BackupRecord(const string& DbTable,const int& RowId);
 
+		[[deprecated]]
         FieldsMap UpdatePrepare(const vector<string>& XmlFiles,const string& XPathExpr);
-        int UpdateExecute(const string& DbTable,XaLibBase::FieldsMap& LoadedFields);
+		void UpdatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,vector <string>& FieldName,vector <string>& FieldValue);
+		[[deprecated]]
+        int  UpdateExecute(const string& DbTable,XaLibBase::FieldsMap& LoadedFields);
+		void UpdateExecute(const string& DbTable,vector <string>& FieldName,vector <string>& FieldValue, const int& Id);
+	
         string UpdateResponse(const int& UpdatedId);
 
         int DeleteExecute(const string& DbTable,const string& RowId);
