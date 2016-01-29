@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container" id="ReadContainer">
     <script>
-        var Tpl=new XaReadTpl(XaModel,XaData);
-        document.write(Tpl.GetRead());
+      var Tpl=new XaReadTpl(XaModel,XaData);
+      document.getElementById('ReadContainer').parentNode.innerHTML=Tpl.GetRead();
     </script>
 </div>

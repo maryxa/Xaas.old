@@ -348,7 +348,8 @@ function XaTreeBranchRead(controller,url,TargetId) {
                 var BranchCallUrl="obj=XaOuUi&evt=Tree&tree_parent_ID="+id+"&tree_level="+tree_level;
                 var BranchCall='XaTreeBranchRead("","'+BranchCallUrl+'","'+id+'");';
 
-                var ReadCallUrl="?obj=XaOuUi&evt=Read&id="+id;
+                var ReadCallUrl="obj=XaOuUi&evt=Read&id="+id;
+		ReadCallUrl+="&lay=modal";
                 var UpdateCallUrl="?obj=XaOuUi&evt=UpdateFrm&id="+id;
 
                 var Element='<li id="'+id+'">'+
@@ -357,10 +358,12 @@ function XaTreeBranchRead(controller,url,TargetId) {
                     '<a id="a-'+id+ '" class="close" href=\'javascript:'+BranchCall+';\'></a>'+
 
                     /*LIST ELEMENT BRANCH*/
-                    '<a class="name" href=\''+ReadCallUrl+'\'>'+name+'</a>'+
+                    //'<a class="name" href=\'#\'>'+name+'</a>'+
+                    name+
 
                     /*READ THE OU WITH EDIT*/
-                    '<a class="edit" href=\''+UpdateCallUrl+'\'></a>'+
+                    '<a class="edit" href="javascript:XaCallAction(\'\',\''+ReadCallUrl+'\',\'Detail\',\'\',\'\',\'yes\',\'Detail\',\'\',\'StringHtml\',\'yes\',\'\',\'\');"></a>'+
+
                     '</li>';
 
                 Elements+=Element;
@@ -467,8 +470,6 @@ function XaReadTpl (ModelName,DataName) {
 
         Content+="</div>";
 
-        /*console.log(Content);*/
-        //console.log(Fields);
         return Content;
     };
 };
