@@ -349,7 +349,7 @@ function XaTreeBranchRead(controller,url,TargetId) {
                 var BranchCall='XaTreeBranchRead("","'+BranchCallUrl+'","'+id+'");';
 
                 var ReadCallUrl="obj=XaOuUi&evt=Read&id="+id;
-		ReadCallUrl+="&lay=modal";
+		ReadCallUrl+="&lay=include";
                 var UpdateCallUrl="?obj=XaOuUi&evt=UpdateFrm&id="+id;
 
                 var Element='<li id="'+id+'">'+
@@ -636,8 +636,6 @@ function XaUpdateFormTpl (ModelName,DataName) {
         Content+="<fieldset><button type=\"reset\">Reset</button><button type=\"submit\">Save</button></fieldset>";
         Content+="</form>";
 
-        /*console.log(Content);*/
-        //console.log(Fields);
         return Content;
     };
 };

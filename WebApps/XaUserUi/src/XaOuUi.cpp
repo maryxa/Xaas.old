@@ -224,13 +224,16 @@ void XaOuUi::Explorer () {
 
 void XaOuUi::Read() {
 
+	string Id=HTTP.GetHttpParam("id");
+
 	AddJsVarFile("XaModel","XaOu");
 	AddJsVarString("XaGuiStyle","default");
-
+	AddJsVarString("RowId",Id);
+	
 	/* data */
 
 	vector <string> FieldsValues ={};
-	FieldsValues.push_back(HTTP.GetHttpParam("id"));
+	FieldsValues.push_back(Id);
 
 	XaLibCurl LibCurl;
     string CallResponse = LibCurl.Call(BuildBackEndCall("XaOu","Read",{"id"},{FieldsValues}));

@@ -631,7 +631,7 @@ string XaLibDom::HtmlFromStringAndFile(const vector<string>& HtmlFiles,const vec
 
 	};
 
-	Html.append("<head>"+HeadContent+Js+"</head>");
+	Html.append("<head>"+Js+HeadContent+"</head>");
 	Html.append("<body>"+BodyContent+"</body>");
 	Html.append("</html>");	
 
