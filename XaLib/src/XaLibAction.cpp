@@ -219,7 +219,7 @@ vector <string> XaLibAction::SetPageLayout (const string &LayoutType) {
 
 	} else if (LayoutType=="include") {
 		
-		/*nothing*/
+		HtmlFiels={"XaGuiHeadVoid"};
 	
 	} else if (LayoutType=="modal") {
 
