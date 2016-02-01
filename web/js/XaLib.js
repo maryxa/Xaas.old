@@ -430,3 +430,14 @@ var FormElement = document.getElementById(FormId);
 
     return q.join("&");
 };
+
+/* Copy Html string into target element end evaluate scripts */
+function XaInnerHtmlWithScripts(target,HtmlString) {
+
+	document.getElementById(target).innerHTML=HtmlString;
+	var scripts = document.getElementById(target).getElementsByTagName('script');
+
+	for (var i=0;i<scripts.length;i++) {
+		eval(scripts[i].innerHTML);
+	}
+};
