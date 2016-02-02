@@ -17,13 +17,6 @@
 #include <XaOu.h>
 #include <XaUserLogin.h>
 //#include <XaPages.h>
-#include <XaAddressPhone.h>
-#include <XaAddressMail.h>
-#include <XaAddressGeo.h>
-#include <XaAddressPhoneType.h>
-#include <XaAddressPhoneCode.h>
-#include <XaAddressMailType.h>
-#include <XaAddressGeoType.h>
 
 #include <XaAddress.h>
 #include <XaLabel.h>
@@ -127,27 +120,6 @@ void Controller::ExecuteWs(XaLibWs& Ws){
 	} else if(REQUEST.CalledObject=="XaOu") {
 		unique_ptr<XaOu> Ou (new XaOu());
 		Ou->Execute();
-	} else if(REQUEST.CalledObject=="XaAddressPhone") {
-		unique_ptr<XaAddressPhone> AddressPhone (new XaAddressPhone());
-		AddressPhone->Execute();
-	} else if(REQUEST.CalledObject=="XaAddressMail") {
-		unique_ptr<XaAddressMail> AddressMail (new XaAddressMail());
-		AddressMail->Execute();
-	} else if(REQUEST.CalledObject=="XaAddressGeo") {
-		unique_ptr<XaAddressGeo> AddressGeo (new XaAddressGeo());
-		AddressGeo->Execute();
-	} else if(REQUEST.CalledObject=="XaAddressPhoneType") {
-		unique_ptr<XaAddressPhoneType> AddressPhoneType (new XaAddressPhoneType());
-		AddressPhoneType->Execute();
-	} else if(REQUEST.CalledObject=="XaAddressPhoneCode") {
-		unique_ptr<XaAddressPhoneCode> AddressPhoneCode (new XaAddressPhoneCode());
-		AddressPhoneCode->Execute();
-	} else if(REQUEST.CalledObject=="XaAddressMailType") {
-		unique_ptr<XaAddressMailType> AddressMailType (new XaAddressMailType());
-		AddressMailType->Execute();
-	} else if(REQUEST.CalledObject=="XaAddressGeoType") {
-		unique_ptr<XaAddressGeoType> AddressGeoType (new XaAddressGeoType());
-		AddressGeoType->Execute();
 	} else {
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"WS Called Object Doesn't Exist -> "+REQUEST.CalledObject);
 		throw 119;
