@@ -4,7 +4,7 @@ function XaFormTpl (ModelName) {
 
     var RootElement=XmlDoc.documentElement.nodeName;
 
-    var FieldsNumber=XaXmlCountElementByXpath(XmlDoc,"//fieldset/field");
+    var FieldsNumber=XaXmlCountElementByXpath(XmlDoc,"/"+RootElement+"/fieldset/field");
 
     var Controller=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/form/controller");    
     var Id=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/form/id");
@@ -348,8 +348,7 @@ function XaTreeBranchRead(controller,url,TargetId) {
                 var BranchCallUrl="obj=XaOuUi&evt=Tree&tree_parent_ID="+id+"&tree_level="+tree_level;
                 var BranchCall='XaTreeBranchRead("","'+BranchCallUrl+'","'+id+'");';
 
-                var ReadCallUrl="obj=XaOuUi&evt=Read&id="+id;
-		ReadCallUrl+="&lay=include";
+                var ReadCallUrl="?obj=XaOuUi&evt=Read&id="+id;
                 var UpdateCallUrl="?obj=XaOuUi&evt=UpdateFrm&id="+id;
 
                 var Element='<li id="'+id+'">'+
@@ -358,12 +357,10 @@ function XaTreeBranchRead(controller,url,TargetId) {
                     '<a id="a-'+id+ '" class="close" href=\'javascript:'+BranchCall+';\'></a>'+
 
                     /*LIST ELEMENT BRANCH*/
-                    //'<a class="name" href=\'#\'>'+name+'</a>'+
-                    name+
+                    '<a class="name" href=\''+ReadCallUrl+'\'>'+name+'</a>'+
 
                     /*READ THE OU WITH EDIT*/
-                    '<a class="edit" href="javascript:XaCallAction(\'\',\''+ReadCallUrl+'\',\'Detail\',\'\',\'\',\'yes\',\'Detail\',\'\',\'StringHtml\',\'yes\',\'\',\'\');"></a>'+
-
+                    '<a class="edit" href=\''+UpdateCallUrl+'\'></a>'+
                     '</li>';
 
                 Elements+=Element;
@@ -470,6 +467,8 @@ function XaReadTpl (ModelName,DataName) {
 
         Content+="</div>";
 
+        /*console.log(Content);*/
+        //console.log(Fields);
         return Content;
     };
 };
@@ -616,14 +615,8 @@ function XaUpdateFormTpl (ModelName,DataName) {
 
         var Content="<form class=\"form "+Class+"\" id=\""+Id+"\""+ " name=\""+Name+"\" enctype=\""+EncType+ "\" method=\""+Method+"\""+ " action=\""+BuildAction()+ "\">";
 
-	var RowId =XaXmlGetElementValueByXpath(XmlDataDoc,"//list/item/id");
-        var FieldExtName=RootElement+"-id";
-
         Content+="<fieldset>";
-        Content+="<legend>"+ XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/update_legend")+"</legend>";
-
-        Content+="<input type=\"hidden\" name=\""+FieldExtName+"\" value=\""+RowId+"\" />";
-
+        Content+="<legend>"+ XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/legend")+"</legend>";
         Content+="<ul>";
 
         for(var i=0;i<FieldsNumber;i++) {
@@ -636,6 +629,8 @@ function XaUpdateFormTpl (ModelName,DataName) {
         Content+="<fieldset><button type=\"reset\">Reset</button><button type=\"submit\">Save</button></fieldset>";
         Content+="</form>";
 
+        /*console.log(Content);*/
+        //console.log(Fields);
         return Content;
     };
 };
