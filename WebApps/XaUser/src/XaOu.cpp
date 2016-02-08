@@ -17,8 +17,8 @@ void XaOu::Dispatcher (const string &CalledEvent) {
 		 this->Tree();
     } else if (CalledEvent=="Read"){
 		 this->Read();
-    } else if (CalledEvent=="UpdateFrm"){
-		 this->UpdateFrm();
+    } else if (CalledEvent=="ReadForUpdateFrm"){
+		 this->ReadForUpdateFrm();
     } else if (CalledEvent=="Update"){
 		 this->Update();
     //} else if (CalledEvent=="Delete"){
@@ -212,7 +212,7 @@ void XaOu::Read() {
 	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);
 };
 
-void XaOu::UpdateFrm() {
+void XaOu::ReadForUpdateFrm() {
 
 	string Id=HTTP.GetHttpParam("id");
 
