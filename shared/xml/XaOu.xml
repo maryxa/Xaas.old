@@ -90,7 +90,7 @@
             <required>no</required>
             <read>yes</read>
             <list>yes</list>
-            <update>yes</update>
+            <update>no</update>
             <search>yes</search>
             <size></size>
             <db_type>string</db_type>

@@ -1,22 +1,22 @@
-<XaAddressMailType>
+<XaUserAddressGeoType>
     <form>
         <controller>XaUserUi</controller>
-        <id>XaAddressMailType</id>
-        <name>XaAddressMailType</name>
-        <obj>XaAddressMailTypeUi</obj>
+        <id>XaUserAddressGeoType</id>
+        <name>XaUserAddressGeoType</name>
+        <obj>XaUserAddressGeoTypeUi</obj>
         <evt>Create</evt>
         <async>true</async>
         <method>POST</method>
         <class>form-1-column</class>
     </form>
-    <fieldset id="XaAddressMailType" name="XaAddressMailType">
-        <legend>create&#32;a&#32;new&#32;address&#32;mail&#32;type</legend>
+    <fieldset id="XaUserAddressGeoType" name="XaUserAddressGeoType">
+        <legend>create&#32;a&#32;new&#32;address&#32;geo&#32;type</legend>
 		<field id="name" name="name">
 			<id>name</id>
 			<name>name</name>
 			<type>input-text</type>
-			<label>Address Mail Type</label>
-			<placeholder>Insert Address Mail Type</placeholder>
+			<label>Address Type</label>
+			<placeholder>Insert Address Type</placeholder>
 			<default></default>
             <required>yes</required>
             <read>yes</read>
@@ -40,4 +40,4 @@
             <size></size>
         </field>
     </fieldset>
-</XaAddressMailType>
+</XaUserAddressGeoType>

@@ -17,8 +17,8 @@ void XaOu::Dispatcher (const string &CalledEvent) {
 		 this->Tree();
     } else if (CalledEvent=="Read"){
 		 this->Read();
-    } else if (CalledEvent=="UpdateFrm"){
-		 this->UpdateFrm();
+    } else if (CalledEvent=="ReadForUpdateFrm"){
+		 this->ReadForUpdateFrm();
     } else if (CalledEvent=="Update"){
 		 this->Update();
     //} else if (CalledEvent=="Delete"){
@@ -212,7 +212,7 @@ void XaOu::Read() {
 	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);
 };
 
-void XaOu::UpdateFrm() {
+void XaOu::ReadForUpdateFrm() {
 
 	string Id=HTTP.GetHttpParam("id");
 
@@ -233,40 +233,12 @@ void XaOu::Update() {
 
 	UpdatePrepare({"XaOu"},"/XaOu/fieldset/field",FieldName,FieldValue);
 
-	/*Get parent level*/
-	int pos=PositionInVector(FieldName,"tree_parent_ID");
-
-	if (pos==-1) {
-
-		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-206:: Searched Element is Not present in the Vector");
-		throw 206;
-	};
-
-	string tree_parent_ID= FieldValue[pos];
-
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Retrieved tree_parent_ID ->"+ tree_parent_ID);
-
-	DbResMap Parent=XaLibSql::Select(DB_READ,"XaOu",{"id","tree_level","tree_path"},{"id"},{tree_parent_ID});
-
-	if (Parent.size()!=1) {
-
-		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-304:: The record is not unique");
-		throw 304;
-	};
-
-	/*CALCULATING TREE LEVEL*/
-	string TreeLevel=FromIntToString((FromStringToInt(Parent[0]["tree_level"])+1));
-
-	FieldName.push_back("tree_level");
-	FieldValue.push_back(TreeLevel);
-
-	UpdateExecute("XaOu",FieldName,FieldValue,UpdateId);	
+	int Updated=UpdateExecute("XaOu",FieldName,FieldValue,UpdateId);	
 	
-	/*CALCULATING TREE PATH*/
-	string TreePath=Parent[0]["tree_path"]+Id+"|";
-
-	XaLibSql::Update(DB_WRITE,"XaOu",{"tree_path"},{TreePath},{"id"},{Id});
-	RESPONSE.Content=UpdateResponse(UpdateId);
+	/* Parent Id and tree are not updatable yet */
+	/* Tree updates will have to be propagated to all descendants */
+	
+	RESPONSE.Content=UpdateResponse(Updated);
 
 };
 

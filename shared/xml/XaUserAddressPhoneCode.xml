@@ -1,22 +1,22 @@
-<XaAddressPhoneType>
+<XaUserAddressPhoneCode>
     <form>
         <controller>XaUserUi</controller>
-        <id>XaAddressPhoneType</id>
-        <name>XaAddressPhoneType</name>
-        <obj>XaAddressPhoneTypeUi</obj>
+        <id>XaUserAddressPhoneCode</id>
+        <name>XaUserAddressPhoneCode</name>
+        <obj>XaUserAddressPhoneCodeUi</obj>
         <evt>Create</evt>
         <async>true</async>
         <method>POST</method>
         <class>form-1-column</class>
     </form>
-    <fieldset id="XaAddressPhoneType" name="XaAddressPhoneType">
-        <legend>create&#32;a&#32;new&#32;address&#32;phone&#32;type</legend>
+    <fieldset id="XaUserAddressPhoneCode" name="XaUserAddressPhoneCode">
+        <legend>create&#32;a&#32;new&#32;address&#32;phone&#32;code</legend>
 		<field id="name" name="name">
 			<id>name</id>
 			<name>name</name>
 			<type>input-text</type>
-			<label>Address Phone Type</label>
-			<placeholder>Insert Address Phone Type</placeholder>
+			<label>Address Phone Code</label>
+			<placeholder>Insert Phone Code</placeholder>
 			<default></default>
             <required>yes</required>
             <read>yes</read>
@@ -40,4 +40,4 @@
             <size></size>
         </field>
     </fieldset>
-</XaAddressPhoneType>
+</XaUserAddressPhoneCode>
