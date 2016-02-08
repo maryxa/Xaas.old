@@ -78,7 +78,7 @@ class XaLibModel : protected XaLibBase {
 		void UpdatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,vector <string>& FieldName,vector <string>& FieldValue);
 		[[deprecated]]
         int  UpdateExecute(const string& DbTable,XaLibBase::FieldsMap& LoadedFields);
-		void UpdateExecute(const string& DbTable,vector <string>& FieldName,vector <string>& FieldValue, const int& Id);
+		int UpdateExecute(const string& DbTable,vector <string>& FieldName,vector <string>& FieldValue, const int& Id);
 	
         string UpdateResponse(const int& UpdatedId);
 

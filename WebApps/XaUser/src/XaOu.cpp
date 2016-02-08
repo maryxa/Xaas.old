@@ -260,13 +260,14 @@ void XaOu::Update() {
 	FieldName.push_back("tree_level");
 	FieldValue.push_back(TreeLevel);
 
-	UpdateExecute("XaOu",FieldName,FieldValue,UpdateId);	
+	int Updated=UpdateExecute("XaOu",FieldName,FieldValue,UpdateId);	
 	
 	/*CALCULATING TREE PATH*/
 	string TreePath=Parent[0]["tree_path"]+Id+"|";
 
-	XaLibSql::Update(DB_WRITE,"XaOu",{"tree_path"},{TreePath},{"id"},{Id});
-	RESPONSE.Content=UpdateResponse(UpdateId);
+	int UpdatedTree=XaLibSql::Update(DB_WRITE,"XaOu",{"tree_path"},{TreePath},{"id"},{Id});
+
+	RESPONSE.Content=UpdateResponse(Updated);
 
 };
 

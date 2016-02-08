@@ -404,12 +404,18 @@ int XaLibModel::UpdateExecute(const string& DbTable,XaLibBase::FieldsMap& Loaded
 	}
 };
 
-void XaLibModel::UpdateExecute(const string& DbTable,vector <string>& FieldName,vector <string>& FieldValue, const int& Id) {
+int XaLibModel::UpdateExecute(const string& DbTable,vector <string>& FieldName,vector <string>& FieldValue, const int& Id) {
 
 	BackupRecord(DbTable,Id);
-	XaLibSql::Update(DB_WRITE,DbTable,{FieldName},{FieldValue},{"id"},{XaLibBase::FromIntToString(Id)});
 
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Updated a record into table -> "+DbTable+" with id ->"+to_string(Id));
+	int Updated=XaLibSql::Update(DB_WRITE,DbTable,{FieldName},{FieldValue},{"id"},{XaLibBase::FromIntToString(Id)});
+
+	if (Updated==1) {
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Updated a record into table -> "+DbTable+" with id ->"+to_string(Id));
+		return Id;
+	} else {
+		return 0;
+	}
 
 };
 
