@@ -260,7 +260,7 @@ void XaOuUi::UpdateFrm() {
 	FieldsValues.push_back(HTTP.GetHttpParam("id"));
 
 	XaLibCurl LibCurl;
-    string CallResponse = LibCurl.Call(BuildBackEndCall("XaOu","UpdateFrm",{"id"},{FieldsValues}));
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaOu","ReadForUpdateFrm",{"id"},{FieldsValues}));
 	CheckResponse(CallResponse);
 
 	AddJsVarString("XaData",CallResponse);

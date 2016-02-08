@@ -361,16 +361,18 @@ void XaLibModel::UpdatePrepare(const vector<string>& XmlFiles,const string& XPat
 	for (auto i=0;i<FieldsNum;i++) {
 
 		string FName=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/name");
-		
-		string FDbType=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/db_type");
-		string FSize=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/size");
-		string FCreate=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/create");
-		string FRequired=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/required");
+		string FUpdate=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/update");
 
-		string FValue=HTTP.GetHttpParam(FName);
+		if (FUpdate=="yes") {
+			string FDbType=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/db_type");
+			string FSize=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/size");
+			string FRequired=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/required");
 
-		FieldName.push_back(FName);
-		FieldValue.push_back(FValue);
+			string FValue=HTTP.GetHttpParam(FName);
+
+			FieldName.push_back(FName);
+			FieldValue.push_back(FValue);
+		}
 	};
 };
 
@@ -404,12 +406,18 @@ int XaLibModel::UpdateExecute(const string& DbTable,XaLibBase::FieldsMap& Loaded
 	}
 };
 
-void XaLibModel::UpdateExecute(const string& DbTable,vector <string>& FieldName,vector <string>& FieldValue, const int& Id) {
+int XaLibModel::UpdateExecute(const string& DbTable,vector <string>& FieldName,vector <string>& FieldValue, const int& Id) {
 
 	BackupRecord(DbTable,Id);
-	XaLibSql::Update(DB_WRITE,DbTable,{FieldName},{FieldValue},{"id"},{XaLibBase::FromIntToString(Id)});
 
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Updated a record into table -> "+DbTable+" with id ->"+to_string(Id));
+	int Updated=XaLibSql::Update(DB_WRITE,DbTable,{FieldName},{FieldValue},{"id"},{XaLibBase::FromIntToString(Id)});
+
+	if (Updated==1) {
+		LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Updated a record into table -> "+DbTable+" with id ->"+to_string(Id));
+		return Id;
+	} else {
+		return 0;
+	}
 
 };
 
