@@ -385,7 +385,7 @@ int XaLibModel::UpdateExecute(const string& DbTable,XaLibBase::FieldsMap& Loaded
 	vector <string> Values;
 
 	for (auto i=0;i<LoadedFields.size();i++) {
-		
+
 		if (LoadedFields[i]["value"]!="NoHttpParam") {
 
 			Fields.push_back(LoadedFields[i]["name"]);	
@@ -393,7 +393,7 @@ int XaLibModel::UpdateExecute(const string& DbTable,XaLibBase::FieldsMap& Loaded
 
 		}
 	};
-	
+
 	if(XaLibSql::Update(DB_WRITE,DbTable,Fields,Values,{"id"},{IdToUpdate})==1) {
 
 		return FromStringToInt(IdToUpdate);
