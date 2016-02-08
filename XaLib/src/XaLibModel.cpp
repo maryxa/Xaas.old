@@ -361,16 +361,18 @@ void XaLibModel::UpdatePrepare(const vector<string>& XmlFiles,const string& XPat
 	for (auto i=0;i<FieldsNum;i++) {
 
 		string FName=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/name");
-		
-		string FDbType=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/db_type");
-		string FSize=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/size");
-		string FCreate=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/create");
-		string FRequired=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/required");
+		string FUpdate=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/update");
 
-		string FValue=HTTP.GetHttpParam(FName);
+		if (FUpdate=="yes") {
+			string FDbType=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/db_type");
+			string FSize=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/size");
+			string FRequired=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/required");
 
-		FieldName.push_back(FName);
-		FieldValue.push_back(FValue);
+			string FValue=HTTP.GetHttpParam(FName);
+
+			FieldName.push_back(FName);
+			FieldValue.push_back(FValue);
+		}
 	};
 };
 
