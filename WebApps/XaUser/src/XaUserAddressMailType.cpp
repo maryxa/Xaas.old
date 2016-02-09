@@ -26,9 +26,11 @@ void XaUserAddressMailType::Dispatcher (const string &CalledEvent) {
 };
 
 void XaUserAddressMailType::Create() {
-
-	XaLibBase::FieldsMap LoadedFields=CreatePrepare({"XaUserAddressMailType"},"/XaUserAddressMailType/fieldset/field");
-	RESPONSE.Content=CreateResponse(CreateExecute("XaUserAddressMailType",LoadedFields));
+        
+        vector<string> FieldName;	
+	vector<string> FieldValue;
+	CreatePrepare({"XaUserAddressMailType"},"/XaUserAddressMailType/fieldset/field",FieldName,FieldValue);
+	RESPONSE.Content=CreateResponse(CreateExecute("XaUserAddressMailType",FieldName,FieldValue));
 };
 
 void XaUserAddressMailType::Read() {
@@ -109,11 +111,11 @@ void XaUserAddressMailType::ListAsOptions() {
 
 void XaUserAddressMailType::Update() {
 
-	BackupRecord("XaUserAddressMailType",50);
-
-	/*
-	XaLibBase::FieldsMap LoadedFields=UpdatePrepare({"XaUserAddressMailType"},"/XaUserAddressMailType/fieldset/field");
-	RESPONSE.Content=CreateResponse(UpdateExecute("XaUserAddressMailType",LoadedFields));*/
+	int Id=FromStringToInt(HTTP.GetHttpParam("id"));
+        vector<string> FieldName;	
+	vector<string> FieldValue;
+	UpdatePrepare({"XaUserAddressMailType"},"/XaUserAddressMailType/fieldset/field",FieldName,FieldValue);
+	RESPONSE.Content=UpdateResponse(UpdateExecute("XaUserAddressMailType",FieldName,FieldValue,Id));
 };
 
 void XaUserAddressMailType::Delete() {

@@ -26,9 +26,11 @@ void XaUserAddressPhoneCode::Dispatcher (const string &CalledEvent) {
 };
 
 void XaUserAddressPhoneCode::Create() {
-
-	XaLibBase::FieldsMap LoadedFields=CreatePrepare({"XaUserAddressPhoneCode"},"/XaUserAddressPhoneCode/fieldset/field");
-	RESPONSE.Content=CreateResponse(CreateExecute("XaUserAddressPhoneCode",LoadedFields));
+        
+        vector<string> FieldName;	
+	vector<string> FieldValue;
+	CreatePrepare({"XaUserAddressPhoneCode"},"/XaUserAddressPhoneCode/fieldset/field",FieldName,FieldValue);
+	RESPONSE.Content=CreateResponse(CreateExecute("XaUserAddressPhoneCode",FieldName,FieldValue));
 };
 
 void XaUserAddressPhoneCode::Read() {
@@ -109,11 +111,11 @@ void XaUserAddressPhoneCode::ListAsOptions() {
 
 void XaUserAddressPhoneCode::Update() {
 
-	BackupRecord("XaUserAddressPhoneCode",50);
-
-	/*
-	XaLibBase::FieldsMap LoadedFields=UpdatePrepare({"XaUserAddressPhoneCode"},"/XaUserAddressPhoneCode/fieldset/field");
-	RESPONSE.Content=CreateResponse(UpdateExecute("XaUserAddressPhoneCode",LoadedFields));*/
+	int Id=FromStringToInt(HTTP.GetHttpParam("id"));
+        vector<string> FieldName;	
+	vector<string> FieldValue;
+	UpdatePrepare({"XaUserAddressPhoneCode"},"/XaUserAddressPhoneCode/fieldset/field",FieldName,FieldValue);
+	RESPONSE.Content=UpdateResponse(UpdateExecute("XaUserAddressPhoneCode",FieldName,FieldValue,Id));
 };
 
 void XaUserAddressPhoneCode::Delete() {
