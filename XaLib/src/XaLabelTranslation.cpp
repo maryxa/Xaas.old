@@ -26,8 +26,11 @@ void XaLabelTranslation::Dispatcher (const string &CalledEvent) {
 };
 
 void XaLabelTranslation::Create (){
-    
-    XaLibBase::FieldsMap LoadedFields=CreatePrepare({"XaLabelTranslation"},"/XaLabelTranslation/fieldset/field");
+
+	vector<string> FieldName;	
+	vector<string> FieldValue;
+
+    CreatePrepare({"XaLabelTranslation"},"/XaLabelTranslation/fieldset/field",FieldName,FieldValue);
 
     string StrLabelId=HTTP.GetHttpParam("XaLabel_ID");
     string StrLanguageId=HTTP.GetHttpParam("XaLanguage_ID");

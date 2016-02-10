@@ -43,9 +43,12 @@ void XaLanguage::Dispatcher(const string &CalledEvent) {
 
 void XaLanguage::Create() {
 
-	XaLibBase::FieldsMap LoadedFields=CreatePrepare({"XaLanguage"},"/XaLanguage/fieldset/field");
+	vector<string> FieldName;	
+	vector<string> FieldValue;
+
+	CreatePrepare({"XaLanguage"},"/XaLanguage/fieldset/field",FieldName,FieldValue);
 	
-        int NextId=CreateExecute("XaLanguage",LoadedFields);
+        int NextId=CreateExecute("XaLanguage",FieldName,FieldValue);
         
         if (NextId!=0) {
 	

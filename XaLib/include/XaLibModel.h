@@ -50,12 +50,8 @@ class XaLibModel : protected XaLibBase {
         
         vector<string> AddXmlFile(const vector<string>& FileName);
 
-        [[deprecated]]
-        FieldsMap CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr);
         void CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,vector <string>& FieldName,vector <string>& FieldValue);
         
-        [[deprecated]]
-        int CreateExecute(const string& DbTable,XaLibBase::FieldsMap& LoadedFields);
         int CreateExecute(const string& DbTable,vector <string>& FieldName,vector <string>& FieldValue);
 
         string CreateResponse(const int& NextId);

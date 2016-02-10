@@ -50,38 +50,6 @@ vector<string> XaLibModel::AddXmlFile(const vector<string>& FileName){
 	return XmlFiles;
 };
 
-XaLibBase::FieldsMap XaLibModel::CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr) {
-
-	//TODO:GESTIONE ERRORI
-
-	//PROPERTIES DEFINED
-	vector <string> Properties ={"name","type","size","required"};
-
-	//LOAD XML FOR MODEL
-	xmlDocPtr XmlDomDoc=XaLibDom::DomFromFile(AddXmlFile(XmlFiles),0);
-
-	//GET NUMBER OF FILEDS
-	int FieldsNum=XaLibDom::GetNumRowByXPathInt(XmlDomDoc,XPathExpr);
-
-	FieldsMap Fields;
-	
-	for (auto i=0;i<FieldsNum;i++) {
-
-		for ( auto &j : Properties) {
-
-			//LOADING PROPERTIES
-			Fields[i][j]=XaLibDom::GetElementValueByXPath(XmlDomDoc,XPathExpr+"["+ to_string(i+1) + "]/"+j);
-
-			LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Loaded value for property ->" +j +" :: "+Fields[i][j]);			
-		};
-
-		//LOADING PASSED VALUE
-		Fields[i]["value"]=HTTP.GetHttpParam(Fields[i]["name"]);
-	};
-
-	return Fields;
-};
-
 void XaLibModel::CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,vector <string>& FieldName,vector <string>& FieldValue){
 
 	vector <string> Properties ={"name","db_type","size","create","required"};
@@ -128,31 +96,6 @@ int XaLibModel::CreateExecute(const string& DbTable,vector <string>& FieldName,v
 	};
 */
 	int NextId=XaLibSql::Insert(DB_WRITE,DbTable,FieldName,FieldValue);
-
-	if (NextId==0) {
-
-		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-301 Inserted a new record into table -> "+DbTable+" with id ->"+to_string(NextId));
-		throw 301;
-	}
-
-	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Inserted a new record into table -> "+DbTable+" with id ->"+to_string(NextId));
-
-	return NextId;
-};
-
-int XaLibModel::CreateExecute(const string& DbTable,XaLibBase::FieldsMap& LoadedFields) {
-
-	//CHECK FIELDS
-	vector <string> Fields={"status","old_id"};
-	vector <string> Values={"1","0"};
-
-	for (auto i=0;i<LoadedFields.size();i++) {
-
-		Fields.push_back(LoadedFields[i]["name"]);	
-		Values.push_back(LoadedFields[i]["value"]);
-	};
-
-	int NextId=XaLibSql::Insert(DB_WRITE,DbTable,Fields,Values);
 
 	if (NextId==0) {
 
