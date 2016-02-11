@@ -11,6 +11,8 @@ void XaUserAddressMailType::Dispatcher (const string &CalledEvent) {
         this->Create();
     } else if (CalledEvent=="Read"){
 	this->Read();
+    } else if (CalledEvent=="ReadForUpdateFrm"){
+        this->ReadForUpdateFrm();
     } else if (CalledEvent=="List"){
 	this->List();
     } else if (CalledEvent=="ListAsOptions"){
@@ -39,6 +41,17 @@ void XaUserAddressMailType::Read() {
 	
 	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaUserAddressMailType",FieldsToRead,{"id"},{HTTP.GetHttpParam("id")});
 	RESPONSE.Content= ReadResponse(DbRes,FieldsToRead);
+};
+
+void XaUserAddressMailType::ReadForUpdateFrm() {
+
+	string Id=HTTP.GetHttpParam("id");
+
+	vector<string> ReturnedFields={"id","name","description"};
+
+	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaUserAddressMailType",{ReturnedFields},{"id"},{Id});
+
+	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);
 };
 
 void XaUserAddressMailType::List() {
