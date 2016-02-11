@@ -27,7 +27,7 @@ void XaLabelTranslation::Dispatcher (const string &CalledEvent) {
 
 void XaLabelTranslation::Create (){
 
-	vector<string> FieldName;	
+	vector<string> FieldName;
 	vector<string> FieldValue;
 
     CreatePrepare({"XaLabelTranslation"},"/XaLabelTranslation/fieldset/field",FieldName,FieldValue);
@@ -179,12 +179,19 @@ void XaLabelTranslation::List() {
 };
 
 void XaLabelTranslation::Update() {
+/*
+	string Id=HTTP.GetHttpParam("id");
+	int UpdateId=XaLibBase::FromStringToInt(Id);
 
-	BackupRecord("XaLabelTranslation",50);
+	vector<string> FieldName;	
+	vector<string> FieldValue;
 
-	/*
-	XaLibBase::FieldsMap LoadedFields=UpdatePrepare({"XaLabelTranslation"},"/XaLabelTranslation/fieldset/field");
-	RESPONSE.Content=CreateResponse(UpdateExecute("XaLabelTranslation",LoadedFields));*/
+	UpdatePrepare({"XaLabelTranslation"},"/XaLabelTranslation/fieldset/field",FieldName,FieldValue);
+
+	int Updated=UpdateExecute("XaLabelTranslation",FieldName,FieldValue,UpdateId);	
+	
+	RESPONSE.Content=UpdateResponse(Updated);
+*/
 };
 
 void XaLabelTranslation::Delete() {

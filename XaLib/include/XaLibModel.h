@@ -69,11 +69,7 @@ class XaLibModel : protected XaLibBase {
         */
         int BackupRecord(const string& DbTable,const int& RowId);
 
-		[[deprecated]]
-        FieldsMap UpdatePrepare(const vector<string>& XmlFiles,const string& XPathExpr);
 		void UpdatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,vector <string>& FieldName,vector <string>& FieldValue);
-		[[deprecated]]
-        int  UpdateExecute(const string& DbTable,XaLibBase::FieldsMap& LoadedFields);
 		int UpdateExecute(const string& DbTable,vector <string>& FieldName,vector <string>& FieldValue, const int& Id);
 	
         string UpdateResponse(const int& UpdatedId);
