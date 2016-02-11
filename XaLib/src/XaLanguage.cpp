@@ -43,9 +43,12 @@ void XaLanguage::Dispatcher(const string &CalledEvent) {
 
 void XaLanguage::Create() {
 
-	XaLibBase::FieldsMap LoadedFields=CreatePrepare({"XaLanguage"},"/XaLanguage/fieldset/field");
+	vector<string> FieldName;	
+	vector<string> FieldValue;
+
+	CreatePrepare({"XaLanguage"},"/XaLanguage/fieldset/field",FieldName,FieldValue);
 	
-        int NextId=CreateExecute("XaLanguage",LoadedFields);
+        int NextId=CreateExecute("XaLanguage",FieldName,FieldValue);
         
         if (NextId!=0) {
 	
@@ -156,12 +159,19 @@ void XaLanguage::ListAsOptions() {
 };
 
 void XaLanguage::Update() {
+/*
+	string Id=HTTP.GetHttpParam("id");
+	int UpdateId=XaLibBase::FromStringToInt(Id);
 
-	BackupRecord("XaLanguage",50);
+ 	vector<string> FieldName;
+	vector<string> FieldValue;
 
-	/*
-	XaLibBase::FieldsMap LoadedFields=UpdatePrepare({"XaLanguage"},"/XaLanguage/fieldset/field");
-	RESPONSE.Content=CreateResponse(UpdateExecute("XaLanguage",LoadedFields));*/
+	UpdatePrepare({"XaLanguage"},"/XaLanguage/fieldset/field",FieldName,FieldValue);
+
+	int Updated=UpdateExecute("XaLanguage",FieldName,FieldValue,UpdateId);	
+	
+	RESPONSE.Content=UpdateResponse(Updated);
+*/
 };
 
 void XaLanguage::Delete() {

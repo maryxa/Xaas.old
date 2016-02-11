@@ -27,8 +27,11 @@ void XaOuType::Dispatcher (const string &CalledEvent) {
 
 void XaOuType::Create() {
 
-	XaLibBase::FieldsMap LoadedFields=CreatePrepare({"XaOuType"},"/XaOuType/fieldset/field");
-	RESPONSE.Content=CreateResponse(CreateExecute("XaOuType",LoadedFields));
+	vector<string> FieldName;	
+	vector<string> FieldValue;
+
+	CreatePrepare({"XaOuType"},"/XaOuType/fieldset/field",FieldName,FieldValue);
+	RESPONSE.Content=CreateResponse(CreateExecute("XaOuType",FieldName,FieldValue));
 };
 
 void XaOuType::Read() {

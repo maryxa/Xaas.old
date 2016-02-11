@@ -26,7 +26,9 @@ void XaUserAddressGeo::Dispatcher (const string &CalledEvent) {
 
 void XaUserAddressGeo::Create() {
 
-	XaLibBase::FieldsMap LoadedFields=CreatePrepare({"XaUserAddressGeo"},"/XaUserAddressGeo/fieldset/field");
+        vector<string> FieldName;	
+	vector<string> FieldValue;
+	CreatePrepare({"XaUserAddressGeo"},"/XaUserAddressGeo/fieldset/field",FieldName,FieldValue);
         
         string XaTable="XaUser";
         string XaUserId=HTTP.GetHttpParam("XaUser_ID");
@@ -44,7 +46,7 @@ void XaUserAddressGeo::Create() {
             throw 302;
         }
         
-	RESPONSE.Content=CreateResponse(CreateExecute("XaUserAddressGeo",LoadedFields));
+	RESPONSE.Content=CreateResponse(CreateExecute("XaUserAddressGeo",FieldName,FieldValue));
 };
 
 void XaUserAddressGeo::Read() {
@@ -87,11 +89,11 @@ void XaUserAddressGeo::List() {
 
 void XaUserAddressGeo::Update() {
 
-	BackupRecord("XaUserAddressGeo",50);
-
-	/*
-	XaLibBase::FieldsMap LoadedFields=UpdatePrepare({"XaUserAddressGeo"},"/XaUserAddressGeo/fieldset/field");
-	RESPONSE.Content=CreateResponse(UpdateExecute("XaUserAddressGeo",LoadedFields));*/
+	int Id=FromStringToInt(HTTP.GetHttpParam("id"));
+        vector<string> FieldName;	
+	vector<string> FieldValue;
+	UpdatePrepare({"XaUserAddressGeo"},"/XaUserAddressGeo/fieldset/field",FieldName,FieldValue);
+	RESPONSE.Content=UpdateResponse(UpdateExecute("XaUserAddressGeo",FieldName,FieldValue,Id));
 };
 
 void XaUserAddressGeo::Delete() {
