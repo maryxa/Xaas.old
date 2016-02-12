@@ -36,7 +36,7 @@ void XaOuType::Create() {
 
 void XaOuType::Read() {
 
-	vector<string> FieldsToRead = XaLibModel::ReadPrepare({"XaOuType"},"/XaOuType/fieldset/field");
+	vector<string> FieldsToRead = XaLibModel::ReadPrepare({"XaOuType"},"/XaOuType/fieldset/field",1);
 	
 	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaOuType",FieldsToRead,{"id"},{HTTP.GetHttpParam("id")});
 	RESPONSE.Content= ReadResponse(DbRes,FieldsToRead);
@@ -74,7 +74,7 @@ void XaOuType::List() {
 		WhereValues.push_back(PassedStatus);
 	};
 
-	vector<string> ReturnedFields=ListPrepare({"XaOuType"},"/XaOuType/fieldset/field");
+	vector<string> ReturnedFields=ListPrepare({"XaOuType"},"/XaOuType/fieldset/field",1);
 
 	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaOuType",{ReturnedFields},{WhereFields},{WhereValues},{OrderByFields},{GroupByFields},Limit);
 	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);
