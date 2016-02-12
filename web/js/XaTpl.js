@@ -487,7 +487,13 @@ function XaUpdateFormTpl (ModelName,DataName) {
 
     function BuildField (FieldId) {
 
-        var Field="";
+      var Field="";
+
+      var FRead=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/read");
+
+      /* Fields must for one thing be readable by user */
+
+      if (FRead==="yes") {
 
         var FId=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/id");
 
@@ -505,7 +511,6 @@ function XaUpdateFormTpl (ModelName,DataName) {
             FRequiredClause="";
         };
 
-        var FRead=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/read");
         var FUpdate=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/update");
 
         if (FUpdate!=="yes") {
@@ -523,7 +528,7 @@ function XaUpdateFormTpl (ModelName,DataName) {
         var LId=FieldId+"-label";
         var LName=FieldExtName+"-label";
 
-        var Fvalue =XaXmlGetElementValueByXpath(XmlDataDoc,"//list/item/"+FName);
+        var Fvalue =XaXmlGetElementValueByXpath(XmlDataDoc,"//read/"+FName);
 
         if (FType==="input-text") {
 
@@ -542,8 +547,12 @@ function XaUpdateFormTpl (ModelName,DataName) {
 
             var FObj=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/obj");
             var FEvt=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/evt");
-
-            Field+="<script>XaCreateOptions('','obj="+FObj+"&evt="+FEvt+"','"+FieldExtId+"','"+Fvalue+"');</script>";
+            if (FUpdate==="yes") {
+              Field+="<script>XaCreateOptions('','obj="+FObj+"&evt="+FEvt+"','"+FieldExtId+"','"+Fvalue+"');</script>";
+            } else {
+              /* display only selected option */
+              Field+="<script>XaCreateOptions('','obj="+FObj+"&evt="+FEvt+"&value="+FValue+"','"+FieldExtId+"','"+Fvalue+"');</script>";
+            }
 
         } else if (FType==="select-single-ou-tree") {
 
@@ -553,7 +562,12 @@ function XaUpdateFormTpl (ModelName,DataName) {
             var FObj=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/obj");
             var FEvt=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/evt");
 
-            Field+="<script>XaCreateOptionsOu('','obj="+FObj+"&evt="+FEvt+"','"+FieldExtId+"','"+Fvalue+"');</script>";
+            if (FUpdate==="yes") {
+              Field+="<script>XaCreateOptionsOu('','obj="+FObj+"&evt="+FEvt+"','"+FieldExtId+"','"+Fvalue+"');</script>";
+            } else {
+              /* display only selected option */
+              Field+="<script>XaCreateOptionsOu('','obj="+FObj+"&evt="+FEvt+"&value="+Fvalue+"','"+FieldExtId+"','"+Fvalue+"');</script>";
+            }
 
         } else if (FType==="select-single-static") {
 
@@ -566,8 +580,10 @@ function XaUpdateFormTpl (ModelName,DataName) {
             for(var i=0;i<OptionsNumber;i++) {
 		var j=i+1;
 		var OptValue=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/option["+j+"]/value");
-		var OptText =XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/option["+j+"]/label");
-		Field+="<option value=\""+OptValue+"\">"+OptText+"</option>";
+		if (FUpdate==="yes" || OptValue===Fvalue) {
+			var OptText =XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/option["+j+"]/label");
+			Field+="<option value=\""+OptValue+"\">"+OptText+"</option>";
+		}
             }
             Field+="</select>";
 
@@ -577,6 +593,8 @@ function XaUpdateFormTpl (ModelName,DataName) {
             
         }
 
+      }
+
     return Field;
     };
 
@@ -585,7 +603,7 @@ function XaUpdateFormTpl (ModelName,DataName) {
 
         var Content="<form class=\"form "+Class+"\" id=\""+Id+"\""+ " name=\""+Name+"\" enctype=\""+EncType+ "\" method=\""+Method+"\""+ " action=\""+BuildAction()+ "\">";
 
-	var RowId =XaXmlGetElementValueByXpath(XmlDataDoc,"//list/item/id");
+	var RowId =XaXmlGetElementValueByXpath(XmlDataDoc,"//read/id");
         var FieldExtName=RootElement+"-id";
 
         Content+="<fieldset>";
