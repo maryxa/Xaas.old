@@ -25,8 +25,10 @@ void XaUserAddressMail::Dispatcher (const string &CalledEvent) {
 };
 
 void XaUserAddressMail::Create() {
-
-	XaLibBase::FieldsMap LoadedFields=CreatePrepare({"XaUserAddressMail"},"/XaUserAddressMail/fieldset/field");
+        
+        vector<string> FieldName;	
+	vector<string> FieldValue;
+	CreatePrepare({"XaUserAddressMail"},"/XaUserAddressMail/fieldset/field",FieldName,FieldValue);
 	
         string XaTable="XaUser";
         string XaUserId=HTTP.GetHttpParam("XaUser_ID");
@@ -44,7 +46,7 @@ void XaUserAddressMail::Create() {
             throw 302;
         }
         
-        RESPONSE.Content=CreateResponse(CreateExecute("XaUserAddressMail",LoadedFields));
+        RESPONSE.Content=CreateResponse(CreateExecute("XaUserAddressMail",FieldName,FieldValue));
 };
 
 void XaUserAddressMail::Read() {
@@ -87,11 +89,11 @@ void XaUserAddressMail::List() {
 
 void XaUserAddressMail::Update() {
 
-	BackupRecord("XaUserAddressMail",50);
-
-	/*
-	XaLibBase::FieldsMap LoadedFields=UpdatePrepare({"XaUserAddressMail"},"/XaUserAddressMail/fieldset/field");
-	RESPONSE.Content=CreateResponse(UpdateExecute("XaUserAddressMail",LoadedFields));*/
+	int Id=FromStringToInt(HTTP.GetHttpParam("id"));
+        vector<string> FieldName;	
+	vector<string> FieldValue;
+	UpdatePrepare({"XaUserAddressMail"},"/XaUserAddressMail/fieldset/field",FieldName,FieldValue);
+	RESPONSE.Content=UpdateResponse(UpdateExecute("XaUserAddressMail",FieldName,FieldValue,Id));
 };
 
 void XaUserAddressMail::Delete() {

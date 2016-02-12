@@ -565,8 +565,11 @@ void XaLabel::XaLabelAddFrm (){
 };
 */
 void XaLabel::Create (){
-    
-    XaLibBase::FieldsMap LoadedFields=CreatePrepare({"XaLabel"},"/XaLabel/fieldset/field");
+
+	vector<string> FieldName;	
+	vector<string> FieldValue;
+
+    CreatePrepare({"XaLabel"},"/XaLabel/fieldset/field",FieldName,FieldValue);
 
 	string StrName=HTTP.GetHttpParam("name");
 	string StrDescription=HTTP.GetHttpParam("description");

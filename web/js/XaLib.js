@@ -568,50 +568,50 @@ var FormElement = document.getElementById(FormId);
 
                 switch (FormElement.elements[i].nodeName) {
 
-					case 'INPUT':
-                        switch (FormElement.elements[i].type) {
-                        case 'text':
-                        case 'hidden':
-                        case 'password':
-                        case 'email':
-                        case 'search':
-                        case 'number':
-                        //case 'button':
-                        //case 'reset':
-                        //case 'submit':
-                            q.push(FormElement.elements[i].name + "=" + encodeURIComponent(FormElement.elements[i].value));
-                            break;
-
-                        case 'checkbox':
-                        case 'radio':
-                                if (FormElement.elements[i].checked) {
-                                        q.push(FormElement.elements[i].name + "=" + encodeURIComponent(FormElement.elements[i].value));
-                                }                                               
-                                break;
-                        }
-                        break;
-                        
-						case 'file':
-
-						break; 
-
-					case 'TEXTAREA':
+                    case 'INPUT':
+                    switch (FormElement.elements[i].type) {
+                    case 'text':
+                    case 'hidden':
+                    case 'password':
+                    case 'email':
+                    case 'search':
+                    case 'number':
+                    //case 'button':
+                    //case 'reset':
+                    //case 'submit':
                         q.push(FormElement.elements[i].name + "=" + encodeURIComponent(FormElement.elements[i].value));
                         break;
-					case 'SELECT':
-                        switch (FormElement.elements[i].type) {
-							case 'select-one':
+
+                    case 'checkbox':
+                    case 'radio':
+                        if (FormElement.elements[i].checked) {
                                 q.push(FormElement.elements[i].name + "=" + encodeURIComponent(FormElement.elements[i].value));
-                                break;
-							case 'select-multiple':
-                                for (j = FormElement.elements[i].options.length - 1; j >= 0; j = j - 1) {
-                                        if (FormElement.elements[i].options[j].selected) {
-                                                q.push(FormElement.elements[i].name + "=" + encodeURIComponent(FormElement.elements[i].options[j].value));
-                                        }
-                                }
-                                break;
-                        }
+                        }                                               
                         break;
+                    }
+                    break;
+
+                    case 'file':
+
+                    break;
+
+                    case 'TEXTAREA':
+                        q.push(FormElement.elements[i].name + "=" + encodeURIComponent(FormElement.elements[i].value));
+                    break;
+                                    case 'SELECT':
+                    switch (FormElement.elements[i].type) {
+                                                    case 'select-one':
+                            q.push(FormElement.elements[i].name + "=" + encodeURIComponent(FormElement.elements[i].value));
+                            break;
+                                                    case 'select-multiple':
+                            for (j = FormElement.elements[i].options.length - 1; j >= 0; j = j - 1) {
+                                    if (FormElement.elements[i].options[j].selected) {
+                                            q.push(FormElement.elements[i].name + "=" + encodeURIComponent(FormElement.elements[i].options[j].value));
+                                    }
+                            }
+                            break;
+                    }
+                    break;
 	/*
                 case 'BUTTON':
                         switch (form.elements[i].type) {

@@ -71,9 +71,6 @@ class XaLibAction : protected XaLibBase {
         //PER OPTION IN XML
         vector<string> XmlFields;
         vector<string> XmlValues;
-	
-        
-        
 
         vector<string> OptionReturnedFields;
         vector<string> OptionWhereFields;

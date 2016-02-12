@@ -11,6 +11,8 @@ void XaUserAddressMailType::Dispatcher (const string &CalledEvent) {
         this->Create();
     } else if (CalledEvent=="Read"){
 	this->Read();
+    } else if (CalledEvent=="ReadForUpdateFrm"){
+        this->ReadForUpdateFrm();
     } else if (CalledEvent=="List"){
 	this->List();
     } else if (CalledEvent=="ListAsOptions"){
@@ -26,9 +28,11 @@ void XaUserAddressMailType::Dispatcher (const string &CalledEvent) {
 };
 
 void XaUserAddressMailType::Create() {
-
-	XaLibBase::FieldsMap LoadedFields=CreatePrepare({"XaUserAddressMailType"},"/XaUserAddressMailType/fieldset/field");
-	RESPONSE.Content=CreateResponse(CreateExecute("XaUserAddressMailType",LoadedFields));
+        
+        vector<string> FieldName;	
+	vector<string> FieldValue;
+	CreatePrepare({"XaUserAddressMailType"},"/XaUserAddressMailType/fieldset/field",FieldName,FieldValue);
+	RESPONSE.Content=CreateResponse(CreateExecute("XaUserAddressMailType",FieldName,FieldValue));
 };
 
 void XaUserAddressMailType::Read() {
@@ -37,6 +41,17 @@ void XaUserAddressMailType::Read() {
 	
 	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaUserAddressMailType",FieldsToRead,{"id"},{HTTP.GetHttpParam("id")});
 	RESPONSE.Content= ReadResponse(DbRes,FieldsToRead);
+};
+
+void XaUserAddressMailType::ReadForUpdateFrm() {
+
+	string Id=HTTP.GetHttpParam("id");
+
+	vector<string> ReturnedFields={"id","name","description"};
+
+	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaUserAddressMailType",{ReturnedFields},{"id"},{Id});
+
+	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);
 };
 
 void XaUserAddressMailType::List() {
@@ -109,11 +124,11 @@ void XaUserAddressMailType::ListAsOptions() {
 
 void XaUserAddressMailType::Update() {
 
-	BackupRecord("XaUserAddressMailType",50);
-
-	/*
-	XaLibBase::FieldsMap LoadedFields=UpdatePrepare({"XaUserAddressMailType"},"/XaUserAddressMailType/fieldset/field");
-	RESPONSE.Content=CreateResponse(UpdateExecute("XaUserAddressMailType",LoadedFields));*/
+	int Id=FromStringToInt(HTTP.GetHttpParam("id"));
+        vector<string> FieldName;	
+	vector<string> FieldValue;
+	UpdatePrepare({"XaUserAddressMailType"},"/XaUserAddressMailType/fieldset/field",FieldName,FieldValue);
+	RESPONSE.Content=UpdateResponse(UpdateExecute("XaUserAddressMailType",FieldName,FieldValue,Id));
 };
 
 void XaUserAddressMailType::Delete() {

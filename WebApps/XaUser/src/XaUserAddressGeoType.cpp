@@ -11,6 +11,8 @@ void XaUserAddressGeoType::Dispatcher (const string &CalledEvent) {
         this->Create();
     } else if (CalledEvent=="Read"){
         this->Read();
+    } else if (CalledEvent=="ReadForUpdateFrm"){
+        this->ReadForUpdateFrm();
     } else if (CalledEvent=="List"){
 	this->List();
     } else if (CalledEvent=="ListAsOptions"){
@@ -27,8 +29,10 @@ void XaUserAddressGeoType::Dispatcher (const string &CalledEvent) {
 
 void XaUserAddressGeoType::Create() {
 
-	XaLibBase::FieldsMap LoadedFields=CreatePrepare({"XaUserAddressGeoType"},"/XaUserAddressGeoType/fieldset/field");
-	RESPONSE.Content=CreateResponse(CreateExecute("XaUserAddressGeoType",LoadedFields));
+        vector<string> FieldName;	
+	vector<string> FieldValue;
+	CreatePrepare({"XaUserAddressGeoType"},"/XaUserAddressGeoType/fieldset/field",FieldName,FieldValue);
+	RESPONSE.Content=CreateResponse(CreateExecute("XaUserAddressGeoType",FieldName,FieldValue));
 };
 
 void XaUserAddressGeoType::Read() {
@@ -37,6 +41,17 @@ void XaUserAddressGeoType::Read() {
 	
 	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaUserAddressGeoType",FieldsToRead,{"id"},{HTTP.GetHttpParam("id")});
 	RESPONSE.Content= ReadResponse(DbRes,FieldsToRead);
+};
+
+void XaUserAddressGeoType::ReadForUpdateFrm() {
+
+	string Id=HTTP.GetHttpParam("id");
+
+	vector<string> ReturnedFields={"id","name","description"};
+
+	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaUserAddressGeoType",{ReturnedFields},{"id"},{Id});
+
+	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);
 };
 
 void XaUserAddressGeoType::List() {
@@ -108,12 +123,12 @@ void XaUserAddressGeoType::ListAsOptions() {
 };
 
 void XaUserAddressGeoType::Update() {
-
-	BackupRecord("XaUserAddressGeoType",50);
-
-	/*
-	XaLibBase::FieldsMap LoadedFields=UpdatePrepare({"XaUserAddressGeoType"},"/XaUserAddressGeoType/fieldset/field");
-	RESPONSE.Content=CreateResponse(UpdateExecute("XaUserAddressGeoType",LoadedFields));*/
+        
+        int Id=FromStringToInt(HTTP.GetHttpParam("id"));
+        vector<string> FieldName;	
+	vector<string> FieldValue;
+	UpdatePrepare({"XaUserAddressGeoType"},"/XaUserAddressGeoType/fieldset/field",FieldName,FieldValue);
+	RESPONSE.Content=UpdateResponse(UpdateExecute("XaUserAddressGeoType",FieldName,FieldValue,Id));
 };
 
 void XaUserAddressGeoType::Delete() {

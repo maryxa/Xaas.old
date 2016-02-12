@@ -25,6 +25,10 @@
 #include <XaOuTypeUi.h>
 #include <XaOuUi.h>
 #include <XaPages.h>
+#include <XaUserAddressGeoTypeUi.h>
+#include <XaUserAddressMailTypeUi.h>
+#include <XaUserAddressPhoneCodeUi.h>
+#include <XaUserAddressPhoneTypeUi.h>
 
 int main (void) {
 

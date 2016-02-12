@@ -1,5 +1,5 @@
-#ifndef XAUSERUI_H
-#define XAUSERUI_H
+#ifndef XAUSERLOGINUI_H
+#define XAUSERLOGINUI_H
 
 #include <XaLibAction.h>
 

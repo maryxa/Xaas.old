@@ -11,6 +11,8 @@ void XaUserAddressPhoneType::Dispatcher (const string &CalledEvent) {
         this->Create();
     } else if (CalledEvent=="Read"){
 	this->Read();
+    } else if (CalledEvent=="ReadForUpdateFrm"){
+        this->ReadForUpdateFrm();
     } else if (CalledEvent=="List"){
 	this->List();
     } else if (CalledEvent=="ListAsOptions"){
@@ -27,8 +29,10 @@ void XaUserAddressPhoneType::Dispatcher (const string &CalledEvent) {
 
 void XaUserAddressPhoneType::Create() {
 
-	XaLibBase::FieldsMap LoadedFields=CreatePrepare({"XaUserAddressPhoneType"},"/XaUserAddressPhoneType/fieldset/field");
-	RESPONSE.Content=CreateResponse(CreateExecute("XaUserAddressPhoneType",LoadedFields));
+        vector<string> FieldName;	
+	vector<string> FieldValue;
+	CreatePrepare({"XaUserAddressPhoneType"},"/XaUserAddressPhoneType/fieldset/field",FieldName,FieldValue);
+	RESPONSE.Content=CreateResponse(CreateExecute("XaUserAddressPhoneType",FieldName,FieldValue));
 };
 
 void XaUserAddressPhoneType::Read() {
@@ -37,6 +41,17 @@ void XaUserAddressPhoneType::Read() {
 	
 	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaUserAddressPhoneType",FieldsToRead,{"id"},{HTTP.GetHttpParam("id")});
 	RESPONSE.Content= ReadResponse(DbRes,FieldsToRead);
+};
+
+void XaUserAddressPhoneType::ReadForUpdateFrm() {
+
+	string Id=HTTP.GetHttpParam("id");
+
+	vector<string> ReturnedFields={"id","name","description"};
+
+	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaUserAddressPhoneType",{ReturnedFields},{"id"},{Id});
+
+	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);
 };
 
 void XaUserAddressPhoneType::List() {
@@ -109,11 +124,11 @@ void XaUserAddressPhoneType::ListAsOptions() {
 
 void XaUserAddressPhoneType::Update() {
 
-	BackupRecord("XaUserAddressPhoneType",50);
-
-	/*
-	XaLibBase::FieldsMap LoadedFields=UpdatePrepare({"XaUserAddressPhoneType"},"/XaUserAddressPhoneType/fieldset/field");
-	RESPONSE.Content=CreateResponse(UpdateExecute("XaUserAddressPhoneType",LoadedFields));*/
+	int Id=FromStringToInt(HTTP.GetHttpParam("id"));
+        vector<string> FieldName;	
+	vector<string> FieldValue;
+	UpdatePrepare({"XaUserAddressPhoneType"},"/XaUserAddressPhoneType/fieldset/field",FieldName,FieldValue);
+	RESPONSE.Content=UpdateResponse(UpdateExecute("XaUserAddressPhoneType",FieldName,FieldValue,Id));
 };
 
 void XaUserAddressPhoneType::Delete() {

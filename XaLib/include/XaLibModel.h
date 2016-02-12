@@ -50,20 +50,16 @@ class XaLibModel : protected XaLibBase {
         
         vector<string> AddXmlFile(const vector<string>& FileName);
 
-        [[deprecated]]
-        FieldsMap CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr);
         void CreatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,vector <string>& FieldName,vector <string>& FieldValue);
         
-        [[deprecated]]
-        int CreateExecute(const string& DbTable,XaLibBase::FieldsMap& LoadedFields);
         int CreateExecute(const string& DbTable,vector <string>& FieldName,vector <string>& FieldValue);
 
         string CreateResponse(const int& NextId);
 
-        vector<string> ReadPrepare(const vector<string>& XmlFiles,const string& XPathExpr);
+        vector<string> ReadPrepare(const vector<string>& XmlFiles,const string& XPathExpr,const int& WithSystemFields=0);
         string ReadResponse(DbResMap& DbRes,vector<string>& FieldsToRead);
 
-        vector<string> ListPrepare(const vector<string>& XmlFiles,const string& XPathExpr);
+        vector<string> ListPrepare(const vector<string>& XmlFiles,const string& XPathExpr,const int& WithSystemFields=0);
         string ListResponse(DbResMap& DbRes,vector<string>& FieldsToRead);
 
         /*
@@ -73,11 +69,7 @@ class XaLibModel : protected XaLibBase {
         */
         int BackupRecord(const string& DbTable,const int& RowId);
 
-		[[deprecated]]
-        FieldsMap UpdatePrepare(const vector<string>& XmlFiles,const string& XPathExpr);
 		void UpdatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,vector <string>& FieldName,vector <string>& FieldValue);
-		[[deprecated]]
-        int  UpdateExecute(const string& DbTable,XaLibBase::FieldsMap& LoadedFields);
 		int UpdateExecute(const string& DbTable,vector <string>& FieldName,vector <string>& FieldValue, const int& Id);
 	
         string UpdateResponse(const int& UpdatedId);
