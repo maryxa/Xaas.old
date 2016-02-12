@@ -11,6 +11,8 @@ void XaUserAddressGeoType::Dispatcher (const string &CalledEvent) {
         this->Create();
     } else if (CalledEvent=="Read"){
         this->Read();
+    } else if (CalledEvent=="ReadForUpdateFrm"){
+        this->ReadForUpdateFrm();
     } else if (CalledEvent=="List"){
 	this->List();
     } else if (CalledEvent=="ListAsOptions"){
@@ -39,6 +41,17 @@ void XaUserAddressGeoType::Read() {
 	
 	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaUserAddressGeoType",FieldsToRead,{"id"},{HTTP.GetHttpParam("id")});
 	RESPONSE.Content= ReadResponse(DbRes,FieldsToRead);
+};
+
+void XaUserAddressGeoType::ReadForUpdateFrm() {
+
+	string Id=HTTP.GetHttpParam("id");
+
+	vector<string> ReturnedFields={"id","name","description"};
+
+	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaUserAddressGeoType",{ReturnedFields},{"id"},{Id});
+
+	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);
 };
 
 void XaUserAddressGeoType::List() {

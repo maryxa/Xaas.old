@@ -80,9 +80,9 @@ void XaLibModel::CreatePrepare(const vector<string>& XmlFiles,const string& XPat
 int XaLibModel::CreateExecute(const string& DbTable,vector <string>& FieldName,vector <string>& FieldValue) {
 
 	FieldName.push_back("status");
-	FieldName.push_back("old_id");
+	FieldName.push_back("updated_by");
 	FieldValue.push_back("1");
-	FieldValue.push_back("0");
+	FieldValue.push_back(FromIntToString(SESSION.XaUser_ID));
 	
 	
 	//CHECK FIELDS
@@ -98,9 +98,15 @@ int XaLibModel::CreateExecute(const string& DbTable,vector <string>& FieldName,v
 	int NextId=XaLibSql::Insert(DB_WRITE,DbTable,FieldName,FieldValue);
 
 	if (NextId==0) {
-
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-301 Inserted a new record into table -> "+DbTable+" with id ->"+to_string(NextId));
 		throw 301;
+	}
+
+	int UpdatedOrig=XaLibSql::Update(DB_WRITE,DbTable,{"orig_id"},{FromIntToString(NextId)},{"id"},{FromIntToString(NextId)});
+
+	if (UpdatedOrig==0) {
+		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-3011 Failed to initialize orig_id for a new record into table -> "+DbTable+" with id ->"+to_string(NextId));
+		throw 3011;
 	}
 
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Inserted a new record into table -> "+DbTable+" with id ->"+to_string(NextId));
@@ -227,9 +233,9 @@ string XaLibModel::ListResponse(DbResMap& DbRes,vector<string>& FieldsToRead) {
 int XaLibModel::BackupRecord(const string& DbTable,const int& FieldId) {
 
 	vector<string> Columns=XaLibSql::ColumnsList(DB_READ,DbTable);
-	vector<string> ExcludeToList={"id","status","created","updated"};
-
-	//id,status,created,updated
+	
+	/* all other columns, included "updated", must be preserved */
+	vector<string> ExcludeToList={"id","status"};
 
 	string List={};
 
@@ -249,13 +255,19 @@ int XaLibModel::BackupRecord(const string& DbTable,const int& FieldId) {
 	};
 
 	//REMOVE LAST ","
-	string SqlList=List.substr(0, List.size()-1);
+	//string SqlCopiedColumns=List.substr(0, List.size()-1);
+	//keep last comma since it is used to append SqlUpdatedColumns,SqlUpdatedValues later on
+	string SqlCopiedColumns=List;
 
-	string SqlQry="INSERT INTO " + DbTable+" (" +SqlList + ") SELECT "+SqlList +" FROM "+DbTable+" WHERE id="+FromIntToString(FieldId); 
-	
+	string SqlUpdatedColumns="status";
+	string SqlUpdatedValues="'3'";
+
+	string SqlQry="INSERT INTO " + DbTable+" (" +SqlCopiedColumns + SqlUpdatedColumns +") SELECT "+SqlCopiedColumns + SqlUpdatedValues +" FROM "+DbTable+" WHERE id="+FromIntToString(FieldId); 
+
 	unsigned NextId=XaLibSql::FreeQueryInsert(DB_WRITE,SqlQry);
 
-	unsigned UpdatedStatus=XaLibSql::Update(DB_WRITE,DbTable,{"old_id","status"},{FromIntToString(FieldId),"3"},{"id"},{FromIntToString(NextId)});
+	/* NO UPDATES allowed on the record just inserted, since they would alter the "updated" column, which must keep its previous value */
+
 };
 
 void XaLibModel::UpdatePrepare(const vector<string>& XmlFiles,const string& XPathExpr,vector <string>& FieldName,vector <string>& FieldValue){
@@ -288,6 +300,9 @@ void XaLibModel::UpdatePrepare(const vector<string>& XmlFiles,const string& XPat
 };
 
 int XaLibModel::UpdateExecute(const string& DbTable,vector <string>& FieldName,vector <string>& FieldValue, const int& Id) {
+
+	FieldName.push_back("updated_by");
+	FieldValue.push_back(FromIntToString(SESSION.XaUser_ID));
 
 	BackupRecord(DbTable,Id);
 
