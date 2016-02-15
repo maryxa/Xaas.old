@@ -25,7 +25,8 @@ endif
 
 #User OBJ
 OBJ=$(OBJDIR)Controller.o $(OBJDIR)XaPages.o $(OBJDIR)XaOuTypeUi.o $(OBJDIR)XaOuUi.o \
-    $(OBJDIR)XaUserAddressGeoTypeUi.o $(OBJDIR)XaUserAddressMailTypeUi.o $(OBJDIR)XaUserAddressPhoneCodeUi.o $(OBJDIR)XaUserAddressPhoneTypeUi.o
+    $(OBJDIR)XaUserAddressGeoTypeUi.o $(OBJDIR)XaUserAddressMailTypeUi.o $(OBJDIR)XaUserAddressPhoneCodeUi.o $(OBJDIR)XaUserAddressPhoneTypeUi.o \
+    $(OBJDIR)XaUserAddressMailUi.o
 
 #MACROS
 .PHONY: all all-before all-after clean print-varialbes
@@ -62,3 +63,5 @@ $(OBJDIR)XaUserAddressPhoneCodeUi.o: XaUserAddressPhoneCodeUi.cpp
 	$(CPP) -c XaUserAddressPhoneCodeUi.cpp -o $(OBJDIR)XaUserAddressPhoneCodeUi.o $(CPPFLAGS)
 $(OBJDIR)XaUserAddressPhoneTypeUi.o: XaUserAddressPhoneTypeUi.cpp
 	$(CPP) -c XaUserAddressPhoneTypeUi.cpp -o $(OBJDIR)XaUserAddressPhoneTypeUi.o $(CPPFLAGS)
+$(OBJDIR)XaUserAddressMailUi.o: XaUserAddressMailUi.cpp
+	$(CPP) -c XaUserAddressMailUi.cpp -o $(OBJDIR)XaUserAddressMailUi.o $(CPPFLAGS)

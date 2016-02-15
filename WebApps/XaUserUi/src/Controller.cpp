@@ -29,6 +29,7 @@
 #include <XaUserAddressMailTypeUi.h>
 #include <XaUserAddressPhoneCodeUi.h>
 #include <XaUserAddressPhoneTypeUi.h>
+#include <XaUserAddressMailUi.h>
 
 int main (void) {
 
@@ -180,6 +181,11 @@ void Controller::ExecuteEvent() {
 
 		unique_ptr<XaUserAddressPhoneCodeUi> UserAddressPhoneCodeUi (new XaUserAddressPhoneCodeUi());
 		UserAddressPhoneCodeUi->Execute();
+
+	} else if(REQUEST.CalledObject=="XaUserAddressMailUi") {
+
+		unique_ptr<XaUserAddressMailUi> UserAddressMailUi (new XaUserAddressMailUi());
+		UserAddressMailUi->Execute();
 
 	} else {
 
