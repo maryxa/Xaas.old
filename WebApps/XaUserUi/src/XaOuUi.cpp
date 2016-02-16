@@ -51,17 +51,8 @@ void XaOuUi::Create() {
 
 void XaOuUi::ListAsOptions() {
 
-	vector<string> ParamNames ={"order_by","status"};
-	vector<string> ParamValues={"name","1"};
-
-	string CurrentValue=HTTP.GetHttpParam("value");
-	if (CurrentValue!="NoHttpParam") {
-		ParamNames.push_back("value");
-		ParamValues.push_back(CurrentValue);
-	}
-
 	XaLibCurl LibCurl;
-    string CallResponse = LibCurl.Call(BuildBackEndCall("XaOu","ListAsOptions",ParamNames,ParamValues));
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaOu","ListAsOptions",{"order_by"},{"name"}));
 	CheckResponse(CallResponse);
 
 	RESPONSE.Content=CallResponse;

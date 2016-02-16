@@ -4,7 +4,7 @@ function XaFormTpl (ModelName) {
 
     var RootElement=XmlDoc.documentElement.nodeName;
 
-    var FieldsNumber=XaXmlCountElementByXpath(XmlDoc,"//fieldset/field");
+    var FieldsNumber=XaXmlCountElementByXpath(XmlDoc,"/"+RootElement+"/fieldset/field");
 
     var Controller=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/form/controller");    
     var Id=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/form/id");
@@ -141,13 +141,10 @@ function XaFormTpl (ModelName) {
     };
 };
 
-/* This template does not use model Xml  */
-/* Column names are taken from tag names */
-/* No check on permissions on fields     */
 /*LIST*/
-function XaListRawTpl (DataName) {
+function XaListTpl (ModelName) {
 
-    var XmlDoc=XaParseXml(DataName);
+    var XmlDoc=XaParseXml(ModelName);
 
     var RootElement=XmlDoc.documentElement.nodeName;
     var FieldsNumber=XaXmlCountElementByXpath(XmlDoc,"//list/item");
@@ -356,10 +353,8 @@ function XaTreeBranchRead(controller,url,TargetId) {
                 var BranchCallUrl="obj=XaOuUi&evt=Tree&tree_parent_ID="+id+"&tree_level="+tree_level;
                 var BranchCall='XaTreeBranchRead("","'+BranchCallUrl+'","'+id+'");';
 
-                var OuReadCallUrl="obj=XaOuUi&evt=Read&id="+id;
-                OuReadCallUrl+="&lay=include";
-                var UserListCallUrl="obj=XaUserUi&evt=List&tree_parent_ID="+id;
-		UserListCallUrl+="&lay=include";
+                var ReadCallUrl="?obj=XaOuUi&evt=Read&id="+id;
+                var UpdateCallUrl="?obj=XaOuUi&evt=UpdateFrm&id="+id;
 
                 var Element='<li id="'+id+'">'+
 
@@ -367,10 +362,10 @@ function XaTreeBranchRead(controller,url,TargetId) {
                     '<a id="a-'+id+ '" class="close" href=\'javascript:'+BranchCall+';\'></a>'+
 
                     /*LIST ELEMENT BRANCH*/
-                    '<a class="name" href="javascript:XaCallAction(\'\',\''+UserListCallUrl+'\',\'Detail\',\'\',\'\',\'yes\',\'Detail\',\'\',\'StringHtml\',\'yes\',\'\',\'\');">'+name+'</a>'+
-                    /*READ THE OU WITH EDIT*/
-                    '<a class="edit" href="javascript:XaCallAction(\'\',\''+OuReadCallUrl+'\',\'Detail\',\'\',\'\',\'yes\',\'Detail\',\'\',\'StringHtml\',\'yes\',\'\',\'\');"></a>'+
+                    '<a class="name" href=\''+ReadCallUrl+'\'>'+name+'</a>'+
 
+                    /*READ THE OU WITH EDIT*/
+                    '<a class="edit" href=\''+UpdateCallUrl+'\'></a>'+
                     '</li>';
 
                 Elements+=Element;
@@ -405,19 +400,53 @@ function XaReadTpl (ModelName,DataName) {
 
     var RootElement=XmlDoc.documentElement.nodeName;
 
+    var DataRowNumber=XaXmlCountElementByXpath(XmlDataDoc,"//list/item");
+
     function BuildField (FieldId) {
 
 	var Field="";
 
-	var FRead=XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/read");
+	var FName =XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/name");
+	var FLabel=XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/label");
+	var FType =XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/type");
+        var Fvalue=XaXmlGetElementValueByXpath(XmlDataDoc,"//list/item/"+FName);
 
-        if (FRead==="yes") {
-            var FName =XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/name");
-            var FLabel=XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/label");
-            var FValue=XaXmlGetElementValueByXpath(XmlDataDoc,"//read/"+FName);
+        if (FType==="input-text") {
 
             Field+="<label>"+FLabel+"</label>: ";
-            Field+=FValue;
+            Field+=Fvalue;
+
+        } else if (FType==="input-textarea") {
+
+            Field+="<label>"+FLabel+"</label>: ";
+            Field+=Fvalue;
+
+        } else if (FType==="select-single") {
+
+            Field+="<label>"+FLabel+"</label>: ";
+            Field+=Fvalue;
+
+        } else if (FType==="select-single-ou-tree") {
+
+            Field+="<label>"+FLabel+"</label>: ";
+            Field+=Fvalue;
+
+        } else if (FType==="select-single-static") {
+
+            var OptionsNumber=XaXmlCountElementByXpath(XmlDoc,"//field["+FieldId+"]/options");
+
+            var OptionLabel="";
+            for (var i=1; i<=OptionsNumber; i++) {
+		if (Fvalue===XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/options/option["+i+"]/value")) {
+		    OptionLabel=XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldId+"]/options/option["+i+"]/label");
+		}
+            }
+
+            Field+="<label>"+FLabel+"</label>: ";
+            Field+=OptionLabel;
+
+        } else {
+            
         }
 
     return Field;
@@ -428,6 +457,7 @@ function XaReadTpl (ModelName,DataName) {
 
         var Content="<div class=\"form form-1-column\">";
 
+        if (DataRowNumber>0) {
             var FieldsNumber=XaXmlCountElementByXpath(XmlDoc,"//field");
 
             Content+="<ul>";
@@ -436,9 +466,14 @@ function XaReadTpl (ModelName,DataName) {
                 Content+="<li>"+BuildField(j)+"</li>";
             };
             Content+="</ul>";
+        } else {
+               Content+="<center>No data to show</center>";
+        }
 
         Content+="</div>";
 
+        /*console.log(Content);*/
+        //console.log(Fields);
         return Content;
     };
 };
@@ -494,13 +529,7 @@ function XaUpdateFormTpl (ModelName,DataName) {
 
     function BuildField (FieldId) {
 
-      var Field="";
-
-      var FRead=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/read");
-
-      /* Fields must for one thing be readable by user */
-
-      if (FRead==="yes") {
+        var Field="";
 
         var FId=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/id");
 
@@ -518,6 +547,7 @@ function XaUpdateFormTpl (ModelName,DataName) {
             FRequiredClause="";
         };
 
+        var FRead=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/read");
         var FUpdate=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/update");
 
         if (FUpdate!=="yes") {
@@ -535,7 +565,7 @@ function XaUpdateFormTpl (ModelName,DataName) {
         var LId=FieldId+"-label";
         var LName=FieldExtName+"-label";
 
-        var Fvalue =XaXmlGetElementValueByXpath(XmlDataDoc,"//read/"+FName);
+        var Fvalue =XaXmlGetElementValueByXpath(XmlDataDoc,"//list/item/"+FName);
 
         if (FType==="input-text") {
 
@@ -554,12 +584,8 @@ function XaUpdateFormTpl (ModelName,DataName) {
 
             var FObj=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/obj");
             var FEvt=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/evt");
-            if (FUpdate==="yes") {
-              Field+="<script>XaCreateOptions('','obj="+FObj+"&evt="+FEvt+"','"+FieldExtId+"','"+Fvalue+"');</script>";
-            } else {
-              /* display only selected option */
-              Field+="<script>XaCreateOptions('','obj="+FObj+"&evt="+FEvt+"&value="+FValue+"','"+FieldExtId+"','"+Fvalue+"');</script>";
-            }
+
+            Field+="<script>XaCreateOptions('','obj="+FObj+"&evt="+FEvt+"','"+FieldExtId+"','"+Fvalue+"');</script>";
 
         } else if (FType==="select-single-ou-tree") {
 
@@ -569,12 +595,7 @@ function XaUpdateFormTpl (ModelName,DataName) {
             var FObj=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/obj");
             var FEvt=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/evt");
 
-            if (FUpdate==="yes") {
-              Field+="<script>XaCreateOptionsOu('','obj="+FObj+"&evt="+FEvt+"','"+FieldExtId+"','"+Fvalue+"');</script>";
-            } else {
-              /* display only selected option */
-              Field+="<script>XaCreateOptionsOu('','obj="+FObj+"&evt="+FEvt+"&value="+Fvalue+"','"+FieldExtId+"','"+Fvalue+"');</script>";
-            }
+            Field+="<script>XaCreateOptionsOu('','obj="+FObj+"&evt="+FEvt+"','"+FieldExtId+"','"+Fvalue+"');</script>";
 
         } else if (FType==="select-single-static") {
 
@@ -587,10 +608,8 @@ function XaUpdateFormTpl (ModelName,DataName) {
             for(var i=0;i<OptionsNumber;i++) {
 		var j=i+1;
 		var OptValue=XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/option["+j+"]/value");
-		if (FUpdate==="yes" || OptValue===Fvalue) {
-			var OptText =XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/option["+j+"]/label");
-			Field+="<option value=\""+OptValue+"\">"+OptText+"</option>";
-		}
+		var OptText =XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/field["+FieldId+"]/options/option["+j+"]/label");
+		Field+="<option value=\""+OptValue+"\">"+OptText+"</option>";
             }
             Field+="</select>";
 
@@ -600,8 +619,6 @@ function XaUpdateFormTpl (ModelName,DataName) {
             
         }
 
-      }
-
     return Field;
     };
 
@@ -610,14 +627,8 @@ function XaUpdateFormTpl (ModelName,DataName) {
 
         var Content="<form class=\"form "+Class+"\" id=\""+Id+"\""+ " name=\""+Name+"\" enctype=\""+EncType+ "\" method=\""+Method+"\""+ " action=\""+BuildAction()+ "\">";
 
-	var RowId =XaXmlGetElementValueByXpath(XmlDataDoc,"//read/id");
-        var FieldExtName=RootElement+"-id";
-
         Content+="<fieldset>";
-        Content+="<legend>"+ XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/update_legend")+"</legend>";
-
-        Content+="<input type=\"hidden\" name=\""+FieldExtName+"\" value=\""+RowId+"\" />";
-
+        Content+="<legend>"+ XaXmlGetElementValueByXpath (XmlDoc,"/"+RootElement+"/fieldset/legend")+"</legend>";
         Content+="<ul>";
 
         for(var i=0;i<FieldsNumber;i++) {
@@ -630,83 +641,8 @@ function XaUpdateFormTpl (ModelName,DataName) {
         Content+="<fieldset><button type=\"reset\">Reset</button><button type=\"submit\">Save</button></fieldset>";
         Content+="</form>";
 
-        return Content;
-    };
-};
-
-/*LIST*/
-function XaListTpl (ModelName,DataName) {
-
-    var XmlDoc=XaParseXml(ModelName);
-    var XmlDataDoc=XaParseXml(DataName);
-
-    var RootElement=XmlDoc.documentElement.nodeName;
-
-    var DataRowNumber=XaXmlCountElementByXpath(XmlDataDoc,"//list/item");
-
-    var FieldsToList=Array();
-
-    function BuildTitle (FieldIdx) {
-
-	var Title="";
-	var FLabel=XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldIdx+"]/label");
-	Title+=FLabel;
-	return Title;
-    }
-
-    function FindFields (ItemIdx,FieldId) {
-
-        var FieldsNumber=XaXmlCountElementByXpath(XmlDoc,"//field");
- 	for (var j=1; j<=FieldsNumber; j++) {
-	    var FList =XaXmlGetElementValueByXpath(XmlDoc,"//field["+j+"]/list");
-            if (FList==="yes") {
-               FieldsToList.push(XaXmlGetElementValueByXpath(XmlDoc,"//field["+j+"]/name"));
-            }
-    	}
-    };
-
-    function BuildField (ItemIdx,FieldIdx) {
-
-        var Field="";
-        var FName=FieldsToList[FieldIdx-1];
-
-        var Fvalue=XaXmlGetElementValueByXpath(XmlDataDoc,"//list/item["+ItemIdx+"]/"+FName);
-        Field+=Fvalue;
-
-        return Field;
-    };
-
-    /*can access _privateProperty and call _privateMethod*/
-    this.GetList = function () {
-
-        var Content="<div class=\"form form-1-column\">";
-
-        if (DataRowNumber>0) {
-
-            FindFields();
-
-            Content+="<table>";
-
-            Content+="<tr>";
-       	    for (var j=1; j<=FieldsToList.length; j++) {
-                Content+="<th>"+BuildTitle(j)+"</th>";
-       	    };
-            Content+="</tr>";
-
-            for (i=1;i<=DataRowNumber;i++) {
-	            Content+="<tr>";
-        	    for (var j=1; j<=FieldsToList.length; j++) {
-	                Content+="<td>"+BuildField(i,j)+"</td>";
-        	    };
-	            Content+="</tr>";
-            }
-            Content+="</table>";
-        } else {
-               Content+="<center>No data to show</center>";
-        }
-
-        Content+="</div>";
-
+        /*console.log(Content);*/
+        //console.log(Fields);
         return Content;
     };
 };

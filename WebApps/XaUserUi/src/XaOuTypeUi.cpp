@@ -49,7 +49,7 @@ void XaOuTypeUi::List() {
 	AddJsVarString("XaGuiStyle","default");
 	AddJsVarString("WsData",CallResponse);
 
-	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles({"XaGuiHead","XaGuiHeader","XaGuiListRaw"}),HtmlStrings,JsVarFiles,JsVarStrings,0);
+	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles({"XaGuiHead","XaGuiHeader","XaGuiList"}),HtmlStrings,JsVarFiles,JsVarStrings,0);
 };
 
 void XaOuTypeUi::ListAsOptions() {

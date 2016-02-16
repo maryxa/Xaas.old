@@ -18,8 +18,6 @@ class XaUser : public XaLibModel {
         void Update();
         void Delete();
 
-		void List();
-
     protected:
 
     public:

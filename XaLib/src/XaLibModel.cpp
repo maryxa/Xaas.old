@@ -119,7 +119,7 @@ string XaLibModel::CreateResponse(const int& NextId) {
 	return "<create>"+to_string(NextId)+"</create>";
 };
 
-vector<string> XaLibModel::ReadPrepare(const vector<string>& XmlFiles,const string& XPathExpr,const int& WithSystemFields) {
+vector<string> XaLibModel::ReadPrepare(const vector<string>& XmlFiles,const string& XPathExpr) {
 
 	//TODO:GESTIONE ERRORI
 	vector<string> FieldsToRead;
@@ -142,12 +142,10 @@ vector<string> XaLibModel::ReadPrepare(const vector<string>& XmlFiles,const stri
 	auto it = FieldsToRead.begin();
 	it = FieldsToRead.insert ( it , "id" );
 
-	if (WithSystemFields==1) {
-		FieldsToRead.push_back("updated_by");
-		FieldsToRead.push_back("updated");
-		FieldsToRead.push_back("status");
-		FieldsToRead.push_back("orig_id");
-	}
+	FieldsToRead.push_back("created");
+	FieldsToRead.push_back("updated");
+	FieldsToRead.push_back("status");
+	FieldsToRead.push_back("old_id");
 
 	//SE E" VUOTO
 	return FieldsToRead;
@@ -168,7 +166,7 @@ string XaLibModel::ReadResponse(DbResMap& DbRes,vector<string>& FieldsToRead) {
 	return Res;	
 };
 
-vector<string> XaLibModel::ListPrepare(const vector<string>& XmlFiles,const string& XPathExpr,const int& WithSystemFields) {
+vector<string> XaLibModel::ListPrepare(const vector<string>& XmlFiles,const string& XPathExpr) {
 
 	//LOAD XML FOR MODEL
 	xmlDocPtr XmlDomDoc=XaLibDom::DomFromFile(AddXmlFile(XmlFiles),0);
@@ -192,12 +190,10 @@ vector<string> XaLibModel::ListPrepare(const vector<string>& XmlFiles,const stri
 	auto it = FieldsToRead.begin();
 	it = FieldsToRead.insert ( it , "id" );
 
-	if (WithSystemFields==1) {
-		FieldsToRead.push_back("updated_by");
-		FieldsToRead.push_back("updated");
-		FieldsToRead.push_back("status");
-		FieldsToRead.push_back("orig_id");
-	}
+	FieldsToRead.push_back("created");
+	FieldsToRead.push_back("updated");
+	FieldsToRead.push_back("status");
+	FieldsToRead.push_back("old_id");
 
 	return FieldsToRead;
 };

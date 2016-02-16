@@ -7,22 +7,20 @@ class XaUserUi : public XaLibAction {
 	
     private:
 
-		//typedef vector<string> CondFields;
-		//typedef vector<string> CondValues;
-		//typedef vector<string> OrderByFields;
+		typedef vector<string> CondFields;
+		typedef vector<string> CondValues;
+		typedef vector<string> OrderByFields;
 
-		//typedef map<int, map<string,double> > TotalSalaryMap;
-		//typedef map<int, map<string,string> > TotalUserDataMap;
-		//typedef map<int, map<string,string> > TotalSalaryDataMap;
+		typedef map<int, map<string,double> > TotalSalaryMap;
+		typedef map<int, map<string,string> > TotalUserDataMap;
+		typedef map<int, map<string,string> > TotalSalaryDataMap;
 
 		void Dispatcher(const string &CalledEvent);
 
 		void LoginFrm();
 		void Login();
 		void Logout();
-		void LogoutFrm();
-
-		void List();
+                void LogoutFrm();
 
 		//void XaUserLoginAddFrm();
 		//void XaUserLoginAdd();
