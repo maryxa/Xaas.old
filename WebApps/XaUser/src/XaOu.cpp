@@ -90,6 +90,13 @@ void XaOu::ListAsOptions() {
 	vector<string> OrderByFields={};
 	vector<string> GroupByFields={};
 
+	/* only option with id=passed value */
+	string CurrentValue=HTTP.GetHttpParam("value");
+	if (CurrentValue!="NoHttpParam") {
+		WhereFields.push_back("id");
+		WhereValues.push_back(CurrentValue);
+	}
+	
 	/*LIMIT*/
 	string PassedLimit=HTTP.GetHttpParam("limit");
 	int Limit={0};
@@ -200,7 +207,7 @@ void XaOu::Read() {
 
 	string Id=HTTP.GetHttpParam("id");
 
-	vector<string> ReturnedFields={"id","name","description","tree_parent_ID","XaOuType_ID"};
+	vector<string> ReadFields=ReadPrepare({"XaOu"},"/XaOu/fieldset/field",0);
 
 	string Qry="SELECT X1.id, X1.name, X1.description, XaOuType.name AS XaOuType_ID, X2.name AS tree_parent_ID FROM XaOu X1";
 	Qry+=" LEFT JOIN XaOuType ON X1.XaOuType_ID=XaOuType.id";
@@ -209,18 +216,18 @@ void XaOu::Read() {
 	
 	DbResMap DbRes=XaLibSql::FreeQuerySelect(DB_READ,Qry);
 
-	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);
+	RESPONSE.Content=ReadResponse(DbRes,ReadFields);
 };
 
 void XaOu::ReadForUpdateFrm() {
 
 	string Id=HTTP.GetHttpParam("id");
 
-	vector<string> ReturnedFields={"id","name","description","tree_parent_ID","XaOuType_ID"};
+	vector<string> ReadFields=ReadPrepare({"XaOu"},"/XaOu/fieldset/field",0);
 
-	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaOu",{ReturnedFields},{"id"},{Id});
+	DbResMap DbRes=XaLibSql::Select(DB_READ,"XaOu",{ReadFields},{"id"},{Id});
 
-	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);
+	RESPONSE.Content=ReadResponse(DbRes,ReadFields);
 };
 
 void XaOu::Update() {

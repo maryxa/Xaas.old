@@ -15,6 +15,7 @@
 /**** APPLICATION ****/
 #include <XaOuType.h>
 #include <XaOu.h>
+#include <XaUser.h>
 #include <XaUserLogin.h>
 //#include <XaPages.h>
 #include <XaUserAddressPhone.h>
@@ -127,6 +128,9 @@ void Controller::ExecuteWs(XaLibWs& Ws){
 	} else if(REQUEST.CalledObject=="XaOu") {
 		unique_ptr<XaOu> Ou (new XaOu());
 		Ou->Execute();
+	} else if(REQUEST.CalledObject=="XaUser") {
+		unique_ptr<XaUser> User (new XaUser());
+		User->Execute();
 	} else if(REQUEST.CalledObject=="XaUserAddressPhone") {
 		unique_ptr<XaUserAddressPhone> AddressPhone (new XaUserAddressPhone());
 		AddressPhone->Execute();

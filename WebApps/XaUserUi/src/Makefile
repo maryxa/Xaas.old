@@ -24,9 +24,9 @@ ifeq ($(UNAME_S),Darwin)
 endif
 
 #User OBJ
-OBJ=$(OBJDIR)Controller.o $(OBJDIR)XaPages.o $(OBJDIR)XaOuTypeUi.o $(OBJDIR)XaOuUi.o \
+OBJ=$(OBJDIR)Controller.o $(OBJDIR)XaPages.o $(OBJDIR)XaOuTypeUi.o $(OBJDIR)XaOuUi.o $(OBJDIR)XaUserUi.o \
     $(OBJDIR)XaUserAddressGeoTypeUi.o $(OBJDIR)XaUserAddressMailTypeUi.o $(OBJDIR)XaUserAddressPhoneCodeUi.o $(OBJDIR)XaUserAddressPhoneTypeUi.o \
-    $(OBJDIR)XaUserAddressMailUi.o $(OBJDIR)XaUserAddressPhoneUi.o
+    $(OBJDIR)XaUserAddressMailUi.o
 
 #MACROS
 .PHONY: all all-before all-after clean print-varialbes
@@ -55,6 +55,8 @@ $(OBJDIR)XaOuTypeUi.o: XaOuTypeUi.cpp
 	$(CPP) -c XaOuTypeUi.cpp -o $(OBJDIR)XaOuTypeUi.o $(CPPFLAGS)
 $(OBJDIR)XaOuUi.o: XaOuUi.cpp
 	$(CPP) -c XaOuUi.cpp -o $(OBJDIR)XaOuUi.o $(CPPFLAGS)
+$(OBJDIR)XaUserUi.o: XaUserUi.cpp
+	$(CPP) -c XaUserUi.cpp -o $(OBJDIR)XaUserUi.o $(CPPFLAGS)
 $(OBJDIR)XaUserAddressGeoTypeUi.o: XaUserAddressGeoTypeUi.cpp
 	$(CPP) -c XaUserAddressGeoTypeUi.cpp -o $(OBJDIR)XaUserAddressGeoTypeUi.o $(CPPFLAGS)
 $(OBJDIR)XaUserAddressMailTypeUi.o: XaUserAddressMailTypeUi.cpp
@@ -65,5 +67,3 @@ $(OBJDIR)XaUserAddressPhoneTypeUi.o: XaUserAddressPhoneTypeUi.cpp
 	$(CPP) -c XaUserAddressPhoneTypeUi.cpp -o $(OBJDIR)XaUserAddressPhoneTypeUi.o $(CPPFLAGS)
 $(OBJDIR)XaUserAddressMailUi.o: XaUserAddressMailUi.cpp
 	$(CPP) -c XaUserAddressMailUi.cpp -o $(OBJDIR)XaUserAddressMailUi.o $(CPPFLAGS)
-$(OBJDIR)XaUserAddressPhoneUi.o: XaUserAddressPhoneUi.cpp
-	$(CPP) -c XaUserAddressPhoneUi.cpp -o $(OBJDIR)XaUserAddressPhoneUi.o $(CPPFLAGS)

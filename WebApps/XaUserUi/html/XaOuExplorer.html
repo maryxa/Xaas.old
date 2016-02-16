@@ -7,15 +7,16 @@
 
         <script>
 
-            function CallTreeFilteredByXaOuType (XaOuType_ID) {
-                alert("dai che ce la fai");
+            function CallTreeFilteredByXaOuType() {
+		XaOuType_ID=document.getElementById('XaOuType_ID').options[document.getElementById('XaOuType_ID').selectedIndex].value;
+                /*alert('filter: type='+XaOuType_ID);*/
             };
 
             XaCreateOptionsWithOnChangeFunction("","obj=XaOuTypeUi&evt=ListAsOptions","XaOuType_ID","CallTreeFilteredByXaOuType()");
 
         </script>
 
-        <a class="refresh" href="javascript:alert('refresh');"></a>
+        <a class="refresh" href="javascript:CallTreeFilteredByXaOuType();"></a>
         <hr/>
 
 

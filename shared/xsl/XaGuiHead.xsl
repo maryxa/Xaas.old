@@ -22,6 +22,6 @@
 
 	<script type="text/javascript" src="/js/XaReady.js"></script>
 	<script type="text/javascript" src="/js/XaLib.js"></script>
-	<script type="text/javascript" src="/js/XaClasses.js"></script>
+	<!--script type="text/javascript" src="/js/XaClasses.js"></script-->
 
 </xsl:template>

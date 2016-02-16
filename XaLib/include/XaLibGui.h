@@ -11,15 +11,14 @@ class XaLibGui : protected XaLibBase {
 
     private:
 
-	protected:
+    protected:
 
-	public:
+    public:
 
-		static string CreateForm(const vector<string>& XmlFiles, const vector<string>& XmlStrings,const vector<string>& XslFiles,const vector<string>& XslStrings,const vector<string>& XslParams);
-		static string CreateList(DbResMap ResMap,const vector<string>& TagNames,const string& RootTagName,const string& GroupTagName);
+        static string CreateForm(const vector<string>& XmlFiles, const vector<string>& XmlStrings,const vector<string>& XslFiles,const vector<string>& XslStrings,const vector<string>& XslParams);
+        static string CreateList(DbResMap ResMap,const vector<string>& TagNames,const string& RootTagName,const string& GroupTagName);
 
-		
-		XaLibGui();
-		~XaLibGui();
+        XaLibGui();
+        ~XaLibGui();
 };
 #endif

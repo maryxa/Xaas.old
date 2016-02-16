@@ -56,10 +56,10 @@ class XaLibModel : protected XaLibBase {
 
         string CreateResponse(const int& NextId);
 
-        vector<string> ReadPrepare(const vector<string>& XmlFiles,const string& XPathExpr);
+        vector<string> ReadPrepare(const vector<string>& XmlFiles,const string& XPathExpr,const int& WithSystemFields=0);
         string ReadResponse(DbResMap& DbRes,vector<string>& FieldsToRead);
 
-        vector<string> ListPrepare(const vector<string>& XmlFiles,const string& XPathExpr);
+        vector<string> ListPrepare(const vector<string>& XmlFiles,const string& XPathExpr,const int& WithSystemFields=0);
         string ListResponse(DbResMap& DbRes,vector<string>& FieldsToRead);
 
         /*
