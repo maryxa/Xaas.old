@@ -14,6 +14,7 @@ class XaUserAddressPhoneCodeUi : public XaLibAction {
 
 	void UpdateFrm();
 	void Update();
+        void Delete();
 
     protected:
 

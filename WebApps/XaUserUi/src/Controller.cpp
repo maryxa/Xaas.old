@@ -29,6 +29,7 @@
 #include <XaUserAddressMailTypeUi.h>
 #include <XaUserAddressPhoneCodeUi.h>
 #include <XaUserAddressPhoneTypeUi.h>
+#include <XaUserAddressMailUi.h>
 
 int main (void) {
 
@@ -160,6 +161,31 @@ void Controller::ExecuteEvent() {
 
 		unique_ptr<XaPages> Pages (new XaPages());
 		Pages->Execute();
+
+	} else if(REQUEST.CalledObject=="XaUserAddressGeoTypeUi") {
+
+		unique_ptr<XaUserAddressGeoTypeUi> UserAddressGeoTypeUi (new XaUserAddressGeoTypeUi());
+		UserAddressGeoTypeUi->Execute();
+
+	} else if(REQUEST.CalledObject=="XaUserAddressMailTypeUi") {
+
+		unique_ptr<XaUserAddressMailTypeUi> UserAddressMailTypeUi (new XaUserAddressMailTypeUi());
+		UserAddressMailTypeUi->Execute();
+
+	} else if(REQUEST.CalledObject=="XaUserAddressPhoneTypeUi") {
+
+		unique_ptr<XaUserAddressPhoneTypeUi> UserAddressPhoneTypeUi (new XaUserAddressPhoneTypeUi());
+		UserAddressPhoneTypeUi->Execute();
+
+	} else if(REQUEST.CalledObject=="XaUserAddressPhoneCodeUi") {
+
+		unique_ptr<XaUserAddressPhoneCodeUi> UserAddressPhoneCodeUi (new XaUserAddressPhoneCodeUi());
+		UserAddressPhoneCodeUi->Execute();
+
+	} else if(REQUEST.CalledObject=="XaUserAddressMailUi") {
+
+		unique_ptr<XaUserAddressMailUi> UserAddressMailUi (new XaUserAddressMailUi());
+		UserAddressMailUi->Execute();
 
 	} else {
 

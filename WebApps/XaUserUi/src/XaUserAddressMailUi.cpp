@@ -1,10 +1,10 @@
-#include <XaUserAddressMailTypeUi.h>
+#include <XaUserAddressMailUi.h>
 #include <XaLibAction.h>
 
-XaUserAddressMailTypeUi::XaUserAddressMailTypeUi(){
+XaUserAddressMailUi::XaUserAddressMailUi(){
 };
 
-void XaUserAddressMailTypeUi::Dispatcher (const string &CalledEvent) {
+void XaUserAddressMailUi::Dispatcher (const string &CalledEvent) {
 
     if (CalledEvent=="CreateFrm") {
 	this->CreateFrm();
@@ -25,9 +25,9 @@ void XaUserAddressMailTypeUi::Dispatcher (const string &CalledEvent) {
     }
 };
 
-void XaUserAddressMailTypeUi::CreateFrm() {
+void XaUserAddressMailUi::CreateFrm() {
 
-    AddJsVarFile("XaModel","XaUserAddressMailType");
+    AddJsVarFile("XaModel","XaUserAddressMail");
     AddJsVarString("XaGuiStyle","default");
 
     vector<string> Templates=SetPageLayout(REQUEST.CalledLayout);
@@ -36,27 +36,27 @@ void XaUserAddressMailTypeUi::CreateFrm() {
     RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles(Templates),HtmlStrings,JsVarFiles,JsVarStrings,0);
 };
 
-void XaUserAddressMailTypeUi::Create() {
+void XaUserAddressMailUi::Create() {
 
-    auto Fields=CreatePrepare({"XaUserAddressMailType"},"/XaUserAddressMailType/fieldset/field","XaUserAddressMailType");
+    auto Fields=CreatePrepare({"XaUserAddressMail"},"/XaUserAddressMail/fieldset/field","XaUserAddressMail");
     XaLibCurl LibCurl;
-    string CallResponse = LibCurl.Call(BuildBackEndCall("XaUserAddressMailType","Create",get<0>(Fields),get<1>(Fields)));
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaUserAddressMail","Create",get<0>(Fields),get<1>(Fields)));
     CheckResponse(CallResponse);
     RESPONSE.Content="OK";
 };
 
-void XaUserAddressMailTypeUi::ListAsOptions() {
+void XaUserAddressMailUi::ListAsOptions() {
 
     XaLibCurl LibCurl;
-    string CallResponse = LibCurl.Call(BuildBackEndCall("XaUserAddressMailType","ListAsOptions",{"order_by"},{"name"}));
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaUserAddressMail","ListAsOptions",{"order_by"},{"name"}));
     CheckResponse(CallResponse);
 
     RESPONSE.Content=CallResponse;
 };
 
-void XaUserAddressMailTypeUi::UpdateFrm() {
+void XaUserAddressMailUi::UpdateFrm() {
 
-    AddJsVarFile("XaModel","XaUserAddressMailType");
+    AddJsVarFile("XaModel","XaUserAddressMail");
     AddJsVarString("XaGuiStyle","default");
 
     /* data */
@@ -65,7 +65,7 @@ void XaUserAddressMailTypeUi::UpdateFrm() {
     FieldsValues.push_back(HTTP.GetHttpParam("id"));
 
     XaLibCurl LibCurl;
-    string CallResponse = LibCurl.Call(BuildBackEndCall("XaUserAddressMailType","ReadForUpdateFrm",{"id"},{FieldsValues}));
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaUserAddressMail","ReadForUpdateFrm",{"id"},{FieldsValues}));
     CheckResponse(CallResponse);
 
     AddJsVarString("XaData",CallResponse);
@@ -78,23 +78,23 @@ void XaUserAddressMailTypeUi::UpdateFrm() {
     RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles(Templates),HtmlStrings,JsVarFiles,JsVarStrings,0);
 };
 
-void XaUserAddressMailTypeUi::Update() {
+void XaUserAddressMailUi::Update() {
 
-    auto Fields=UpdatePrepare({"XaUserAddressMailType"},"/XaUserAddressMailType/fieldset/field","XaUserAddressMailType");
+    auto Fields=UpdatePrepare({"XaUserAddressMail"},"/XaUserAddressMail/fieldset/field","XaUserAddressMail");
     XaLibCurl LibCurl;
-    string CallResponse = LibCurl.Call(BuildBackEndCall("XaUserAddressMailType","Update",get<0>(Fields),get<1>(Fields)));
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaUserAddressMail","Update",get<0>(Fields),get<1>(Fields)));
     CheckResponse(CallResponse);
     RESPONSE.Content="OK";
 };
 
-void XaUserAddressMailTypeUi::Delete() {
+void XaUserAddressMailUi::Delete() {
 
     string Id=HTTP.GetHttpParam("id");
     XaLibCurl LibCurl;
-    string CallResponse = LibCurl.Call(BuildBackEndCall("XaUserAddressMailType","Delete",{"id"},{Id}));
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaUserAddressMail","Delete",{"id"},{Id}));
     CheckResponse(CallResponse);
     RESPONSE.Content="OK";
 };
 
-XaUserAddressMailTypeUi::~XaUserAddressMailTypeUi(){
+XaUserAddressMailUi::~XaUserAddressMailUi(){
 };

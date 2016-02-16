@@ -16,6 +16,8 @@ void XaUserAddressGeoTypeUi::Dispatcher (const string &CalledEvent) {
         this->UpdateFrm();
     } else if (CalledEvent=="Update") {
         this->Update();
+    } else if (CalledEvent=="Delete") {
+        this->Delete();
     } else {
 
         LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42:: Requested Event Does Not Exists -> "+CalledEvent);
@@ -81,6 +83,15 @@ void XaUserAddressGeoTypeUi::Update() {
     auto Fields=UpdatePrepare({"XaUserAddressGeoType"},"/XaUserAddressGeoType/fieldset/field","XaUserAddressGeoType");
     XaLibCurl LibCurl;
     string CallResponse = LibCurl.Call(BuildBackEndCall("XaUserAddressGeoType","Update",get<0>(Fields),get<1>(Fields)));
+    CheckResponse(CallResponse);
+    RESPONSE.Content="OK";
+};
+
+void XaUserAddressGeoTypeUi::Delete() {
+
+    string Id=HTTP.GetHttpParam("id");
+    XaLibCurl LibCurl;
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaUserAddressGeoType","Delete",{"id"},{Id}));
     CheckResponse(CallResponse);
     RESPONSE.Content="OK";
 };

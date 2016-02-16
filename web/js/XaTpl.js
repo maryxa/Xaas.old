@@ -60,6 +60,11 @@ function XaFormTpl (ModelName) {
             Field+="<label id=\""+ LId +"\" for=\""+FieldExtId +"\">"+FLabel+"</label>";
             Field+="<input id=\""+FieldExtId+ "\" name=\""+FieldExtName+"\" type=\""+FType+"\" placeholder=\""+FPlaceholder+"\"" + FRequired+" autofocus=\"autofocus\" ></input>";
 
+        } else if (FType==="input-email") {
+
+            Field+="<label id=\""+ LId +"\" for=\""+FieldExtId +"\">"+FLabel+"</label>";
+            Field+="<input id=\""+FieldExtId+ "\" name=\""+FieldExtName+"\" type=\"email\" pattern=\"[^ @]*@[^ @]*\" placeholder=\""+FPlaceholder+"\"" + FRequired+" autofocus=\"autofocus\" ></input>";
+
         } else if (FType==="input-textarea") {
 
             Field+="<label id=\""+ LId +"\" for=\""+FieldExtId +"\">"+FLabel+"</label>";

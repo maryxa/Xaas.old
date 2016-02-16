@@ -9,6 +9,16 @@
         <method>POST</method>
         <class>form-1-column</class>
     </form>
+	<update_form>
+        <controller>XaUserUi</controller>
+        <id>XaUserAddressPhoneType</id>
+        <name>XaUserAddressPhoneType</name>
+        <obj>XaUserAddressPhoneTypeUi</obj>
+        <evt>Update</evt>
+        <async>true</async>
+        <method>POST</method>
+        <class>form-1-column</class>
+    </update_form>
     <fieldset id="XaUserAddressPhoneType" name="XaUserAddressPhoneType">
         <legend>create&#32;a&#32;new&#32;address&#32;phone&#32;type</legend>
 		<field id="name" name="name">

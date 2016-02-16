@@ -16,6 +16,8 @@ void XaUserAddressPhoneTypeUi::Dispatcher (const string &CalledEvent) {
         this->UpdateFrm();
     } else if (CalledEvent=="Update") {
         this->Update();
+    } else if (CalledEvent=="Delete") {
+        this->Delete();
     } else {
 
         LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42:: Requested Event Does Not Exists -> "+CalledEvent);
@@ -81,6 +83,15 @@ void XaUserAddressPhoneTypeUi::Update() {
     auto Fields=UpdatePrepare({"XaUserAddressPhoneType"},"/XaUserAddressPhoneType/fieldset/field","XaUserAddressPhoneType");
     XaLibCurl LibCurl;
     string CallResponse = LibCurl.Call(BuildBackEndCall("XaUserAddressPhoneType","Update",get<0>(Fields),get<1>(Fields)));
+    CheckResponse(CallResponse);
+    RESPONSE.Content="OK";
+};
+
+void XaUserAddressPhoneTypeUi::Delete() {
+
+    string Id=HTTP.GetHttpParam("id");
+    XaLibCurl LibCurl;
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaUserAddressPhoneType","Delete",{"id"},{Id}));
     CheckResponse(CallResponse);
     RESPONSE.Content="OK";
 };

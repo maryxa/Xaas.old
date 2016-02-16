@@ -1,9 +1,9 @@
-#ifndef XAUSERADDRESSGEOTYPEUI_H
-#define XAUSERADDRESSGEOTYPEUI_H
+#ifndef XAUSERADDRESSMAILUI_H
+#define XAUSERADDRESSMAILUI_H
 
 #include <XaLibAction.h>
 
-class XaUserAddressGeoTypeUi : public XaLibAction {
+class XaUserAddressMailUi : public XaLibAction {
 	
     private:
         void Dispatcher(const string &CalledEvent);
@@ -20,7 +20,7 @@ class XaUserAddressGeoTypeUi : public XaLibAction {
 
     public:
 
-        XaUserAddressGeoTypeUi();
-        ~XaUserAddressGeoTypeUi();
+        XaUserAddressMailUi();
+        ~XaUserAddressMailUi();
 };
 #endif
