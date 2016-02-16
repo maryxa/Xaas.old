@@ -141,10 +141,13 @@ function XaFormTpl (ModelName) {
     };
 };
 
+/* This template does not use model Xml  */
+/* Column names are taken from tag names */
+/* No check on permissions on fields     */
 /*LIST*/
-function XaListTpl (ModelName) {
+function XaListRawTpl (DataName) {
 
-    var XmlDoc=XaParseXml(ModelName);
+    var XmlDoc=XaParseXml(DataName);
 
     var RootElement=XmlDoc.documentElement.nodeName;
     var FieldsNumber=XaXmlCountElementByXpath(XmlDoc,"//list/item");
@@ -353,9 +356,10 @@ function XaTreeBranchRead(controller,url,TargetId) {
                 var BranchCallUrl="obj=XaOuUi&evt=Tree&tree_parent_ID="+id+"&tree_level="+tree_level;
                 var BranchCall='XaTreeBranchRead("","'+BranchCallUrl+'","'+id+'");';
 
-                var ReadCallUrl="obj=XaOuUi&evt=Read&id="+id;
-		ReadCallUrl+="&lay=include";
-                var UpdateCallUrl="?obj=XaOuUi&evt=UpdateFrm&id="+id;
+                var OuReadCallUrl="obj=XaOuUi&evt=Read&id="+id;
+                OuReadCallUrl+="&lay=include";
+                var UserListCallUrl="obj=XaUserUi&evt=List&tree_parent_ID="+id;
+		UserListCallUrl+="&lay=include";
 
                 var Element='<li id="'+id+'">'+
 
@@ -363,11 +367,9 @@ function XaTreeBranchRead(controller,url,TargetId) {
                     '<a id="a-'+id+ '" class="close" href=\'javascript:'+BranchCall+';\'></a>'+
 
                     /*LIST ELEMENT BRANCH*/
-                    //'<a class="name" href=\'#\'>'+name+'</a>'+
-                    name+
-
+                    '<a class="name" href="javascript:XaCallAction(\'\',\''+UserListCallUrl+'\',\'Detail\',\'\',\'\',\'yes\',\'Detail\',\'\',\'StringHtml\',\'yes\',\'\',\'\');">'+name+'</a>'+
                     /*READ THE OU WITH EDIT*/
-                    '<a class="edit" href="javascript:XaCallAction(\'\',\''+ReadCallUrl+'\',\'Detail\',\'\',\'\',\'yes\',\'Detail\',\'\',\'StringHtml\',\'yes\',\'\',\'\');"></a>'+
+                    '<a class="edit" href="javascript:XaCallAction(\'\',\''+OuReadCallUrl+'\',\'Detail\',\'\',\'\',\'yes\',\'Detail\',\'\',\'StringHtml\',\'yes\',\'\',\'\');"></a>'+
 
                     '</li>';
 
@@ -627,6 +629,83 @@ function XaUpdateFormTpl (ModelName,DataName) {
         Content+="</fieldset>";
         Content+="<fieldset><button type=\"reset\">Reset</button><button type=\"submit\">Save</button></fieldset>";
         Content+="</form>";
+
+        return Content;
+    };
+};
+
+/*LIST*/
+function XaListTpl (ModelName,DataName) {
+
+    var XmlDoc=XaParseXml(ModelName);
+    var XmlDataDoc=XaParseXml(DataName);
+
+    var RootElement=XmlDoc.documentElement.nodeName;
+
+    var DataRowNumber=XaXmlCountElementByXpath(XmlDataDoc,"//list/item");
+
+    var FieldsToList=Array();
+
+    function BuildTitle (FieldIdx) {
+
+	var Title="";
+	var FLabel=XaXmlGetElementValueByXpath(XmlDoc,"//field["+FieldIdx+"]/label");
+	Title+=FLabel;
+	return Title;
+    }
+
+    function FindFields (ItemIdx,FieldId) {
+
+        var FieldsNumber=XaXmlCountElementByXpath(XmlDoc,"//field");
+ 	for (var j=1; j<=FieldsNumber; j++) {
+	    var FList =XaXmlGetElementValueByXpath(XmlDoc,"//field["+j+"]/list");
+            if (FList==="yes") {
+               FieldsToList.push(XaXmlGetElementValueByXpath(XmlDoc,"//field["+j+"]/name"));
+            }
+    	}
+    };
+
+    function BuildField (ItemIdx,FieldIdx) {
+
+        var Field="";
+        var FName=FieldsToList[FieldIdx-1];
+
+        var Fvalue=XaXmlGetElementValueByXpath(XmlDataDoc,"//list/item["+ItemIdx+"]/"+FName);
+        Field+=Fvalue;
+
+        return Field;
+    };
+
+    /*can access _privateProperty and call _privateMethod*/
+    this.GetList = function () {
+
+        var Content="<div class=\"form form-1-column\">";
+
+        if (DataRowNumber>0) {
+
+            FindFields();
+
+            Content+="<table>";
+
+            Content+="<tr>";
+       	    for (var j=1; j<=FieldsToList.length; j++) {
+                Content+="<th>"+BuildTitle(j)+"</th>";
+       	    };
+            Content+="</tr>";
+
+            for (i=1;i<=DataRowNumber;i++) {
+	            Content+="<tr>";
+        	    for (var j=1; j<=FieldsToList.length; j++) {
+	                Content+="<td>"+BuildField(i,j)+"</td>";
+        	    };
+	            Content+="</tr>";
+            }
+            Content+="</table>";
+        } else {
+               Content+="<center>No data to show</center>";
+        }
+
+        Content+="</div>";
 
         return Content;
     };
