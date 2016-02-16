@@ -14,6 +14,7 @@ class XaUserAddressGeoTypeUi : public XaLibAction {
 
 	void UpdateFrm();
 	void Update();
+        void Delete();
 
     protected:
 

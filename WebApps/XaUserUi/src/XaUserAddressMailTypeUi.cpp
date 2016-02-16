@@ -16,6 +16,8 @@ void XaUserAddressMailTypeUi::Dispatcher (const string &CalledEvent) {
         this->UpdateFrm();
     } else if (CalledEvent=="Update") {
         this->Update();
+    } else if (CalledEvent=="Delete") {
+        this->Delete();
     } else {
 
         LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42:: Requested Event Does Not Exists -> "+CalledEvent);
@@ -81,6 +83,15 @@ void XaUserAddressMailTypeUi::Update() {
     auto Fields=UpdatePrepare({"XaUserAddressMailType"},"/XaUserAddressMailType/fieldset/field","XaUserAddressMailType");
     XaLibCurl LibCurl;
     string CallResponse = LibCurl.Call(BuildBackEndCall("XaUserAddressMailType","Update",get<0>(Fields),get<1>(Fields)));
+    CheckResponse(CallResponse);
+    RESPONSE.Content="OK";
+};
+
+void XaUserAddressMailTypeUi::Delete() {
+
+    string Id=HTTP.GetHttpParam("id");
+    XaLibCurl LibCurl;
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaUserAddressMailType","Delete",{"id"},{Id}));
     CheckResponse(CallResponse);
     RESPONSE.Content="OK";
 };

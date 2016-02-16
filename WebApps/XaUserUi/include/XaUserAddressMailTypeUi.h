@@ -14,6 +14,7 @@ class XaUserAddressMailTypeUi : public XaLibAction {
 
 	void UpdateFrm();
 	void Update();
+        void Delete();
 
     protected:
 
