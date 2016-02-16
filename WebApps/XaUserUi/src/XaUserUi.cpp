@@ -14,6 +14,8 @@ void XaUserUi::Dispatcher (const string &CalledEvent) {
 		this->Logout();
 	} else if (CalledEvent=="LogoutFrm"){
 		this->LogoutFrm();
+	} else if (CalledEvent=="List"){
+		this->List();
 	} else {
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"Requested Event Does Not Exists -> "+CalledEvent);
 		throw 42;
@@ -2477,5 +2479,31 @@ void XaUser::XaUserGetAllCompanyDepartmentSection() {
 	LOG.Write("INF", __FILE__, __FUNCTION__,__LINE__,"Added Options -> XaUser");
 };
 */
+
+void XaUserUi::List () {
+
+	AddJsVarFile("XaModel","XaUser");
+	AddJsVarString("XaGuiStyle","default");
+
+	/* data */
+
+	vector <string> FieldsValues ={};
+
+	FieldsValues.push_back(HTTP.GetHttpParam("tree_parent_ID"));
+	
+	XaLibCurl LibCurl;
+    string CallResponse = LibCurl.Call(BuildBackEndCall("XaUser","List",{"tree_parent_ID"},{FieldsValues}));
+	CheckResponse(CallResponse);
+
+	AddJsVarString("XaData",CallResponse);
+
+	/* end of data */
+
+	vector<string> Templates=SetPageLayout(REQUEST.CalledLayout);
+	Templates.push_back("XaGuiUserList");
+
+	RESPONSE.Content=XaLibDom::HtmlFromStringAndFile(AddHtmlFiles(Templates),HtmlStrings,JsVarFiles,JsVarStrings,0);
+};
+
 XaUserUi::~XaUserUi(){
 };
