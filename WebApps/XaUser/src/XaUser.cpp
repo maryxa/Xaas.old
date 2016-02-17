@@ -6,13 +6,11 @@ XaUser::XaUser(){
 void XaUser::Dispatcher (const string &CalledEvent) {
 
 	if (CalledEvent=="Login"){
-
         this->Login();
-
     } else if (CalledEvent=="Logout"){
-
 		this->Logout();
-
+    } else if (CalledEvent=="List"){
+		this->List();
     } else {
 
 		LOG.Write("ERR", __FILE__, __FUNCTION__,__LINE__,"ERROR-42 Requested Event Does Not Exists -> "+CalledEvent);
@@ -95,6 +93,23 @@ void XaUser::Update (){
 };
 
 void XaUser::Delete (){
+};
+
+void XaUser::List (){
+
+	string TreeParentId=HTTP.GetHttpParam("tree_parent_ID");
+
+	vector<string> ReturnedFields={"id","name","surname","XaUserType_ID","XaUserRole_ID"};
+
+	string Qry="SELECT X.id, X.name, X.surname, XaUserType.name AS XaUserType_ID, XaUserRole.name AS XaUserRole_ID FROM XaUser X";
+	Qry+=" LEFT JOIN XaUserType ON X.XaUserType_ID=XaUserType.id";
+	Qry+=" LEFT JOIN XaUserRole ON X.XaUserRole_ID=XaUserRole.id";
+	Qry+=" WHERE X.tree_parent_ID="+TreeParentId;
+	
+	DbResMap DbRes=XaLibSql::FreeQuerySelect(DB_READ,Qry);
+
+	RESPONSE.Content=ListResponse(DbRes,ReturnedFields);
+
 };
 
 XaUser::~XaUser(){

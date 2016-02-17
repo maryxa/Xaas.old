@@ -24,13 +24,13 @@
 #include <XaUserLoginUi.h>
 #include <XaOuTypeUi.h>
 #include <XaOuUi.h>
+#include <XaUserUi.h>
 #include <XaPages.h>
 #include <XaUserAddressGeoTypeUi.h>
 #include <XaUserAddressMailTypeUi.h>
 #include <XaUserAddressPhoneCodeUi.h>
 #include <XaUserAddressPhoneTypeUi.h>
 #include <XaUserAddressMailUi.h>
-#include <XaUserAddressPhoneUi.h>
 
 int main (void) {
 
@@ -158,6 +158,11 @@ void Controller::ExecuteEvent() {
 		unique_ptr<XaOuUi> OuUi (new XaOuUi());
 		OuUi->Execute();
 
+	} else if(REQUEST.CalledObject=="XaUserUi") {
+
+		unique_ptr<XaUserUi> UserUi (new XaUserUi());
+		UserUi->Execute();
+
 	} else if(REQUEST.CalledObject=="XaPages") {
 
 		unique_ptr<XaPages> Pages (new XaPages());
@@ -187,11 +192,6 @@ void Controller::ExecuteEvent() {
 
 		unique_ptr<XaUserAddressMailUi> UserAddressMailUi (new XaUserAddressMailUi());
 		UserAddressMailUi->Execute();
-
-	} else if(REQUEST.CalledObject=="XaUserAddressPhoneUi") {
-
-		unique_ptr<XaUserAddressPhoneUi> UserAddressPhoneUi (new XaUserAddressPhoneUi());
-		UserAddressPhoneUi->Execute();
 
 	} else {
 
